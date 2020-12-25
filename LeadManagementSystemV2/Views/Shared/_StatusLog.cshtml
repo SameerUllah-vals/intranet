@@ -1,0 +1,28 @@
+﻿@using LeadManagementSystemV2.Helpers;
+@foreach (var item in (List<LeadManagementSystemV2.Models.StatusLog>)ViewBag.StatusLog)
+{
+    if (item.Status == ApplicationHelper.EnumStatus.Pending)
+    {
+      
+    <li class="list-group-item">
+        Request posted by @item.Request.User1.Name at @Convert.ToDateTime(item.CreatedDate).ToString(ApplicationHelper.Website_Date_Time_Format)
+        @if (item.Note != null && item.Note != "")
+        {
+            <span class="text-bold">Message: @item.Note</span>
+        }
+        <label class="@item.Status">@item.Status</label>
+    </li>        
+
+    }
+    else
+    {
+        <li class="list-group-item">
+            Request <label class="@item.Status">@item.Status</label> By @item.Request.User.Name at @Convert.ToDateTime(item.CreatedDate).ToString(ApplicationHelper.Website_Date_Time_Format)
+            @if (item.Note != null && item.Note != "")
+            {
+                <span class="text-bold">Message: @item.Note</span>
+            }
+        </li>
+
+    }
+}

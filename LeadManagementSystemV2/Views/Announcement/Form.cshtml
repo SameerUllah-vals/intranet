@@ -1,0 +1,81 @@
+﻿@model LeadManagementSystemV2.Models.OrgAnnouncementModel
+@using LeadManagementSystemV2.Helpers;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/select2style")
+    @Styles.Render("~/assets/cache/datepickerstyle")
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/select2script")
+    @Scripts.Render("~/assets/cache/datepickerscript")
+}
+@section InLineScriptSection{
+    <script>
+    @if (ViewBag.PageType == "View")
+    {
+       @:DisableView();
+    }
+
+       
+       
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Save", "announcement", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ID)
+            <div class="panel-body">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Title <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control", @placeholder = "Name *" })
+                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Status <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
+                              {
+                                new SelectListItem{ Text="Enable", Value = "Enable",Selected=true },
+                                new SelectListItem{ Text="Disable", Value = "Disable" }
+                             }, "Please-Select", new { @class = "form-control select-picker" })
+                            @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">Announcement <span class="text-danger">*</span></label>
+                            
+                            <textarea id="editor">@Model.Announcement</textarea>
+                            <input type="hidden" name="Announcement" id="editor-html" />
+                            @Html.ValidationMessageFor(m => m.Announcement, "", new { @class = "text-danger" })
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
+                <button class="btn btn-success" type="submit" tabindex="9">Save</button>
+            </div>
+        }
+        <!--===================================================-->
+        <!--End Block Styled Form -->
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

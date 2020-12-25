@@ -1,0 +1,101 @@
+﻿@model LeadManagementSystemV2.Models.RequestModel
+@using LeadManagementSystemV2.Helpers;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/select2style")
+    @Styles.Render("~/assets/cache/datepickerstyle")
+    <style>
+        .Approved {
+            font-weight: bold;
+            color: green;
+        }
+
+        .Pending {
+            font-weight: bold;
+            color: mediumpurple;
+        }
+
+        .Hold {
+            font-weight: bold;
+            color: skyblue;
+        }
+
+        .Closed {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/select2script")
+    @Scripts.Render("~/assets/cache/datepickerscript")
+      
+}
+@section InLineScriptSection{
+    <script>
+    @if (ViewBag.PageType == "View")
+    {
+       @:DisableView();
+    }
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    @Html.Partial("_RequestForm",Model)
+   <div class="panel">
+        <div class="panel-body">
+            @if (ViewBag.PageType == "View")
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="text-center bg-primary" style="padding:5px">Status Tracking <span class="text-danger">@Model.TicketNo</span></h5>
+                        <ul class="list-group">
+                            @Html.Partial("_StatusLog")
+                            @if (Model.Status != "Closed")
+                            {
+                              using (Ajax.BeginForm("ChangeStatus", "Inbox", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @class = "enableAttribute", @autocomplete = "off" }))
+                                {
+                                <li class="list-group-item">
+                                    <input type="hidden" name="RequestID" value="@Model.ID" />
+                                    <label class="control-label">Note <span class="text-danger">*</span></label>
+                                    <textarea rows="3" col="3" class="form-control" name="Note"></textarea>
+                                    <label class="control-label">Status <span class="text-danger">*</span></label>
+                                    @*@Html.DropDownList("Status", new List<SelectListItem>
+                                     {
+                                        new SelectListItem{ Text="Pending", Value = "Pending",Selected=true },
+                                        new SelectListItem{ Text="Approved", Value = "Approved" },
+                                        new SelectListItem{ Text="Hold", Value = "Hold" },
+                                        new SelectListItem{ Text="Closed", Value = "Closed" }
+                                     }, "-Select-", new { @class = "form-control select-picker" })
+                                    @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger", @disabled = true })*@
+                                    @{List<string> status = new List<string>();
+                                        status.Add("Pending");
+                                        status.Add("Closed");
+                                        status.Add("Hold");
+                                        status.Add("Approved");
+                                    }
+                                    <select class="form-control select-picker" name="Status">
+                                        @foreach (var item in status)
+                                        {
+                                            if (item != Model.Status)
+                                            {
+                                                <option value="@item">@item</option>
+                                            }
+                                        }
+                                    </select>
+                                </li>
+                                <li class="list-group-item">
+                                    <button type="submit" class="btn btn-primary">Post</button>
+                                </li>
+                                            }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

@@ -1,0 +1,165 @@
+﻿@using LeadManagementSystemV2.Helpers;
+@model LeadManagementSystemV2.Models.ViewModel
+
+@{
+    ViewBag.AllowAdding = null;
+    ViewBag.AllowEditing = null;
+    //ViewBag.AllowDeleting = null;
+    if (ViewBag.UserRecord.RoleID == ApplicationHelper.EnumRole.Administrator)
+    {
+        //ViewBag.AllowDeleting = true;
+    }
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"TicketNo\"},{ \"data\": \"DepartPerson\"},{ \"data\": \"DepartmentName\"},{ \"data\": \"ResourceName\"},{ \"data\": \"Priority\"},{ \"data\": \"Username\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+    if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
+    {
+        ViewBag.DataTableActionColumn = "9";
+        DataTableColumns += ",{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": false}";
+    }
+    ViewBag.DataTableColumns = DataTableColumns;
+}
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/datatablestyle")
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/datatablescript")
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+}
+@section InLineScriptSection{
+    @{Html.RenderPartial("JScript");}
+    <script>
+        $(document).ready(function () {
+            $("#tabs").tabs();
+        });
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+
+        <div class="panel-body">
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Pending</a></li>
+                    <li><a href="#tabs-2">Approved</a></li>
+                    <li><a href="#tabs-3">Closed</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <table class="table table-striped table-bordered record-table" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ticket No</th>
+                                <th>Responsible</th>
+                                <th>Depart</th>
+                                <th>Issue</th>
+                                <th>Priority</th>
+                                <th>Created By</th>
+                                <th>Status</th>
+                                <th class="min-desktop">Created DateTime</th>
+                                <th class="min-desktop">Updated DateTime</th>
+                                @if (ViewBag.DataTableActionColumn != null)
+                                {
+                                    <th data-priority="2">Actions</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div id="tabs-2">
+                    <table class="table table-striped table-bordered " cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+
+
+                                <th>Ticket No</th>
+                                <th>Responsible</th>
+                                <th>Depart</th>
+                                <th>Issue</th>
+                                <th>Priority</th>
+                                <th>Created By</th>
+                                <th>Status</th>
+                                <th class="min-desktop">Created DateTime</th>
+                                <th class="min-desktop">Updated DateTime</th>
+                                <th>Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ApprovedList)
+                            {
+                                <tr>
+
+                                    <td>@item.TicketNo</td>
+                                    <td>@item.User.Name</td>
+                                    <td>@item.Department.DepartmentName</td>
+                                    <td>@item.Resource.ResourceName</td>
+                                    <td>@item.Priority</td>
+                                    <td>@item.User1.Name</td>
+                                    <td>@item.Status</td>
+                                    <td>@item.CreatedDateTime</td>
+                                    <td>@item.UpdatedDateTime</td>
+
+                                    <td>
+                                        <a href="@Url.Action("delete","inbox",new {id = item.ID })" class="btn btn-danger btn-icon remove-row"><i class="fa fa-remove"></i></a>
+                                        <a href="@Url.Action("views","inbox",new {id = item.ID })" class="btn btn-primary btn-icon mt-2"><i class="fa fa-eye"></i></a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="tabs-3">
+                    <table class="table table-striped table-bordered " cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Ticket No</th>
+                                <th>Responsible</th>
+                                <th>Depart</th>
+                                <th>Issue</th>
+                                <th>Priority</th>
+                                <th>Created By</th>
+                                <th>Status</th>
+                                <th class="min-desktop">Created DateTime</th>
+                                <th class="min-desktop">Updated DateTime</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ClosedList)
+                            {
+                                <tr>
+                                    <td>@item.TicketNo</td>
+                                    <td>@item.User.Name</td>
+                                    <td>@item.Department.DepartmentName</td>
+                                    <td>@item.Resource.ResourceName</td>
+                                    <td>@item.Priority</td>
+                                    <td>@item.User1.Name</td>
+                                    <td>@item.Status</td>
+                                    <td>@item.CreatedDateTime</td>
+                                    <td>@item.UpdatedDateTime</td>
+                                    <td>
+                                        <a href="@Url.Action("delete","inbox",new {id = item.ID })" class="btn btn-danger btn-icon remove-row"><i class="fa fa-remove"></i></a>
+                                        <a href="@Url.Action("views","inbox",new {id = item.ID })" class="btn btn-primary btn-icon mt-2"><i class="fa fa-eye"></i></a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--===================================================-->
+    <!-- End Striped Table -->
+</div>
+<!--===================================================-->
+<!--End page content-->

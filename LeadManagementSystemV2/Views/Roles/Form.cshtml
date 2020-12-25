@@ -1,0 +1,223 @@
+﻿@model LeadManagementSystemV2.Models.RoleModel
+@using LeadManagementSystemV2.Helpers;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/datepickerstyle")
+    @Styles.Render("~/assets/cache/select2style")
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/datepickerscript")
+    @Scripts.Render("~/assets/cache/select2script")
+}
+@section InLineScriptSection{
+    <script type="text/javascript">
+         var getMenus = function (id) {
+            var isDisabled = $("#Name").attr("disabled");
+            var table_responsive = $("#table_responsive");
+            table_responsive.html("");
+            table_responsive.removeClass();
+            table_responsive.addClass("vertical-align text-center");
+            $("<div>").addClass("loader vertical-align-middle loader-circle").appendTo(table_responsive);
+             $.ajax({
+            type: "POST",
+                 url: "@ViewBag.PageURL/GetMenus",
+                data: "id=" + id,
+                success: function (response) {
+                    if (response.Success == true) {
+                        var tableHtml = "<h1 class='text-center'>Menus</h1>";
+                        tableHtml += "<table class='table table-bordered'>";
+                        tableHtml += "<tbody>";
+                        var jsonDataArray = JSON.parse(response.Data);
+                        for (var i = 0; i < jsonDataArray.length; i++) {
+                            if (jsonDataArray[i] != undefined) {
+                                var currentData = jsonDataArray[i];
+                                tableHtml += "<tr>";
+                                tableHtml += "<td colspan='2' class='text-center'><h4>" + currentData.Name + "<h4></td>";
+                                tableHtml += "</tr>";
+                                tableHtml += "<tr>";
+                                tableHtml += "<td width='60%'>";
+                                tableHtml += "<strong>Name</strong>";
+                                tableHtml += "</td>";
+                                tableHtml += "<td width='40%'>";
+                                tableHtml += "<strong>#</strong>";
+                                tableHtml += "</td>";
+                                tableHtml += "</tr>";
+                                for (var k = 0; k < currentData.Menus.length; k++) {
+                                    var currentMenuData = currentData.Menus[k];
+                                    var isAnyMenuPermission = false;
+                                    for (var z = 0; z < currentMenuData.Permissions.length; z++) {
+                                        if (currentMenuData.Permissions[z].Selected == true) {
+                                            isAnyMenuPermission = true;
+                                        }
+                                    }
+                                    tableHtml += "<tr>";
+                                    tableHtml += "<td>";
+                                    tableHtml += currentMenuData.Name;
+                                    tableHtml += "</td>";
+                                    tableHtml += "<td class='menu-column-permission' data-id='" + currentMenuData.ID + "'>";
+                                    for (var z = 0; z < currentMenuData.Permissions.length; z++) {
+                                        var currentMenuPermission = currentMenuData.Permissions[z];
+                                        if (currentMenuPermission.Type == "R") {
+                                            tableHtml += "<div class='radio'>";
+                                            tableHtml += "<input type='radio' name='menu_" + currentMenuData.ID + "' class='menu-permission magic-radio' id='menu_permission_" + currentMenuPermission.ID + "' value='" + currentMenuPermission.Name + "'";
+                                            if (!isAnyMenuPermission) {
+                                                tableHtml += " checked='checked'";
+                                                isAnyMenuPermission = true;
+                                            } else {
+                                                if (currentMenuPermission.Selected == true) {
+                                                    tableHtml += " checked='checked'";
+                                                }
+                                            }
+                                            if (isDisabled != undefined) {
+                                                tableHtml += " disabled='disabled'";
+                                            }
+                                            tableHtml += ">";
+                                            tableHtml += "<label for='menu_permission_" + currentMenuPermission.ID + "'>" + currentMenuPermission.Name + "</label>";
+                                            tableHtml += "</div>";
+                                        }
+                                        else {
+                                            tableHtml += "<div class='checkbox'>";
+                                            tableHtml += "<input type='checkbox' name='menu_" + currentMenuData.ID + "' class='menu-permission magic-checkbox' id='menu_permission_" + currentMenuPermission.ID + "' value='" + currentMenuPermission.Name + "'";
+                                            if (currentMenuPermission.Selected == true) {
+                                                tableHtml += " checked='checked'";
+                                            }
+                                            if (isDisabled != undefined) {
+                                                tableHtml += " disabled='disabled'";
+                                            }
+                                            tableHtml += ">";
+                                            tableHtml += "<label for='menu_permission_" + currentMenuPermission.ID + "'>" + currentMenuPermission.Name + "</label>";
+                                            tableHtml += "</div>";
+                                        }
+                                    }
+                                    tableHtml += "</td>";
+                                    tableHtml += "</tr>";
+                                }
+                                tableHtml += "<tr>";
+                                tableHtml += "<td colspan='2'>&nbsp;</td>";
+                                tableHtml += "</tr>";
+                                console.log(currentData);
+                            }
+                        }
+                        tableHtml += "</tbody>";
+                        tableHtml += "</table>";
+                        table_responsive.html("");
+                        table_responsive.removeClass();
+                        table_responsive.html(tableHtml);
+                    } else {
+                        table_responsive.html("");
+                        table_responsive.removeClass();
+                        table_responsive.html(response.message);
+                    }
+                },
+                 error: function (data) {
+                    table_responsive.html("");
+                    table_responsive.removeClass();
+                    table_responsive.html(data);
+                }
+            });
+        }
+        $(document).ready(function () {
+            var id = 0;
+            if ($("#ID").val() != "") {
+                id = parseInt($("#ID").val());
+            }
+            getMenus(id);
+        });
+        @if (ViewBag.PageType == ApplicationHelper.EnumPageType.View)
+        {
+            @:DisableView();
+        }
+        else
+        {
+            <Text>
+        $(document).on("change", ".menu-permission", function () {
+            var current_context = $(this);
+            var column_context = current_context.closest(".menu-column-permission");
+            if (current_context.attr("type") == "radio") {
+                column_context.find(".menu-permission").prop("checked", false);
+                current_context.prop("checked", true);
+            } else {
+                column_context.find(".menu-permission").each(function () {
+                    if ($(this).attr("type") == "radio") {
+                        $(this).prop("checked", false);
+                    }
+                });
+            }
+            var is_checked = false;
+            column_context.find(".menu-permission").each(function () {
+                if ($(this).prop("checked") == true) {
+                    is_checked = true;
+                }
+            });
+            if (!is_checked) {
+                column_context.find(".menu-permission").each(function () {
+                    if ($(this).attr("type") == "radio") {
+                        $(this).prop("checked", true);
+                        return false;
+                    }
+                });
+            }
+            var all_permissions = "";
+            $(".menu-column-permission").each(function () {
+                var allow_permission = "";
+                $(this).find(".menu-permission").each(function () {
+                    if (jQuery(this).prop("checked") == true) {
+                        allow_permission += $(this).val() + "|";
+                    }
+                });
+                if (allow_permission == "") {
+                    $(this).find(".menu-permission").each(function () {
+                        if ($(this).attr("type") == "radio") {
+                            allow_permission = $(this).val() + "|";
+                        }
+                    });
+                }
+                allow_permission = $(this).attr("data-id") + "," + allow_permission.substr(0, allow_permission.length - 1);
+                all_permissions += allow_permission + "||";
+            });
+            $("#RolePermission").val(all_permissions.substr(0, all_permissions.length - 2));
+        });
+            </Text>
+        }
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Save", "Roles", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ID)
+            @Html.Hidden("RolePermission")
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Name <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Name, null, new { @class = "form-control", @placeholder = "Name *", @tabindex = "1" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Status <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusRecords, "Value", "Text"), new { @class = "form-control", @tabindex = "2" })
+                        </div>
+                    </div>
+                    <div class="table-responsive" id="table_responsive"></div>
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="4" id="btn_back">Back</a>
+                <button class="btn btn-success" type="submit" tabindex="5" id="btn_submit">Save</button>
+            </div>
+        }
+        <!--===================================================-->
+        <!--End Block Styled Form -->
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

@@ -1,0 +1,146 @@
+﻿@model LeadManagementSystemV2.Models.LeadsModel
+@using LeadManagementSystemV2.Helpers;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/select2style")
+    @Styles.Render("~/assets/cache/datepickerstyle")
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/select2script")
+    @Scripts.Render("~/assets/cache/datepickerscript")
+}
+@section InLineScriptSection{
+    <script>
+    @if (ViewBag.PageType == "View")
+    {
+       @:DisableView();
+    }
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Save", "Leads", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ID)
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Source <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.Source, new SelectList(ViewBag.SourceRecords, "Value", "Text"), "Please-Select", new { @class = "form-control select-picker", @tabindex = "6" })
+                            @Html.ValidationMessageFor(m => m.Source, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Priority <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.Priority, new SelectList(ViewBag.PriorityRecords, "Value", "Text"), "Please-Select", new { @class = "form-control select-picker", @tabindex = "5" })
+                            @Html.ValidationMessageFor(m => m.Priority, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Services <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.Services, new SelectList(ViewBag.ServicesRecords, "Value", "Text"), "Please-Select", new { @class = "form-control select-picker", @tabindex = "7", @data_live_search = "true" })
+                            @Html.ValidationMessageFor(m => m.Services, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Name <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Name, null, new { @class = "form-control", @placeholder = "Name *", @tabindex = "1" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Email <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Email, null, new { @class = "form-control", @placeholder = "Email *", @tabindex = "2", @type = "email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br clear="all" />
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Company Name <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.CustomerName, null, new { @class = "form-control", @placeholder = "Customer Name *", @tabindex = "3" })
+                            @Html.ValidationMessageFor(m => m.CustomerName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Phone #<span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.PhoneNumber, null, new { @class = "form-control", @placeholder = "Phone # *", @tabindex = "4", @type = "number" })
+                            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br clear="all" />
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @placeholder = "Description", @tabindex = "8" })
+                        </div>
+                    </div>
+                    <br clear="all" />
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">Location</label>
+                            @Html.TextAreaFor(m => m.Location, new { @class = "form-control", @placeholder = "Location", @tabindex = "8" })
+                        </div>
+                    </div>
+                    <br clear="all" />
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Reminder Date</label>
+                            @if (ViewBag.PageType == "View")
+                            {
+                                <br />
+                                if (Model.ReminderDate != null)
+                                {
+                                    <p class="form-control" style="background-color:#eee">@Model.ReminderDate.Value.ToString("dd/MM/yyyy")</p>
+                                }
+                                else
+                                {
+                                    <p class="form-control" style="background-color:#eee">No Date Selected</p>
+                                }
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.ReminderDate, null, new { @class = "form-control", @placeholder = "Date", @tabindex = "9", @type = "date" })
+                            }
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Reminder Time</label>
+                            @Html.TextBoxFor(m => m.ReminderTime, null, new { @class = "form-control", @placeholder = "Time # *", @tabindex = "10", @type = "time" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
+                <button class="btn btn-success" type="submit" tabindex="9">Save</button>
+            </div>
+        }
+        <!--===================================================-->
+        <!--End Block Styled Form -->
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

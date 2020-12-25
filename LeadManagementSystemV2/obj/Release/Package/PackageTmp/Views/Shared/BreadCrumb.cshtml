@@ -1,0 +1,29 @@
+﻿@using LeadManagementSystemV2.Models;
+<div id="page-head">
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <h1 class="page-header text-overflow">@ViewBag.ControllerName</h1>
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+    @{
+        List<BreadCrumbMenu> BreadCrumbMenus = (List<BreadCrumbMenu>)ViewBag.BreadCrumbMenus;
+    }
+    @if (BreadCrumbMenus.Count > 0)
+    {
+        <!--Breadcrumb-->
+        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+        <ol class="breadcrumb">
+            <li><a href="/dashboard"><i class="demo-pli-home"></i></a></li>
+            @{
+                foreach (BreadCrumbMenu Menu in BreadCrumbMenus)
+                {
+                    <li class="@Menu.ClassName"><a href="@Menu.AccessURL">@Menu.Name</a></li>
+                }
+            }
+        </ol>
+        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+        <!--End breadcrumb-->
+    }
+</div>

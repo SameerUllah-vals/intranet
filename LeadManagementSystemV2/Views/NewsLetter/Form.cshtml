@@ -1,0 +1,88 @@
+﻿@model LeadManagementSystemV2.Models.NewsLetterModel
+@using LeadManagementSystemV2.Helpers;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/select2style")
+    @Styles.Render("~/assets/cache/datepickerstyle")
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/select2script")
+    @Scripts.Render("~/assets/cache/datepickerscript")
+}
+@section InLineScriptSection{
+    <script>
+    @if (ViewBag.PageType == "View")
+    {
+       @:DisableView();
+    }
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Save", "newsletter", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ID)
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Title <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control", @placeholder = "Title *" })
+                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Link <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Link, null, new { @class = "form-control", @placeholder = "Link *" })
+                            @Html.ValidationMessageFor(m => m.Link, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Status <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
+                              {
+                                new SelectListItem{ Text="Enable", Value = "Enable",Selected=true },
+                                new SelectListItem{ Text="Disable", Value = "Disable" }
+                             }, "Please-Select", new { @class = "form-control select-picker" })
+                            @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Image<span class="text-danger">*</span></label>
+                            <input type="file" name="ImageFile" id="ImageFile" />
+                            @Html.ValidationMessageFor(m => m.ImageFile, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">Make Default NewsLetter<span class="text-danger">*</span></label>
+                            @Html.EditorFor(m => m.isDefault, null)
+                            @Html.ValidationMessageFor(m => m.isDefault, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
+                <button class="btn btn-success" type="submit" tabindex="9">Save</button>
+            </div>
+        }
+        <!--===================================================-->
+        <!--End Block Styled Form -->
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

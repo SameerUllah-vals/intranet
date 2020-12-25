@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbLeadManagementSystemV2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DbLeadManagementSystemV2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cities" EntityType="DbLeadManagementSystemV2Model.City" />
+    <EntitySet Name="Countries" EntityType="DbLeadManagementSystemV2Model.Country" />
+    <EntitySet Name="LeadLogBooks" EntityType="DbLeadManagementSystemV2Model.LeadLogBook" />
+    <EntitySet Name="Leads" EntityType="DbLeadManagementSystemV2Model.Lead" />
+    <EntitySet Name="MenuPermissions" EntityType="DbLeadManagementSystemV2Model.MenuPermission" />
+    <EntitySet Name="Menus" EntityType="DbLeadManagementSystemV2Model.Menu" />
+    <EntitySet Name="Reminders" EntityType="DbLeadManagementSystemV2Model.Reminder" />
+    <EntitySet Name="RolePermissions" EntityType="DbLeadManagementSystemV2Model.RolePermission" />
+    <EntitySet Name="Roles" EntityType="DbLeadManagementSystemV2Model.Role" />
+    <EntitySet Name="Settings" EntityType="DbLeadManagementSystemV2Model.Setting" />
+    <EntitySet Name="States" EntityType="DbLeadManagementSystemV2Model.State" />
+    <AssociationSet Name="FK_Cities_States" Association="DbLeadManagementSystemV2Model.FK_Cities_States">
+      <End Role="State" EntitySet="States" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leads_Cities" Association="DbLeadManagementSystemV2Model.FK_Leads_Cities">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Lead" EntitySet="Leads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_States_Countries" Association="DbLeadManagementSystemV2Model.FK_States_Countries">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="State" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LeadLockBook_Leads" Association="DbLeadManagementSystemV2Model.FK_LeadLockBook_Leads">
+      <End Role="Lead" EntitySet="Leads" />
+      <End Role="LeadLogBook" EntitySet="LeadLogBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reminder_Leads" Association="DbLeadManagementSystemV2Model.FK_Reminder_Leads">
+      <End Role="Lead" EntitySet="Leads" />
+      <End Role="Reminder" EntitySet="Reminders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuPermissions_Menus" Association="DbLeadManagementSystemV2Model.FK_MenuPermissions_Menus">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="MenuPermission" EntitySet="MenuPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuPermissions_Roles" Association="DbLeadManagementSystemV2Model.FK_MenuPermissions_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="MenuPermission" EntitySet="MenuPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menus_Menus" Association="DbLeadManagementSystemV2Model.FK_Menus_Menus">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="Menu1" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermissions_Menus" Association="DbLeadManagementSystemV2Model.FK_RolePermissions_Menus">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="RolePermission" EntitySet="RolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermissions_Roles" Association="DbLeadManagementSystemV2Model.FK_RolePermissions_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="RolePermission" EntitySet="RolePermissions" />
+    </AssociationSet>
+    <EntitySet Name="Resources" EntityType="DbLeadManagementSystemV2Model.Resource" />
+    <EntitySet Name="Departments" EntityType="DbLeadManagementSystemV2Model.Department" />
+    <EntitySet Name="Users" EntityType="DbLeadManagementSystemV2Model.User" />
+    <AssociationSet Name="FK_Users_Departments" Association="DbLeadManagementSystemV2Model.FK_Users_Departments">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leads_Users" Association="DbLeadManagementSystemV2Model.FK_Leads_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Lead" EntitySet="Leads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reminder_Users" Association="DbLeadManagementSystemV2Model.FK_Reminder_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Reminder" EntitySet="Reminders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="DbLeadManagementSystemV2Model.FK_Users_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="StatusLogs" EntityType="DbLeadManagementSystemV2Model.StatusLog" />
+    <EntitySet Name="Requests" EntityType="DbLeadManagementSystemV2Model.Request" />
+    <AssociationSet Name="FK_Requests_Departments" Association="DbLeadManagementSystemV2Model.FK_Requests_Departments">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_DepartmentPerson" Association="DbLeadManagementSystemV2Model.FK_Requests_DepartmentPerson">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Resources" Association="DbLeadManagementSystemV2Model.FK_Requests_Resources">
+      <End Role="Resource" EntitySet="Resources" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Users" Association="DbLeadManagementSystemV2Model.FK_Requests_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatusLog_StatusLog" Association="DbLeadManagementSystemV2Model.FK_StatusLog_StatusLog">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="StatusLog" EntitySet="StatusLogs" />
+    </AssociationSet>
+    <EntitySet Name="RequestRights" EntityType="DbLeadManagementSystemV2Model.RequestRight" />
+    <AssociationSet Name="FK_RequestRights_Departments" Association="DbLeadManagementSystemV2Model.FK_RequestRights_Departments">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="RequestRight" EntitySet="RequestRights" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestRights_Users" Association="DbLeadManagementSystemV2Model.FK_RequestRights_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="RequestRight" EntitySet="RequestRights" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="State" Relationship="DbLeadManagementSystemV2Model.FK_Cities_States" FromRole="City" ToRole="State" />
+    <NavigationProperty Name="Leads" Relationship="DbLeadManagementSystemV2Model.FK_Leads_Cities" FromRole="City" ToRole="Lead" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="States" Relationship="DbLeadManagementSystemV2Model.FK_States_Countries" FromRole="Country" ToRole="State" />
+  </EntityType>
+  <EntityType Name="LeadLogBook">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeadID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AttachFile" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="Lead" Relationship="DbLeadManagementSystemV2Model.FK_LeadLockBook_Leads" FromRole="LeadLogBook" ToRole="Lead" />
+  </EntityType>
+  <EntityType Name="Lead">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="CityID" Type="Int32" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Priority" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Services" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReminderDate" Type="DateTime" Precision="0" />
+    <Property Name="ReminderTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="City" Relationship="DbLeadManagementSystemV2Model.FK_Leads_Cities" FromRole="Lead" ToRole="City" />
+    <NavigationProperty Name="LeadLogBooks" Relationship="DbLeadManagementSystemV2Model.FK_LeadLockBook_Leads" FromRole="Lead" ToRole="LeadLogBook" />
+    <NavigationProperty Name="Reminders" Relationship="DbLeadManagementSystemV2Model.FK_Reminder_Leads" FromRole="Lead" ToRole="Reminder" />
+    <Property Name="Location" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="DbLeadManagementSystemV2Model.FK_Leads_Users" FromRole="Lead" ToRole="User" />
+  </EntityType>
+  <EntityType Name="MenuPermission">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Menu" Relationship="DbLeadManagementSystemV2Model.FK_MenuPermissions_Menus" FromRole="MenuPermission" ToRole="Menu" />
+    <NavigationProperty Name="Role" Relationship="DbLeadManagementSystemV2Model.FK_MenuPermissions_Roles" FromRole="MenuPermission" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Icon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="AccessURL" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MenuPermissions" Relationship="DbLeadManagementSystemV2Model.FK_MenuPermissions_Menus" FromRole="Menu" ToRole="MenuPermission" />
+    <NavigationProperty Name="Menus1" Relationship="DbLeadManagementSystemV2Model.FK_Menus_Menus" FromRole="Menu" ToRole="Menu1" />
+    <NavigationProperty Name="Menu1" Relationship="DbLeadManagementSystemV2Model.FK_Menus_Menus" FromRole="Menu1" ToRole="Menu" />
+    <NavigationProperty Name="RolePermissions" Relationship="DbLeadManagementSystemV2Model.FK_RolePermissions_Menus" FromRole="Menu" ToRole="RolePermission" />
+  </EntityType>
+  <EntityType Name="Reminder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="LeadID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="Lead" Relationship="DbLeadManagementSystemV2Model.FK_Reminder_Leads" FromRole="Reminder" ToRole="Lead" />
+    <NavigationProperty Name="User" Relationship="DbLeadManagementSystemV2Model.FK_Reminder_Users" FromRole="Reminder" ToRole="User" />
+  </EntityType>
+  <EntityType Name="RolePermission">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="Permissions" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SequenceOrder" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Menu" Relationship="DbLeadManagementSystemV2Model.FK_RolePermissions_Menus" FromRole="RolePermission" ToRole="Menu" />
+    <NavigationProperty Name="Role" Relationship="DbLeadManagementSystemV2Model.FK_RolePermissions_Roles" FromRole="RolePermission" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="MenuPermissions" Relationship="DbLeadManagementSystemV2Model.FK_MenuPermissions_Roles" FromRole="Role" ToRole="MenuPermission" />
+    <NavigationProperty Name="RolePermissions" Relationship="DbLeadManagementSystemV2Model.FK_RolePermissions_Roles" FromRole="Role" ToRole="RolePermission" />
+    <NavigationProperty Name="Users" Relationship="DbLeadManagementSystemV2Model.FK_Users_Roles" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cities" Relationship="DbLeadManagementSystemV2Model.FK_Cities_States" FromRole="State" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="DbLeadManagementSystemV2Model.FK_States_Countries" FromRole="State" ToRole="Country" />
+  </EntityType>
+  <Association Name="FK_Cities_States">
+    <End Type="DbLeadManagementSystemV2Model.State" Role="State" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leads_Cities">
+    <End Type="DbLeadManagementSystemV2Model.City" Role="City" Multiplicity="0..1" />
+    <End Type="DbLeadManagementSystemV2Model.Lead" Role="Lead" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lead">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_States_Countries">
+    <End Type="DbLeadManagementSystemV2Model.Country" Role="Country" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.State" Role="State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LeadLockBook_Leads">
+    <End Type="DbLeadManagementSystemV2Model.Lead" Role="Lead" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.LeadLogBook" Role="LeadLogBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lead">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LeadLogBook">
+        <PropertyRef Name="LeadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reminder_Leads">
+    <End Type="DbLeadManagementSystemV2Model.Lead" Role="Lead" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.Reminder" Role="Reminder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lead">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Reminder">
+        <PropertyRef Name="LeadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuPermissions_Menus">
+    <End Type="DbLeadManagementSystemV2Model.Menu" Role="Menu" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.MenuPermission" Role="MenuPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MenuPermission">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuPermissions_Roles">
+    <End Type="DbLeadManagementSystemV2Model.Role" Role="Role" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.MenuPermission" Role="MenuPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MenuPermission">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menus_Menus">
+    <End Type="DbLeadManagementSystemV2Model.Menu" Role="Menu" Multiplicity="0..1" />
+    <End Type="DbLeadManagementSystemV2Model.Menu" Role="Menu1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermissions_Menus">
+    <End Type="DbLeadManagementSystemV2Model.Menu" Role="Menu" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.RolePermission" Role="RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermissions_Roles">
+    <End Type="DbLeadManagementSystemV2Model.Role" Role="Role" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.RolePermission" Role="RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Resource">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="Requests" Relationship="DbLeadManagementSystemV2Model.FK_Requests_Resources" FromRole="Resource" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="Users" Relationship="DbLeadManagementSystemV2Model.FK_Users_Departments" FromRole="Department" ToRole="User" />
+    <NavigationProperty Name="Requests" Relationship="DbLeadManagementSystemV2Model.FK_Requests_Departments" FromRole="Department" ToRole="Request" />
+    <NavigationProperty Name="RequestRights" Relationship="DbLeadManagementSystemV2Model.FK_RequestRights_Departments" FromRole="Department" ToRole="RequestRight" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="DepartmentID" Type="Int32" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ProfileImage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="Department" Relationship="DbLeadManagementSystemV2Model.FK_Users_Departments" FromRole="User" ToRole="Department" />
+    <NavigationProperty Name="Leads" Relationship="DbLeadManagementSystemV2Model.FK_Leads_Users" FromRole="User" ToRole="Lead" />
+    <NavigationProperty Name="Reminders" Relationship="DbLeadManagementSystemV2Model.FK_Reminder_Users" FromRole="User" ToRole="Reminder" />
+    <NavigationProperty Name="Role" Relationship="DbLeadManagementSystemV2Model.FK_Users_Roles" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Requests" Relationship="DbLeadManagementSystemV2Model.FK_Requests_DepartmentPerson" FromRole="User" ToRole="Request" />
+    <NavigationProperty Name="Requests1" Relationship="DbLeadManagementSystemV2Model.FK_Requests_Users" FromRole="User" ToRole="Request" />
+    <NavigationProperty Name="RequestRights" Relationship="DbLeadManagementSystemV2Model.FK_RequestRights_Users" FromRole="User" ToRole="RequestRight" />
+  </EntityType>
+  <Association Name="FK_Users_Departments">
+    <End Type="DbLeadManagementSystemV2Model.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="DbLeadManagementSystemV2Model.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leads_Users">
+    <End Type="DbLeadManagementSystemV2Model.User" Role="User" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.Lead" Role="Lead" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lead">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reminder_Users">
+    <End Type="DbLeadManagementSystemV2Model.User" Role="User" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.Reminder" Role="Reminder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Reminder">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Type="DbLeadManagementSystemV2Model.Role" Role="Role" Multiplicity="1" />
+    <End Type="DbLeadManagementSystemV2Model.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="StatusLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestID" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Request" Relationship="DbLeadManagementSystemV2Model.FK_StatusLog_StatusLog" FromRole="StatusLog" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TicketNo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="DepartmentID" Type="Int32" />
+    <Property Name="DepartmentPersonID" Type="Int32" />
+    <Property Name="ResourceID" Type="Int32" />
+    <Property Name="Priority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Time" Type="Time" Precision="7" />
+    <Property Name="AttachedFileName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="Department" Relationship="DbLeadManagementSystemV2Model.FK_Requests_Departments" FromRole="Request" ToRole="Department" />
+    <NavigationProperty Name="User" Relationship="DbLeadManagementSystemV2Model.FK_Requests_DepartmentPerson" FromRole="Request" ToRole="User" />
+    <NavigationProperty Name="Resource" Relationship="DbLeadManagementSystemV2Model.FK_Requests_Resources" FromRole="Request" ToRole="Resource" />
+    <NavigationProperty Name="User1" Relationship="DbLeadManagementSystemV2Model.FK_Requests_Users" FromRole="Request" ToRole="User" />
+    <NavigationProperty Name="StatusLogs" Relationship="DbLeadManagementSystemV2Model.FK_StatusLog_StatusLog" FromRole="Request" ToRole="StatusLog" />
+  </EntityType>
+  <Association Name="FK_Requests_Departments">
+    <End Type="DbLeadManagementSystemV2Model.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="DbLeadManagementSystemV2Model.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_DepartmentPerson">
+    <End Type="DbLeadManagementSystemV2Model.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbLeadManagementSystemV2Model.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="DepartmentPersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Resources">
+    <End Type="DbLeadManagementSystemV2Model.Resource" Role="Resource" Multiplicity="0..1" />
+    <End Type="DbLeadManagementSystemV2Model.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="ResourceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Users">
+    <End Type="DbLeadManagementSystemV2Model.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbLeadManagementSystemV2Model.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatusLog_StatusLog">
+    <End Type="DbLeadManagementSystemV2Model.Request" Role="Request" Multiplicity="0..1" />
+    <End Type="DbLeadManagementSystemV2Model.StatusLog" Role="StatusLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StatusLog">
+        <PropertyRef Name="RequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RequestRight">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Department" Relationship="DbLeadManagementSystemV2Model.FK_RequestRights_Departments" FromRole="RequestRight" ToRole="Department" />
+    <NavigationProperty Name="User" Relationship="DbLeadManagementSystemV2Model.FK_RequestRights_Users" FromRole="RequestRight" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_RequestRights_Departments">
+    <End Type="DbLeadManagementSystemV2Model.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="DbLeadManagementSystemV2Model.RequestRight" Role="RequestRight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RequestRight">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestRights_Users">
+    <End Type="DbLeadManagementSystemV2Model.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbLeadManagementSystemV2Model.RequestRight" Role="RequestRight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RequestRight">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

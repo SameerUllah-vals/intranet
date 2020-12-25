@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbProjectModelStoreContainer" CdmEntityContainer="DbLeadManagementSystemV2Entities">
+    <EntitySetMapping Name="MenuPermissions">
+      <EntityTypeMapping TypeName="dbProjectModel.MenuPermission">
+        <MappingFragment StoreEntitySet="MenuPermissions">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="dbProjectModel.Menu">
+        <MappingFragment StoreEntitySet="Menus">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="AccessURL" ColumnName="AccessURL" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolePermissions">
+      <EntityTypeMapping TypeName="dbProjectModel.RolePermission">
+        <MappingFragment StoreEntitySet="RolePermissions">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="Permissions" ColumnName="Permissions" />
+          <ScalarProperty Name="SequenceOrder" ColumnName="SequenceOrder" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="dbProjectModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="dbProjectModel.Setting">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="dbProjectModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Banners">
+      <EntityTypeMapping TypeName="dbProjectModel.Banner">
+        <MappingFragment StoreEntitySet="Banners">
+          <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrgAnnouncements">
+      <EntityTypeMapping TypeName="dbProjectModel.OrgAnnouncement">
+        <MappingFragment StoreEntitySet="OrgAnnouncement">
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Announcement" ColumnName="Announcement" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsLetters">
+      <EntityTypeMapping TypeName="dbProjectModel.NewsLetter">
+        <MappingFragment StoreEntitySet="NewsLetters">
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionDetails">
+      <EntityTypeMapping TypeName="dbProjectModel.QuestionDetail">
+        <MappingFragment StoreEntitySet="QuestionDetails">
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+          <ScalarProperty Name="QuestionsId" ColumnName="QuestionsId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="dbProjectModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+          <ScalarProperty Name="option4" ColumnName="option4" />
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Galleries">
+      <EntityTypeMapping TypeName="dbProjectModel.Gallery">
+        <MappingFragment StoreEntitySet="Gallery">
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

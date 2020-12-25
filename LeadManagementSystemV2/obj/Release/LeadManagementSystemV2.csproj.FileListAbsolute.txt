@@ -1,0 +1,384 @@
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\LeadManagementSystemV2.dll.config
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\LeadManagementSystemV2.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\LeadManagementSystemV2.pdb
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csc.exe
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csc.exe.config
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csc.rsp
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csi.exe
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csi.exe.config
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csi.rsp
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.Managed.Core.targets
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.AppContext.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Collections.Immutable.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Console.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.IO.Compression.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.IO.FileSystem.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.IO.Pipes.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Reflection.Metadata.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.AccessControl.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Claims.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Principal.Windows.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.ValueTuple.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Xml.XmlDocument.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Xml.XPath.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\vbc.exe
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\vbc.exe.config
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\vbc.rsp
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\VBCSCompiler.exe
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\VBCSCompiler.exe.config
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Antlr3.Runtime.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\EntityFramework.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\EntityFramework.SqlServer.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Microsoft.Web.Infrastructure.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Newtonsoft.Json.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Helpers.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Mvc.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Optimization.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Razor.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.Deployment.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.Razor.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\WebGrease.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\EntityFramework.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\EntityFramework.SqlServer.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Helpers.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Mvc.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Optimization.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Razor.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.Deployment.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.Razor.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Newtonsoft.Json.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Antlr3.Runtime.pdb
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csprojAssemblyReference.cache
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csproj.CoreCompileInputs.cache
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csproj.CopyComplete
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.pdb
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\ClosedXML.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\DocumentFormat.OpenXml.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\ExcelNumberFormat.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.IO.FileSystem.Primitives.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.IO.Packaging.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\ClosedXML.pdb
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\ClosedXML.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\DocumentFormat.OpenXml.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\ExcelNumberFormat.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\LinqToExcel.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Remotion.Data.Linq.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Remotion.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Remotion.Interfaces.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Remotion.Linq.dll
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\LinqToExcel.xml
+E:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Remotion.Linq.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\LeadManagementSystemV2.dll.config
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\LeadManagementSystemV2.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\LeadManagementSystemV2.pdb
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csc.exe
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csc.exe.config
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csc.rsp
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csi.exe
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csi.exe.config
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\csi.rsp
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.AppContext.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Collections.Immutable.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Console.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.IO.Compression.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.IO.FileSystem.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.IO.Pipes.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Reflection.Metadata.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.AccessControl.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Claims.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.ValueTuple.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Xml.XPath.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\vbc.exe
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\vbc.exe.config
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\vbc.rsp
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\VBCSCompiler.exe
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\roslyn\VBCSCompiler.exe.config
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Antlr3.Runtime.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\ClosedXML.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\DocumentFormat.OpenXml.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\EntityFramework.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\EntityFramework.SqlServer.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\ExcelNumberFormat.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\LinqToExcel.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Microsoft.Web.Infrastructure.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Newtonsoft.Json.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Remotion.Data.Linq.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Remotion.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Remotion.Interfaces.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Remotion.Linq.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.IO.FileSystem.Primitives.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.IO.Packaging.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Helpers.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Mvc.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Optimization.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Razor.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.Deployment.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.Razor.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\WebGrease.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\ClosedXML.pdb
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\ClosedXML.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\DocumentFormat.OpenXml.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\EntityFramework.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\EntityFramework.SqlServer.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\ExcelNumberFormat.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\LinqToExcel.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Remotion.Linq.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Helpers.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Mvc.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Optimization.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.Razor.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.Deployment.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\System.Web.WebPages.Razor.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Newtonsoft.Json.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Antlr3.Runtime.pdb
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csprojAssemblyReference.cache
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csproj.CoreCompileInputs.cache
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csproj.CopyComplete
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.dll
+D:\Projects\LeadManagementSystemV2\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.pdb
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\LeadManagementSystemV2.dll.config
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\LeadManagementSystemV2.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\LeadManagementSystemV2.pdb
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csc.exe
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csc.exe.config
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csc.rsp
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csi.exe
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csi.exe.config
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csi.rsp
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.AppContext.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Collections.Immutable.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Console.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.IO.Compression.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.IO.FileSystem.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.IO.Pipes.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Reflection.Metadata.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.AccessControl.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Claims.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.ValueTuple.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Xml.XPath.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\vbc.exe
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\vbc.exe.config
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\vbc.rsp
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\VBCSCompiler.exe
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\VBCSCompiler.exe.config
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Antlr3.Runtime.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\ClosedXML.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\DocumentFormat.OpenXml.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\EntityFramework.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\EntityFramework.SqlServer.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\ExcelNumberFormat.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\LinqToExcel.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Microsoft.Web.Infrastructure.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Newtonsoft.Json.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Remotion.Data.Linq.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Remotion.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Remotion.Interfaces.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Remotion.Linq.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.IO.FileSystem.Primitives.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.IO.Packaging.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Helpers.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Mvc.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Optimization.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Razor.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.Deployment.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.Razor.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\WebGrease.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\ClosedXML.pdb
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\ClosedXML.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\DocumentFormat.OpenXml.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\EntityFramework.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\EntityFramework.SqlServer.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\ExcelNumberFormat.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\LinqToExcel.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Remotion.Linq.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Helpers.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Mvc.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Optimization.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Razor.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.Deployment.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.Razor.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Newtonsoft.Json.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Antlr3.Runtime.pdb
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csprojAssemblyReference.cache
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csproj.CoreCompileInputs.cache
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csproj.CopyComplete
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.dll
+D:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.pdb
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\LeadManagementSystemV2.dll.config
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\LeadManagementSystemV2.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\LeadManagementSystemV2.pdb
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csc.exe
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csc.exe.config
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csc.rsp
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csi.exe
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csi.exe.config
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\csi.rsp
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.Managed.Core.targets
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.AppContext.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Collections.Immutable.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Console.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.IO.Compression.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.IO.FileSystem.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.IO.Pipes.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Reflection.Metadata.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.AccessControl.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Claims.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Security.Principal.Windows.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.ValueTuple.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Xml.XmlDocument.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Xml.XPath.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\vbc.exe
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\vbc.exe.config
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\vbc.rsp
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\VBCSCompiler.exe
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\roslyn\VBCSCompiler.exe.config
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Antlr3.Runtime.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\ClosedXML.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\DocumentFormat.OpenXml.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\EntityFramework.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\EntityFramework.SqlServer.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\ExcelNumberFormat.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\LinqToExcel.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Microsoft.Web.Infrastructure.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Newtonsoft.Json.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Remotion.Data.Linq.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Remotion.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Remotion.Interfaces.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Remotion.Linq.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.IO.FileSystem.Primitives.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.IO.Packaging.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Helpers.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Mvc.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Optimization.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Razor.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.Deployment.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.Razor.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\WebGrease.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\ClosedXML.pdb
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\ClosedXML.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\DocumentFormat.OpenXml.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\EntityFramework.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\EntityFramework.SqlServer.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\ExcelNumberFormat.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\LinqToExcel.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Remotion.Linq.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Helpers.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Mvc.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Optimization.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.Razor.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.Deployment.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\System.Web.WebPages.Razor.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Newtonsoft.Json.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Antlr3.Runtime.pdb
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csprojAssemblyReference.cache
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csproj.CoreCompileInputs.cache
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.csproj.CopyComplete
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.dll
+E:\Task Managment System\lead-ticket-system\LeadManagementSystemV2\obj\Release\LeadManagementSystemV2.pdb

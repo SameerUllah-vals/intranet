@@ -1,0 +1,98 @@
+﻿@model LeadManagementSystemV2.Models.UserModel
+@using LeadManagementSystemV2.Helpers;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/datepickerstyle")
+    @Styles.Render("~/assets/cache/select2style")
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/datepickerscript")
+    @Scripts.Render("~/assets/cache/select2script")
+}
+@section InLineScriptSection{
+    <script>
+    @if (ViewBag.PageType == "View")
+    {
+       @:DisableView();
+    }
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Save", "Managements", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ID)
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Role <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.RoleID, new SelectList(ViewBag.RolesRecords, "Value", "Text"), new { @class = "form-control", @tabindex = "1" })
+                            @Html.ValidationMessageFor(m => m.RoleID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>  
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Department <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.Departs, "Value", "Text"), new { @class = "form-control", @tabindex = "1" })
+                            @Html.ValidationMessageFor(m => m.DepartmentID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Name <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Name, null, new { @class = "form-control", @placeholder = "Name *", @tabindex = "2" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <br clear="all" />
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Email Address <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.EmailAddress, null, new { @class = "form-control", @placeholder = "Email Address *", @tabindex = "3", @type = "email" })
+                            @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Password <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Password, null, new { @class = "form-control", @placeholder = "Password *", @tabindex = "4", @type = "password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @if (ViewBag.UserRecord.RoleID == ApplicationHelper.EnumRole.SuperAdministrator)
+                    {
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Status <span class="text-danger">*</span></label>
+                                @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.StatusRecords, "Value", "Text"), new { @class = "form-control", @tabindex = "12" })
+                                @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.HiddenFor(m => m.Status)
+                    }
+
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
+                <button class="btn btn-success" type="submit" tabindex="9">Save</button>
+            </div>
+        }
+        <!--===================================================-->
+        <!--End Block Styled Form -->
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

@@ -1,0 +1,54 @@
+﻿@model LeadManagementSystemV2.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Account.cshtml";
+}
+@section InLineScriptSection{
+    @if (!string.IsNullOrWhiteSpace(Model.EmailAddress))
+    {
+        <script type="text/javascript">
+            $("#RememberMe").prop("checked", true);
+        </script>
+    }
+}
+<div id="container" class="cls-container">
+    <!-- BACKGROUND IMAGE -->
+    <!--===================================================-->
+    <div id="bg-overlay" class="bg-img" style="background-image: url('/assets/images/loginbg.jpg');"></div>
+    <!-- LOGIN FORM -->
+    <!--===================================================-->
+    <div class="cls-content">
+        <div class="cls-content-sm panel">
+            <div class="panel-body">
+                <div class="mar-ver pad-btm">
+                    @*<img src="~/assets/images/logo.png" height="150" width="150" />*@
+                    <h1 class="h3">Account Login</h1>
+                    <p>Sign In to your account</p>
+                </div>
+                @using (Ajax.BeginForm("Login", "Account", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormLogin", @autocomplete = "off" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.EmailAddress, null, new { @class = "form-control", @placeholder = "Email Address *", @tabindex = "1" })
+                        @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(m => m.Password, new { @Value = Model.Password, @class = "form-control", @placeholder = "Password *", @tabindex = "2" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="checkbox text-left">
+                        <input id="RememberMe" name="RememberMe" class="magic-checkbox" type="checkbox" tabindex="3">
+                        <label for="RememberMe">Remember me</label>
+                    </div>
+                    <button class="btn btn-primary btn-lg btn-block msg-area" type="submit" tabindex="4">Sign In</button>
+                }
+                @*<div class="pad-all">
+                        <a href="/account/forgot" class="btn-link mar-rgt" tabindex="5">Forgot password ?</a>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <!--===================================================-->
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->

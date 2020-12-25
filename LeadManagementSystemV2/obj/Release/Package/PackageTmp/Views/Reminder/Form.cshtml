@@ -1,0 +1,70 @@
+﻿@model LeadManagementSystemV2.Models.ReminderModel
+@using LeadManagementSystemV2.Helpers;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/chosen")
+    @Styles.Render("~/assets/cache/datepickerstyle")
+    @Styles.Render("~/assets/cache/select2style")
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/chosen")
+    @Scripts.Render("~/assets/cache/datepickerscript")
+    @Scripts.Render("~/assets/cache/select2script")
+}
+@section InLineScriptSection{
+    <script>
+    @if (ViewBag.PageType == "View")
+    {
+       @:DisableView();
+    }
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Save", "Reminder", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ID)
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Customer <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.LeadID, new SelectList(ViewBag.CustomerRecords, "Value", "Text"), "Please-Select", new { @class = "form-control", id = "demo-chosen-select", @tabindex = "1" })
+                            @Html.ValidationMessageFor(m => m.LeadID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Date <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Date, null, new { @class = "form-control", @placeholder = "Date *", @tabindex = "2", @type = "date" })
+                            @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">Note</label>
+                            @Html.TextAreaFor(m => m.Note, new { @class = "form-control", @placeholder = "Description", @tabindex = "3" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
+                <button class="btn btn-success" type="submit" tabindex="9">Save</button>
+            </div>
+        }
+        <!--===================================================-->
+        <!--End Block Styled Form -->
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

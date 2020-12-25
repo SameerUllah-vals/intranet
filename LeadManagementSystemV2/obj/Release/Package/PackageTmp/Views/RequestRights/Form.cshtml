@@ -1,0 +1,112 @@
+﻿@model LeadManagementSystemV2.Models.RequestRightModel
+@using LeadManagementSystemV2.Helpers;
+@using LeadManagementSystemV2.Models;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/select2style")
+    @Styles.Render("~/assets/cache/datepickerstyle")
+    @Styles.Render("~/assets/bootstrap-multi-select/dist/css/bootstrap-multiselect.css")
+
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/select2script")
+    @Scripts.Render("~/assets/cache/datepickerscript")
+    @Scripts.Render("~/assets/bootstrap-multi-select/dist/js/bootstrap-multiselect.js")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.multiselect').multiselect({
+                buttonText: function (options, select) {
+                    if (options.length == 0) {
+                        return this.nonSelectedText;
+                    }
+                    else {
+                        if (options.length > this.numberDisplayed) {
+                            return options.length + ' ' + this.nSelectedText;
+                        }
+                        else {
+                            var selected = '';
+                            options.each(function () {
+                                var label = ($(this).attr('label') !== undefined) ? $(this).attr('label') : $(this).html();
+
+                                selected += label + ', ';
+                            });
+                            return selected.substr(0, selected.length - 2);
+                        }
+                    }
+                },
+                buttonWidth:"100%",
+                enableFiltering: true,
+                enableCaseInsensitiveFiltering:true
+            });
+        });
+    </script>
+
+}
+@section InLineScriptSection{
+    <script>
+    @if (ViewBag.PageType == "View")
+    {
+       @:DisableView();
+    }
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Save", "RequestRights", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ID)
+            <div class="panel-body">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">User <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(x => x.UserId, ViewBag.UserList as SelectList, "-Select-", new { @class = "form-control " })
+                            @Html.ValidationMessageFor(m => m.UserId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Departments <span class="text-danger">*</span></label><br />
+                        <select class="multiselect" name="DepartmentIds" multiple>
+                            @foreach (var item in (List<Department>)ViewBag.DepartmentList)
+                            {
+
+                                if (Model.DepartmentIds.Contains(item.ID))
+                                {
+                                    <option value="@item.ID" selected>@item.DepartmentName</option>
+
+                                }
+                                else
+                                {
+                                    <option value="@item.ID">@item.DepartmentName</option>
+
+                                }
+
+
+                            }
+                        </select>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
+                <button class="btn btn-success" type="submit" tabindex="9">Save</button>
+            </div>
+        }
+        <!--===================================================-->
+        <!--End Block Styled Form -->
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

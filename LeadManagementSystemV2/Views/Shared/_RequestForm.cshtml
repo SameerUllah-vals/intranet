@@ -1,0 +1,115 @@
+﻿@model LeadManagementSystemV2.Models.RequestModel
+<div class="panel">
+    <!--Block Styled Form -->
+    <!--===================================================-->
+    @using (Ajax.BeginForm("Save", "SentItem", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" ,enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.ID)
+        <input type="hidden" name="Status" value="Pending" />
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Ticket No <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(x => x.TicketNo, new { @class = "form-control",@readonly=true })
+                        @Html.ValidationMessageFor(x=>x.TicketNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Department <span class="text-danger">*</span></label>
+                        @Html.DropDownListFor(x => x.DepartmentID, ViewBag.DepartList as SelectList, "-Select Department-", new { @class = "form-control select-picker" })
+                        @Html.ValidationMessage("DepartmentID", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Person<span class="text-danger">*</span></label>
+                        @Html.DropDownListFor(x => x.DepartmentPersonID, ViewBag.PersonList as SelectList, "-Select Person-", new { @class = "form-control select-picker", @disabled = true })
+                        @Html.ValidationMessageFor(m => m.DepartmentPersonID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                @*@if (ViewBag.PageType == "View")
+        {
+            <div class="col-md-12">
+                <h5 class="text-center bg-primary" style="padding:5px">Status Tracking</h5>
+                <ul class="list-group">
+                    @Html.Partial("_StatusLog")
+                </ul>
+            </div>
+        }*@
+            </div>
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Issue<span class="text-danger">*</span></label>
+                        @Html.DropDownListFor(x => x.ResourceID, ViewBag.ResourceList as SelectList, "-Select issue-", new { @class = "form-control select-picker" })
+                        @Html.ValidationMessageFor(m => m.ResourceID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Priority <span class="text-danger">*</span></label>
+                        @Html.DropDownListFor(x => x.Priority, new List<SelectListItem>
+                      {
+                         new SelectListItem{ Text="High", Value= "High",Selected=true },
+                         new SelectListItem{ Text="Medium", Value = "Medium" },
+                         new SelectListItem{ Text="Low", Value = "Low" }
+                      }, "-Select-", new { @class = "form-control select-picker" })
+                        @Html.ValidationMessageFor(m => m.Priority, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">Description<span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Deadline Date</label>
+                        @{var value = Model.Date.ToString("dd MMMM yyyy");}
+                        <input type="text" id="Date" name="Date" class="form-control" value="@value" />
+                        @Html.ValidationMessage("Date", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Deadline Time</label>
+                        @Html.TextBoxFor(x => x.Time, new { type = "time", @class = "form-control", @value = Model.Time })
+                        @Html.ValidationMessage("Time", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Attachment</label>
+                        @Html.TextBoxFor(x => x.AttachedFileName, new { type = "file" })
+                        @Html.ValidationMessageFor(x => x.AttachedFileName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+               @if (Model.FileName != null)
+               {
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <a class="btn btn-info" href="@Url.Action("DownloadFile","download",new {filePath = Model.FileName })" data-item="@Model.FileName">@Model.FileName <i class="fa fa-download"></i></a>
+                        </div>
+                    </div>
+               }
+
+                </div>
+        </div>
+        <div class="panel-footer text-right">
+            <a class="btn btn-info"  href="@ViewBag.PageURL" tabindex="8">Back</a>
+            <button class="btn btn-success" type="submit" tabindex="9">Save</button>
+        </div>
+    }
+    <!--===================================================-->
+    <!--End Block Styled Form -->
+</div>

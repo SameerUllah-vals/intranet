@@ -1,0 +1,429 @@
+﻿
+@using LeadManagementSystemV2.Models;
+@using LeadManagementSystemV2.Helpers;
+@using System.Data.Entity;
+
+@{ 
+    var lstAnn = (List<OrgAnnouncement>)ViewBag.Announcement;
+    var lstBanner = (List<Banner>)ViewBag.Banner;
+    var lstGallery = (List<Gallery>)ViewBag.Gallery;
+    var lstNewsLetter = (List<NewsLetter>)ViewBag.NewsLetter;
+    var lstQues = (List<Question>)ViewBag.Question;
+
+}
+<div id="page-head">
+    <div class="pad-all text-center">
+        <h3>Welcome back to the Dashboard.</h3>
+    </div>
+</div>
+
+
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="row demo-nifty-panel">
+                <div class="col-sm-12">
+                    <div class="panel panel-bordered panel-dark">
+
+
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Servey</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-success panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-yes icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                @{var records = lstQues.Where(x => x.Status == "Enable" && x.isDefault == true).FirstOrDefault();}
+                                                @if (records != null)
+                                                {
+                                                    <p class="text-2x mar-no media-heading">@records.Title</p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="text-2x mar-no media-heading">No active yet</p>
+                                                }
+
+                                                <span>Active</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 30%"></div>
+                                        </div>
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row demo-nifty-panel">
+                <div class="col-sm-12">
+                    <div class="panel panel-bordered panel-dark">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Banner</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-primary panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-data-cloud icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading">@lstBanner.Count</p>
+                                                <span>Total</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 70%">@*@lstAnn.Where(x => DbFunctions.TruncateTime(x.CreatedDateTime) == DateTime.Now ).ToList().Count*@</div>
+                                        </div>
+
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-success panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-yes icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading"></p>
+                                                <span>Active</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 30%">@lstBanner.Where(x => x.Status == "Enable").ToList().Count</div>
+                                        </div>
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-warning panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-exclamation icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading"></p>
+                                                <span>Deactive</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 70%">@lstBanner.Where(x => x.Status != "Enable").ToList().Count</div>
+                                        </div>
+
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Gallery</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-primary panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-data-cloud icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading">@lstGallery.Count</p>
+                                                <span>Total</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 70%"></div>
+                                        </div>
+
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-success panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-yes icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading">@lstGallery.Where(x => x.Status == "Enable").ToList().Count</p>
+                                                <span>Active</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 30%"></div>
+                                        </div>
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-warning panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-exclamation icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading">@lstGallery.Where(x => x.Status != "Enable").ToList().Count</p>
+                                                <span>Deactive</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 70%"></div>
+                                        </div>
+
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row demo-nifty-panel">
+                <div class="col-sm-12">
+                    <div class="panel panel-bordered panel-dark">
+
+
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Announcement</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-primary panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-data-cloud icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading">@lstAnn.Count</p>
+                                                <span>Total</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 70%"></div>
+                                        </div>
+
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-success panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-yes icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading">@lstAnn.Where(x => x.Status == "Enable").ToList().Count</p>
+                                                <span>Active</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 30%"></div>
+                                        </div>
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-warning panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-exclamation icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading">@lstAnn.Where(x => x.Status != "Enable").ToList().Count</p>
+                                                <span>Deactive</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 70%"></div>
+                                        </div>
+
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="panel-heading">
+                            <h3 class="panel-title">News Letter</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-primary panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-data-cloud icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading">@lstNewsLetter.Count</p>
+                                                <span>Total</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 70%"></div>
+                                        </div>
+
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-success panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-yes icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading">@lstNewsLetter.Where(x => x.Status == "Enable").ToList().Count</p>
+                                                <span>Active</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 30%"></div>
+                                        </div>
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+                                <div class="col-md-4">
+                                    <!--Tile-->
+                                    <!--===================================================-->
+                                    <div class="panel panel-warning panel-colorful">
+                                        <div class="pad-all media">
+                                            <div class="media-left">
+                                                <i class="demo-pli-exclamation icon-3x icon-fw"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="text-2x mar-no media-heading">@lstNewsLetter.Where(x => x.Status != "Enable").ToList().Count</p>
+                                                <span>Deactive</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress progress-xs progress-success mar-no">
+                                            <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: 70%"></div>
+                                        </div>
+
+
+                                    </div>
+                                    <!--===================================================-->
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+        @*@if (ViewBag.VisitingLeads.Count > 0)
+        {
+            <div class="col-lg-4">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Visit Confirmed Showroom</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            @foreach (var item in ViewBag.VisitingLeads)
+                            {
+                                <li class="list-group-item"><a class="badge badge-primary" href="/leads/views/@item.ID">View</a>@item.Name<br /><small><strong>Phone : </strong>@item.PhoneNumber</small><br /><small><strong>Comments : </strong>@item.Description</small></li>
+                            }
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        }*@
+    </div>
+
+  
+
+</div>
+<!--===================================================-->
+<!--End page content-->

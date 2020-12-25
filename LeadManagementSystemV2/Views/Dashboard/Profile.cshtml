@@ -1,0 +1,53 @@
+﻿@model LeadManagementSystemV2.Models.ProfileModel
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/datepickerstyle")
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/datepickerscript")
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Profiles", "Dashboard", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormProfile", @autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ID)
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">Name <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Name, null, new { @class = "form-control", @placeholder = "Name *", @tabindex = "1" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br clear="all" />
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Email Address <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.EmailAddress, null, new { @class = "form-control", @placeholder = "Email Address *", @tabindex = "2",@readonly=true })
+                            @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Password</label>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @tabindex = "3" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <button class="btn btn-success" type="submit" tabindex="4">Update</button>
+            </div>
+        }
+        <!--===================================================-->
+        <!--End Block Styled Form -->
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

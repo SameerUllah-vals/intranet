@@ -1,0 +1,68 @@
+﻿@using LeadManagementSystemV2.Helpers;
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        if ($('.record-table').length > 0) {
+            var oTable = $('.record-table').dataTable({
+                "bServerSide": true,
+                "bProcessing": true,
+                "paging": true,
+                "responsive": true,
+                "language": {
+                    "paginate": {
+                        "previous": '<i class="demo-psi-arrow-left"></i>',
+                        "next": '<i class="demo-psi-arrow-right"></i>'
+                    }
+                },
+                "cache": false,
+                "aLengthMenu": @(ViewBag.DataTableLengthMenu != null ? ViewBag.DataTableLengthMenu : "[[10, 20, 50, 100, 500, 1000], [10, 20, 50, 100, 500, 1000]]"),
+                "iDisplayLength": @(ViewBag.DataTableDisplayLength != null ? ViewBag.DataTableDisplayLength : "10"),
+                "ajax": {
+                    "type": "POST",
+                    "url": "@ViewBag.PageURL/listener",
+                    "contentType": 'application/json; charset=utf-8',
+                    "data": function (data) { return data = JSON.stringify(data); }
+                },
+                @(ViewBag.DataTableScrollX != null ? @Html.Raw(ViewBag.DataTableScrollX) : "")
+                @(ViewBag.DataTableScrollY != null ? @Html.Raw(ViewBag.DataTableScrollY) : "")
+                "order": [0, "@(ViewBag.DataTableOrderType != null ? ViewBag.DataTableOrderType : "desc")"],
+                "columns": [
+                    @Html.Raw(ViewBag.DataTableColumns)
+                ],
+                @if(ViewBag.isImage == true)
+                {
+                    <text>
+                "columnDefs": [{
+                    "targets": @ViewBag.targetCol,
+                    "data": 'Image',
+                    "render": function (data, type, row, meta) {
+                        return '<a href="@ViewBag.ImagePath' + data + '" target="_blank"><img src="@ViewBag.ImagePath' + data + '" alt="' + data + '"height="80" width="150"/></a>';
+                    }
+                }],
+
+                    </text>
+                }
+
+                "fnCreatedRow": function (nRow, aData, iDataIndex) {
+                    @if (ViewBag.DataTableActionColumn != null)
+                    {
+                        @:var ActionHTML = "<div class='demo-nifty-btn'>";
+                        @:ActionHTML += "<a href='@ViewBag.PageURL/views/" + aData.ID + "' class='btn btn-primary btn-icon'><i class='fa fa-eye'></i></a>";
+                        if (ViewBag.AllowEditing != null)
+                        {
+                            @:ActionHTML += "<a href='@ViewBag.PageURL/edit/" + aData.ID + "' class='btn btn-primary btn-icon'><i class='fa fa-pencil'></i></a>";
+                        }
+                        if(ViewBag.AllowDeleting != null) {
+                            @:ActionHTML += "<a href='@ViewBag.PageURL/delete/' data-id='" + aData.ID + "' class='btn btn-danger btn-icon remove-row'><i class='fa fa-remove'></i></a>";
+                        }
+                        @:ActionHTML += "</div>";
+                        @:$('td:eq(@ViewBag.DataTableActionColumn)', nRow).html(ActionHTML);
+                    }
+                }
+            }).fnSetFilteringDelay(1000);
+            @if(ViewBag.AllowAdding != null)
+            {
+                @:$("#DataTables_Table_0_length").append('<a class="btn btn-primary" id="btnAdd" style="marViewBagiewBagin-left:12px" href="@ViewBag.PageURL/add">Add New</a>');
+            }
+        }
+    });
+</script>
