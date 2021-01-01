@@ -153,7 +153,7 @@ OnFormBegin = function () {
     EnableDisableArea("", "Disable");
 }
 OnFormComplete = function () {
-
+    EnableDisableArea("", "Enable");
 }
 OnFormFailure = function (response) {
     EnableDisableArea("", "Enable");
@@ -383,3 +383,5 @@ $(document).ready(function () {
         });
     }
 });
+
+

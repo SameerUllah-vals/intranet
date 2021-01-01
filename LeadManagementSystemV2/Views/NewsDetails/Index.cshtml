@@ -1,0 +1,62 @@
+﻿@model LeadManagementSystemV2.Models.LatestNew
+@using LeadManagementSystemV2.Helpers;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_FrontendLayout.cshtml";
+}
+
+
+<!-- Page Content -->
+<div class="container-fluid spacer-padding mt-6">
+    <div class="row">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@ViewBag.WebsiteURL/home">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">News</li>
+            </ol>
+        </nav>
+
+        <!--Left Column-->
+        <div class="col-xl-12  mb-3">
+            <div class="card border-0  mb-3">
+                <div class="card-body">
+                    <p>@Model.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Format)</p>
+                    <h3 class="card-title">@Model.Title</h3>
+                    <p>
+                       @Html.Raw(Model.Description)
+                    </p>
+                    
+                    <div class="row">
+                        @if (Model.LatestNewsGalleryLinks != null)
+                        {
+                            foreach (var items in Model.LatestNewsGalleryLinks)
+                            {
+                                if (items.Gallery != null)
+                                {
+                                    <div class="col-xl-3 mb-4">
+                                        <img src="~/assets/gallery/@items.Gallery.Image" class="img-fluid" alt="" style=" width: 503px !important; height: 217px !important;">
+                                    </div>
+                                    if (items.Gallery.GalleryDetails != null)
+                                    {
+                                        foreach (var item in items.Gallery.GalleryDetails)
+                                        {
+                                            <div class="col-xl-3 mb-4">
+                                                <img src="~/assets/gallery/@item.Image" class="img-fluid" alt="" style=" width: 503px !important; height: 217px !important;">
+                                            </div>
+                                         }
+                                        }
+                                    }
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Left Column-->
+
+    </div>
+</div>
+<!-- Page Content -->

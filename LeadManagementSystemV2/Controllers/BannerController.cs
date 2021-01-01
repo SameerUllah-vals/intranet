@@ -27,6 +27,7 @@ namespace LeadManagementSystemV2.Controllers
                 DateTime searchDate = ParseExactDateTime(searchValue);
                 dataSource = dataSource.Where(p => (
                     p.Title.ToLower().Contains(searchValue) ||
+                    p.Ticker.ToLower().Contains(searchValue) ||
                     p.CreatedDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.CreatedDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate) ||
                     p.UpdatedDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.UpdatedDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate))
                 );
@@ -35,7 +36,7 @@ namespace LeadManagementSystemV2.Controllers
             dataSource = dataSource.SortBy(param.SortOrder).Skip(param.Start).Take(param.Length);
             var resultList = dataSource.ToList();
             var resultData = from x in resultList
-                             select new { x.ID, x.Title,x.Image , x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Title,x.Image, x.Ticker , x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
             var result = new
             {
                 draw = param.Draw,
@@ -55,6 +56,8 @@ namespace LeadManagementSystemV2.Controllers
                 Model.ID = Record.ID;
                 Model.Title = Record.Title;
                 Model.Status = Record.Status;
+                Model.Ticker = Record.Ticker;
+                Model.Base64 = Record.Image;
             }
             return Model;
         }
@@ -158,6 +161,7 @@ namespace LeadManagementSystemV2.Controllers
                         }
                         Record.Title = modelRecord.Title;
                         Record.Status = modelRecord.Status;
+                        Record.Ticker = modelRecord.Ticker;
                         Record.IsDeleted = false;
                         if(modelRecord.ImageFile != null)
                         {

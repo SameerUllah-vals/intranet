@@ -109,9 +109,34 @@ namespace LeadManagementSystemV2.Models
 
         [Required(ErrorMessage ="Required")]
         public string Title { get; set; }
+        public string Ticker { get; set; }
 
         [Required(ErrorMessage = "Required")]
         public HttpPostedFileBase ImageFile { get; set; }
+        public string Base64 { get; set; }
+        public string Status { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime CreatedDateTime { get; set; }
+        public DateTime UpdatedDateTime { get; set; }
+        public DateTime DeletedDateTime { get; set; }
+        public int CreatedBy { get; set; }
+        public int UpdatedBy { get; set; }
+        public int DeletedBy { get; set; }
+
+
+    }
+    public class LatestNewsModel
+    {
+        public int ID { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        public string Title { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        public string ShortDescription { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        public string Description { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreatedDateTime { get; set; }
@@ -124,6 +149,14 @@ namespace LeadManagementSystemV2.Models
 
     }
 
+    public class LatestNewsGalleryLinkModel
+    {
+        public int ID { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public int GalleryId { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public int LatestnewsId { get; set; }
+    }
     public class GalleryModel
     {
         public int ID { get; set; }
@@ -132,7 +165,9 @@ namespace LeadManagementSystemV2.Models
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        public HttpPostedFileBase ImageFile { get; set; }
+        public HttpPostedFileBase Thumbnail { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public HttpPostedFileBase[] ImageFiles { get; set; }
         public string Description{ get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
@@ -214,6 +249,7 @@ namespace LeadManagementSystemV2.Models
 
         [Required(ErrorMessage = "Required")]        
         public string Announcement { get; set; }
+        public bool isNoticeBoard { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreatedDateTime { get; set; }
@@ -224,5 +260,14 @@ namespace LeadManagementSystemV2.Models
         public int DeletedBy { get; set; }
     }
 
+    public class viewModel
+    {
+        public Banner banner { get; set; }
+        public IEnumerable<OrgAnnouncement> OrgAnoouncement { get; set; }
+        public IEnumerable<Gallery> Galleries { get; set; }
+        public IEnumerable<LatestNew> LatestNews { get; set; }
+        public IEnumerable<NewsLetter> NewsLetter { get; set; }
+        public Question Servey { get; set; }
+    }
 
   }

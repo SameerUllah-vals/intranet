@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9ad95383013444fe9c1551aed3f62c8c" Name="Diagram1">
         <EntityTypeShape EntityType="dbProjectModel.MenuPermission" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbProjectModel.Menu" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbProjectModel.Menu" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="dbProjectModel.RolePermission" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbProjectModel.Role" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="dbProjectModel.Setting" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
@@ -17,13 +17,19 @@
         <AssociationConnector Association="dbProjectModel.FK_RolePermissions_Menus" ManuallyRouted="false" />
         <AssociationConnector Association="dbProjectModel.FK_RolePermissions_Roles" ManuallyRouted="false" />
         <AssociationConnector Association="dbProjectModel.FK_Users_Roles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbProjectModel.QuestionDetail" Width="1.5" PointX="12.625" PointY="15.125" />
         <EntityTypeShape EntityType="dbProjectModel.Banner" Width="1.5" PointX="8.375" PointY="0.75" />
-        <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncement" Width="1.5" PointX="8.375" PointY="4.75" />
-        <EntityTypeShape EntityType="dbProjectModel.NewsLetter" Width="1.5" PointX="8.375" PointY="8.75" />
-        <EntityTypeShape EntityType="dbProjectModel.QuestionDetail" Width="1.5" PointX="12.625" PointY="2" />
-        <EntityTypeShape EntityType="dbProjectModel.Question" Width="1.5" PointX="10.375" PointY="14" />
-        <AssociationConnector Association="dbProjectModel.FK_QuestionDetails_Questions" />
-        <EntityTypeShape EntityType="dbProjectModel.Gallery" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="dbProjectModel.NewsLetter" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="dbProjectModel.Question" Width="1.5" PointX="10.375" PointY="14.125" />
+        <AssociationConnector Association="dbProjectModel.FK_QuestionDetail_Question" />
+        <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncement" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbProjectModel.Gallery" Width="1.5" PointX="8.375" PointY="6" />
+        <EntityTypeShape EntityType="dbProjectModel.LatestNew" Width="1.5" PointX="7.375" PointY="11" />
+        <EntityTypeShape EntityType="dbProjectModel.GalleryDetail" Width="1.5" PointX="10.625" PointY="6.75" />
+        <AssociationConnector Association="dbProjectModel.FK_GalleryDetails_GalleryDetails" />
+        <EntityTypeShape EntityType="dbProjectModel.LatestNewsGalleryLink" Width="1.5" PointX="10.625" PointY="10.25" />
+        <AssociationConnector Association="dbProjectModel.FK_LatestNewsGalleryLinks_GalleryDetails" />
+        <AssociationConnector Association="dbProjectModel.FK_LatestNewsGalleryLinks_LatestNews" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

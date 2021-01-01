@@ -53,6 +53,13 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
+                            <label class="control-label">Ticker text <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Ticker, null, new { @class = "form-control", @placeholder = "Ticker text *" })
+                            @Html.ValidationMessageFor(m => m.Ticker, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
                             <label class="control-label">Status <span class="text-danger">*</span></label>
                             @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
                               {

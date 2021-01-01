@@ -14,17 +14,29 @@ namespace LeadManagementSystemV2.Models
     
     public partial class Gallery
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Gallery()
+        {
+            this.GalleryDetails = new HashSet<GalleryDetail>();
+            this.LatestNewsGalleryLinks = new HashSet<LatestNewsGalleryLink>();
+        }
+    
         public int ID { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
-        public string Description { get; set; }
         public string Status { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
         public Nullable<System.DateTime> UpdatedDateTime { get; set; }
         public Nullable<System.DateTime> DeletedDateTime { get; set; }
         public int CreatedBy { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<int> DeletedBy { get; set; }
+        public Nullable<bool> isDefault { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GalleryDetail> GalleryDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LatestNewsGalleryLink> LatestNewsGalleryLinks { get; set; }
     }
 }

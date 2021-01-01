@@ -26,15 +26,15 @@ namespace LeadManagementSystemV2.Models
         public string option2 { get; set; }
         public string option3 { get; set; }
         public string option4 { get; set; }
-        public Nullable<bool> isDefault { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
         public string Status { get; set; }
+        public bool IsDeleted { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
         public Nullable<System.DateTime> UpdatedDateTime { get; set; }
         public Nullable<System.DateTime> DeletedDateTime { get; set; }
         public int CreatedBy { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<int> DeletedBy { get; set; }
+        public Nullable<bool> isDefault { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionDetail> QuestionDetails { get; set; }

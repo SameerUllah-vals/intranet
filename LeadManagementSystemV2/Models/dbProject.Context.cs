@@ -31,11 +31,14 @@ namespace LeadManagementSystemV2.Models
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Banner> Banners { get; set; }
-        public virtual DbSet<OrgAnnouncement> OrgAnnouncements { get; set; }
-        public virtual DbSet<NewsLetter> NewsLetters { get; set; }
         public virtual DbSet<QuestionDetail> QuestionDetails { get; set; }
+        public virtual DbSet<Banner> Banners { get; set; }
+        public virtual DbSet<NewsLetter> NewsLetters { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<OrgAnnouncement> OrgAnnouncements { get; set; }
         public virtual DbSet<Gallery> Galleries { get; set; }
+        public virtual DbSet<LatestNew> LatestNews { get; set; }
+        public virtual DbSet<GalleryDetail> GalleryDetails { get; set; }
+        public virtual DbSet<LatestNewsGalleryLink> LatestNewsGalleryLinks { get; set; }
     }
 }

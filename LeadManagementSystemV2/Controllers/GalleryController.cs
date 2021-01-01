@@ -1,7 +1,9 @@
 ﻿using LeadManagementSystemV2.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using static LeadManagementSystemV2.Helpers.ApplicationHelper;
@@ -27,7 +29,6 @@ namespace LeadManagementSystemV2.Controllers
                 DateTime searchDate = ParseExactDateTime(searchValue);
                 dataSource = dataSource.Where(p => (
                     p.Title.ToLower().Contains(searchValue) ||
-                    p.Description.ToLower().Contains(searchValue) ||
                     p.CreatedDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.CreatedDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate) ||
                     p.UpdatedDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.UpdatedDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate))
                 );
@@ -36,7 +37,7 @@ namespace LeadManagementSystemV2.Controllers
             dataSource = dataSource.SortBy(param.SortOrder).Skip(param.Start).Take(param.Length);
             var resultList = dataSource.ToList();
             var resultData = from x in resultList
-                             select new { x.ID, x.Title, x.Image, x.Description, x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Title, x.Image, x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
             var result = new
             {
                 draw = param.Draw,
@@ -55,7 +56,6 @@ namespace LeadManagementSystemV2.Controllers
             {
                 Model.ID = Record.ID;
                 Model.Title = Record.Title;
-                Model.Description = Record.Description;
                 Model.Status = Record.Status;
             }
             return Model;
@@ -138,8 +138,9 @@ namespace LeadManagementSystemV2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public JsonResult Save(GalleryModel modelRecord)
+        public JsonResult Save(GalleryModel modelRecord, string[] titles)
         {
+            
             AjaxResponse AjaxResponse = new AjaxResponse();
             AjaxResponse.Success = false;
             AjaxResponse.Type = EnumJQueryResponseType.MessageOnly;
@@ -160,29 +161,43 @@ namespace LeadManagementSystemV2.Controllers
                             isRecordWillAdded = true;
                         }
                         Record.Title = modelRecord.Title;
-                        Record.Description = modelRecord.Description;
                         Record.Status = modelRecord.Status;
                         Record.IsDeleted = false;
-                        if (modelRecord.ImageFile != null)
-                        {
-                            UploadFiles(modelRecord.ImageFile, Server, Gallery_Image_Path);
-                            Record.Image = modelRecord.ImageFile.FileName;
-                        }
+                       
                         if (isRecordWillAdded)
                         {
+                           
                             Record.CreatedDateTime = GetDateTime();
                             Record.CreatedBy = CurrentUserRecord.ID;
-                            Database.Galleries.Add(Record);
+                            Database.Galleries.Add(Record);                         
                         }
                         else
                         {
                             Record.UpdatedDateTime = GetDateTime();
                             Record.UpdatedBy = CurrentUserRecord.ID;
                         }
+                        for (int i = 0; i < Request.Files.Count; i++)
+                        {
+                            var _file = Request.Files[i];
+                            UploadFiles(_file, Server, Gallery_Image_Path);
+                            if (i == 0)
+                            {
+                                Record.Image = Request.Files[i].FileName;
+                            }
+                            else
+                            {                               
+                                GalleryDetail details = new GalleryDetail();
+                                details.GalleryId = Record.ID;
+                                details.Image = _file.FileName;
+                                details.Title = titles[i];
+                                details.CreatedDateTime = GetDateTime();
+                                Database.GalleryDetails.Add(details);
+                            }
+
+                        }
                         Database.SaveChanges();
                         AjaxResponse.Type = EnumJQueryResponseType.MessageAndRedirectWithDelay;
-                        AjaxResponse.Message = "Successfully Added.";
-                        AjaxResponse.TargetURL = ViewBag.WebsiteURL + "gallery";
+                        AjaxResponse.Message = "Please wait images are uploading..";
                         AjaxResponse.Success = true;
                     }
                 }
@@ -211,6 +226,46 @@ namespace LeadManagementSystemV2.Controllers
 
             }
 
+            return Json(AjaxResponse);
+        }
+
+        public ActionResult upload(FormCollection form)
+        {
+            AjaxResponse AjaxResponse = new AjaxResponse();
+            AjaxResponse.Success = false;
+            AjaxResponse.Type = EnumJQueryResponseType.MessageOnly;
+            AjaxResponse.Message = "Post Data Not Found";
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                    var titlesArray = form.Get("titles");
+                    string[] titles = titlesArray.Split(',');
+                    var _GalleryId = form.Get("GalleryId");
+                    int GalleryId = _GalleryId != null ? Convert.ToInt32(_GalleryId) : 0;
+                    int count = 0;
+                    foreach (string file in Request.Files)
+                    {
+                        var _file = Request.Files[file];
+                        UploadFiles(_file, Server, Gallery_Image_Path);
+                        GalleryDetail details = new GalleryDetail();
+                        details.GalleryId = GalleryId;
+                        details.Image = _file.FileName;
+                        details.Title = titles[count];
+                        details.CreatedDateTime = GetDateTime();
+                        Database.GalleryDetails.Add(details);
+                        count++;
+                    }
+                    Database.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    AjaxResponse.Message = "Ann error occured due to: " + ex.Message;
+                }             
+                AjaxResponse.Type = EnumJQueryResponseType.MessageAndRedirectWithDelay;
+                AjaxResponse.TargetURL = ViewBag.WebsiteURL + "gallery";
+                AjaxResponse.Message = "Images Uploaded";
+            }
             return Json(AjaxResponse);
         }
     }

@@ -7,15 +7,16 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
     <Property Name="Image" Type="nvarchar" MaxLength="200" />
-    <Property Name="isDefault" Type="bit" />
-    <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="Ticker" Type="text" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
     <Property Name="UpdatedDateTime" Type="datetime" />
     <Property Name="DeletedDateTime" Type="datetime" />
     <Property Name="CreatedBy" Type="int" Nullable="false" />
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="DeletedBy" Type="int" />
+    <Property Name="isDefault" Type="bit" />
   </EntityType>
   <EntityType Name="Gallery">
     <Key>
@@ -24,15 +25,50 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
     <Property Name="Image" Type="nvarchar" MaxLength="200" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
     <Property Name="UpdatedDateTime" Type="datetime" />
     <Property Name="DeletedDateTime" Type="datetime" />
     <Property Name="CreatedBy" Type="int" Nullable="false" />
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="DeletedBy" Type="int" />
+    <Property Name="isDefault" Type="bit" />
+  </EntityType>
+  <EntityType Name="GalleryDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GalleryId" Type="int" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LatestNews">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="ShortDescription" Type="text" />
+    <Property Name="Description" Type="text" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDateTime" Type="datetime" />
+    <Property Name="DeletedDateTime" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="DeletedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="LatestNewsGalleryLinks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LatestNewsId" Type="int" Nullable="false" />
+    <Property Name="GalleryId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="MenuPermissions">
     <Key>
@@ -64,15 +100,15 @@
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
     <Property Name="Image" Type="nvarchar" MaxLength="200" />
     <Property Name="Link" Type="nvarchar" MaxLength="200" />
-    <Property Name="isDefault" Type="bit" />
-    <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
     <Property Name="UpdatedDateTime" Type="datetime" />
     <Property Name="DeletedDateTime" Type="datetime" />
     <Property Name="CreatedBy" Type="int" Nullable="false" />
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="DeletedBy" Type="int" />
+    <Property Name="isDefault" Type="bit" />
   </EntityType>
   <EntityType Name="OrgAnnouncement">
     <Key>
@@ -81,7 +117,8 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
     <Property Name="Announcement" Type="text" />
-    <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="isNoticeBoard" Type="bit" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="IsDeleted" Type="bit" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
     <Property Name="UpdatedDateTime" Type="datetime" />
@@ -90,7 +127,7 @@
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="DeletedBy" Type="int" />
   </EntityType>
-  <EntityType Name="QuestionDetails">
+  <EntityType Name="QuestionDetail">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -106,18 +143,18 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
     <Property Name="option1" Type="nvarchar" MaxLength="200" />
-    <Property Name="option2" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="option2" Type="nvarchar" MaxLength="200" />
     <Property Name="option3" Type="nvarchar" MaxLength="200" />
     <Property Name="option4" Type="nvarchar" MaxLength="200" />
-    <Property Name="isDefault" Type="bit" />
-    <Property Name="IsDeleted" Type="bit" />
-    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
     <Property Name="UpdatedDateTime" Type="datetime" />
     <Property Name="DeletedDateTime" Type="datetime" />
     <Property Name="CreatedBy" Type="int" Nullable="false" />
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="DeletedBy" Type="int" />
+    <Property Name="isDefault" Type="bit" />
   </EntityType>
   <EntityType Name="RolePermissions">
     <Key>
@@ -175,6 +212,42 @@
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="DeletedBy" Type="int" />
   </EntityType>
+  <Association Name="FK_GalleryDetails_GalleryDetails">
+    <End Role="Gallery" Type="Self.Gallery" Multiplicity="0..1" />
+    <End Role="GalleryDetails" Type="Self.GalleryDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gallery">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GalleryDetails">
+        <PropertyRef Name="GalleryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LatestNewsGalleryLinks_GalleryDetails">
+    <End Role="Gallery" Type="Self.Gallery" Multiplicity="1" />
+    <End Role="LatestNewsGalleryLinks" Type="Self.LatestNewsGalleryLinks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gallery">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LatestNewsGalleryLinks">
+        <PropertyRef Name="GalleryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LatestNewsGalleryLinks_LatestNews">
+    <End Role="LatestNews" Type="Self.LatestNews" Multiplicity="1" />
+    <End Role="LatestNewsGalleryLinks" Type="Self.LatestNewsGalleryLinks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LatestNews">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LatestNewsGalleryLinks">
+        <PropertyRef Name="LatestNewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MenuPermissions_Menus">
     <End Role="Menus" Type="Self.Menus" Multiplicity="1" />
     <End Role="MenuPermissions" Type="Self.MenuPermissions" Multiplicity="*" />
@@ -211,14 +284,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_QuestionDetails_Questions">
+  <Association Name="FK_QuestionDetail_Question">
     <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
-    <End Role="QuestionDetails" Type="Self.QuestionDetails" Multiplicity="*" />
+    <End Role="QuestionDetail" Type="Self.QuestionDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Questions">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="QuestionDetails">
+      <Dependent Role="QuestionDetail">
         <PropertyRef Name="QuestionsId" />
       </Dependent>
     </ReferentialConstraint>
@@ -262,16 +335,31 @@
   <EntityContainer Name="dbProjectModelStoreContainer">
     <EntitySet Name="Banners" EntityType="Self.Banners" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GalleryDetails" EntityType="Self.GalleryDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LatestNews" EntityType="Self.LatestNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LatestNewsGalleryLinks" EntityType="Self.LatestNewsGalleryLinks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MenuPermissions" EntityType="Self.MenuPermissions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NewsLetters" EntityType="Self.NewsLetters" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrgAnnouncement" EntityType="Self.OrgAnnouncement" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="QuestionDetails" EntityType="Self.QuestionDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuestionDetail" EntityType="Self.QuestionDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RolePermissions" EntityType="Self.RolePermissions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_GalleryDetails_GalleryDetails" Association="Self.FK_GalleryDetails_GalleryDetails">
+      <End Role="Gallery" EntitySet="Gallery" />
+      <End Role="GalleryDetails" EntitySet="GalleryDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LatestNewsGalleryLinks_GalleryDetails" Association="Self.FK_LatestNewsGalleryLinks_GalleryDetails">
+      <End Role="Gallery" EntitySet="Gallery" />
+      <End Role="LatestNewsGalleryLinks" EntitySet="LatestNewsGalleryLinks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LatestNewsGalleryLinks_LatestNews" Association="Self.FK_LatestNewsGalleryLinks_LatestNews">
+      <End Role="LatestNews" EntitySet="LatestNews" />
+      <End Role="LatestNewsGalleryLinks" EntitySet="LatestNewsGalleryLinks" />
+    </AssociationSet>
     <AssociationSet Name="FK_MenuPermissions_Menus" Association="Self.FK_MenuPermissions_Menus">
       <End Role="Menus" EntitySet="Menus" />
       <End Role="MenuPermissions" EntitySet="MenuPermissions" />
@@ -284,9 +372,9 @@
       <End Role="Menus" EntitySet="Menus" />
       <End Role="Menus1" EntitySet="Menus" />
     </AssociationSet>
-    <AssociationSet Name="FK_QuestionDetails_Questions" Association="Self.FK_QuestionDetails_Questions">
+    <AssociationSet Name="FK_QuestionDetail_Question" Association="Self.FK_QuestionDetail_Question">
       <End Role="Questions" EntitySet="Questions" />
-      <End Role="QuestionDetails" EntitySet="QuestionDetails" />
+      <End Role="QuestionDetail" EntitySet="QuestionDetail" />
     </AssociationSet>
     <AssociationSet Name="FK_RolePermissions_Menus" Association="Self.FK_RolePermissions_Menus">
       <End Role="Menus" EntitySet="Menus" />

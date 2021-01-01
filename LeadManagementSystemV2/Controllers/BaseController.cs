@@ -31,8 +31,7 @@ namespace LeadManagementSystemV2.Controllers
                 string[] requestURL = filterContext.HttpContext.Request.Path.ToString().Split('/');
                 string controllerURL = requestURL[1].ToLower();
                 if (!IsUserLogin())
-                {
-                    AddCookie("ReturnURL", Request.Url.ToString());
+                {                   
                     filterContext.Result = new RedirectResult("/");
                 }
                 else

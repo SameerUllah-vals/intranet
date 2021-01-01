@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Lead Management System</title>
+    <title>Descon Intranet</title>
 
     <!--STYLESHEET-->
     <!--=================================================-->
@@ -19,15 +19,33 @@
             tinymce.init({
                 selector: '#editor',               
                 encoding: 'xml',
+                plugins: 'image',
                 setup: function (ed) {
                     ed.on('keyup', function (e) {                                            
-                        $("#editor-html").val(ed.getContent());
+                        $("#editor-html,.editor-html").val(ed.getContent());
                     });
                     ed.on('click', function (e) {
-                        $("#editor-html").val(ed.getContent());
+                        $("#editor-html,.editor-html").val(ed.getContent());
                     });
                     ed.on('blur', function (e) {
-                        $("#editor-html").val(ed.getContent());
+                        $("#editor-html,.editor-html").val(ed.getContent());
+                    });
+                }
+            });
+
+            tinymce.init({
+                selector: '.editor',
+                encoding: 'xml',
+                plugins: 'image',
+                setup: function (ed) {
+                    ed.on('keyup', function (e) {
+                        $(".editor-html-1").val(ed.getContent());
+                    });
+                    ed.on('click', function (e) {
+                        $(".editor-html-1").val(ed.getContent());
+                    });
+                    ed.on('blur', function (e) {
+                        $(".editor-html-1").val(ed.getContent());
                     });
                 }
             });
@@ -57,7 +75,7 @@
                     <a href="/dashboard" class="navbar-brand">
                         @*<img src="~/assets/images/logo.png" alt="Nifty Logo" class="brand-icon">*@
                         <div class="brand-title">
-                            <span class="brand-text">Lead Management System</span>
+                            <span class="brand-text">Descon Intranet</span>
                         </div>
                     </a>
                 </div>

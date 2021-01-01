@@ -64,16 +64,9 @@ namespace LeadManagementSystemV2.Controllers
                             }
                             AjaxResponse.Success = true;
                             AjaxResponse.Type = EnumJQueryResponseType.RedirectOnly;
-                            AjaxResponse.Message = "";
-                            if (GetCookie("ReturnURL") != string.Empty)
-                            {
-                                AjaxResponse.TargetURL = GetCookie("ReturnURL");
-                                RemoveCookie("ReturnURL");
-                            }
-                            else
-                            {
-                                AjaxResponse.TargetURL = ConvertToWebURL("dashboard");
-                            }
+                            AjaxResponse.Message = "";                           
+                            AjaxResponse.TargetURL = ConvertToWebURL("dashboard");
+                            
                         }
                         else
                         {

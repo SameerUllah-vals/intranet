@@ -57,6 +57,7 @@ namespace LeadManagementSystemV2.Controllers
                 Model.Title = Record.Title;
                 Model.Announcement = Record.Announcement;
                 Model.Status = Record.Status;
+                Model.isNoticeBoard = (bool)Record.isNoticeBoard;
             }
             return Model;
         }
@@ -162,6 +163,7 @@ namespace LeadManagementSystemV2.Controllers
                         }
                         Record.Title = modelRecord.Title;
                         Record.Announcement = modelRecord.Announcement;
+                        Record.isNoticeBoard = modelRecord.isNoticeBoard;
                         Record.Status = modelRecord.Status;
                         Record.IsDeleted = false;                        
                         if (isRecordWillAdded)

@@ -17,6 +17,7 @@ namespace LeadManagementSystemV2.Models
         public int ID { get; set; }
         public string Title { get; set; }
         public string Announcement { get; set; }
+        public Nullable<bool> isNoticeBoard { get; set; }
         public string Status { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public System.DateTime CreatedDateTime { get; set; }

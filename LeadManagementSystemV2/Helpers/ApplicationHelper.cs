@@ -309,6 +309,11 @@ namespace LeadManagementSystemV2.Helpers
             SmtpServer.EnableSsl = false;
             SmtpServer.Send(mail);
         }
+
+        public static string StripHTML(string input)
+        {
+            return Regex.Replace(input, "<.*?>", String.Empty);
+        }
         #endregion
         #region "Mail Helper"
         public class MailObject

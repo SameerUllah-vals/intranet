@@ -166,7 +166,11 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
+    <Compile Include="Controllers\GalleryDetailsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LatestNewsController.cs" />
     <Compile Include="Controllers\ManagementsController.cs" />
+    <Compile Include="Controllers\NewsDetailsController.cs" />
     <Compile Include="Controllers\NewsLetterController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
@@ -174,6 +178,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ApplicationHelper.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Banner.cs">
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
@@ -194,6 +199,15 @@
       <DependentUpon>dbProject.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Gallery.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GalleryDetail.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LatestNew.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LatestNewsGalleryLink.cs">
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MaxFileSizeAttribute.cs" />
@@ -234,11 +248,15 @@
     <Content Include="assets\banners\125570718_154694166375506_25584049230548429_n.jpg" />
     <Content Include="assets\bootstrap-multi-select\dist\css\bootstrap-multiselect.css" />
     <Content Include="assets\bootstrap-multi-select\dist\js\bootstrap-multiselect.js" />
+    <Content Include="assets\calender\main.min.css" />
+    <Content Include="assets\calender\main.min.js" />
     <Content Include="assets\css\bootstrap-theme.css" />
     <Content Include="assets\css\bootstrap-theme.min.css" />
     <Content Include="assets\css\bootstrap.css" />
     <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\custom.css" />
     <Content Include="assets\css\dropzone.min.css" />
+    <Content Include="assets\css\fontawesome.min.css" />
     <Content Include="assets\css\jquery-confirm.min.css" />
     <Content Include="assets\css\nifty-demo-icons.css" />
     <Content Include="assets\css\nifty-demo.css" />
@@ -246,11 +264,41 @@
     <Content Include="assets\css\Site.css" />
     <Content Include="assets\css\summernote.min.css" />
     <Content Include="assets\css\theme-navy.min.css" />
+    <Content Include="assets\datatable\DataTables-1.10.22\images\sort_asc.png" />
+    <Content Include="assets\datatable\DataTables-1.10.22\images\sort_asc_disabled.png" />
+    <Content Include="assets\datatable\DataTables-1.10.22\images\sort_both.png" />
+    <Content Include="assets\datatable\DataTables-1.10.22\images\sort_desc.png" />
+    <Content Include="assets\datatable\DataTables-1.10.22\images\sort_desc_disabled.png" />
+    <Content Include="assets\datatable\datatables.min.css" />
+    <Content Include="assets\datatable\datatables.min.js" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\fonts\nifty-demo-icons67e1.svg" />
     <Content Include="assets\images\loader.gif" />
     <Content Include="assets\images\loginbg.jpg" />
     <Content Include="assets\images\user-profile.png" />
+    <Content Include="assets\img\anc.jpg" />
+    <Content Include="assets\img\b1.jpg" />
+    <Content Include="assets\img\b2.png" />
+    <Content Include="assets\img\b3.png" />
+    <Content Include="assets\img\chemical-policy.png" />
+    <Content Include="assets\img\chemical.png" />
+    <Content Include="assets\img\engineering.png" />
+    <Content Include="assets\img\fav-icon.png" />
+    <Content Include="assets\img\flags\iraq.png" />
+    <Content Include="assets\img\flags\kuwait.png" />
+    <Content Include="assets\img\flags\oman.png" />
+    <Content Include="assets\img\flags\pakistan.png" />
+    <Content Include="assets\img\flags\qatar.png" />
+    <Content Include="assets\img\flags\saudi.png" />
+    <Content Include="assets\img\flags\south-africa-flag.png" />
+    <Content Include="assets\img\flags\uae.png" />
+    <Content Include="assets\img\logo.png" />
+    <Content Include="assets\img\newsletter-02.jpg" />
+    <Content Include="assets\img\newsletter.jpg" />
+    <Content Include="assets\img\policy.jpg" />
+    <Content Include="assets\img\power-policy.png" />
+    <Content Include="assets\img\power.png" />
+    <Content Include="assets\img\stats.png" />
     <Content Include="assets\js\autoNumeric.js" />
     <Content Include="assets\js\bootstrap.js" />
     <Content Include="assets\js\bootstrap.min.js" />
@@ -259,6 +307,7 @@
     <Content Include="assets\js\form-text-editor.js" />
     <Content Include="assets\js\functions.js" />
     <Content Include="assets\bootstrap-multi-select\dist\less\bootstrap-multiselect.less" />
+    <Content Include="assets\css\custom.css.map" />
     <None Include="assets\js\jquery-3.3.1.intellisense.js" />
     <Content Include="assets\js\jquery-3.3.1.js" />
     <Content Include="assets\js\jquery-3.3.1.min.js" />
@@ -277,6 +326,12 @@
     <Content Include="assets\js\nifty-demo.js" />
     <Content Include="assets\js\nifty.js" />
     <Content Include="assets\js\notify.js" />
+    <Content Include="assets\js\script.js" />
+    <Content Include="assets\owl\ajax-loader.gif" />
+    <Content Include="assets\owl\owl.carousel.min.css" />
+    <Content Include="assets\owl\owl.carousel.min.js" />
+    <Content Include="assets\owl\owl.theme.default.min.css" />
+    <Content Include="assets\owl\owl.video.play.png" />
     <Content Include="assets\plugins\bootstrap-datepicker\bootstrap-datepicker.min.css" />
     <Content Include="assets\plugins\bootstrap-datepicker\bootstrap-datepicker.min.js" />
     <Content Include="assets\plugins\bootstrap-select\bootstrap-select.min.css" />
@@ -298,6 +353,9 @@
     <Content Include="assets\plugins\select2\css\select2.min.css" />
     <Content Include="assets\plugins\select2\js\select2.min.js" />
     <Content Include="assets\plugins\summernote\summernote.min.js" />
+    <Content Include="assets\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\vendor\jquery\jquery.min.js" />
     <Content Include="assets\Voucher\base.min.css" />
     <Content Include="assets\Voucher\bg1.png" />
     <Content Include="assets\Voucher\compatibility.min.js" />
@@ -305,6 +363,8 @@
     <Content Include="assets\Voucher\main.css" />
     <Content Include="assets\Voucher\Proof\VoucherImage-101b1ecf-dc97-419e-ae1b-159ee3bca44b.jpg" />
     <Content Include="assets\Voucher\theViewer.min.js" />
+    <Content Include="assets\webfonts\fa-brands-400.svg" />
+    <Content Include="assets\webfonts\fa-solid-900.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -347,6 +407,15 @@
     <Content Include="Models\dbProject.edmx.diagram">
       <DependentUpon>dbProject.edmx</DependentUpon>
     </Content>
+    <Content Include="assets\scss-descon\custom.scss" />
+    <Content Include="assets\webfonts\fa-brands-400.eot" />
+    <Content Include="assets\webfonts\fa-brands-400.ttf" />
+    <Content Include="assets\webfonts\fa-brands-400.woff" />
+    <Content Include="assets\webfonts\fa-brands-400.woff2" />
+    <Content Include="assets\webfonts\fa-solid-900.eot" />
+    <Content Include="assets\webfonts\fa-solid-900.ttf" />
+    <Content Include="assets\webfonts\fa-solid-900.woff" />
+    <Content Include="assets\webfonts\fa-solid-900.woff2" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Shared\_StatusLog.cshtml" />
     <Content Include="Views\Shared\_RequestForm.cshtml" />
@@ -360,6 +429,12 @@
     <Content Include="Views\Vote\Form.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Gallery\Form.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_FrontendLayout.cshtml" />
+    <Content Include="Views\NewsDetails\Index.cshtml" />
+    <Content Include="Views\GalleryDetails\Index.cshtml" />
+    <Content Include="Views\LatestNews\Index.cshtml" />
+    <Content Include="Views\LatestNews\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
