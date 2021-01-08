@@ -57,9 +57,8 @@
                     <h3 class="card-title"><i class="fas fa-bullhorn"></i> NOTICE BOARD</h3>
                     <ul>
 
-                        @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == true))
+                        @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == true).ToList())
                         {
-
                             <li>
                                 @ApplicationHelper.StripHtmlTags(item.Announcement)
                             </li>
@@ -72,7 +71,7 @@
                     <div class="row ">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 justify-content-center align-self-center">
                             <p class="card-text mb-0">1 UAE dirham equals</p>
-                            <h2 class="card-title mb-0">43.83 Pakistani Rupees</h2>
+                            <h2 class="card-title mb-0"><span class="uae"></span> Pakistani Rupees</h2>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 justify-content-center align-self-center">
                             <img src="~/assets/img/stats.png" class="img-fluid float-right" alt="stats">
@@ -85,7 +84,7 @@
                     <div class="row ">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 justify-content-center align-self-center">
                             <p class="card-text mb-0">1 USD equals</p>
-                            <h2 class="card-title mb-0">43.83 Pakistani Rupees</h2>
+                            <h2 class="card-title mb-0"><span class="usd"></span> Pakistani Rupees</h2>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 justify-content-center align-self-center">
                             <img src="~/assets/img/stats.png" class="img-fluid float-right" alt="stats">
@@ -98,7 +97,7 @@
                     <div class="row ">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 justify-content-center align-self-center">
                             <p class="card-text mb-0">1 Qatar Riyal equals</p>
-                            <h2 class="card-title mb-0">43.83 Pakistani Rupees</h2>
+                            <h2 class="card-title mb-0"><span class="qatar"></span> Pakistani Rupees</h2>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 justify-content-center align-self-center">
                             <img src="~/assets/img/stats.png" class="img-fluid float-right" alt="stats">
@@ -115,7 +114,7 @@
                             <p>Pakistan<br><small>AST(GMT +3)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right ">
-                            <p class="ml-auto"><b>06:16 PM</b></p>
+                            <p class="ml-auto"><b class="Time-3"></b></p>
                         </div>
                     </div>
                     <div class="row">
@@ -124,7 +123,7 @@
                             <p>Qatar<br><small>AST(GMT +3)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right ">
-                            <p class="ml-auto"><b>06:16 PM</b></p>
+                            <p class="ml-auto"><b class="Time-3"></b></p>
                         </div>
                     </div>
                     <div class="row">
@@ -133,7 +132,7 @@
                             <p>UAE<br><small>AST(GMT +4)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right">
-                            <p class="ml-auto"><b>12:16 PM</b></p>
+                            <p class="ml-auto"><b class="Time-4"></b></p>
                         </div>
                     </div>
                     <div class="row">
@@ -142,7 +141,7 @@
                             <p>KSA<br><small>AST(GMT +4)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right">
-                            <p class="ml-auto"><b>03:16 PM</b></p>
+                            <p class="ml-auto"><b class="Time-4"></b></p>
                         </div>
                     </div>
                     <div class="row">
@@ -151,7 +150,7 @@
                             <p>Kuwait<br><small>AST(GMT +4)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right ">
-                            <p class="ml-auto"><b>02:16 PM</b></p>
+                            <p class="ml-auto"><b class="Time-4"></b></p>
                         </div>
                     </div>
                     <div class="row">
@@ -160,7 +159,7 @@
                             <p>Iraq<br><small>AST(GMT +5)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right">
-                            <p class="ml-auto"><b>03:16 PM</b></p>
+                            <p class="ml-auto"><b class="Time-5">></b></p>
                         </div>
                     </div>
                     <div class="row">
@@ -169,7 +168,7 @@
                             <p>Oman<br><small>AST(GMT +5)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right ">
-                            <p class="ml-auto"><b>03:16 PM</b></p>
+                            <p class="ml-auto"><b class="Time-5"></b></p>
                         </div>
                     </div>
                     <div class="row">
@@ -178,7 +177,7 @@
                             <p>South Africa<br><small>AST(GMT +5)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right ">
-                            <p class="ml-auto"><b>03:16 PM</b></p>
+                            <p class="ml-auto"><b class="Time-5"></b></p>
                         </div>
                     </div>
                 </div>
@@ -190,7 +189,7 @@
                     <div class="card-body">
                         <h3 class="card-title mb-0">@item.Title</h3>
                         <small class="d-block mb-3">@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Format)</small>
-                        <a href="@item.Link" class="card-text download"><i class="fas fa-file-pdf"></i> Download Now</a>
+                        <a href="~/assets/newsletter/@item.PDF" class="card-text download"><i class="fas fa-file-pdf"></i> Download Now</a>
                     </div>
                 </div>
             }
@@ -205,7 +204,7 @@
                     <h3 class="card-title"><i class="fas fa-bullhorn"></i> ORGANIZATIONAL ANNOUNCEMENTS</h3>
                     <div id="accordion">
                         @{int i = 0;}
-                        @foreach (var item in Model.OrgAnoouncement)
+                        @foreach (var item in Model.OrgAnoouncement.Where(x=>x.isNoticeBoard == false).ToList())
                         {
                             
                               <div class="card">
@@ -280,157 +279,31 @@
                         <table id="jobs" class="table table-striped">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">Job Code</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Location</th>
                                     <th scope="col">Business Unit</th>
+                                    <th scope="col">Details</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th class="align-middle" scope="row">1</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Application Support Services Executive</span><br><small>
-                                            No. of Positions:
-                                            1
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">2</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Support Services Executive</span><br><small>
-                                            No. of Positions:
-                                            2
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">3</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Application Support</span><br><small>
-                                            No. of Positions:
-                                            1
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">4</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Application Support Services Executive</span><br><small>
-                                            No. of Positions:
-                                            1
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">5</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Support Services Executive</span><br><small>
-                                            No. of Positions:
-                                            2
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">6</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Application Support</span><br><small>
-                                            No. of Positions:
-                                            1
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">7</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Application Support Services Executive</span><br><small>
-                                            No. of Positions:
-                                            1
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">8</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Support Services Executive</span><br><small>
-                                            No. of Positions:
-                                            2
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">9</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Application Support</span><br><small>
-                                            No. of Positions:
-                                            1
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">10</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Application Support Services Executive</span><br><small>
-                                            No. of Positions:
-                                            1
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">11</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Support Services Executive</span><br><small>
-                                            No. of Positions:
-                                            2
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
-                                <tr>
-                                    <th class="align-middle" scope="row">12</th>
-                                    <td class="align-middle">
-                                        <span class="cursor-pointer" data-toggle="modal"
-                                              data-target="#career1">Application Support</span><br><small>
-                                            No. of Positions:
-                                            1
-                                        </small>
-                                    </td>
-                                    <td class="align-middle">Lahore</td>
-                                    <td class="align-middle">Descon HQ<br><small>a month ago</small></td>
-                                </tr>
+                                @foreach (var item in Model.Jobs)
+                                {
+                                    <tr>
+                                        <th class="align-middle" scope="row">@item.JobCode</th>
+                                        <td class="align-middle">
+                                            <span class="cursor-pointer" data-toggle="modal"
+                                                  data-target="#career1">@item.Title</span><br><small>
+                                                No. of Positions:
+                                                @item.Positions
+                                            </small>
+                                        </td>
+                                        <td class="align-middle">@item.Location</td>
+                                        <td class="align-middle">@item.BusinessSelector</td>
+                                        
+                                        <td class="align-middle"><button type="button" onclick="viewDetails('@Newtonsoft.Json.JsonConvert.SerializeObject(item)')" class="btn btn-xs btn-primary"><i class="fa fa-eye"></i></button></td>
+                                    </tr>
+                                }
 
                             </tbody>
                         </table>
@@ -450,19 +323,19 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-12 text-center ">
                                     <img src="~/assets/img/engineering.png" class="img-fluid full-width mb-3" alt="policy">
-                                    <h3><a data-toggle="modal" data-target="#policy" href="#">Engineering Policy</a></h3>
+                                    <h3><a data-toggle="modal" data-target="#Engpolicy" href="#">Engineering Policy</a></h3>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-12 text-center">
                                     <img src="~/assets/img/power.png" class="img-fluid full-width mb-3" alt="policy">
-                                    <h3><a data-toggle="modal" data-target="#policy" href="">Power Policy</a></h3>
+                                    <h3><a data-toggle="modal" data-target="#Powpolicy" href="">Power Policy</a></h3>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-12 text-center">
                                     <img src="~/assets/img/chemical.png" class="img-fluid full-width mb-3" alt="policy">
-                                    <h3><a data-toggle="modal" data-target="#policy" href="#">Chemical Policy</a></h3>
+                                    <h3><a data-toggle="modal" data-target="#Chmpolicy" href="#">Chemical Policy</a></h3>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-12 text-center">
                                     <img src="~/assets/img/chemical.png" class="img-fluid full-width mb-3" alt="policy">
-                                    <h3><a data-toggle="modal" data-target="#policy" href="#">InspectTest Policy</a></h3>
+                                    <h3><a data-toggle="modal" data-target="#Inspolicy" href="#">InspectTest Policy</a></h3>
                                 </div>
                             </div>
                         </div>
@@ -500,6 +373,8 @@
 </div>
 <!-- Page Content -->
 <!--Page Content-->
+@if (Model.Servey.ID > 0)
+{
 <div class="container-fluid">
     <div class="row">
         <!--Question Grid-->
@@ -522,7 +397,9 @@
                             </nav>
                             <div class="tab-content p-4" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-answer" role="tabpanel" aria-labelledby="nav-answer-tab">
-                                    <form action="">
+                                    @using (Ajax.BeginForm("vote", "home", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { enctype = "multipart/form-data" }))
+                                    {
+                                        <input type="hidden" name="QuestionsId" value="@Model.Servey.ID" />
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" type="radio" name="opt" id="opt1" value="@Model.Servey.option1" checked>
                                             <label class="form-check-label" for="opt1">
@@ -551,22 +428,39 @@
                                             </label>
                                         </div>
                                         <button type="submit" class="btn btn-descon2 mb-2 mt-3">Submit Your Answer</button>
-                                    </form>
+
+                                    }
                                 </div>
                                 <div class="tab-pane fade" id="nav-responses" role="tabpanel" aria-labelledby="nav-responses-tab">
-                                    <p>
-                                        Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim
-                                        occaecat
-                                        veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim.
-                                        Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud
-                                        minim
-                                        non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor
-                                        ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do
-                                        dolore.
-                                        Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                                    </p>
+                                    <h3 class="text-center">@Model.Servey.Title</h3>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-3">@Model.Servey.option1 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option1).ToList().Count</b></div>
+                                        <div class="col-md-3">@Model.Servey.option2 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option2).ToList().Count</b></div>
+                                        <div class="col-md-3">@Model.Servey.option3 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option3).ToList().Count</b></div>
+                                        <div class="col-md-3">@Model.Servey.option4 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option4).ToList().Count</b></div>
+                                    </div>
+                                    <table class="table responses" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Answers</th>
+                                                <th>Ip Address</th>
+                                                <th>Created Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.ServeyResponse)
+                                            {
+                                                <tr>
+                                                    <td>@item.Answer</td>
+                                                    <td>@item.IpAddress</td>
+                                                    <td>@Convert.ToDateTime(item.CreatedDateTime).ToString(ApplicationHelper.Website_Date_Time_Format)</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <small class="float-right mt-5">Last date of submission 18/December/2020</small>
+                                <small class="float-right mt-5">Last date of submission @Model.Servey.SubmissionDate.ToString(ApplicationHelper.Website_Date_Format)</small>
                             </div>
 
                         </div>
@@ -577,6 +471,7 @@
         <!--Question Grid-->
     </div>
 </div>
+}
 <!--Page Content-->
 <!-- Page Content -->
 <div class="container-fluid spacer-padding">
@@ -609,95 +504,49 @@
                         <tbody>
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Job Id</td>
-                                <td class="col-xs-9 table-col2-career">job-073</td>
+                                <td class="col-xs-9 table-col2-career code"></td>
                             </tr>
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Department</td>
-                                <td class="col-xs-9 table-col2-career">Information Technology</td>
+                                <td class="col-xs-9 table-col2-career depart"></td>
                             </tr>
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Location</td>
-                                <td class="col-xs-9 table-col2-career">Lahore</td>
+                                <td class="col-xs-9 table-col2-career location"></td>
                             </tr>
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Business Sector</td>
-                                <td class="col-xs-9 table-col2-career">Descon HQ</td>
+                                <td class="col-xs-9 table-col2-career selector"></td>
                             </tr>
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Job Type</td>
-                                <td class="col-xs-9 table-col2-career">Regular</td>
+                                <td class="col-xs-9 table-col2-career type"></td>
                             </tr>
                             <tr>
                                 <td class="col-xs-3 table-col1-career">No. Of Position(s)</td>
-                                <td class="col-xs-9 table-col2-career">1</td>
+                                <td class="col-xs-9 table-col2-career positions"></td>
                             </tr>
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Career Level</td>
-                                <td class="col-xs-9 table-col2-career">Executive Level</td>
+                                <td class="col-xs-9 table-col2-career career"></td>
                             </tr>
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Education Level</td>
-                                <td class="col-xs-9 table-col2-career">
-                                    Minimum Bachelor’s degree in Computer Science from a Reputable
-                                    university
+                                <td class="col-xs-9 table-col2-career education">
+                                  
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Minimum Experience</td>
-                                <td class="col-xs-9 table-col2-career">4+ Years</td>
+                                <td class="col-xs-9 table-col2-career experience"></td>
                             </tr>
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Last Date Of Submission</td>
-                                <td class="col-xs-9 table-col2-career">November 16, 2020</td>
+                                <td class="col-xs-9 table-col2-career date"></td>
                             </tr>
                             <tr>
-                                <td colspan=2>
-                                    <ul>
-                                        <li>
-                                            Oracle 12c (Administration, Backup Recovery – RMAN, Data Pump, DataGuard for DR, Patching in
-                                            Production, DEV, QA environments- MS Windows Server OS Platform, Oracle Technical SRs, Support
-                                            &amp; Coordination)
-                                        </li>
-                                        <li>
-                                            MS-SQL Server Enterprise 2000,2005,2017 (Administration, Backup &amp; Recovery, Performance
-                                            Tunning, Patching, High Availability, Disaster Recovery, Windows Failover Clustering, SQL Server
-                                            Reporting services, SSIS - Integration Services, Production, DEV, QA environments)&nbsp;
-                                        </li>
-                                        <li>
-                                            Microsoft SharePoint 2013 Administration (Administration, upgrade, backup &amp; recovery, PS
-                                            scripting, Site Collections management, HA, DR)
-                                        </li>
-                                        <li>
-                                            Oracle Web Logic 11g, 12c (Administration, Node Management, Domain Deployment, SSL
-                                            Configuration)
-                                        </li>
-                                        <li>
-                                            Primavera EPPM 8.2 with Oracle &amp; MS SQL Server Database platform, Primavera EBS, OBS
-                                            Creation, Roles &amp; Authorization&nbsp;
-                                        </li>
-                                        <li>
-                                            Apache Web Server (Administration, backup &amp; recovery, Access Control management, SSL
-                                            implementation)
-                                        </li>
-                                        <li>
-                                            IIS Web Server Administration, backup &amp; recovery, Access Control management, SSL
-                                            implementation
-                                        </li>
-                                        <li>
-                                            Oracle Web Logic 11g, 12c (Administration, Node Management, Clustering, Domain Deployment, SSL
-                                            Configuration)
-                                        </li>
-                                        <li>
-                                            Application Deployment (DB Scripts deployments, Microsoft.NET Web Applications deployment,
-                                            Windows Desktop based Deployments)
-                                        </li>
-                                        <li>
-                                            Database Hardening as per CIS Benchmarks/ Best Practices (MS-SQL Server Enterprise 2017 &amp;
-                                            Oracle 12c)
-                                        </li>
-                                        <li>Application Hardening (IIS, .NET Applications) as per CIS Benchmark Best Practices</li>
-                                        <li>OS hardening (Windows firewall, In-bound, out bound rules creation and configuration)</li>
-                                    </ul>
+                                <td colspan=2 class="remarks">
+                                   
                                 </td>
                             </tr>
                         </tbody>
@@ -708,94 +557,38 @@
     </div>
 </div>
 <!-- Modal For Policy -->
-<div class="modal fade" id="policy" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="Engpolicy" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ">
             <div class="modal-header">
-                <h5 class="modal-title">Policy</h5>
+                <h5 class="modal-title">Engineering Policies</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="table-responsive">
-                    <table id="policytable" class="table table-striped">
+                    <table id="tblEng" class="table table-striped">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Folder</th>
                                 <th scope="col">Policies</th>
-                                <th class="text-center" scope="col ">Download</th>
+                                <th class="text-center" scope="col">Download</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="align-middle" scope="row">1</th>
-                                <th class="align-middle"><span><i class="fas fa-folder-open"></i> Corporate</span></th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">2</th>
-                                <th class="align-middle"><i class="fas fa-folder-open"></i> Corporate</th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">3</th>
-                                <th class="align-middle"><i class="fas fa-folder-open"></i> Corporate</th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">4</th>
-                                <th class="align-middle"><i class="fas fa-folder-open"></i> Premium</th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">5</th>
-                                <th class="align-middle"><i class="fas fa-folder-open"></i> Premium</th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">6</th>
-                                <th class="align-middle"><i class="fas fa-folder-open"></i> Premium</th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">7</th>
-                                <th class="align-middle"><i class="fas fa-folder-open"></i> Exclusive</th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">8</th>
-                                <th class="align-middle"><i class="fas fa-folder-open"></i> Exclusive</th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">2</th>
-                                <th class="align-middle"><i class="fas fa-folder-open"></i> Exclusive</th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">9</th>
-                                <th class="align-middle"><i class="fas fa-folder-open"></i> Exclusive</th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">10</th>
-                                <th class="align-middle"><i class="fas fa-folder-open"></i> Exclusive</th>
-                                <td class="align-middle"><span class="cursor-pointer">Application Support Services Executive</span></td>
-                                <td class="align-middle text-center"><a href="#"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                            </tr>
-
+                            @{var count = 1;}
+                            @foreach (var item in Model.Policies.Where(x=>x.Type == ApplicationHelper.EnumPolicyType.Engineering).ToList())
+                            {
+                                <tr>
+                                    <th class="align-middle" scope="row">@count</th>
+                                    <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
+                                    <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
+                                    <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
+                                </tr>
+                                count++;
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -803,8 +596,123 @@
         </div>
     </div>
 </div>
-
-
+<div class="modal fade" id="Chmpolicy" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title">Chemical Policies</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table id="tblChm" class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Folder</th>
+                                <th scope="col">Policies</th>
+                                <th class="text-center" scope="col">Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var count1 = 1;}
+                            @foreach (var item in Model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.Chemical).ToList())
+                            {
+                                <tr>
+                                    <th class="align-middle" scope="row">@count1</th>
+                                    <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
+                                    <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
+                                    <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
+                                </tr>
+                                count1++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Inspolicy" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title">Inspect Policies</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table id="tblIns" class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Folder</th>
+                                <th scope="col">Policies</th>
+                                <th class="text-center" scope="col">Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var count2 = 1;}
+                            @foreach (var item in Model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.Inspect).ToList())
+                            {
+                                <tr>
+                                    <th class="align-middle" scope="row">@count2</th>
+                                    <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
+                                    <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
+                                    <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
+                                </tr>
+                                count2++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Powpolicy" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title">Power Policies</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table id="tblPow" class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Folder</th>
+                                <th scope="col">Policies</th>
+                                <th class="text-center" scope="col">Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var count3 = 1;}
+                            @foreach (var item in Model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.Power).ToList())
+                            {
+                                <tr>
+                                    <th class="align-middle" scope="row">@count3</th>
+                                    <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
+                                    <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
+                                    <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
+                                </tr>
+                                count3++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @section InLineScriptSection{
 
     <script>
@@ -857,80 +765,61 @@
         $('#jobs').DataTable({
             "pageLength": 10
         });
-        $('#policytable').DataTable({
+        $('#tblEng').DataTable({
             "pageLength": 10
-        });</script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                navLinks: false,
-                selectable: true,
-                selectMirror: true,
-                dayMaxEvents: true,
-                events: [{
-                    title: 'All Day Event',
-                    start: '2020-12-11'
-                },
-                {
-                    title: 'Long Event',
-                    start: '2020-09-07',
-                    end: '2020-09-10'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2020-09-09T16:00:00'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2020-09-16T16:00:00'
-                },
-                {
-                    title: 'Conference',
-                    start: '2020-09-11',
-                    end: '2020-09-13'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2020-09-12T10:30:00',
-                    end: '2020-09-12T12:30:00'
-                },
-                {
-                    title: 'Lunch',
-                    start: '2020-09-12T12:00:00'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2020-09-12T14:30:00'
-                },
-                {
-                    title: 'Happy Hour',
-                    start: '2020-09-12T17:30:00'
-                },
-                {
-                    title: 'Dinner',
-                    start: '2020-09-12T20:00:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2020-09-13T07:00:00'
-                },
-                {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2020-09-28'
-                }
-                ]
-            });
+        });
+        $('#tblPow').DataTable({
+            "pageLength": 10
+        });
+        $('#tblIns').DataTable({
+            "pageLength": 10
+        });
+        $('#tblChm').DataTable({
+            "pageLength": 10
+        });
+        $('.responses').DataTable({
+            "pageLength": 10
+        });
 
-            calendar.render();
+    </script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var events = [];
+            $.ajax({
+                url: '@ViewBag.WebsiteURL' + "/home/Events",
+                type: "Get",
+                success: function (response) {
+                    $.each(response, function (index, value) {
+                        events.push({
+                            title: value.Title,
+                            start: value.EventDateTime,
+                            extendedProps: {
+                                department: 'BioChemistry'
+                            },
+                        });
+                    })
+                    var calendarEl = document.getElementById('calendar');
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        headerToolbar: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                        },
+                        navLinks: false,
+                        selectable: true,
+                        selectMirror: true,
+                        dayMaxEvents: true,
+                        events: events
+                        
+                    });
+                    calendar.render();
+                },
+                error: function (errors) {
+                    console.log(errors);
+                }
+            });
+            
         });</script>
     <script>
         $(document).ready(function () {
@@ -946,6 +835,101 @@
                 $(this).prev(".card-header").find(".fa").removeClass("fa-angle-down").addClass("fa-angle-right");
             });
         });</script>
+    <script>
+        function viewDetails(data) {
+            data = JSON.parse(data);
+            $(".code").html(data.JobCode);
+            $(".depart").html(data.Department);
+            $(".location").html(data.Location);
+            $(".selector").html(data.BusinessSelector);
+            $(".type").html(data.JobType);
+            $(".positions").html(data.Positions);
+            $(".career").html(data.CareerLevel);
+            $(".education").html(data.EducationLevel);
+            $(".experience").html(data.MinExp);
+            $(".date").html(new Date(data.SubmissionDate).toDateString());
+            $(".remarks").html(data.Description);
+            $("#career1").modal('show');
+        }
+    </script>
 
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "https://free.currconv.com/api/v7/convert?q=USD_PKR&compact=ultra&apiKey=c6cbd4438f3cf0d2cdf6",
+                type: "Get",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                dataType: "json",
+                success: function (response) {
+                    $(".usd").html(response.USD_PKR);
+                }
+            });
+            $.ajax({
+                url: "https://free.currconv.com/api/v7/convert?q=QAR_PKR&compact=ultra&apiKey=c6cbd4438f3cf0d2cdf6",
+                type: "Get",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                dataType: "json",
+                success: function (response) {
+                    $(".qatar").html(response.QAR_PKR);
+                }
+            });
+            $.ajax({
+                url: "https://free.currconv.com/api/v7/convert?q=AED_PKR&compact=ultra&apiKey=c6cbd4438f3cf0d2cdf6",
+                type: "Get",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                dataType: "json",
+                success: function (response) {
+                    $(".uae").html(response.AED_PKR);
+                }
+            })
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+
+       
+            $.ajax({
+                url: "http://worldtimeapi.org/api/timezone/Etc/GMT-3",
+                type: "Get",
+                success: function (response) {
+                    let time = new Date(response.datetime);
+                    $(".Time-3").html(time.toLocaleTimeString(undefined, {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                    }));
+                   
+                }
+            });
+            $.ajax({
+                url: "http://worldtimeapi.org/api/timezone/Etc/GMT-4",
+                type: "Get",
+                success: function (response) {
+                    let time = new Date(response.datetime);
+                    $(".Time-4").html(time.toLocaleTimeString(undefined, {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                    }));
+
+                }
+            });
+            $.ajax({
+                url: "http://worldtimeapi.org/api/timezone/Etc/GMT-5",
+                type: "Get",
+                success: function (response) {
+                    let time = new Date(response.datetime);
+                    $(".Time-5").html(time.toLocaleTimeString(undefined, {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                    }));
+                }
+            });
+        });
+    </script>
 }
 

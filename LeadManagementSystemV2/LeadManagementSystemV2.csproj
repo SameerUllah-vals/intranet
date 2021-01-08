@@ -165,13 +165,16 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DownloadController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\GalleryDetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\LatestNewsController.cs" />
     <Compile Include="Controllers\ManagementsController.cs" />
     <Compile Include="Controllers\NewsDetailsController.cs" />
     <Compile Include="Controllers\NewsLetterController.cs" />
+    <Compile Include="Controllers\PoliciesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -198,10 +201,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbProject.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Event.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Gallery.cs">
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GalleryDetail.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Job.cs">
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LatestNew.cs">
@@ -222,6 +231,9 @@
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrgAnnouncement.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Policy.cs">
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Question.cs">
@@ -435,6 +447,12 @@
     <Content Include="Views\GalleryDetails\Index.cshtml" />
     <Content Include="Views\LatestNews\Index.cshtml" />
     <Content Include="Views\LatestNews\Form.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
+    <Content Include="Views\Jobs\Form.cshtml" />
+    <Content Include="Views\Policies\Index.cshtml" />
+    <Content Include="Views\Policies\Form.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -442,6 +460,7 @@
     <Folder Include="assets\gallery\" />
     <Folder Include="assets\js\uploadify\" />
     <Folder Include="assets\newsletter\" />
+    <Folder Include="assets\policies\" />
     <Folder Include="Scripts\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Download\" />

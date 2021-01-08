@@ -18,6 +18,26 @@
     <Property Name="DeletedBy" Type="int" />
     <Property Name="isDefault" Type="bit" />
   </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="EventOrganizer" Type="nvarchar" MaxLength="50" />
+    <Property Name="EventLocation" Type="nvarchar" MaxLength="50" />
+    <Property Name="EventDateTime" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="text" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDateTime" Type="datetime" />
+    <Property Name="DeletedDateTime" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="isDefault" Type="bit" />
+  </EntityType>
   <EntityType Name="Gallery">
     <Key>
       <PropertyRef Name="ID" />
@@ -44,6 +64,32 @@
     <Property Name="Title" Type="nvarchar" MaxLength="100" />
     <Property Name="Image" Type="nvarchar" MaxLength="200" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Department" Type="nvarchar" MaxLength="50" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="BusinessSelector" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobType" Type="nvarchar" MaxLength="50" />
+    <Property Name="Positions" Type="int" />
+    <Property Name="CareerLevel" Type="nvarchar" MaxLength="50" />
+    <Property Name="EducationLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MinExp" Type="nvarchar" MaxLength="50" />
+    <Property Name="SubmissionDate" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDateTime" Type="datetime" />
+    <Property Name="DeletedDateTime" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="DeletedBy" Type="int" />
   </EntityType>
   <EntityType Name="LatestNews">
     <Key>
@@ -99,7 +145,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
     <Property Name="Image" Type="nvarchar" MaxLength="200" />
-    <Property Name="Link" Type="nvarchar" MaxLength="200" />
+    <Property Name="PDF" Type="nvarchar" MaxLength="200" />
     <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
@@ -127,12 +173,31 @@
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="DeletedBy" Type="int" />
   </EntityType>
+  <EntityType Name="Policies">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" />
+    <Property Name="PDF" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDateTime" Type="datetime" />
+    <Property Name="DeletedDateTime" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="DeletedBy" Type="int" />
+  </EntityType>
   <EntityType Name="QuestionDetail">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="QuestionsId" Type="int" />
+    <Property Name="Answer" Type="nvarchar" MaxLength="50" />
     <Property Name="IpAddress" Type="nvarchar" MaxLength="50" />
     <Property Name="CreatedDateTime" Type="datetime" />
   </EntityType>
@@ -147,6 +212,7 @@
     <Property Name="option3" Type="nvarchar" MaxLength="200" />
     <Property Name="option4" Type="nvarchar" MaxLength="200" />
     <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SubmissionDate" Type="datetime" Nullable="false" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
     <Property Name="UpdatedDateTime" Type="datetime" />
@@ -334,14 +400,17 @@
   </Association>
   <EntityContainer Name="dbProjectModelStoreContainer">
     <EntitySet Name="Banners" EntityType="Self.Banners" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GalleryDetails" EntityType="Self.GalleryDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LatestNews" EntityType="Self.LatestNews" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LatestNewsGalleryLinks" EntityType="Self.LatestNewsGalleryLinks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MenuPermissions" EntityType="Self.MenuPermissions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NewsLetters" EntityType="Self.NewsLetters" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrgAnnouncement" EntityType="Self.OrgAnnouncement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Policies" EntityType="Self.Policies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuestionDetail" EntityType="Self.QuestionDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RolePermissions" EntityType="Self.RolePermissions" Schema="dbo" store:Type="Tables" />

@@ -27,6 +27,7 @@ namespace LeadManagementSystemV2.Models
         public string option3 { get; set; }
         public string option4 { get; set; }
         public string Status { get; set; }
+        public System.DateTime SubmissionDate { get; set; }
         public bool IsDeleted { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
         public Nullable<System.DateTime> UpdatedDateTime { get; set; }

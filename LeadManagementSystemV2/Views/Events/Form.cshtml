@@ -1,4 +1,4 @@
-﻿@model LeadManagementSystemV2.Models.QuestionModel
+﻿@model LeadManagementSystemV2.Models.EventModel
 @using LeadManagementSystemV2.Helpers;
 @section LinkStyleSection{
     @Styles.Render("~/assets/cache/select2style")
@@ -14,10 +14,11 @@
     {
        @:DisableView();
     }
-
-        $("#SubDate").change(function () {
-            $("#SubmissionDate").val($(this).val());
+        $("#eventDate").change(function () {
+            $("#EventDateTime").val($(this).val());
         });
+
+
     </script>
 }
 @{Html.RenderPartial("BreadCrumb");}
@@ -27,59 +28,63 @@
     <div class="panel">
         <!--Block Styled Form -->
         <!--===================================================-->
-        @using (Ajax.BeginForm("Save", "vote", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off", enctype = "multipart/form-data" }))
+        @using (Ajax.BeginForm("Save", "events", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.ID)
         <div class="panel-body">
             <div class="row">
-                <div class="col-sm-12">
+
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="control-label">Question <span class="text-danger">*</span></label>
+                        <label class="control-label">Title <span class="text-danger">*</span></label>
                         @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control", @placeholder = "Title *" })
                         @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+
+
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Location <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.EventLocation, null, new { @class = "form-control", @placeholder = "Location *" })
+                        @Html.ValidationMessageFor(m => m.EventLocation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Organizer <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.EventOrganizer, null, new { @class = "form-control", @placeholder = "Organizer *" })
+                        @Html.ValidationMessageFor(m => m.EventOrganizer, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Date Time <span class="text-danger">*</span></label>
+                        <input type="datetime-local" id="eventDate" class="form-control" />
+                        @Html.HiddenFor(x=>x.EventDateTime)
+                        @Html.ValidationMessageFor(m => m.EventDateTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="control-label">option 1 <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.Option1, null, new { @class = "form-control", @placeholder = "answer *" })
-                        @Html.ValidationMessageFor(m => m.Option1, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="control-label">option 2 <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.Option2, null, new { @class = "form-control", @placeholder = "answer *" })
-                        @Html.ValidationMessageFor(m => m.Option2, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="control-label">option 3 <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.Option3, null, new { @class = "form-control", @placeholder = "answer *" })
-                        @Html.ValidationMessageFor(m => m.Option3, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label class="control-label">option 4 <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.Option4, null, new { @class = "form-control", @placeholder = "answer *" })
-                        @Html.ValidationMessageFor(m => m.Option4, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label class="control-label">Last Submission Date<span class="text-danger">*</span></label>
-                        <input type="date" id="SubDate" class="form-control" />
-                        @Html.HiddenFor(x=>x.SubmissionDate)
-                        @Html.ValidationMessageFor(m => m.SubmissionDate, "", new { @class = "text-danger" })
+                        <label class="control-label">Description <span class="text-danger">*</span></label>
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -93,16 +98,6 @@
                         @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label class="control-label">Make Default NewsLetter<span class="text-danger">*</span></label>
-                        @Html.EditorFor(m => m.isDefault, null)
-                        @Html.ValidationMessageFor(m => m.isDefault, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
             </div>
         </div>
             <div class="panel-footer text-right">

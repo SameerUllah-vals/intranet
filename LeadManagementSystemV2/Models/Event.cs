@@ -12,12 +12,14 @@ namespace LeadManagementSystemV2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class NewsLetter
+    public partial class Event
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public string Image { get; set; }
-        public string PDF { get; set; }
+        public string EventOrganizer { get; set; }
+        public string EventLocation { get; set; }
+        public System.DateTime EventDateTime { get; set; }
+        public string Description { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
         public System.DateTime CreatedDateTime { get; set; }

@@ -14,6 +14,15 @@
     {
        @:DisableView();
     }
+
+        $("#pdf").change(function () {
+            var fileExtension = ['pdf'];
+            if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Only formats are allowed : " + fileExtension.join(', '));
+                $(this).val('');
+                return false;
+            }
+        });
     </script>
 }
 @{Html.RenderPartial("BreadCrumb");}
@@ -38,16 +47,6 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="control-label">Link <span class="text-danger">*</span></label>
-                            @Html.TextBoxFor(m => m.Link, null, new { @class = "form-control", @placeholder = "Link *" })
-                            @Html.ValidationMessageFor(m => m.Link, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
                             <label class="control-label">Status <span class="text-danger">*</span></label>
                             @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
                               {
@@ -55,6 +54,17 @@
                                 new SelectListItem{ Text="Disable", Value = "Disable" }
                              }, "Please-Select", new { @class = "form-control select-picker" })
                             @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Upload PDF <span class="text-danger">*</span></label>
+                            <input type="file" id="pdf" name="file" />
+                            @Html.ValidationMessageFor(m => m.file, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-sm-4">

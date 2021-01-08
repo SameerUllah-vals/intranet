@@ -16,6 +16,7 @@ namespace LeadManagementSystemV2.Models
     {
         public int ID { get; set; }
         public Nullable<int> QuestionsId { get; set; }
+        public string Answer { get; set; }
         public string IpAddress { get; set; }
         public Nullable<System.DateTime> CreatedDateTime { get; set; }
     

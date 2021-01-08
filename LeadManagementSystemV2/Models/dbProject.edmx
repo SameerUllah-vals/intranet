@@ -23,6 +23,26 @@
           <Property Name="DeletedBy" Type="int" />
           <Property Name="isDefault" Type="bit" />
         </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="EventOrganizer" Type="nvarchar" MaxLength="50" />
+          <Property Name="EventLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="EventDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="DeletedDateTime" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="isDefault" Type="bit" />
+        </EntityType>
         <EntityType Name="Gallery">
           <Key>
             <PropertyRef Name="ID" />
@@ -49,6 +69,32 @@
           <Property Name="Title" Type="nvarchar" MaxLength="100" />
           <Property Name="Image" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="BusinessSelector" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Positions" Type="int" />
+          <Property Name="CareerLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="EducationLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MinExp" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubmissionDate" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="DeletedDateTime" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="DeletedBy" Type="int" />
         </EntityType>
         <EntityType Name="LatestNews">
           <Key>
@@ -104,7 +150,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="Image" Type="nvarchar" MaxLength="200" />
-          <Property Name="Link" Type="nvarchar" MaxLength="200" />
+          <Property Name="PDF" Type="nvarchar" MaxLength="200" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
@@ -132,12 +178,31 @@
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="DeletedBy" Type="int" />
         </EntityType>
+        <EntityType Name="Policies">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="PDF" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="DeletedDateTime" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="DeletedBy" Type="int" />
+        </EntityType>
         <EntityType Name="QuestionDetail">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="QuestionsId" Type="int" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="50" />
           <Property Name="IpAddress" Type="nvarchar" MaxLength="50" />
           <Property Name="CreatedDateTime" Type="datetime" />
         </EntityType>
@@ -152,6 +217,7 @@
           <Property Name="option3" Type="nvarchar" MaxLength="200" />
           <Property Name="option4" Type="nvarchar" MaxLength="200" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SubmissionDate" Type="datetime" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
           <Property Name="UpdatedDateTime" Type="datetime" />
@@ -339,14 +405,17 @@
         </Association>
         <EntityContainer Name="dbProjectModelStoreContainer">
           <EntitySet Name="Banners" EntityType="Self.Banners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GalleryDetails" EntityType="Self.GalleryDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LatestNews" EntityType="Self.LatestNews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LatestNewsGalleryLinks" EntityType="Self.LatestNewsGalleryLinks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuPermissions" EntityType="Self.MenuPermissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsLetters" EntityType="Self.NewsLetters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrgAnnouncement" EntityType="Self.OrgAnnouncement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Policies" EntityType="Self.Policies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionDetail" EntityType="Self.QuestionDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolePermissions" EntityType="Self.RolePermissions" Schema="dbo" store:Type="Tables" />
@@ -591,14 +660,7 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="QuestionDetails" EntityType="dbProjectModel.QuestionDetail" />
           <EntitySet Name="Banners" EntityType="dbProjectModel.Banner" />
-          <EntitySet Name="NewsLetters" EntityType="dbProjectModel.NewsLetter" />
-          <EntitySet Name="Questions" EntityType="dbProjectModel.Question" />
-          <AssociationSet Name="FK_QuestionDetail_Question" Association="dbProjectModel.FK_QuestionDetail_Question">
-            <End Role="Question" EntitySet="Questions" />
-            <End Role="QuestionDetail" EntitySet="QuestionDetails" />
-          </AssociationSet>
           <EntitySet Name="OrgAnnouncements" EntityType="dbProjectModel.OrgAnnouncement" />
           <EntitySet Name="Galleries" EntityType="dbProjectModel.Gallery" />
           <EntitySet Name="LatestNews" EntityType="dbProjectModel.LatestNew" />
@@ -616,17 +678,17 @@
             <End Role="LatestNew" EntitySet="LatestNews" />
             <End Role="LatestNewsGalleryLink" EntitySet="LatestNewsGalleryLinks" />
           </AssociationSet>
+          <EntitySet Name="NewsLetters" EntityType="dbProjectModel.NewsLetter" />
+          <EntitySet Name="Jobs" EntityType="dbProjectModel.Job" />
+          <EntitySet Name="Policies" EntityType="dbProjectModel.Policy" />
+          <EntitySet Name="Events" EntityType="dbProjectModel.Event" />
+          <EntitySet Name="QuestionDetails" EntityType="dbProjectModel.QuestionDetail" />
+          <EntitySet Name="Questions" EntityType="dbProjectModel.Question" />
+          <AssociationSet Name="FK_QuestionDetail_Question" Association="dbProjectModel.FK_QuestionDetail_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionDetail" EntitySet="QuestionDetails" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="QuestionDetail">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="QuestionsId" Type="Int32" />
-          <Property Name="IpAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Question" Relationship="dbProjectModel.FK_QuestionDetail_Question" FromRole="QuestionDetail" ToRole="Question" />
-        </EntityType>
         <EntityType Name="Banner">
           <Key>
             <PropertyRef Name="ID" />
@@ -645,57 +707,6 @@
           <Property Name="DeletedBy" Type="Int32" />
           <Property Name="isDefault" Type="Boolean" />
         </EntityType>
-        <EntityType Name="NewsLetter">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="UpdatedBy" Type="Int32" />
-          <Property Name="DeletedBy" Type="Int32" />
-          <Property Name="isDefault" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="Question">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="option1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="option2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="option3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="option4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="UpdatedBy" Type="Int32" />
-          <Property Name="DeletedBy" Type="Int32" />
-          <Property Name="isDefault" Type="Boolean" />
-          <NavigationProperty Name="QuestionDetails" Relationship="dbProjectModel.FK_QuestionDetail_Question" FromRole="Question" ToRole="QuestionDetail" />
-        </EntityType>
-        <Association Name="FK_QuestionDetail_Question">
-          <End Type="dbProjectModel.Question" Role="Question" Multiplicity="0..1" />
-          <End Type="dbProjectModel.QuestionDetail" Role="QuestionDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Question">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="QuestionDetail">
-              <PropertyRef Name="QuestionsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="OrgAnnouncement">
           <Key>
             <PropertyRef Name="ID" />
@@ -807,6 +818,133 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="NewsLetter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PDF" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="isDefault" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessSelector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Positions" Type="Int32" />
+          <Property Name="CareerLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EducationLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MinExp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubmissionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="DeletedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Policy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PDF" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="DeletedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EventOrganizer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EventLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="isDefault" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="QuestionDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionsId" Type="Int32" />
+          <Property Name="Answer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IpAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Question" Relationship="dbProjectModel.FK_QuestionDetail_Question" FromRole="QuestionDetail" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="option1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="option2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="option3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="option4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SubmissionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="isDefault" Type="Boolean" />
+          <NavigationProperty Name="QuestionDetails" Relationship="dbProjectModel.FK_QuestionDetail_Question" FromRole="Question" ToRole="QuestionDetail" />
+        </EntityType>
+        <Association Name="FK_QuestionDetail_Question">
+          <End Type="dbProjectModel.Question" Role="Question" Multiplicity="0..1" />
+          <End Type="dbProjectModel.QuestionDetail" Role="QuestionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionDetail">
+              <PropertyRef Name="QuestionsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -897,16 +1035,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="QuestionDetails">
-            <EntityTypeMapping TypeName="dbProjectModel.QuestionDetail">
-              <MappingFragment StoreEntitySet="QuestionDetail">
-                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
-                <ScalarProperty Name="QuestionsId" ColumnName="QuestionsId" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Banners">
             <EntityTypeMapping TypeName="dbProjectModel.Banner">
               <MappingFragment StoreEntitySet="Banners">
@@ -921,46 +1049,6 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Ticker" ColumnName="Ticker" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NewsLetters">
-            <EntityTypeMapping TypeName="dbProjectModel.NewsLetter">
-              <MappingFragment StoreEntitySet="NewsLetters">
-                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
-                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
-                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="dbProjectModel.Question">
-              <MappingFragment StoreEntitySet="Questions">
-                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
-                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
-                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="option4" ColumnName="option4" />
-                <ScalarProperty Name="option3" ColumnName="option3" />
-                <ScalarProperty Name="option2" ColumnName="option2" />
-                <ScalarProperty Name="option1" ColumnName="option1" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -1037,6 +1125,125 @@
                 <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
                 <ScalarProperty Name="LatestNewsId" ColumnName="LatestNewsId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsLetters">
+            <EntityTypeMapping TypeName="dbProjectModel.NewsLetter">
+              <MappingFragment StoreEntitySet="NewsLetters">
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PDF" ColumnName="PDF" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="dbProjectModel.Job">
+              <MappingFragment StoreEntitySet="Jobs">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SubmissionDate" ColumnName="SubmissionDate" />
+                <ScalarProperty Name="MinExp" ColumnName="MinExp" />
+                <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
+                <ScalarProperty Name="CareerLevel" ColumnName="CareerLevel" />
+                <ScalarProperty Name="Positions" ColumnName="Positions" />
+                <ScalarProperty Name="JobType" ColumnName="JobType" />
+                <ScalarProperty Name="BusinessSelector" ColumnName="BusinessSelector" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="JobCode" ColumnName="JobCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Policies">
+            <EntityTypeMapping TypeName="dbProjectModel.Policy">
+              <MappingFragment StoreEntitySet="Policies">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PDF" ColumnName="PDF" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="dbProjectModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
+                <ScalarProperty Name="EventLocation" ColumnName="EventLocation" />
+                <ScalarProperty Name="EventOrganizer" ColumnName="EventOrganizer" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionDetails">
+            <EntityTypeMapping TypeName="dbProjectModel.QuestionDetail">
+              <MappingFragment StoreEntitySet="QuestionDetail">
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="QuestionsId" ColumnName="QuestionsId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="dbProjectModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SubmissionDate" ColumnName="SubmissionDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="option4" ColumnName="option4" />
+                <ScalarProperty Name="option3" ColumnName="option3" />
+                <ScalarProperty Name="option2" ColumnName="option2" />
+                <ScalarProperty Name="option1" ColumnName="option1" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

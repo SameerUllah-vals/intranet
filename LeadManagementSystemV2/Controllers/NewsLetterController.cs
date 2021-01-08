@@ -27,7 +27,7 @@ namespace LeadManagementSystemV2.Controllers
                 DateTime searchDate = ParseExactDateTime(searchValue);
                 dataSource = dataSource.Where(p => (
                     p.Title.ToLower().Contains(searchValue) ||
-                    p.Link.ToLower().Contains(searchValue) ||
+                    p.PDF.ToLower().Contains(searchValue) ||
                     p.CreatedDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.CreatedDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate) ||
                     p.UpdatedDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.UpdatedDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate))
                 );
@@ -36,7 +36,7 @@ namespace LeadManagementSystemV2.Controllers
             dataSource = dataSource.SortBy(param.SortOrder).Skip(param.Start).Take(param.Length);
             var resultList = dataSource.ToList();
             var resultData = from x in resultList
-                             select new { x.ID, x.Title, x.Image, x.Link, x.isDefault, x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Title, x.Image, x.PDF, x.isDefault, x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
             var result = new
             {
                 draw = param.Draw,
@@ -55,7 +55,7 @@ namespace LeadManagementSystemV2.Controllers
             {
                 Model.ID = Record.ID;
                 Model.Title = Record.Title;
-                Model.Link = Record.Link;
+                Model.PDF = Record.PDF;
                 Model.isDefault = (bool)Record.isDefault;
                 Model.Status = Record.Status;
             }
@@ -159,8 +159,7 @@ namespace LeadManagementSystemV2.Controllers
                             Record = Database.NewsLetters.Create();
                             isRecordWillAdded = true;
                         }
-                        Record.Title = modelRecord.Title;
-                        Record.Link = modelRecord.Link;
+                        Record.Title = modelRecord.Title;                       
                         if (modelRecord.isDefault)
                         {
                             
@@ -173,8 +172,36 @@ namespace LeadManagementSystemV2.Controllers
                         Record.IsDeleted = false;
                         if (modelRecord.ImageFile != null)
                         {
-                            UploadFiles(modelRecord.ImageFile, Server, NewsLetter_Image_Path);
+                            try
+                            {
+                                UploadFiles(modelRecord.ImageFile, Server, NewsLetter_Image_Path);
+
+                            }
+                            catch (FileFormatException ex)
+                            {
+                                string _catchMessage = ex.Message;
+                                AjaxResponse.Message = _catchMessage;
+                                AjaxResponse.Type = EnumJQueryResponseType.FieldOnly;
+                                AjaxResponse.FieldName = "ImageFile";
+                                return Json(AjaxResponse);
+                            }
                             Record.Image = modelRecord.ImageFile.FileName;
+                        }
+                        if (modelRecord.file != null)
+                        {
+                            try
+                            {
+                                UploadFiles(modelRecord.file, Server, NewsLetter_Image_Path, "pdf");
+                            }
+                            catch (FileFormatException ex)
+                            {
+                                string _catchMessage = ex.Message;
+                                AjaxResponse.Message = _catchMessage;
+                                AjaxResponse.Type = EnumJQueryResponseType.FieldOnly;
+                                AjaxResponse.FieldName = "pdf";
+                                return Json(AjaxResponse);
+                            }
+                            Record.PDF = modelRecord.file.FileName;
                         }
                         if (isRecordWillAdded)
                         {
@@ -201,13 +228,7 @@ namespace LeadManagementSystemV2.Controllers
                     AjaxResponse.TargetURL = ViewBag.WebsiteURL;
                 }
             }
-            catch (FileFormatException ex)
-            {
-                string _catchMessage = ex.Message;
-                AjaxResponse.Message = _catchMessage;
-                AjaxResponse.Type = EnumJQueryResponseType.FieldOnly;
-                AjaxResponse.FieldName = "ImageFile";
-            }
+            
             catch (Exception ex)
             {
                 string _catchMessage = ex.Message;

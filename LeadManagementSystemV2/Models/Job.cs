@@ -12,12 +12,21 @@ namespace LeadManagementSystemV2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class NewsLetter
+    public partial class Job
     {
         public int ID { get; set; }
+        public string JobCode { get; set; }
         public string Title { get; set; }
-        public string Image { get; set; }
-        public string PDF { get; set; }
+        public string Department { get; set; }
+        public string Location { get; set; }
+        public string BusinessSelector { get; set; }
+        public string JobType { get; set; }
+        public Nullable<int> Positions { get; set; }
+        public string CareerLevel { get; set; }
+        public string EducationLevel { get; set; }
+        public string MinExp { get; set; }
+        public System.DateTime SubmissionDate { get; set; }
+        public string Description { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
@@ -26,6 +35,5 @@ namespace LeadManagementSystemV2.Models
         public int CreatedBy { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<int> DeletedBy { get; set; }
-        public Nullable<bool> isDefault { get; set; }
     }
 }

@@ -13,42 +13,43 @@
     <!--STYLESHEET-->
     <!--=================================================-->
     <!--Open Sans Font [ OPTIONAL ]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <script src="https://cdn.tiny.cloud/1/yb0gz3g478jtg7d59r6dromu375lbz0w7ob9pqpn87teu21m/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        <script>
-            tinymce.init({
-                selector: '#editor',               
-                encoding: 'xml',
-                plugins: 'image',
-                setup: function (ed) {
-                    ed.on('keyup', function (e) {                                            
-                        $("#editor-html,.editor-html").val(ed.getContent());
-                    });
-                    ed.on('click', function (e) {
-                        $("#editor-html,.editor-html").val(ed.getContent());
-                    });
-                    ed.on('blur', function (e) {
-                        $("#editor-html,.editor-html").val(ed.getContent());
-                    });
-                }
-            });
+    <script>
+        tinymce.init({
+            selector: '#editor',
+            encoding: 'xml',
+            plugins: 'image',
+            setup: function (ed) {
+                ed.on('keyup', function (e) {
+                    $("#editor-html,.editor-html").val(ed.getContent());
+                });
+                ed.on('click', function (e) {
+                    $("#editor-html,.editor-html").val(ed.getContent());
+                });
+                ed.on('blur', function (e) {
+                    $("#editor-html,.editor-html").val(ed.getContent());
+                });
+            }
+        });
 
-            tinymce.init({
-                selector: '.editor',
-                encoding: 'xml',
-                plugins: 'image',
-                setup: function (ed) {
-                    ed.on('keyup', function (e) {
-                        $(".editor-html-1").val(ed.getContent());
-                    });
-                    ed.on('click', function (e) {
-                        $(".editor-html-1").val(ed.getContent());
-                    });
-                    ed.on('blur', function (e) {
-                        $(".editor-html-1").val(ed.getContent());
-                    });
-                }
-            });
+        tinymce.init({
+            selector: '.editor',
+            encoding: 'xml',
+            plugins: 'image',
+            setup: function (ed) {
+                ed.on('keyup', function (e) {
+                    $(".editor-html-1").val(ed.getContent());
+                });
+                ed.on('click', function (e) {
+                    $(".editor-html-1").val(ed.getContent());
+                });
+                ed.on('blur', function (e) {
+                    $(".editor-html-1").val(ed.getContent());
+                });
+            }
+        });
     </script>
     @Styles.Render("~/assets/cache/site")
     @if (IsSectionDefined("LinkStyleSection"))
@@ -59,11 +60,34 @@
     {
         @RenderSection("InLineStyleSection");
     }
+    <style>
+        #loading {
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            position: fixed;
+            display: block;
+            z-index: 99;
+            opacity: 0.7;
+            background-color: #fff;
+            display: none;
+        }
 
+        #loading-image {
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            z-index: 100
+        }
+    </style>
 </head>
 <body>
+    <div id="loading">
+        <img id="loading-image" src="~/assets/images/loader.gif" alt="Loading..." />
+    </div>
     <div id="container" class="effect aside-float aside-bright mainnav-lg">
-        
+
 
         <!--NAVBAR-->
         <!--===================================================-->
@@ -101,13 +125,13 @@
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                                 <i class="demo-pli-bell"></i>
                                 @*@if (ViewBag.Notification.Count > 0)
-                                {
-                                    <span class="badge badge-header badge-danger">@ViewBag.Notification.Count</span>
-                                }*@
+                                    {
+                                        <span class="badge badge-header badge-danger">@ViewBag.Notification.Count</span>
+                                    }*@
                             </a>
 
                             <!--Notification dropdown menu-->
-                            
+
                         </li>
 
                         <!--User dropdown-->
@@ -165,14 +189,14 @@
                     <!--OPTIONAL : ADD YOUR LOGO TO THE NAVIGATION-->
                     <!--It will only appear on small screen devices.-->
                     <!--================================
-                <div class="mainnav-brand">
-                    <a href="index.html" class="brand">
-                        <img src="img/logo.png" alt="Nifty Logo" class="brand-icon">
-                        <span class="brand-text">Nifty</span>
-                    </a>
-                    <a href="#" class="mainnav-toggle"><i class="pci-cross pci-circle icon-lg"></i></a>
-                </div>
-                -->
+                    <div class="mainnav-brand">
+                        <a href="index.html" class="brand">
+                            <img src="img/logo.png" alt="Nifty Logo" class="brand-icon">
+                            <span class="brand-text">Nifty</span>
+                        </a>
+                        <a href="#" class="mainnav-toggle"><i class="pci-cross pci-circle icon-lg"></i></a>
+                    </div>
+                    -->
                     <!--Menu-->
                     <!--================================-->
                     <div id="mainnav-menu-wrap">

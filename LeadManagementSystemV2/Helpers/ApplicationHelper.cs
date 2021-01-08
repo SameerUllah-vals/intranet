@@ -23,6 +23,7 @@ namespace LeadManagementSystemV2.Helpers
         public const string Banner_Image_Path = "~/assets/banners";
         public const string Gallery_Image_Path = "~/assets/gallery";
         public const string NewsLetter_Image_Path = "~/assets/newsletter";
+        public const string Policies_document_Path = "~/assets/policies";
 
 
         public const string Cookie_User_Email_Address = "Cookie_CRM_Email_Address";
@@ -30,10 +31,11 @@ namespace LeadManagementSystemV2.Helpers
         public const string Session_User_Login = "Session_CRM_User_Login";
         public const string jQuery_Date_Format = "DD/MM/YYYY";
         public const string jQuery_Date_Time_Format = "DD/MM/YYYY HH:mm:ss";
-        public const string Website_Date_Format = "dd/MM/yyyy";
+        public const string Website_Date_Format = "dd MMMM yyyy";
+        public const string Simple_Date_Format = "yyyy-MM-dd";
         public const string Website_Date_Format_With_Month_Letter = "dd/MMM/yyyy";
         public const string Website_Date_Format_With_Month_Only_Letter = "MMMM, yyyy";
-        public const string Website_Date_Time_Format = "dd/MM/yyyy HH:mm:ss";
+        public const string Website_Date_Time_Format = "dd MMMM yyyy hh:mm tt";
         public const string EncryptKey = "crM@!000";
         public static string[] allowedImageExtensions = { ".jpg", ".png", ".gif", ".jpeg" };
         public static string[] allowedResumeExtensions = { ".pdf", ".docx" };
@@ -98,6 +100,20 @@ namespace LeadManagementSystemV2.Helpers
             public const string Low = "Low";
             public const string Closed = "Closed";
             public const string VisitingOffice = "Visiting Office";
+        }
+
+        public static class EnumPolicyType
+        {
+            public const string Engineering = "Engineering";
+            public const string Power = "Power";
+            public const string Inspect = "InspectTest";
+            public const string Chemical = "Chemical";
+        }
+        public static class EnumPolicyCategory
+        {
+            public const string Exclusive = "Exclusive";
+            public const string Corporate = "Corporate";
+            public const string Premium = "Premium";
         }
         #endregion
         #region "Core Functions"
@@ -278,18 +294,22 @@ namespace LeadManagementSystemV2.Helpers
             return _value;
         }
 
-        public static string UploadFiles(HttpPostedFileBase file, HttpServerUtilityBase Server, string ImageUploadPath)
+        public static string UploadFiles(HttpPostedFileBase file, HttpServerUtilityBase Server, string ImageUploadPath,string filetype = "image")
         {
             string fileName = string.Empty;
             if (file != null)
             {
-                var allowedExtensions = new[] { ".jpg",".png",".jpeg" };
+                string[] allowedExtensions = { };
+                if(filetype == "image")
+                     allowedExtensions = new[] { ".jpg",".png",".jpeg" };
+                else
+                     allowedExtensions = new[] { ".pdf" };
                 var checkextension = Path.GetExtension(file.FileName).ToLower();
                 if (!allowedExtensions.Contains(checkextension))
                 {
                     throw new FileFormatException("the file is not supported");
                 }
-                fileName = Path.GetFileName(file.FileName);
+                fileName = Path.GetFileName(file.FileName);                
                 var path = Path.Combine(Server.MapPath(ImageUploadPath), fileName);
                 file.SaveAs(path);
             }                       

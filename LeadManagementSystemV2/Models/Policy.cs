@@ -12,11 +12,12 @@ namespace LeadManagementSystemV2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class NewsLetter
+    public partial class Policy
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public string Image { get; set; }
+        public string Type { get; set; }
+        public string Category { get; set; }
         public string PDF { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
@@ -26,6 +27,5 @@ namespace LeadManagementSystemV2.Models
         public int CreatedBy { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<int> DeletedBy { get; set; }
-        public Nullable<bool> isDefault { get; set; }
     }
 }

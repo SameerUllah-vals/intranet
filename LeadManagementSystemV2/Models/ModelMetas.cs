@@ -21,11 +21,7 @@ namespace LeadManagementSystemV2.Models
         public string Text { get; set; }
         public string Value { get; set; }
     }
-    public class PriorityModel
-    {
-        public string Text { get; set; }
-        public string Value { get; set; }
-    }
+  
     public class SourceModel
     {
         public string Text { get; set; }
@@ -191,9 +187,18 @@ namespace LeadManagementSystemV2.Models
 
         [Required(ErrorMessage = "Required")]
         public string Option1 { get; set; }
+        [Required(ErrorMessage = "Required")]
+
         public string Option2 { get; set; }
+        [Required(ErrorMessage = "Required")]
+
         public string Option3 { get; set; }
+        [Required(ErrorMessage = "Required")]
+
         public string Option4 { get; set; }
+        [Required(ErrorMessage = "Required")]
+
+        public DateTime SubmissionDate { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
         public bool isDefault { get; set; }
@@ -211,6 +216,7 @@ namespace LeadManagementSystemV2.Models
     {
         public int ID { get; set; }
         public int QuestionsId { get; set; }
+        public string opt { get; set; }
         public string IpAddress { get; set; }
         public DateTime CreatedDateTime { get; set; }
 
@@ -223,7 +229,8 @@ namespace LeadManagementSystemV2.Models
         [Required(ErrorMessage = "Required")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Required")]
-        public string Link { get; set; }
+        public HttpPostedFileBase file { get; set; }
+        public string PDF { get; set; }
 
         [Required(ErrorMessage = "Required")]
         public HttpPostedFileBase ImageFile { get; set; }
@@ -260,6 +267,69 @@ namespace LeadManagementSystemV2.Models
         public int DeletedBy { get; set; }
     }
 
+    public class JobModel
+    {
+        public int ID { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public string JobCode { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public string Title { get; set; }
+        public string Department { get; set; }
+        public string Location { get; set; }
+        public string BusinessSelector { get; set; }
+        public string JobType { get; set; }
+        public int Positions { get; set; }
+        public string CareerLevel { get; set; }
+        public string EducationLevel { get; set; }
+        public string MinExp { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public System.DateTime SubmissionDate { get; set; }
+        public string Description { get; set; }
+        public string Status { get; set; }
+    }
+
+    public class PolicyModel
+    {
+        public int ID { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public string Title { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public string Type { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public string Category { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public string PDF { get; set; }
+        public HttpPostedFileBase file { get; set; }
+        public string Status { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime CreatedDateTime { get; set; }
+        public DateTime UpdatedDateTime { get; set; }
+        public DateTime DeletedDateTime { get; set; }
+        public int CreatedBy { get; set; }
+        public int UpdatedBy { get; set; }
+        public int DeletedBy { get; set; }
+        public bool isDefault { get; set; }
+    }
+
+    public class EventModel
+    {
+        public int ID { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public string Title { get; set; }
+        public string EventOrganizer { get; set; }
+        public string EventLocation { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public DateTime EventDateTime { get; set; }
+        public string Description { get; set; }
+        public string Status { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime CreatedDateTime { get; set; }
+        public DateTime UpdatedDateTime { get; set; }
+        public DateTime DeletedDateTime { get; set; }
+        public int CreatedBy { get; set; }
+        public int UpdatedBy { get; set; }
+        public int DeletedBy { get; set; }
+    }
     public class viewModel
     {
         public Banner banner { get; set; }
@@ -268,6 +338,10 @@ namespace LeadManagementSystemV2.Models
         public IEnumerable<LatestNew> LatestNews { get; set; }
         public IEnumerable<NewsLetter> NewsLetter { get; set; }
         public Question Servey { get; set; }
+        public IEnumerable<QuestionDetail> ServeyResponse { get; set; }
+        public IEnumerable<Job> Jobs { get; set; }
+        public IEnumerable<Policy> Policies { get; set; }
+
     }
 
-  }
+}

@@ -1,0 +1,171 @@
+﻿@model LeadManagementSystemV2.Models.JobModel
+@using LeadManagementSystemV2.Helpers;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/select2style")
+    @Styles.Render("~/assets/cache/datepickerstyle")
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/select2script")
+    @Scripts.Render("~/assets/cache/datepickerscript")
+}
+@section InLineScriptSection{
+    <script>
+    @if (ViewBag.PageType == "View")
+    {
+       @:DisableView();
+    }
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Save", "jobs", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ID)
+         <div class="panel-body">
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Job Code <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.JobCode, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.JobCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Job Title <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Job Type <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.JobType, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.JobType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Department <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Department, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Min Experience <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.MinExp, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.MinExp, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Total Positions <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Positions, null, new { @class = "form-control", @type = "number" })
+                        @Html.ValidationMessageFor(m => m.Positions, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Location <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Location, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Business Unit<span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.BusinessSelector, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.BusinessSelector, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Last Submission Date <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.SubmissionDate, null, new { @class = "form-control datepicker" })
+                        @Html.ValidationMessageFor(m => m.SubmissionDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Career Level <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.CareerLevel, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CareerLevel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Education<span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.EducationLevel, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.EducationLevel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Description <span class="text-danger">*</span></label>
+                        @Html.TextAreaFor(m => m.Description, null)
+                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Status <span class="text-danger">*</span></label>
+                        @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
+                          {
+                            new SelectListItem{ Text="Enable", Value = "Enable",Selected=true },
+                            new SelectListItem{ Text="Disable", Value = "Disable" }
+                         }, "Please-Select", new { @class = "form-control select-picker" })
+                        @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
+                <button class="btn btn-success" type="submit" tabindex="9">Save</button>
+            </div>
+            
+            <!--===================================================-->
+            <!--End Block Styled Form -->
+        </div>
+        }
+</div>
+    </div>
+<!--===================================================-->
+<!--End page content-->
