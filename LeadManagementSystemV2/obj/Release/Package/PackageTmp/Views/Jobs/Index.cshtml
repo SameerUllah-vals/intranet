@@ -1,0 +1,67 @@
+﻿@using LeadManagementSystemV2.Helpers;
+@{
+    ViewBag.AllowAdding = true;
+    ViewBag.AllowEditing = true;
+    if (ViewBag.UserRecord.RoleID == ApplicationHelper.EnumRole.Administrator)
+    {
+        //ViewBag.AllowDeleting = true;
+    }
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"JobCode\"},{\"data\": \"Title\"},{\"data\": \"Positions\"},{\"data\": \"BusinessSelector\"},{\"data\": \"SubmissionDate\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+
+    if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
+    {
+        ViewBag.DataTableActionColumn = "8";
+        DataTableColumns += ",{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": false}";
+    }
+
+
+    ViewBag.DataTableColumns = DataTableColumns;
+}
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/datatablestyle")
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/datatablescript")
+}
+@section InLineScriptSection{
+    @{Html.RenderPartial("JScript");}
+    <script>
+        $(document).ready(function () {
+            $("#btnAdd").text('Add Jobs');
+        });
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <div class="panel-body">
+
+            <table class="table table-striped table-bordered record-table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Job Code</th>
+                        <th>Designation</th>
+                        <th>Positions</th>
+                        <th>Business Unit</th>
+                        <th>Submission Date</th>
+                        <th>Last date to apply</th>
+                        <th class="min-desktop">Created DateTime</th>
+                        <th class="min-desktop">Updated DateTime</th>
+                        @if (ViewBag.DataTableActionColumn != null)
+                        {
+                            <th data-priority="2">Actions</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <!--===================================================-->
+    <!-- End Striped Table -->
+</div>
+<!--===================================================-->
+<!--End page content-->

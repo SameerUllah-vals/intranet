@@ -153,7 +153,7 @@ OnFormBegin = function () {
     EnableDisableArea("", "Disable");
 }
 OnFormComplete = function () {
-
+    EnableDisableArea("", "Enable");
 }
 OnFormFailure = function (response) {
     EnableDisableArea("", "Enable");
@@ -162,8 +162,70 @@ OnFormFailure = function (response) {
 }
 OnFormSuccess = function (response) {
     console.log(response);
+    debugger;
     var responseTypeArray = response.Type.split('-');
-    $.each(responseTypeArray, function (key, value) {
+    //$.each(responseTypeArray, function (key, value) {
+    //    if (value == "M") {
+    //        if (response.Success == true) {
+    //            if ($(".msg-area").length > 0) {
+    //                $(".msg-area").notify(
+    //                    response.Message,
+    //                    { position: "bottom", className: "success" }
+    //                );
+    //            } else if ($("#btn_back").length > 0) {
+    //                $("#btn_back").notify(
+    //                    response.Message,
+    //                    { position: "left", className: "success" }
+    //                );
+    //            } else {
+    //                $.notify(response.Message, "success");
+    //            }  
+    //        } else {
+    //            if ($(".msg-area").length > 0) {
+    //                $(".msg-area").notify(
+    //                    response.Message,
+    //                    { position: "bottom", className: "error" }
+    //                );
+    //            } else if ($("#btn_back").length > 0) {
+    //                $("#btn_back").notify(
+    //                    response.Message,
+    //                    { position: "left", className: "error" }
+    //                );
+    //            } else {
+    //                $.notify(response.Message, { position: "left", className: "error" });
+    //            }
+    //        }
+    //    }
+    //    else if (value == "F") {
+    //        if (response.Success == true) {
+    //            $("#" + response.FieldName).notify(
+    //                response.Message,
+    //                { position: "bottom", className: "success" }
+    //            );
+    //        } else {
+    //            $("#" + response.FieldName).notify(
+    //                response.Message,
+    //                { position: "bottom", className: "error" }
+    //            );
+    //        }
+    //    }else if (value == "R") {
+    //        $('form')[0].reset();
+    //    } else if (value == "T") {
+    //        window.location = response.TargetURL;
+    //    } else if (value == "TD") {
+    //        setTimeout(function () {
+    //            window.location = response.TargetURL;
+    //        }, 2000);
+    //    } else if (value == "RL") {
+    //        window.location.reload();
+    //    } else if (value == "RLD") {
+    //        setTimeout(function () {
+    //            window.location.reload();
+    //        }, 2000);
+    //    }
+    //});
+    for (var i = 0; i < responseTypeArray.length; i++) {
+        let value = responseTypeArray[i];
         if (value == "M") {
             if (response.Success == true) {
                 if ($(".msg-area").length > 0) {
@@ -178,7 +240,7 @@ OnFormSuccess = function (response) {
                     );
                 } else {
                     $.notify(response.Message, "success");
-                }  
+                }
             } else {
                 if ($(".msg-area").length > 0) {
                     $(".msg-area").notify(
@@ -194,7 +256,8 @@ OnFormSuccess = function (response) {
                     $.notify(response.Message, "error");
                 }
             }
-        } else if (value == "F") {
+        }
+        else if (value == "F") {
             if (response.Success == true) {
                 $("#" + response.FieldName).notify(
                     response.Message,
@@ -206,7 +269,7 @@ OnFormSuccess = function (response) {
                     { position: "bottom", className: "error" }
                 );
             }
-        }else if (value == "R") {
+        } else if (value == "R") {
             $('form')[0].reset();
         } else if (value == "T") {
             window.location = response.TargetURL;
@@ -221,7 +284,7 @@ OnFormSuccess = function (response) {
                 window.location.reload();
             }, 2000);
         }
-    });
+    }
     EnableDisableArea("", "Enable");    
 
 }
@@ -320,3 +383,5 @@ $(document).ready(function () {
         });
     }
 });
+
+

@@ -182,14 +182,14 @@ namespace LeadManagementSystemV2.Controllers
                             UploadFiles(_file, Server, Gallery_Image_Path);
                             if (i == 0)
                             {
-                                Record.Image = Request.Files[i].FileName;
+                                Record.Image = Request.Files[i].FileName;                                
                             }
                             else
                             {                               
                                 GalleryDetail details = new GalleryDetail();
                                 details.GalleryId = Record.ID;
                                 details.Image = _file.FileName;
-                                details.Title = titles[i];
+                                details.Title = titles[i - 1];
                                 details.CreatedDateTime = GetDateTime();
                                 Database.GalleryDetails.Add(details);
                             }
@@ -197,6 +197,7 @@ namespace LeadManagementSystemV2.Controllers
                         }
                         Database.SaveChanges();
                         AjaxResponse.Type = EnumJQueryResponseType.MessageAndRedirectWithDelay;
+                        AjaxResponse.TargetURL = ViewBag.WebsiteURL + "gallery";
                         AjaxResponse.Message = "Please wait images are uploading..";
                         AjaxResponse.Success = true;
                     }

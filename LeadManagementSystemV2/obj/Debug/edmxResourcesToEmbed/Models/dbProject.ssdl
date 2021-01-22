@@ -71,17 +71,17 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="JobCode" Type="nvarchar" MaxLength="50" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" />
-    <Property Name="Department" Type="nvarchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="Department" Type="nvarchar" MaxLength="100" />
     <Property Name="Location" Type="nvarchar" MaxLength="100" />
-    <Property Name="BusinessSelector" Type="nvarchar" MaxLength="50" />
-    <Property Name="JobType" Type="nvarchar" MaxLength="50" />
+    <Property Name="BusinessSelector" Type="nvarchar" MaxLength="100" />
+    <Property Name="JobType" Type="nvarchar" MaxLength="100" />
     <Property Name="Positions" Type="int" />
-    <Property Name="CareerLevel" Type="nvarchar" MaxLength="50" />
-    <Property Name="EducationLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CareerLevel" Type="nvarchar" MaxLength="100" />
+    <Property Name="EducationLevel" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="MinExp" Type="nvarchar" MaxLength="50" />
     <Property Name="SubmissionDate" Type="datetime" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="text" />
     <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />

@@ -161,7 +161,16 @@ namespace LeadManagementSystemV2.Controllers
                         }
                         Record.Title = modelRecord.Title;
                         Record.Status = modelRecord.Status;
-                        Record.Ticker = modelRecord.Ticker;
+                        if(string.IsNullOrEmpty(modelRecord.Ticker))
+                        {
+                            var lastRow = Database.Banners.Where(x=>x.IsDeleted==false)
+                                .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();
+                            if(lastRow != null)
+                            {
+                                modelRecord.Ticker = lastRow.Ticker;
+                            }
+                        }                        
+                        Record.Ticker = modelRecord.Ticker;                        
                         Record.IsDeleted = false;
                         if(modelRecord.ImageFile != null)
                         {

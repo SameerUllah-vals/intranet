@@ -28,6 +28,20 @@
                 "columns": [
                     @Html.Raw(ViewBag.DataTableColumns)
                 ],
+                @if(ViewBag.isImage == true)
+                {
+                    <text>
+                "columnDefs": [{
+                    "targets": @ViewBag.targetCol,
+                    "data": 'Image',
+                    "render": function (data, type, row, meta) {
+                        return '<a href="@ViewBag.ImagePath' + data + '" target="_blank"><img src="@ViewBag.ImagePath' + data + '" alt="' + data + '"height="80" width="150"/></a>';
+                    }
+                }],
+
+                    </text>
+                }
+
                 "fnCreatedRow": function (nRow, aData, iDataIndex) {
                     @if (ViewBag.DataTableActionColumn != null)
                     {
@@ -38,7 +52,7 @@
                             @:ActionHTML += "<a href='@ViewBag.PageURL/edit/" + aData.ID + "' class='btn btn-primary btn-icon'><i class='fa fa-pencil'></i></a>";
                         }
                         if(ViewBag.AllowDeleting != null) {
-                            @:ActionHTML += "<a href='@ViewBag.PageURL/delete' data-id='" + aData.ID + "' class='btn btn-danger btn-icon remove-row'><i class='fa fa-remove'></i></a>";
+                            @:ActionHTML += "<a href='@ViewBag.PageURL/delete/' data-id='" + aData.ID + "' class='btn btn-danger btn-icon remove-row'><i class='fa fa-remove'></i></a>";
                         }
                         @:ActionHTML += "</div>";
                         @:$('td:eq(@ViewBag.DataTableActionColumn)', nRow).html(ActionHTML);
@@ -47,8 +61,11 @@
             }).fnSetFilteringDelay(1000);
             @if(ViewBag.AllowAdding != null)
             {
-                @:$("#DataTables_Table_0_length").append('<a class="btn btn-primary" id="btnAdd" style="margin-left:12px" href="@ViewBag.PageURL/add">Add New</a>');
+                @:$("#DataTables_Table_0_length").append('<a class="btn btn-primary" id="btnAdd" style="marViewBagiewBagin-left:12px" href="@ViewBag.PageURL/add">Add New</a>');
             }
         }
     });
+
+
+   
 </script>

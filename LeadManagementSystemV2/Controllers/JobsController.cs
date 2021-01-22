@@ -76,7 +76,7 @@ namespace LeadManagementSystemV2.Controllers
                 Model.Location = Record.Location;
                 Model.MinExp = Record.MinExp;
                 Model.Positions = (int)Record.Positions;
-                Model.SubmissionDate = Record.SubmissionDate;  
+                Model.SubmissionDate = Record.SubmissionDate.ToString();  
                 Model.Status = Record.Status;  
             }
             return Model;
@@ -185,6 +185,9 @@ namespace LeadManagementSystemV2.Controllers
                         Record.BusinessSelector = modelRecord.BusinessSelector;
                         Record.CareerLevel = modelRecord.CareerLevel;
                         Record.Department = modelRecord.Department;
+                        modelRecord.Description = modelRecord.Description.Replace("\"",string.Empty);
+                        modelRecord.Description = modelRecord.Description.Replace("\'",string.Empty);
+                        modelRecord.Description = modelRecord.Description.Replace("'",string.Empty);
                         Record.Description = modelRecord.Description;
                         Record.EducationLevel = modelRecord.EducationLevel;
                         Record.JobCode = modelRecord.JobCode;
@@ -192,7 +195,10 @@ namespace LeadManagementSystemV2.Controllers
                         Record.Location = modelRecord.Location;
                         Record.MinExp = modelRecord.MinExp;
                         Record.Positions = modelRecord.Positions;
-                        Record.SubmissionDate = modelRecord.SubmissionDate;
+                        if (string.IsNullOrEmpty(modelRecord.SubmissionDate))
+                            Record.SubmissionDate = DateTime.Now;
+                        else
+                            Record.SubmissionDate = DateTime.Parse(modelRecord.SubmissionDate);
                         Record.Status = modelRecord.Status;
                         Record.IsDeleted = false;
                         if (isRecordWillAdded)

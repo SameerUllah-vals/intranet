@@ -197,33 +197,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Jobs">
-      <EntityTypeMapping TypeName="dbProjectModel.Job">
-        <MappingFragment StoreEntitySet="Jobs">
-          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
-          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
-          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="SubmissionDate" ColumnName="SubmissionDate" />
-          <ScalarProperty Name="MinExp" ColumnName="MinExp" />
-          <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
-          <ScalarProperty Name="CareerLevel" ColumnName="CareerLevel" />
-          <ScalarProperty Name="Positions" ColumnName="Positions" />
-          <ScalarProperty Name="JobType" ColumnName="JobType" />
-          <ScalarProperty Name="BusinessSelector" ColumnName="BusinessSelector" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
-          <ScalarProperty Name="Department" ColumnName="Department" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="JobCode" ColumnName="JobCode" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Policies">
       <EntityTypeMapping TypeName="dbProjectModel.Policy">
         <MappingFragment StoreEntitySet="Policies">
@@ -293,6 +266,33 @@
           <ScalarProperty Name="option2" ColumnName="option2" />
           <ScalarProperty Name="option1" ColumnName="option1" />
           <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="dbProjectModel.Job">
+        <MappingFragment StoreEntitySet="Jobs">
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SubmissionDate" ColumnName="SubmissionDate" />
+          <ScalarProperty Name="MinExp" ColumnName="MinExp" />
+          <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
+          <ScalarProperty Name="CareerLevel" ColumnName="CareerLevel" />
+          <ScalarProperty Name="Positions" ColumnName="Positions" />
+          <ScalarProperty Name="JobType" ColumnName="JobType" />
+          <ScalarProperty Name="BusinessSelector" ColumnName="BusinessSelector" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="JobCode" ColumnName="JobCode" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

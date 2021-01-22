@@ -63,7 +63,7 @@ namespace LeadManagementSystemV2.Controllers
                 Model.Option2 = Record.option2;
                 Model.Option3 = Record.option3;
                 Model.Option4= Record.option4;
-                Model.SubmissionDate= Record.SubmissionDate;
+                Model.SubmissionDate= Record.SubmissionDate.ToString();
                 Model.isDefault= (bool)Record.isDefault;
                 Model.Status = Record.Status;
             }
@@ -173,7 +173,10 @@ namespace LeadManagementSystemV2.Controllers
                         Record.option2 = modelRecord.Option2;
                         Record.option3 = modelRecord.Option3;
                         Record.option4 = modelRecord.Option4;
-                        Record.SubmissionDate = modelRecord.SubmissionDate;
+                        if (string.IsNullOrEmpty(modelRecord.SubmissionDate))
+                            Record.SubmissionDate = DateTime.Now;
+                        else
+                            Record.SubmissionDate = DateTime.Parse(modelRecord.SubmissionDate);
                         if (modelRecord.isDefault)
                         {
                             var defaultrecord = Database.Questions.Where(x => x.isDefault == true).FirstOrDefault();

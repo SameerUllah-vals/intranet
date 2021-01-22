@@ -62,7 +62,7 @@ namespace LeadManagementSystemV2.Controllers
                                 RemoveCookie(Cookie_User_Email_Address);
                                 RemoveCookie(Cookie_User_Password);
                             }
-                            AjaxResponse.Success = true;
+                            AjaxResponse.Success = true; 
                             AjaxResponse.Type = EnumJQueryResponseType.RedirectOnly;
                             AjaxResponse.Message = "";                           
                             AjaxResponse.TargetURL = ConvertToWebURL("dashboard");

@@ -198,7 +198,7 @@ namespace LeadManagementSystemV2.Models
         public string Option4 { get; set; }
         [Required(ErrorMessage = "Required")]
 
-        public DateTime SubmissionDate { get; set; }
+        public string SubmissionDate { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
         public bool isDefault { get; set; }
@@ -283,7 +283,7 @@ namespace LeadManagementSystemV2.Models
         public string EducationLevel { get; set; }
         public string MinExp { get; set; }
         [Required(ErrorMessage = "Required")]
-        public System.DateTime SubmissionDate { get; set; }
+        public string SubmissionDate { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
     }

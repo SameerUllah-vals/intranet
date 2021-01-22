@@ -112,7 +112,7 @@
                                                 <i class="demo-pli-yes icon-3x icon-fw"></i>
                                             </div>
                                             <div class="media-body">
-                                                <p class="text-2x mar-no media-heading"></p>
+                                                <p class="text-2x mar-no media-heading">@lstBanner.Where(x=>x.Status == "Enable").ToList().Count</p>
                                                 <span>Active</span>
                                             </div>
                                         </div>
@@ -132,7 +132,7 @@
                                                 <i class="demo-pli-exclamation icon-3x icon-fw"></i>
                                             </div>
                                             <div class="media-body">
-                                                <p class="text-2x mar-no media-heading"></p>
+                                                <p class="text-2x mar-no media-heading">@lstBanner.Where(x=>x.Status != "Enable").ToList().Count</p>
                                                 <span>Deactive</span>
                                             </div>
                                         </div>

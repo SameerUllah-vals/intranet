@@ -212,7 +212,6 @@
       <End Role="LatestNewsGalleryLink" EntitySet="LatestNewsGalleryLinks" />
     </AssociationSet>
     <EntitySet Name="NewsLetters" EntityType="dbProjectModel.NewsLetter" />
-    <EntitySet Name="Jobs" EntityType="dbProjectModel.Job" />
     <EntitySet Name="Policies" EntityType="dbProjectModel.Policy" />
     <EntitySet Name="Events" EntityType="dbProjectModel.Event" />
     <EntitySet Name="QuestionDetails" EntityType="dbProjectModel.QuestionDetail" />
@@ -221,6 +220,7 @@
       <End Role="Question" EntitySet="Questions" />
       <End Role="QuestionDetail" EntitySet="QuestionDetails" />
     </AssociationSet>
+    <EntitySet Name="Jobs" EntityType="dbProjectModel.Job" />
   </EntityContainer>
   <EntityType Name="Banner">
     <Key>
@@ -369,32 +369,6 @@
     <Property Name="DeletedBy" Type="Int32" />
     <Property Name="isDefault" Type="Boolean" />
   </EntityType>
-  <EntityType Name="Job">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="JobCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="BusinessSelector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="JobType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Positions" Type="Int32" />
-    <Property Name="CareerLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="EducationLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MinExp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SubmissionDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-  </EntityType>
   <EntityType Name="Policy">
     <Key>
       <PropertyRef Name="ID" />
@@ -478,4 +452,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BusinessSelector" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="JobType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Positions" Type="Int32" />
+    <Property Name="CareerLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EducationLevel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MinExp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubmissionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+  </EntityType>
 </Schema>
