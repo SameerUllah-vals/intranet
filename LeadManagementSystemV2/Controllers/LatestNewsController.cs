@@ -1,5 +1,6 @@
 ﻿using LeadManagementSystemV2.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -38,7 +39,7 @@ namespace LeadManagementSystemV2.Controllers
             dataSource = dataSource.SortBy(param.SortOrder).Skip(param.Start).Take(param.Length);
             var resultList = dataSource.ToList();
             var resultData = from x in resultList
-                             select new { x.ID, x.Title, x.ShortDescription, x.Description, x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Title, x.ShortDescription, x.Description, Status = x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
             var result = new
             {
                 draw = param.Draw,
@@ -62,6 +63,8 @@ namespace LeadManagementSystemV2.Controllers
                 Model.Status = Record.Status;
                 Model.ShortDescription = Record.ShortDescription;
                 Model.Description = Record.Description;
+                var galleryLink = Database.LatestNewsGalleryLinks.Where(x => x.LatestNewsId == Record.ID).ToList();
+                Model.GalleryLink = galleryLink.Count > 0 ? galleryLink : new List<LatestNewsGalleryLink>();
             }
             return Model;
         }
@@ -218,6 +221,49 @@ namespace LeadManagementSystemV2.Controllers
             return Json(AjaxResponse);
         }
 
-       
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public JsonResult DeleteDetails(string _value)
+        {
+            AjaxResponse AjaxResponse = new AjaxResponse();
+            AjaxResponse.Success = false;
+            AjaxResponse.Type = EnumJQueryResponseType.MessageOnly;
+            AjaxResponse.Message = "Data not found in our records";
+            int RecordID = ParseInt(_value);
+            if (IsUserLogin())
+            {
+                User CurrentUserRecord = GetUserData();
+                if (RecordID == 0)
+                {
+                    AjaxResponse.Message = "ID is not in numeric format";
+                }
+                else
+                {
+                    var RecordToDelete = Database.LatestNewsGalleryLinks.FirstOrDefault(o => o.Id == RecordID);
+                    if (RecordToDelete != null)
+                    {
+                        if (RecordToDelete.Id == 0)
+                        {
+                            AjaxResponse.Message = "Unable to delete this record";
+                        }
+                        else
+                        {
+                            Database.LatestNewsGalleryLinks.Remove(RecordToDelete);
+                            Database.SaveChanges();
+                            AjaxResponse.Success = true;
+                            AjaxResponse.Message = "Record Deleted Successfully";
+                        }
+                    }
+                }
+            }
+            else
+            {
+                AjaxResponse.Type = EnumJQueryResponseType.MessageAndRedirectWithDelay;
+                AjaxResponse.Message = "Session Expired";
+                AjaxResponse.TargetURL = ViewBag.WebsiteURL;
+            }
+            return Json(AjaxResponse, "json");
+        }
     }
 }

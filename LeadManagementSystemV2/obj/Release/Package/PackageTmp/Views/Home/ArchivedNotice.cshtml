@@ -1,0 +1,58 @@
+﻿@model IEnumerable<LeadManagementSystemV2.Models.OrgAnnouncement>
+@{
+    Layout = "~/Views/Shared/_FrontendLayout.cshtml";
+}
+
+<div class="container-fluid spacer-padding">
+    <div class="row" style="
+    padding-top: 6.25rem;
+">
+        <div class="col-xl-12 col-lg-12 col-12">
+
+            <div class="card timeline mb-3 border-0  shadow">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        Archived Notice
+
+
+                    </h3>
+                    <div class="table-responsive">
+                        <table id="org" class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+
+                                    <th width="200">Title</th>
+                                    <th>Announcement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Title</td>
+                                        <td>@Html.Raw(item.Announcement)</td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section InLineScriptSection{
+
+    <script>
+
+                $('#org').DataTable({
+                    "pageLength": 10
+                });
+    </script>
+
+}
+
+

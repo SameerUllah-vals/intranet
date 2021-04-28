@@ -6,7 +6,7 @@
     {
         //ViewBag.AllowDeleting = true;
     }
-    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Name\"},{ \"data\": \"Depart\"},{ \"data\": \"RoleName\"},{ \"data\": \"EmailAddress\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Name\"},{ \"data\": \"RoleName\"},{ \"data\": \"EmailAddress\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
     if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
     {
         ViewBag.DataTableActionColumn = "7";
@@ -38,8 +38,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Depart</th>
+                        <th>Name</th>                      
                         <th>Role</th>
                         <th>Email</th>
                         <th class="min-desktop">Status</th>

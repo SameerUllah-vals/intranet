@@ -81,6 +81,42 @@
 
                 </div>
                 <div class="row">
+                    <table class="table table-responsive" id="image-table">
+                        <thead>
+                            <tr>
+                                <td>Image</td>
+                                <td>Delete Permanently</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.ID > 0)
+                            {
+                                foreach (var item in Model.GalleryLink)
+                                {
+                                    if (item.Gallery != null)
+                                    {
+                                        
+                                            
+                                        <tr>
+
+                                            <td>
+                                                <img src="~/assets/gallery/@item.Gallery.Image" width="50" height="50" />
+                                            </td>
+
+                                            <td>
+                                                <a class="btn btn-danger remove-image" onclick="" href="@ViewBag.WebsiteURL/latestnews/deletedetails" data-id="@item.Id"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                                                                    
+                                    }
+                                }
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <button class="btn btn-primary showGallery" type="button">Show Gallery Images</button>
                     </div>

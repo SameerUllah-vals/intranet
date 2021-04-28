@@ -336,6 +336,52 @@ $(document).on("click", ".remove-row", function () {
     });
     return false;
 });
+
+$(document).on("click", ".remove-image", function () {
+    var current_context = $(this);
+    $.confirm({
+        title: 'Confirmation',
+        content: 'Are you sure you want to delete ?',
+        animation: 'scale',
+        closeAnimation: 'scale',
+        opacity: 0.5,
+        buttons: {
+            confirm: {
+                text: 'Yes',
+                btnClass: 'btn-danger',
+                action: function () {
+                    var dialog_box = $.dialog({
+                        title: 'Wait',
+                        content: 'Processing ...',
+                        animation: 'scale',
+                        onOpen: function () {
+                            var that = this;
+                            jQuery.ajax({
+                                type: "POST",
+                                url: current_context.attr("href"),
+                                data: "_value=" + current_context.attr("data-id"),
+                                success: function (response) {
+                                    that.setContent(response.Message);
+                                    setTimeout(function () {
+                                        dialog_box.close();
+                                    }, 2000);
+                                    window.location.reload();
+                                },
+                                error: function (data) {
+                                    console.log(data);
+                                    dialog_box.close();
+                                }
+                            });
+                        }
+                    });
+                }
+            },
+            no: function () {
+            }
+        }
+    });
+    return false;
+});
 var OnlyNumber = function () {
     if ($('.only-number').length > 0) {
         $('.only-number').keypress(function (event) {

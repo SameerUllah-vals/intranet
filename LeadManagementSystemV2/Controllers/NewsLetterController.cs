@@ -48,6 +48,7 @@ namespace LeadManagementSystemV2.Controllers
         }
         public NewsLetterModel GetRecord(int? id)
         {
+
             User CurrentUserRecord = GetUserData();
             NewsLetterModel Model = new NewsLetterModel();
             var Record = Database.NewsLetters.FirstOrDefault(o => o.ID == id && o.IsDeleted == false);
@@ -55,6 +56,7 @@ namespace LeadManagementSystemV2.Controllers
             {
                 Model.ID = Record.ID;
                 Model.Title = Record.Title;
+                Model.Image = Record.Image;
                 Model.PDF = Record.PDF;
                 Model.isDefault = (bool)Record.isDefault;
                 Model.Status = Record.Status;
@@ -66,8 +68,14 @@ namespace LeadManagementSystemV2.Controllers
             ViewBag.PageType = "Add";
             return View("Form", GetRecord(0));
         }
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string fileRemove)
         {
+            if (!string.IsNullOrEmpty(fileRemove))
+            {
+                var data = Database.NewsLetters.FirstOrDefault(o => o.ID == id && o.IsDeleted == false);
+                data.Image = null;
+                Database.SaveChanges();
+            }
             var Record = GetRecord(id);
             if (Record != null)
             {
@@ -174,7 +182,7 @@ namespace LeadManagementSystemV2.Controllers
                         {
                             try
                             {
-                                UploadFiles(modelRecord.ImageFile, Server, NewsLetter_Image_Path);
+                                Record.Image = UploadFiles(modelRecord.ImageFile, Server, NewsLetter_Image_Path);
 
                             }
                             catch (FileFormatException ex)
@@ -185,13 +193,12 @@ namespace LeadManagementSystemV2.Controllers
                                 AjaxResponse.FieldName = "ImageFile";
                                 return Json(AjaxResponse);
                             }
-                            Record.Image = modelRecord.ImageFile.FileName;
                         }
                         if (modelRecord.file != null)
                         {
                             try
                             {
-                                UploadFiles(modelRecord.file, Server, NewsLetter_Image_Path, "pdf");
+                                Record.PDF = UploadFiles(modelRecord.file, Server, NewsLetter_Image_Path, "pdf");
                             }
                             catch (FileFormatException ex)
                             {
@@ -200,8 +207,7 @@ namespace LeadManagementSystemV2.Controllers
                                 AjaxResponse.Type = EnumJQueryResponseType.FieldOnly;
                                 AjaxResponse.FieldName = "pdf";
                                 return Json(AjaxResponse);
-                            }
-                            Record.PDF = modelRecord.file.FileName;
+                            }                           
                         }
                         if (isRecordWillAdded)
                         {

@@ -52,12 +52,22 @@ namespace LeadManagementSystemV2.Controllers
             User CurrentUserRecord = GetUserData();
             GalleryModel Model = new GalleryModel();
             var Record = Database.Galleries.FirstOrDefault(o => o.ID == id && o.IsDeleted == false);
+            var details = Database.GalleryDetails.Where(x => x.GalleryId == id).ToList();
+
             if (Record != null)
             {
                 Model.ID = Record.ID;
                 Model.Title = Record.Title;
                 Model.Status = Record.Status;
+                Model.Image = Record.Image;
+                if (details.Count > 0)
+                    Model.galleryDetails = details;
+                else
+                    Model.galleryDetails = new List<GalleryDetail>();
             }
+            else
+                Model.galleryDetails = new List<GalleryDetail>();
+
             return Model;
         }
         public ActionResult Add()
@@ -135,6 +145,51 @@ namespace LeadManagementSystemV2.Controllers
             }
             return Json(AjaxResponse, "json");
         }
+
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public JsonResult DeleteDetails(string _value)
+        {
+            AjaxResponse AjaxResponse = new AjaxResponse();
+            AjaxResponse.Success = false;
+            AjaxResponse.Type = EnumJQueryResponseType.MessageOnly;
+            AjaxResponse.Message = "Data not found in our records";
+            int RecordID = ParseInt(_value);
+            if (IsUserLogin())
+            {
+                User CurrentUserRecord = GetUserData();
+                if (RecordID == 0)
+                {
+                    AjaxResponse.Message = "ID is not in numeric format";
+                }
+                else
+                {
+                    var RecordToDelete = Database.GalleryDetails.FirstOrDefault(o => o.ID == RecordID);
+                    if (RecordToDelete != null)
+                    {
+                        if (RecordToDelete.ID == 0)
+                        {
+                            AjaxResponse.Message = "Unable to delete this record";
+                        }
+                        else
+                        {
+                            Database.GalleryDetails.Remove(RecordToDelete);
+                            Database.SaveChanges();
+                            AjaxResponse.Success = true;
+                            AjaxResponse.Message = "Record Deleted Successfully";
+                        }
+                    }
+                }
+            }
+            else
+            {
+                AjaxResponse.Type = EnumJQueryResponseType.MessageAndRedirectWithDelay;
+                AjaxResponse.Message = "Session Expired";
+                AjaxResponse.TargetURL = ViewBag.WebsiteURL;
+            }
+            return Json(AjaxResponse, "json");
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
@@ -180,19 +235,26 @@ namespace LeadManagementSystemV2.Controllers
                         {
                             var _file = Request.Files[i];
                             UploadFiles(_file, Server, Gallery_Image_Path);
+                            GalleryDetail details = new GalleryDetail();
                             if (i == 0)
                             {
-                                Record.Image = Request.Files[i].FileName;                                
+                                
+                                Record.Image = Request.Files[i].FileName;
+                                details.Title = Record.Title;
+
                             }
                             else
-                            {                               
-                                GalleryDetail details = new GalleryDetail();
-                                details.GalleryId = Record.ID;
-                                details.Image = _file.FileName;
-                                details.Title = titles[i - 1];
-                                details.CreatedDateTime = GetDateTime();
-                                Database.GalleryDetails.Add(details);
+                            {
+                               
+                               
+                               details.Title = titles[i - 1];
+                                
                             }
+
+                            details.GalleryId = Record.ID;
+                            details.Image = _file.FileName;
+                            details.CreatedDateTime = GetDateTime();
+                            Database.GalleryDetails.Add(details);
 
                         }
                         Database.SaveChanges();

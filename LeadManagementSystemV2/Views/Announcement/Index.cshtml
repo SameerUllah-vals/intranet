@@ -2,15 +2,18 @@
 @{
     ViewBag.AllowAdding = true;
     ViewBag.AllowEditing = true;
+    ViewBag.AllowDownload = true;
+    ViewBag.Multiple = true;
+    ViewBag.targetCol = 3;
     if (ViewBag.UserRecord.RoleID == ApplicationHelper.EnumRole.Administrator)
     {
         //ViewBag.AllowDeleting = true;
     }
-    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Title\"},{\"data\": \"Announcement\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Title\"},{\"data\": \"Announcement\"},{\"data\": \"Files\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
 
     if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
     {
-        ViewBag.DataTableActionColumn = "5";
+        ViewBag.DataTableActionColumn = "6";
         DataTableColumns += ",{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": false}";
     }
 
@@ -44,6 +47,7 @@
                         <th>ID</th>
                         <th>Title</th>
                         <th>Message</th>
+                        <th>file</th>
                         <th>Status</th>
                         <th class="min-desktop">Created DateTime</th>
                         <th class="min-desktop">Updated DateTime</th>

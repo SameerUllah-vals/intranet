@@ -21,7 +21,8 @@
         tinymce.init({
             selector: '#editor',
             encoding: 'xml',
-            plugins: 'image',
+            plugins: 'image,paste',
+            paste_as_text: true,
             setup: function (ed) {
                 ed.on('keyup', function (e) {
                     $("#editor-html,.editor-html").val(ed.getContent());
@@ -38,7 +39,8 @@
         tinymce.init({
             selector: '.editor',
             encoding: 'xml',
-            plugins: 'image',
+            plugins: 'image,paste',
+            paste_as_text: true,
             setup: function (ed) {
                 ed.on('keyup', function (e) {
                     $(".editor-html-1").val(ed.getContent());
@@ -126,9 +128,9 @@
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                                 <i class="demo-pli-bell"></i>
                                 @*@if (ViewBag.Notification.Count > 0)
-                                    {
-                                        <span class="badge badge-header badge-danger">@ViewBag.Notification.Count</span>
-                                    }*@
+                        {
+                            <span class="badge badge-header badge-danger">@ViewBag.Notification.Count</span>
+                        }*@
                             </a>
 
                             <!--Notification dropdown menu-->
@@ -320,5 +322,11 @@
     {
         @RenderSection("InLineScriptSection");
     }
+    <script>
+        $(document).ready(function () {
+            $("select").removeClass("select2-hidden-accessible");
+        })
+
+    </script>
 </body>
 </html>

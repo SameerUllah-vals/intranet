@@ -185,10 +185,13 @@ namespace LeadManagementSystemV2.Controllers
                         Record.BusinessSelector = modelRecord.BusinessSelector;
                         Record.CareerLevel = modelRecord.CareerLevel;
                         Record.Department = modelRecord.Department;
-                        modelRecord.Description = modelRecord.Description.Replace("\"",string.Empty);
-                        modelRecord.Description = modelRecord.Description.Replace("\'",string.Empty);
-                        modelRecord.Description = modelRecord.Description.Replace("'",string.Empty);
-                        Record.Description = modelRecord.Description;
+                        if (!string.IsNullOrEmpty(modelRecord.Description))
+                        {
+                            modelRecord.Description = modelRecord.Description.Replace("\"", string.Empty);
+                            modelRecord.Description = modelRecord.Description.Replace("\'", string.Empty);
+                            modelRecord.Description = modelRecord.Description.Replace("'", string.Empty);
+                            Record.Description = modelRecord.Description;
+                        }
                         Record.EducationLevel = modelRecord.EducationLevel;
                         Record.JobCode = modelRecord.JobCode;
                         Record.JobType = modelRecord.JobType;

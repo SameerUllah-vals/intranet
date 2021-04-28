@@ -32,17 +32,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label">Role <span class="text-danger">*</span></label>
-                            @Html.DropDownListFor(m => m.RoleID, new SelectList(ViewBag.RolesRecords, "Value", "Text"), new { @class = "form-control", @tabindex = "1" })
+                            <select class="form-control" name="RoleID">
+                                <option value="1">Super Admin</option>
+                            </select>
                             @Html.ValidationMessageFor(m => m.RoleID, "", new { @class = "text-danger" })
                         </div>
                     </div>  
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="control-label">Department <span class="text-danger">*</span></label>
-                            @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.Departs, "Value", "Text"), new { @class = "form-control", @tabindex = "1" })
-                            @Html.ValidationMessageFor(m => m.DepartmentID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                   
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label">Name <span class="text-danger">*</span></label>

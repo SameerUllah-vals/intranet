@@ -163,6 +163,7 @@
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\BannerController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BusinessAppController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -183,6 +184,9 @@
     <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Banner.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BusinessApplication.cs">
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Datatables.cs" />
@@ -231,6 +235,9 @@
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrgAnnouncement.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrgAnnouncementDetail.cs">
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Policy.cs">
@@ -365,6 +372,9 @@
     <Content Include="assets\plugins\select2\css\select2.min.css" />
     <Content Include="assets\plugins\select2\js\select2.min.js" />
     <Content Include="assets\plugins\summernote\summernote.min.js" />
+    <Content Include="assets\sidebar\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="assets\sidebar\jquery.mCustomScrollbar.min.css" />
+    <Content Include="assets\sidebar\style3.css" />
     <Content Include="assets\vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="assets\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="assets\vendor\jquery\jquery.min.js" />
@@ -390,6 +400,7 @@
       <DependentUpon>dbProject.edmx</DependentUpon>
       <LastGenOutput>dbProject.cs</LastGenOutput>
     </Content>
+    <Content Include="Views\Home\HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -453,6 +464,11 @@
     <Content Include="Views\Policies\Form.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\Form.cshtml" />
+    <Content Include="Views\Home\ArchivedOrg.cshtml" />
+    <Content Include="Views\Home\ArchivedNews.cshtml" />
+    <Content Include="Views\Home\ArchivedNotice.cshtml" />
+    <Content Include="Views\BusinessApp\Index.cshtml" />
+    <Content Include="Views\BusinessApp\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

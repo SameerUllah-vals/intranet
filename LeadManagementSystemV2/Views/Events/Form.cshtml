@@ -28,7 +28,7 @@
     <div class="panel">
         <!--Block Styled Form -->
         <!--===================================================-->
-        @using (Ajax.BeginForm("Save", "events", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
+        @using (Ajax.BeginForm("Save", "events", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off", enctype="multipart/form-data"}))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.ID)
@@ -83,10 +83,29 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="control-label">Description <span class="text-danger">*</span></label>
-                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control"})
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label">Upload file <span class="text-danger">*</span></label>
+                        <input type="file" name="File" id="file" />
+                        @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @if (Model.Files != null)
+                {
+
+                    <div class="col-sm-1">
+                        <div class="form-group">
+
+                            <a href="@Url.Action("downloadfile", "download", new { filepath = Model.Files })">@Model.Files</a>
+                            <a href="@Url.Action("edit", "events", new { id = Model.ID,fileRemove="true" })" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+
+                }
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label class="control-label">Status <span class="text-danger">*</span></label>

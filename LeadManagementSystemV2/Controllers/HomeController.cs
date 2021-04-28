@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using LeadManagementSystemV2.Helpers;
 using LeadManagementSystemV2.Models;
+using Newtonsoft.Json;
 using static LeadManagementSystemV2.Helpers.ApplicationHelper;
 
 namespace LeadManagementSystemV2.Controllers
@@ -15,9 +18,12 @@ namespace LeadManagementSystemV2.Controllers
         public HomeController()
         {
             Database = new DbLeadManagementSystemV2Entities();
-        }           
+            ViewBag.Policies = Database.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.DTI).ToList();
+
+        }
         public ActionResult Index()
         {
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
             viewModel model = new viewModel();
             model.banner = Database.Banners.Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)
                 .OrderByDescending(x=>x.CreatedDateTime).FirstOrDefault();
@@ -65,6 +71,8 @@ namespace LeadManagementSystemV2.Controllers
            .OrderByDescending(x => x.CreatedDateTime).ToList();
             if (model.Policies == null)
                 model.Policies = new List<Policy>();
+            else
+                ViewBag.Policies = model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.DTI).ToList();
 
 
             model.ServeyResponse = Database.QuestionDetails.Where(x=>x.QuestionsId == model.Servey.ID)
@@ -125,8 +133,71 @@ namespace LeadManagementSystemV2.Controllers
         {
             var records = Database.Events.Where(x=>x.Status == EnumStatus.Enable && x.IsDeleted == false)
                 .ToList();
-            var data = from x in records select new { CreatedDateTime = x.CreatedDateTime.ToString(Simple_Date_Format), EventDateTime = x.EventDateTime.ToString(Simple_Date_Format), Title =x.Title };
+            var data = from x in records select new { x.ID,CreatedDateTime = x.CreatedDateTime.ToString(Simple_Date_Format), EventDateTime = x.EventDateTime.ToString(Simple_Date_Time_Format), Title =x.Title, EventLocation = x.EventLocation , EventOrganizer = x.EventOrganizer, Description = x.Description, isDefault = x.isDefault};
             return Json(data,JsonRequestBehavior.AllowGet);
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("Event")]
+        public JsonResult Event(int id)
+        {
+            var records = Database.Events.Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false &&x.ID == id).ToList();
+            var data = from x in records select new { x.ID, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Format),
+                EventDateTime = x.EventDateTime.ToString(Website_Date_Time_Format), Title = x.Title, EventLocation = x.EventLocation, EventOrganizer = x.EventOrganizer, Description = x.Description, isDefault = x.isDefault,x.Files };
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("Jobs")]
+        public JsonResult Jobs(int id)
+        {
+            var records = Database.Jobs.Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false && x.ID == id).ToList();
+            var data = from x in records
+            select new
+            {
+                x.ID,
+                CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Format),
+                SubmissionDate = x.SubmissionDate.ToString(Website_Date_Format),
+                Title = x.Title,
+                x.BusinessSelector,
+                x.CareerLevel,
+                x.Department,
+                x.Description,
+                x.EducationLevel,
+                x.JobCode,
+                x.JobType,
+                x.Location,
+                x.MinExp,
+                x.Positions,
+                x.Status,
+            };
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        public ActionResult ArchivedOrg()
+        {
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            var data = Database.OrgAnnouncements.Where(x => x.isNoticeBoard == false && x.IsDeleted == false &&x.Status==EnumStatus.Enable).ToList();
+            return View(data);
+        }
+
+        public ActionResult ArchivedNews()
+        {
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            var data = Database.LatestNews.Where(x => x.IsDeleted == false && x.Status == EnumStatus.Enable).ToList();
+            return View(data);
+        }
+
+        public ActionResult ArchivedNotice()
+        {
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            var data = Database.OrgAnnouncements.Where(x => x.isNoticeBoard == true && x.IsDeleted == false && x.Status == EnumStatus.Enable).ToList();
+            return View(data);
+        }
+
     }
 }

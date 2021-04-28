@@ -9,8 +9,9 @@ namespace LeadManagementSystemV2.Controllers
 {
     public class AnnouncementController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(string RequestType)
         {
+            ViewBag.RequestType = RequestType;
             return View();
         }
         [HttpPost]
@@ -19,7 +20,10 @@ namespace LeadManagementSystemV2.Controllers
         {
             User CurrentUserRecord = GetUserData();
             IQueryable<OrgAnnouncement> dataSource;
-            dataSource = Database.OrgAnnouncements.Where(o => o.IsDeleted == false).AsQueryable();
+            if(string.IsNullOrEmpty(param.status))
+                dataSource = Database.OrgAnnouncements.Where(o => o.IsDeleted == false).AsQueryable();
+            else
+                dataSource = Database.OrgAnnouncements.Where(o => o.IsDeleted == false && o.Status== EnumStatus.Enable).AsQueryable();
             int TotalDataCount = dataSource.Count();
             if (!string.IsNullOrWhiteSpace(param.Search.Value))
             {
@@ -28,6 +32,7 @@ namespace LeadManagementSystemV2.Controllers
                 dataSource = dataSource.Where(p => (
                     p.Title.ToLower().Contains(searchValue) ||
                     p.Announcement.ToLower().Contains(searchValue) ||
+                    p.Files.ToLower().Contains(searchValue) ||
                     p.CreatedDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.CreatedDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate) ||
                     p.UpdatedDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.UpdatedDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate))
                 );
@@ -36,7 +41,7 @@ namespace LeadManagementSystemV2.Controllers
             dataSource = dataSource.SortBy(param.SortOrder).Skip(param.Start).Take(param.Length);
             var resultList = dataSource.ToList();
             var resultData = from x in resultList
-                             select new { x.ID, x.Title, x.Announcement, x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Title, Files = x.OrgAnnouncementDetails.Select(m => new {m.Files }).ToList(), x.Announcement, Status = x.Status , CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
             var result = new
             {
                 draw = param.Draw,
@@ -57,17 +62,41 @@ namespace LeadManagementSystemV2.Controllers
                 Model.Title = Record.Title;
                 Model.Announcement = Record.Announcement;
                 Model.Status = Record.Status;
+                Model.Files = Record.OrgAnnouncementDetails.ToList();
                 Model.isNoticeBoard = (bool)Record.isNoticeBoard;
             }
             return Model;
+        }
+
+        public ActionResult RemoveFile(int? id)
+        {
+            User CurrentUserRecord = GetUserData();
+            OrgAnnouncementModel Model = new OrgAnnouncementModel();
+            var Record = Database.OrgAnnouncements.FirstOrDefault(o => o.ID == id && o.IsDeleted == false);
+            if (Record != null)
+            {
+               
+                Record.Files = null;
+                
+            }
+            return RedirectToAction("Edit",new {id = id });
         }
         public ActionResult Add()
         {
             ViewBag.PageType = "Add";
             return View("Form", GetRecord(0));
         }
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id,int? fileRemove)
         {
+            if (fileRemove != null)
+            {
+                var data = Database.OrgAnnouncementDetails.Find(fileRemove);
+                if (data != null)
+                {
+                    Database.OrgAnnouncementDetails.Remove(data);
+                    Database.SaveChanges();
+                }
+            }
             var Record = GetRecord(id);
             if (Record != null)
             {
@@ -165,7 +194,8 @@ namespace LeadManagementSystemV2.Controllers
                         Record.Announcement = modelRecord.Announcement;
                         Record.isNoticeBoard = modelRecord.isNoticeBoard;
                         Record.Status = modelRecord.Status;
-                        Record.IsDeleted = false;                        
+                        Record.IsDeleted = false;
+                   
                         if (isRecordWillAdded)
                         {
                             Record.CreatedDateTime = GetDateTime();
@@ -176,6 +206,28 @@ namespace LeadManagementSystemV2.Controllers
                         {
                             Record.UpdatedDateTime = GetDateTime();
                             Record.UpdatedBy = CurrentUserRecord.ID;
+                        }
+                        if (modelRecord.File != null)
+                        {
+                            try
+                            {
+                                for (int i = 0; i < modelRecord.File.Length; i++)
+                                {
+                                    OrgAnnouncementDetail orgDetails = new OrgAnnouncementDetail();
+                                    orgDetails.Files = UploadFiles(modelRecord.File[i], Server, Policies_document_Path, "any");                                    
+                                    orgDetails.OrgAnnoucmentID = modelRecord.ID;
+                                    Database.OrgAnnouncementDetails.Add(orgDetails);
+                                }
+
+                            }
+                            catch (FileFormatException ex)
+                            {
+                                string _catchMessage = ex.Message;
+                                AjaxResponse.Message = _catchMessage;
+                                AjaxResponse.Type = EnumJQueryResponseType.FieldOnly;
+                                AjaxResponse.FieldName = "file";
+                                return Json(AjaxResponse);
+                            }
                         }
                         Database.SaveChanges();
                         AjaxResponse.Type = EnumJQueryResponseType.MessageAndRedirectWithDelay;

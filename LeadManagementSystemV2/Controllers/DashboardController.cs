@@ -20,6 +20,7 @@ namespace LeadManagementSystemV2.Controllers
             ViewBag.Banner = Database.Banners.Where(x => x.IsDeleted == false).ToList();
             ViewBag.Question = Database.Questions.Where(x => x.IsDeleted == false).ToList();
             ViewBag.Gallery = Database.Galleries.Where(x => x.IsDeleted == false).ToList();
+
             return View();
         }
         public ActionResult Profiles()

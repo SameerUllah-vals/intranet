@@ -30,6 +30,7 @@ namespace LeadManagementSystemV2.Controllers
                     p.Description.ToLower().Contains(searchValue) ||
                     p.EventLocation.ToLower().Contains(searchValue) ||
                     p.EventOrganizer.ToLower().Contains(searchValue) ||
+                    p.Files.ToLower().Contains(searchValue) ||
                     p.EventDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.EventDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate) ||
                     p.CreatedDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.CreatedDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate) ||
                     p.UpdatedDateTime != null && System.Data.Entity.DbFunctions.TruncateTime(p.UpdatedDateTime) == System.Data.Entity.DbFunctions.TruncateTime(searchDate))
@@ -39,7 +40,7 @@ namespace LeadManagementSystemV2.Controllers
             dataSource = dataSource.SortBy(param.SortOrder).Skip(param.Start).Take(param.Length);
             var resultList = dataSource.ToList();
             var resultData = from x in resultList
-                             select new { x.ID, x.Title, x.EventOrganizer, x.EventLocation ,EventDateTime = x.EventDateTime.ToString(Website_Date_Time_Format), x.Description, x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Title,x.Files ,x.EventOrganizer, x.EventLocation ,EventDateTime = x.EventDateTime.ToString(Website_Date_Time_Format), x.Description, x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
             var result = new
             {
                 draw = param.Draw,
@@ -62,6 +63,7 @@ namespace LeadManagementSystemV2.Controllers
                 Model.EventLocation = Record.EventLocation;
                 Model.EventDateTime = Record.EventDateTime;
                 Model.Description = Record.Description;
+                Model.Files = Record.Files;
                 Model.Status = Record.Status;
             }
             return Model;
@@ -71,8 +73,14 @@ namespace LeadManagementSystemV2.Controllers
             ViewBag.PageType = "Add";
             return View("Form", GetRecord(0));
         }
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id,string fileRemove)
         {
+            if (!string.IsNullOrEmpty(fileRemove))
+            {
+                var data = Database.Events.FirstOrDefault(o => o.ID == id && o.IsDeleted == false);
+                data.Files = null;
+                Database.SaveChanges();
+            }
             var Record = GetRecord(id);
             if (Record != null)
             {
@@ -173,6 +181,21 @@ namespace LeadManagementSystemV2.Controllers
                         Record.Description = modelRecord.Description;
                         Record.Status = modelRecord.Status;
                         Record.IsDeleted = false;
+                        if (modelRecord.File != null)
+                        {
+                            try
+                            {
+                                Record.Files = UploadFiles(modelRecord.File, Server, Policies_document_Path, "any");                                
+                            }
+                            catch (FileFormatException ex)
+                            {
+                                string _catchMessage = ex.Message;
+                                AjaxResponse.Message = _catchMessage;
+                                AjaxResponse.Type = EnumJQueryResponseType.FieldOnly;
+                                AjaxResponse.FieldName = "file";
+                                return Json(AjaxResponse);
+                            }
+                        }
                         if (isRecordWillAdded)
                         {
                             Record.CreatedDateTime = GetDateTime();

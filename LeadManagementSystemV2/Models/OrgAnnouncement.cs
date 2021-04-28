@@ -14,11 +14,18 @@ namespace LeadManagementSystemV2.Models
     
     public partial class OrgAnnouncement
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public OrgAnnouncement()
+        {
+            this.OrgAnnouncementDetails = new HashSet<OrgAnnouncementDetail>();
+        }
+    
         public int ID { get; set; }
         public string Title { get; set; }
         public string Announcement { get; set; }
         public Nullable<bool> isNoticeBoard { get; set; }
         public string Status { get; set; }
+        public string Files { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
         public Nullable<System.DateTime> UpdatedDateTime { get; set; }
@@ -26,5 +33,8 @@ namespace LeadManagementSystemV2.Models
         public int CreatedBy { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<int> DeletedBy { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrgAnnouncementDetail> OrgAnnouncementDetails { get; set; }
     }
 }

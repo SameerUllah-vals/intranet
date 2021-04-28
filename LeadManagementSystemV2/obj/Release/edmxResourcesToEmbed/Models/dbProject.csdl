@@ -196,12 +196,10 @@
     <EntitySet Name="LatestNewsGalleryLinks" EntityType="dbProjectModel.LatestNewsGalleryLink" />
     <EntitySet Name="Jobs" EntityType="dbProjectModel.Job" />
     <EntitySet Name="Banners" EntityType="dbProjectModel.Banner" />
-    <EntitySet Name="Events" EntityType="dbProjectModel.Event" />
     <EntitySet Name="Galleries" EntityType="dbProjectModel.Gallery" />
     <EntitySet Name="GalleryDetails" EntityType="dbProjectModel.GalleryDetail" />
     <EntitySet Name="LatestNews" EntityType="dbProjectModel.LatestNew" />
     <EntitySet Name="NewsLetters" EntityType="dbProjectModel.NewsLetter" />
-    <EntitySet Name="OrgAnnouncements" EntityType="dbProjectModel.OrgAnnouncement" />
     <EntitySet Name="Policies" EntityType="dbProjectModel.Policy" />
     <EntitySet Name="QuestionDetails" EntityType="dbProjectModel.QuestionDetail" />
     <EntitySet Name="Questions" EntityType="dbProjectModel.Question" />
@@ -220,6 +218,14 @@
     <AssociationSet Name="FK_QuestionDetail_Question" Association="dbProjectModel.FK_QuestionDetail_Question">
       <End Role="Question" EntitySet="Questions" />
       <End Role="QuestionDetail" EntitySet="QuestionDetails" />
+    </AssociationSet>
+    <EntitySet Name="BusinessApplications" EntityType="dbProjectModel.BusinessApplication" />
+    <EntitySet Name="Events" EntityType="dbProjectModel.Event" />
+    <EntitySet Name="OrgAnnouncements" EntityType="dbProjectModel.OrgAnnouncement" />
+    <EntitySet Name="OrgAnnouncementDetails" EntityType="dbProjectModel.OrgAnnouncementDetail" />
+    <AssociationSet Name="FK_OrgAnnouncementDetails_OrgAnnouncement" Association="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement">
+      <End Role="OrgAnnouncement" EntitySet="OrgAnnouncements" />
+      <End Role="OrgAnnouncementDetail" EntitySet="OrgAnnouncementDetails" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="LatestNewsGalleryLink">
@@ -266,26 +272,6 @@
     <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Ticker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-    <Property Name="isDefault" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="Event">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="EventOrganizer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="EventLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
     <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
@@ -361,23 +347,6 @@
     <Property Name="UpdatedBy" Type="Int32" />
     <Property Name="DeletedBy" Type="Int32" />
     <Property Name="isDefault" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="OrgAnnouncement">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Announcement" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="isNoticeBoard" Type="Boolean" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="IsDeleted" Type="Boolean" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
   </EntityType>
   <EntityType Name="Policy">
     <Key>
@@ -475,6 +444,83 @@
       </Principal>
       <Dependent Role="QuestionDetail">
         <PropertyRef Name="QuestionsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BusinessApplication">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EventOrganizer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EventLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Files" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <Property Name="isDefault" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="OrgAnnouncement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Announcement" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="isNoticeBoard" Type="Boolean" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Files" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="OrgAnnouncementDetails" Relationship="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement" FromRole="OrgAnnouncement" ToRole="OrgAnnouncementDetail" />
+  </EntityType>
+  <EntityType Name="OrgAnnouncementDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrgAnnoucmentID" Type="Int32" Nullable="false" />
+    <Property Name="Files" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrgAnnouncement" Relationship="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement" FromRole="OrgAnnouncementDetail" ToRole="OrgAnnouncement" />
+  </EntityType>
+  <Association Name="FK_OrgAnnouncementDetails_OrgAnnouncement">
+    <End Type="dbProjectModel.OrgAnnouncement" Role="OrgAnnouncement" Multiplicity="1" />
+    <End Type="dbProjectModel.OrgAnnouncementDetail" Role="OrgAnnouncementDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrgAnnouncement">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrgAnnouncementDetail">
+        <PropertyRef Name="OrgAnnoucmentID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

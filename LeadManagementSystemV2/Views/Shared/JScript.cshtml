@@ -20,7 +20,7 @@
                     "type": "POST",
                     "url": "@ViewBag.PageURL/listener",
                     "contentType": 'application/json; charset=utf-8',
-                    "data": function (data) { return data = JSON.stringify(data); }
+                    "data": function (data) { data.status = '@ViewBag.RequestType' ;return data = JSON.stringify(data); }
                 },
                 @(ViewBag.DataTableScrollX != null ? @Html.Raw(ViewBag.DataTableScrollX) : "")
                 @(ViewBag.DataTableScrollY != null ? @Html.Raw(ViewBag.DataTableScrollY) : "")
@@ -35,16 +35,57 @@
                     "targets": @ViewBag.targetCol,
                     "data": 'Image',
                     "render": function (data, type, row, meta) {
-                        return '<a href="@ViewBag.ImagePath' + data + '" target="_blank"><img src="@ViewBag.ImagePath' + data + '" alt="' + data + '"height="80" width="150"/></a>';
+                        return ' <a href="@ViewBag.ImagePath' + data + '" target="_blank"><img src="@ViewBag.ImagePath' + data + '" alt="' + data + '"height="80" width="150"/></a>';
                     }
                 }],
 
                     </text>
                 }
+                  @if(ViewBag.AllowDownload == true)
+                  {
+                      if (ViewBag.Multiple != true)
+                      {
+                    <text>
+                "columnDefs": [{
+                    "targets": @ViewBag.targetCol,
+                    "data": 'File',
+                    "render": function (data, type, row, meta) {
+                        console.log(row);
+                        if (row.Files != null)
+                            return '<a style="color:blue" href="@ViewBag.WebsiteURL/download/downloadfile?filepath=' + row.Files + '" target="_blank">View Attachment</a>';
+                        else
+                            return "";
+                    }
+                }],
 
-                "fnCreatedRow": function (nRow, aData, iDataIndex) {
-                    @if (ViewBag.DataTableActionColumn != null)
-                    {
+                    </text>
+                      }
+                      else
+                      {
+                             <text>
+                "columnDefs": [{
+                    "targets": @ViewBag.targetCol,
+                    "data": 'File',
+                    "render": function (data, type, row, meta) {
+                         if (row.Files != null) {
+                            let _file = "";
+                            for (let i = 0; i < row.Files.length; i++) {
+
+                                _file += '<ul><li><a style="color:blue" href="@ViewBag.WebsiteURL/download/downloadfile?filepath=' + row.Files[i].Files + '" target="_blank">View Attachment</a><br></li></ul>';
+                            }
+                            return _file;
+                        }
+                        else
+                            return "";
+                    }
+                }],
+
+                    </text>
+                      }
+                  }
+                  "fnCreatedRow": function (nRow, aData, iDataIndex) {
+                      @if (ViewBag.DataTableActionColumn != null)
+                      {
                         @:var ActionHTML = "<div class='demo-nifty-btn'>";
                         @:ActionHTML += "<a href='@ViewBag.PageURL/views/" + aData.ID + "' class='btn btn-primary btn-icon'><i class='fa fa-eye'></i></a>";
                         if (ViewBag.AllowEditing != null)
@@ -67,5 +108,5 @@
     });
 
 
-   
+
 </script>

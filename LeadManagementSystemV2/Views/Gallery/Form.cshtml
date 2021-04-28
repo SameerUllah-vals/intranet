@@ -22,45 +22,51 @@
                @:DisableView();
             }
         });
-               
+
         function ValidateRequest() {
-            let rows = $("#image-table tbody tr");
-            for (var i = 0; i < rows.length; i++) {
-                var $file = rows.eq(i).find("td:eq(0) input[type=file]");
-                var $title = rows.eq(i).find("td:eq(1) input[type=text]");
-                if ($file.val() == "") {
-                    alert('choose a file');
-                    $file.focus();
-                    OnFormComplete();
-                    return false;
+
+                let rows = $("#image-table tbody tr");
+                for (var i = 0; i < rows.length; i++) {
+                    var $file = rows.eq(i).find("td:eq(0) input[type=file]");
+                    var $title = rows.eq(i).find("td:eq(1) input[type=text]");
+                    if ($file.val() == "") {
+                        alert('choose a file');
+                        $file.focus();
+                        OnFormComplete();
+                        return false;
+                    }
+                    else if ($title.val() == "") {
+                        alert('Enter title here');
+                        $title.focus();
+                        OnFormComplete();
+                        return false;
+                    }
+
                 }
-                else if ($title.val() == "") {
-                    alert('Enter title here'); 
-                    $title.focus();
-                    OnFormComplete();
-                    return false;
-                }
-                
-            }
-        }       
+
+        }
         $(document).on("click", "button#btnAdd", function () {
+            if ($("#featured").val() != "") {
                 let rowsLength = $("#image-table tbody tr").length;
-                 $("#image-table tbody tr").eq(rowsLength - 1).after(`
+                $("#image-table tbody tr").eq(rowsLength - 1).after(`
                          <tr>
                             <td>
                                 <input type="file" name="files" class="upload" multiple>
                             </td>
                             <td>
                                 <input type="text" placeholder="title.." name="titles[]" class="form-control" />
-                            </td>                            
+                            </td>
                             <td>
                                 <button class="btn btn-danger btnRemove" type="button"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                       `);
+            }
+            else
+                alert('Tell me your featured image first');
         });
         $(document).on("click", "button.btnRemove", function () {
-            $(this).parent().parent().closest("tr").remove();      
+            $(this).parent().parent().closest("tr").remove();
         });
         //$(document).on("click", "input.check", function () {
         //    let rows = $("#image-table tbody tr");
@@ -71,9 +77,23 @@
         //            $check.prop("checked", false);
         //        }
         //        $(this).prop("checked", true);
-        //    }            
+        //    }
         //})
-        
+        $("#btnAddMoreImages").click(function () {
+            $(`#image-table tbody tr:eq(${$("#image-table tbody tr").length - 1})`).after(` <tr>
+                        <td>
+                            <h6>Featured Image (Thumbnail)</h6>
+                            <input type="file" name="files" class="upload" id="featured">
+                        </td>
+
+
+                        <td>
+                            <button class="btn btn-success" id="btnAdd" type="button">Add Row</button>
+                        </td>
+                    </tr>`);
+            $(`#image-table tbody tr:eq(${$("#image-table tbody tr").length - 2})`).remove();
+
+        });
     </script>
 }
 @{Html.RenderPartial("BreadCrumb");}
@@ -87,60 +107,88 @@
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.ID)
-            <div class="panel-body">
-                <div class="row">
+        <div class="panel-body">
+            <div class="row">
 
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">Title <span class="text-danger">*</span></label>
-                            @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control", @placeholder = "Name *" })
-                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
-                        </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Title <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control", @placeholder = "Name *" })
+                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
                     </div>
+                </div>
 
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">Status <span class="text-danger">*</span></label>
-                            @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
-                            {
-                                new SelectListItem{ Text="Enable", Value = "Enable",Selected=true },
-                                new SelectListItem{ Text="Disable", Value = "Disable" }
-                            }, "Please-Select", new { @class = "form-control select-picker" })
-                            @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
-                        </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Status <span class="text-danger">*</span></label>
+                        @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
+                          {
+                            new SelectListItem{ Text="Enable", Value = "Enable",Selected=true },
+                            new SelectListItem{ Text="Disable", Value = "Disable" }
+                         }, "Please-Select", new { @class = "form-control select-picker" })
+                        @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
                     </div>
-                    @*<div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">Thumbnail<span class="text-danger">*</span></label>
-                            <input type="file" name="Thumbnail">
-                            @Html.ValidationMessageFor(m => m.Thumbnail, "", new { @class = "text-danger" })
-                        </div>
-                    </div>*@
-                </div>                
-                <table class="table table-responsive" id="image-table">
-                    <thead>
-                        <tr>
-                            <td>Image</td>
-                           
-                            <td>Add more images</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <h6>Featured Image (Thumbnail)</h6>
-                                <input type="file" name="files" class="upload" multiple>
-                            </td>
-                           
-                            
-                            <td>
-                                <button class="btn btn-success" id="btnAdd" type="button">Add Row</button>
-                            </td>
-                        </tr>
-                      
-                    </tbody>
-                </table>
+                </div>
+
             </div>
+            
+            <table class="table table-responsive" id="image-table">
+                <thead>
+                    <tr>
+                        <td>Image</td>
+
+                        @if (Model.galleryDetails.Count > 0)
+                        {
+                            <td>Title</td>
+
+                        }
+                        else
+                        {
+                            <td>Add more images</td>
+
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ID > 0)
+                    {
+                        foreach (var item in Model.galleryDetails)
+                        {
+                    <tr>
+
+                        <td>
+                            <img src="~/assets/gallery/@item.Image" width="50" height="50" />
+                        </td>
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>
+                            <a class="btn btn-danger remove-image" onclick="" href="@ViewBag.WebsiteURL/gallery/deletedetails" data-id="@item.ID"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                        }
+                    <tr>
+                        <td colspan="2"><button id="btnAddMoreImages" type="button">Add more images</button></td>
+                    </tr>
+                    }
+                    else
+                    {
+                     <tr>
+                        <td>
+                            <h6>Featured Image (Thumbnail)</h6>
+                            <input type="file" name="files" class="upload" value="~/assets/gallery/@Model.Image" id="featured">
+                        </td>
+
+
+                        <td>
+                            <button class="btn btn-success" id="btnAdd" type="button">Add Row</button>
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
             <div class="panel-footer text-right">
                 <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
                 <button class="btn btn-success" onclick="return ValidateRequest()" type="submit" tabindex="9">Save</button>

@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
@@ -35,7 +36,8 @@ namespace LeadManagementSystemV2.Helpers
         public const string Simple_Date_Format = "yyyy-MM-dd";
         public const string Website_Date_Format_With_Month_Letter = "dd/MMM/yyyy";
         public const string Website_Date_Format_With_Month_Only_Letter = "MMMM, yyyy";
-        public const string Website_Date_Time_Format = "dd MMMM yyyy hh:mm tt";
+        public const string Website_Date_Time_Format = "dddd, dd MMMM yyyy hh:mm tt";
+        public const string Simple_Date_Time_Format = "yyyy-MM-dd HH:mm:ss";
         public const string EncryptKey = "crM@!000";
         public static string[] allowedImageExtensions = { ".jpg", ".png", ".gif", ".jpeg" };
         public static string[] allowedResumeExtensions = { ".pdf", ".docx" };
@@ -108,6 +110,7 @@ namespace LeadManagementSystemV2.Helpers
             public const string Power = "Power";
             public const string Inspect = "InspectTest";
             public const string Chemical = "Chemical";
+            public const string DTI = "DTI Manuals";
         }
         public static class EnumPolicyCategory
         {
@@ -296,24 +299,29 @@ namespace LeadManagementSystemV2.Helpers
 
         public static string UploadFiles(HttpPostedFileBase file, HttpServerUtilityBase Server, string ImageUploadPath,string filetype = "image")
         {
-            string fileName = string.Empty;
+            string formattedFileName = string.Empty;
             if (file != null)
             {
                 string[] allowedExtensions = { };
                 if(filetype == "image")
                      allowedExtensions = new[] { ".jpg",".png",".jpeg" };
+                else if(filetype=="any")
+                    allowedExtensions = new[] { ".pdf", ".docx", ".doc",".xlsx",".xls", ".jpg", ".png", ".jpeg" };
                 else
-                     allowedExtensions = new[] { ".pdf" };
+                    allowedExtensions = new[] { ".pdf" };
                 var checkextension = Path.GetExtension(file.FileName).ToLower();
                 if (!allowedExtensions.Contains(checkextension))
                 {
                     throw new FileFormatException("the file is not supported");
                 }
-                fileName = Path.GetFileName(file.FileName);                
-                var path = Path.Combine(Server.MapPath(ImageUploadPath), fileName);
+                 formattedFileName = string.Format("{0}-{1}{2}"
+            , Path.GetFileNameWithoutExtension(file.FileName)
+            , Guid.NewGuid().ToString("N")
+            , Path.GetExtension(file.FileName));              
+                var path = Path.Combine(Server.MapPath(ImageUploadPath), formattedFileName);
                 file.SaveAs(path);
             }                       
-            return fileName;
+            return formattedFileName;
         }
         public static void SendEmail(string subject, string body, string emailTo)
         {
@@ -667,5 +675,22 @@ namespace LeadManagementSystemV2.Helpers
             return (string)GetSession(_type + "_captcha_string");
         }
         #endregion
+
+
+        public static string CallApi(string apiUrl)
+        {
+            string data = string.Empty;
+            using (HttpClient client = new HttpClient())
+            {
+                var httpClient = new HttpClient();
+                HttpResponseMessage response = httpClient.GetAsync(apiUrl).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    data = response.Content.ReadAsStringAsync().Result;
+                }
+                return data;
+
+            }
+        }
     }
 }

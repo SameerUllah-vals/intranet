@@ -34,14 +34,16 @@ namespace LeadManagementSystemV2.Models
         public virtual DbSet<LatestNewsGalleryLink> LatestNewsGalleryLinks { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<Banner> Banners { get; set; }
-        public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Gallery> Galleries { get; set; }
         public virtual DbSet<GalleryDetail> GalleryDetails { get; set; }
         public virtual DbSet<LatestNew> LatestNews { get; set; }
         public virtual DbSet<NewsLetter> NewsLetters { get; set; }
-        public virtual DbSet<OrgAnnouncement> OrgAnnouncements { get; set; }
         public virtual DbSet<Policy> Policies { get; set; }
         public virtual DbSet<QuestionDetail> QuestionDetails { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<BusinessApplication> BusinessApplications { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<OrgAnnouncement> OrgAnnouncements { get; set; }
+        public virtual DbSet<OrgAnnouncementDetail> OrgAnnouncementDetails { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using LeadManagementSystemV2.Models;
+﻿using LeadManagementSystemV2.Helpers;
+using LeadManagementSystemV2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace LeadManagementSystemV2.Controllers
         }
         public ActionResult Index(int id)
         {
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            ViewBag.Policies = Database.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.DTI).ToList();
 
             if (id > 0)
             {

@@ -20,6 +20,7 @@ namespace LeadManagementSystemV2.Models
         public string EventLocation { get; set; }
         public System.DateTime EventDateTime { get; set; }
         public string Description { get; set; }
+        public string Files { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
         public System.DateTime CreatedDateTime { get; set; }

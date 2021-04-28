@@ -74,7 +74,18 @@
                             @Html.ValidationMessageFor(m => m.ImageFile, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                    @if (!string.IsNullOrEmpty(Model.Image))
+                    {
 
+                        <div class="col-sm-2">
+                            <div class="form-group">
+
+                                <img src="~/assets/newsletter/@Model.Image" width="100" height="100" />
+                                <a href="@Url.Action("edit", "newsletter", new { id = Model.ID,fileRemove="true" })" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+
+                    }
                     <div class="col-sm-2">
                         <div class="form-group">
                             <label class="control-label">Make Default NewsLetter<span class="text-danger">*</span></label>

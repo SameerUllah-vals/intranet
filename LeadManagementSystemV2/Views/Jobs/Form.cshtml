@@ -151,14 +151,14 @@
                 </div>
              
 
-
             </div>
             <div class="row">
 
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="control-label">Description <span class="text-danger">*</span></label>
-                        @Html.TextAreaFor(m => m.Description,4,4, new {@class="form-control" })
+                        <textarea id="editor">@Model.Description</textarea>
+                        <input type="hidden" value="@Model.Description" name="Description" id="editor-html" />
                         @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>

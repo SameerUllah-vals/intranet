@@ -1,0 +1,64 @@
+﻿@model LeadManagementSystemV2.Models.BusinessAppModel
+@using LeadManagementSystemV2.Helpers;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/select2style")
+    @Styles.Render("~/assets/cache/datepickerstyle")
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/select2script")
+    @Scripts.Render("~/assets/cache/datepickerscript")
+}
+@section InLineScriptSection{
+    <script>
+    @if (ViewBag.PageType == "View")
+    {
+       @:DisableView();
+    }
+
+        
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Save", "BusinessApp", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.ID)
+            <div class="panel-body">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Name <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Name, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Url<span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Url, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Url, "", new { @class = "text-danger" })
+                        </div>
+                    </div>                 
+
+                </div>
+                <div class="panel-footer text-right">
+                    <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
+                    <button class="btn btn-success" type="submit" tabindex="9">Save</button>
+                </div>
+
+                <!--===================================================-->
+                <!--End Block Styled Form -->
+            </div>
+        }
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

@@ -55,12 +55,13 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="control-label">Category <span class="text-danger">*</span></label>
-                        @Html.DropDownListFor(m => m.Category, new List<SelectListItem>
-                        {
-                          new SelectListItem{ Text=ApplicationHelper.EnumPolicyCategory.Corporate, Value = ApplicationHelper.EnumPolicyCategory.Corporate},
-                          new SelectListItem{ Text=ApplicationHelper.EnumPolicyCategory.Exclusive, Value = ApplicationHelper.EnumPolicyCategory.Exclusive },
-                          new SelectListItem{ Text=ApplicationHelper.EnumPolicyCategory.Premium, Value = ApplicationHelper.EnumPolicyCategory.Premium },
-                       }, "Please-Select", new { @class = "form-control select-picker" })
+                        @*@Html.DropDownListFor(m => m.Category, new List<SelectListItem>
+         {
+           new SelectListItem{ Text=ApplicationHelper.EnumPolicyCategory.Corporate, Value = ApplicationHelper.EnumPolicyCategory.Corporate},
+           new SelectListItem{ Text=ApplicationHelper.EnumPolicyCategory.Exclusive, Value = ApplicationHelper.EnumPolicyCategory.Exclusive },
+           new SelectListItem{ Text=ApplicationHelper.EnumPolicyCategory.Premium, Value = ApplicationHelper.EnumPolicyCategory.Premium },
+        }, "Please-Select", new { @class = "form-control select-picker" })*@
+                        @Html.TextBoxFor(m => m.Category, null, new { @class = "form-control", @placeholder = "Exclusive, premium, etc" })
                         @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -75,6 +76,7 @@
                           new SelectListItem{ Text=ApplicationHelper.EnumPolicyType.Power, Value = ApplicationHelper.EnumPolicyType.Power },
                           new SelectListItem{ Text=ApplicationHelper.EnumPolicyType.Chemical, Value = ApplicationHelper.EnumPolicyType.Chemical },
                           new SelectListItem{ Text=ApplicationHelper.EnumPolicyType.Inspect, Value = ApplicationHelper.EnumPolicyType.Inspect },
+                          new SelectListItem{ Text=ApplicationHelper.EnumPolicyType.DTI, Value = ApplicationHelper.EnumPolicyType.DTI },
                        }, "Please-Select", new { @class = "form-control select-picker" })
                         @Html.ValidationMessageFor(m => m.Type, "", new { @class = "text-danger" })
                     </div>
@@ -95,7 +97,7 @@
                           {
                             new SelectListItem{ Text="Enable", Value = "Enable",Selected=true },
                             new SelectListItem{ Text="Disable", Value = "Disable" }
-                         }, "Please-Select", new { @class = "form-control select-picker" })
+                         }, "Please-Select", new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
                     </div>
                 </div>

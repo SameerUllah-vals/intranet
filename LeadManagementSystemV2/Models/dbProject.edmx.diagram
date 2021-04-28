@@ -20,12 +20,10 @@
         <EntityTypeShape EntityType="dbProjectModel.LatestNewsGalleryLink" Width="1.5" PointX="10.625" PointY="10.25" />
         <EntityTypeShape EntityType="dbProjectModel.Job" Width="1.5" PointX="0.75" PointY="13.75" />
         <EntityTypeShape EntityType="dbProjectModel.Banner" Width="1.5" PointX="5.375" PointY="9.75" />
-        <EntityTypeShape EntityType="dbProjectModel.Event" Width="1.5" PointX="13.375" PointY="0.75" />
         <EntityTypeShape EntityType="dbProjectModel.Gallery" Width="1.5" PointX="8.375" PointY="9.375" />
         <EntityTypeShape EntityType="dbProjectModel.GalleryDetail" Width="1.5" PointX="10.625" PointY="13.125" />
         <EntityTypeShape EntityType="dbProjectModel.LatestNew" Width="1.5" PointX="8.375" PointY="14" />
         <EntityTypeShape EntityType="dbProjectModel.NewsLetter" Width="1.5" PointX="10.375" PointY="5.75" />
-        <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncement" Width="1.5" PointX="12.375" PointY="5.75" />
         <EntityTypeShape EntityType="dbProjectModel.Policy" Width="1.5" PointX="13.375" PointY="10.75" />
         <EntityTypeShape EntityType="dbProjectModel.QuestionDetail" Width="1.5" PointX="10.625" PointY="2.125" />
         <EntityTypeShape EntityType="dbProjectModel.Question" Width="1.5" PointX="8.375" PointY="1" />
@@ -33,6 +31,11 @@
         <AssociationConnector Association="dbProjectModel.FK_LatestNewsGalleryLinks_GalleryDetails" />
         <AssociationConnector Association="dbProjectModel.FK_LatestNewsGalleryLinks_LatestNews" />
         <AssociationConnector Association="dbProjectModel.FK_QuestionDetail_Question" />
+        <EntityTypeShape EntityType="dbProjectModel.BusinessApplication" Width="1.5" PointX="3.375" PointY="14.75" />
+        <EntityTypeShape EntityType="dbProjectModel.Event" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncement" Width="1.5" PointX="12.375" PointY="5.75" />
+        <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncementDetail" Width="1.5" PointX="14.625" PointY="6.75" />
+        <AssociationConnector Association="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

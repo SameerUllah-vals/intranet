@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using LeadManagementSystemV2.Models;
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,6 +21,8 @@
     <link href="~/assets/owl/owl.theme.default.min.css" rel="stylesheet">
     <link href="~/assets/calender/main.min.css" rel="stylesheet">
     <link href="~/assets/datatable/datatables.min.css" rel="stylesheet">
+    <link href="~/assets/sidebar/style3.css" rel="stylesheet">
+    <link href="~/assets/sidebar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
     <style>
         #loading {
             width: 100%;
@@ -48,29 +51,76 @@
         <img id="loading-image" src="~/assets/images/loader.gif" alt="Loading..." />
     </div>
     <!-- Navigation -->
+    @*<nav class="navbar  navbar-expand-md navbar-light fixed-top" id="mainNav">
+            <div class="container-fluid spacer-padding">
+                <a class="navbar-brand" href="index.php"><img src="~/assets/img/logo.png" alt="logo" class="img-fluid logo"></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                BUSINESS APPLICATION &nbsp;<i class="fas fa-th-large"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>*@
+
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div id="dismiss">
+            <i class="fas fa-arrow-right"></i>
+        </div>
+
+        <div class="sidebar-header">
+            <h5 class="mb-0">Business Applications</h5>
+        </div>
+
+        <ul class="list-unstyled components">
+
+
+            @if (ViewBag.BApp != null)
+            {
+                foreach (var item in (List<BusinessApplication>)ViewBag.BApp)
+                {
+                    <li> <a href="@item.Url" target="_blank">@item.Name</a></li>
+                }
+            }
+        </ul>
+
+
+    </nav>
+    <!-- Navigation -->
+
+
+    <div class="overlay"></div>
+    <!-- Navigation -->
     <nav class="navbar  navbar-expand-md navbar-light fixed-top" id="mainNav">
         <div class="container-fluid spacer-padding">
             <a class="navbar-brand" href="index.php"><img src="~/assets/img/logo.png" alt="logo" class="img-fluid logo"></a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <div>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            BUSINESS APPLICATION &nbsp;<i class="fas fa-th-large"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-                            <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-                            <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-                            <a class="dropdown-item" href="faq.html">FAQ</a>
-                            <a class="dropdown-item" href="404.html">404</a>
-                            <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-                        </div>
+                    <li>
+                        <button type="button" id="sidebarCollapse" class="btn float-right">
+                            <span>Business Applications</span>
+                            <i class="fas fa-align-left"></i>
+                        </button>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -80,23 +130,118 @@
     @RenderBody()
     <!--Body-->
     <!-- Footer -->
-    <footer class="py-3 bg-dark">
+    <!-- Footer -->
+    <footer class="py-3 bg-dark mt-5">
         <div class="container-fluid spacer-padding">
-            <div class="row">
-                <div class="col-xl-7 col-lg-7 col-md-7 col-12 my-auto">
-                    <p class="m-0 text-xl-left text-lg-left text-md-left text-center">
-                        <a class="align-items-center" href="#"><i class="fab fa-facebook-square fa-2x"></i>Facebook</a>
-                        <a class="align-items-center" href="#"><i class="fab fa-linkedin  fa-2x"></i>linkedin&nbsp;</a>
-                    </p>
+            <div class="row mb-3">
+
+                <!-- Grid column -->
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-sm-left text-center mb-md-1 mb-4">
+
+                    <!-- Content -->
+                    <img src="~/assets/img/logo.png" alt="logo" class="img-fluid logo mb-3">
+
                 </div>
-                <div class="col-xl-5 col-lg-5 col-md-5 col-12 my-auto">
-                    <small class="m-0  text-xl-right text-lg-right text-md-right text-center d-block">Last updated 17 September 2020</small>
-                    <small class="m-0  text-xl-right text-lg-right text-md-right text-center d-block">Descon © 2020 All Rights Reserved</small>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-sm-left text-center  mb-md-1 mb-4">
+
+                    <!-- Links -->
+                    <h3>Social</h3>
+
+                    <p class="m-0">
+                        <a class="align-items-center d-block mb-1" href="#"><i class="fab fa-facebook-square fa-2x"></i>Facebook</a>
+                        <a class="align-items-center d-block" href="#"><i class="fab fa-linkedin  fa-2x"></i>linkedin&nbsp;&nbsp;</a>
+                    </p>
+
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-sm-left text-center  mb-md-1 mb-0">
+
+                    <!-- Links -->
+                    <h3>Links</h3>
+
+                    <ul class="">
+                        <li>
+                            <a href="#!">Guidelines for Video Conferencing</a>
+                        </li>
+                        <li>
+                            <a href="#!">Meeting Room Reservation Guidelines</a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#dtipolicy">SAP Training Manuals</a>
+                        </li>
+                        <li>
+                            <a href="#!">Training Calenders</a>
+                        </li>
+                        <li>
+                            <a href="#!">Training Videos</a>
+                        </li>
+                        <li>
+                            <a href="#!">Training Avisory</a>
+                        </li>
+                        <li>
+                            <a href="#!">Official Website</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <div class="row">
+                <div class="col-12 my-auto">
+                    <small class="m-0  text-center d-block">Descon © 2020 All Rights Reserved</small>
                 </div>
             </div>
         </div>
         <!-- /.container -->
     </footer>
+
+    <div class="modal fade" id="dtipolicy" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">DTI Manuals</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table id="tblPow" class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Folder</th>
+                                    <th scope="col">Policies</th>
+                                    <th class="text-center" scope="col">Download</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{var count4 = 1;}
+                                @if (ViewBag.Policies != null)
+                                {
+                                    foreach (var item in (List<Policy>)ViewBag.Policies)
+                                    {
+                                        <tr>
+                                            <th class="align-middle" scope="row">@count4</th>
+                                            <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
+                                            <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
+                                            <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
+                                        </tr>
+                                        count4++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     @*<script src="~/assets/vendor/jquery/jquery.min.js"></script>*@
     @Scripts.Render("~/assets/cache/jquery")
@@ -107,11 +252,73 @@
     <script src="~/assets/calender/main.min.js"></script>
     <script src="~/assets/datatable/datatables.min.js"></script>
     <script src="~/assets/js/notify.js"></script>
-    @if (IsSectionDefined("LinkScriptSection"))
-    {
-        @RenderSection("LinkScriptSection");
-    }
+    <script src="~/assets/sidebar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/assets/js/script.js"></script>
     <script>
+        $('#jobs,#tblEng,#tblPow,#tblIns,#tblChm,.responses').DataTable({
+            "pageLength": 10
+        });
+
+    </script>
+    <script>
+
+        function GetGMT2() {
+            $.ajax({
+                url: "http://worldtimeapi.org/api/timezone/Etc/GMT-2",
+                type: "Get",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (response) {
+                    let time = new Date(response.datetime);
+                    $(".Time-2").html(time.toLocaleString('en-US', { timeZone: 'Etc/GMT-2', hour: '2-digit', minute: '2-digit' }));
+                }
+            });
+
+        }
+        function GetGMT3() {
+            $.ajax({
+                url: "http://worldtimeapi.org/api/timezone/Etc/GMT-3",
+                type: "Get",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (response) {
+                    let time = new Date(response.datetime);
+                    $(".Time-3").html(time.toLocaleString('en-US', { timeZone: 'Etc/GMT-3', hour: '2-digit', minute: '2-digit' }));
+                }
+            });
+        }
+        function GetGMT4() {
+            $.ajax({
+                url: "http://worldtimeapi.org/api/timezone/Etc/GMT-4",
+                type: "Get",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (response) {
+                    let time = new Date(response.datetime);
+                    $(".Time-4").html(time.toLocaleString('en-US', { timeZone: 'Etc/GMT-4', hour: '2-digit', minute: '2-digit' }));
+                }
+            });
+        }
+        function GetGMT5() {
+            //$(".Time-4").html(time.toTimeString(undefined, {
+            //        //    hour: '2-digit',
+            //        //    minute: '2-digit',
+            //        //}));
+            $.ajax({
+                url: "http://worldtimeapi.org/api/timezone/Etc/GMT-5",
+                type: "Get",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (response) {
+                    let time = new Date(response.datetime);
+                    $(".Time-5").html(time.toLocaleString('en-US', { timeZone: 'Etc/GMT-5', hour: '2-digit', minute: '2-digit' }));
+                }
+            });
+        }
         $(document).ready(function () {
             $.ajax({
                 url: "https://free.currconv.com/api/v7/convert?q=USD_PKR&compact=ultra&apiKey=c6cbd4438f3cf0d2cdf6",
@@ -146,43 +353,18 @@
                     $(".uae").html(parseFloat(response.AED_PKR).toFixed(2));
                 }
             })
-            $.ajax({
-                url: "http://worldtimeapi.org/api/timezone/Etc/GMT-3",
-                type: "Get",
-                success: function (response) {
-                    let time = new Date(response.datetime);
-                    $(".Time-3").html(time.toLocaleTimeString(undefined, {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                    }));
+            GetGMT2();
+            GetGMT3();
+            GetGMT4();
+            GetGMT5();
 
-                }
-            });
-            $.ajax({
-                url: "http://worldtimeapi.org/api/timezone/Etc/GMT-4",
-                type: "Get",
-                success: function (response) {
-                    let time = new Date(response.datetime);
-                    $(".Time-4").html(time.toLocaleTimeString(undefined, {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                    }));
-
-                }
-            });
-            $.ajax({
-                url: "http://worldtimeapi.org/api/timezone/Etc/GMT-5",
-                type: "Get",
-                success: function (response) {
-                    let time = new Date(response.datetime);
-                    $(".Time-5").html(time.toLocaleTimeString(undefined, {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                    }));
-                }
-            });
         });
     </script>
+    @if (IsSectionDefined("LinkScriptSection"))
+    {
+        @RenderSection("LinkScriptSection");
+    }
+
     @Scripts.Render("~/assets/cache/function")
     @if (IsSectionDefined("InLineScriptSection"))
     {

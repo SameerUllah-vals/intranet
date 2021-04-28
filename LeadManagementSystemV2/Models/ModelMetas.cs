@@ -141,7 +141,7 @@ namespace LeadManagementSystemV2.Models
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
         public int DeletedBy { get; set; }
-
+        public List<LatestNewsGalleryLink> GalleryLink { get; set; }
 
     }
 
@@ -164,6 +164,7 @@ namespace LeadManagementSystemV2.Models
         public HttpPostedFileBase Thumbnail { get; set; }
         [Required(ErrorMessage = "Required")]
         public HttpPostedFileBase[] ImageFiles { get; set; }
+        public string Image { get; set; }
         public string Description{ get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
@@ -174,7 +175,7 @@ namespace LeadManagementSystemV2.Models
         public int UpdatedBy { get; set; }
         public int DeletedBy { get; set; }
 
-
+        public List<GalleryDetail> galleryDetails { get; set; }
     }
 
 
@@ -234,6 +235,7 @@ namespace LeadManagementSystemV2.Models
 
         [Required(ErrorMessage = "Required")]
         public HttpPostedFileBase ImageFile { get; set; }
+        public string Image { get; set; }
         public bool isDefault { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
@@ -249,6 +251,10 @@ namespace LeadManagementSystemV2.Models
 
     public class OrgAnnouncementModel
     {
+        public OrgAnnouncementModel()
+        {
+            Files = new List<OrgAnnouncementDetail>();
+        }
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Required")]
@@ -258,6 +264,8 @@ namespace LeadManagementSystemV2.Models
         public string Announcement { get; set; }
         public bool isNoticeBoard { get; set; }
         public string Status { get; set; }
+        public List<OrgAnnouncementDetail> Files { get; set; }
+        public HttpPostedFileBase[] File { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime UpdatedDateTime { get; set; }
@@ -285,6 +293,14 @@ namespace LeadManagementSystemV2.Models
         [Required(ErrorMessage = "Required")]
         public string SubmissionDate { get; set; }
         public string Description { get; set; }
+        public string Status { get; set; }
+    }
+
+    public class BusinessAppModel
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Url { get; set; }
         public string Status { get; set; }
     }
 
@@ -321,6 +337,8 @@ namespace LeadManagementSystemV2.Models
         [Required(ErrorMessage = "Required")]
         public DateTime EventDateTime { get; set; }
         public string Description { get; set; }
+        public string Files { get; set; }
+        public HttpPostedFileBase File { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreatedDateTime { get; set; }

@@ -1,5 +1,6 @@
 ﻿@model LeadManagementSystemV2.Models.viewModel
 @using LeadManagementSystemV2.Helpers;
+@using System.Data.Entity;
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_FrontendLayout.cshtml";
@@ -51,19 +52,98 @@
     <div class="row">
 
         <!--Left Column-->
-        <div class="col-xl-4 col-lg-5 col-12 mb-3">
+        <div class="col-xl-4 col-lg-5 col-12 mb-3 left-panel">
             <div class="card border-0  shadow mb-3 notice-board">
                 <div class="card-body">
-                    <h3 class="card-title"><i class="fas fa-bullhorn"></i> NOTICE BOARD</h3>
+                    <h3 class="card-title">
+                        <i class="fas fa-bullhorn"></i> NOTICE BOARD
+
+                        @{var y = Model.OrgAnoouncement.Where(c => c.isNoticeBoard == true)
+                                                 .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
+                        @if (y != null)
+                        {
+                            if (y.CreatedDateTime.Date == DateTime.Now.Date)
+                            {
+                                <span><b class="text-danger">*</b></span>
+                            }
+                        }
+
+                    </h3>
                     <ul>
 
-                        @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == true).ToList())
+                        @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == true).Take(5).ToList())
                         {
                             <li>
                                 @ApplicationHelper.StripHtmlTags(item.Announcement)
+                                @if (item.OrgAnnouncementDetails.Count > 0)
+                                {
+                                   
+                                        foreach (var file in item.OrgAnnouncementDetails.ToList())
+                                        {
+                                            <a href="@Url.Action("downloadfile","download",new {filepath=file.Files })">View Attachment</a>
+                                        }
+
+                                    
+                                }
                             </li>
                         }
+
                     </ul>
+                    <a class="archived-b" href="@Url.Action("ArchivedNotice","Home")">View Archived</a>
+                </div>
+            </div>
+            <div class="card mb-3 border-0  shadow policies">
+                <div class="card-body bg-blue">
+                    <div class="row">
+                        
+                        <div class="col-xl-12 col-lg-12 col-12 my-auto">
+                            <div class="row ">
+                                <div class="col-xl-12">
+                                    <h3 class="mb-4">
+                                        POLICIES
+                                        @{var polixies = Model.Policies.OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
+                                        @if (polixies != null)
+                                        {
+                                            if (polixies.CreatedDateTime.Date == DateTime.Now.Date)
+                                            {
+                                                <span><b class="text-danger">*</b></span>
+                                            }
+                                        }
+                                    </h3>
+                                </div>
+                                <div class="col-xl-6 col-12">
+                                    <div class="text-center">
+                                        <img src="~/assets/img/engineering.png" class="img-fluid full-width mb-3" alt="policy">
+                                        <h3><a data-toggle="modal" data-target="#Engpolicy" href="#">Engineering Policy</a></h3>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-12">
+                                    <div class="text-center">
+                                        <img src="~/assets/img/power.png" class="img-fluid full-width mb-3" alt="policy">
+                                        <h3><a data-toggle="modal" data-target="#Powpolicy" href="">Power Policy</a></h3>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-12">
+                                    <div class="text-center">
+                                        <img src="~/assets/img/chemical.png" class="img-fluid full-width mb-3" alt="policy">
+                                        <h3><a data-toggle="modal" data-target="#Chmpolicy" href="#">Chemical Policy</a></h3>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-12">
+                                    <div class="text-center">
+                                        <img src="~/assets/img/InspectTest.jpg" class="img-fluid full-width mb-3" alt="policy">
+                                        <h3><a data-toggle="modal" data-target="#Inspolicy" href="#">InspectTest Policy</a></h3>
+                                    </div>
+                                </div>
+
+                              
+                                @*<div class="col-xl-6 col-lg-6 col-12 text-center">
+            <img src="~/assets/img/inspect.jpeg" class="img-fluid full-width mb-3" alt="policy">
+            <h3><a data-toggle="modal" data-target="#dtipolicy" href="#">DTI Manuals</a></h3>
+        </div>*@
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card border-0  shadow  mb-3">
@@ -74,7 +154,7 @@
                             <h2 class="card-title mb-0"><span class="uae"></span> Pakistani Rupees</h2>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 justify-content-center align-self-center">
-                            <img src="~/assets/img/stats.png" class="img-fluid float-right" alt="stats">
+                            <p class="text-right mb-0 symbol">د.إ</p>
                         </div>
                     </div>
                 </div>
@@ -87,7 +167,7 @@
                             <h2 class="card-title mb-0"><span class="usd"></span> Pakistani Rupees</h2>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 justify-content-center align-self-center">
-                            <img src="~/assets/img/stats.png" class="img-fluid float-right" alt="stats">
+                            <p class="text-right mb-0 symbol">$</p>
                         </div>
                     </div>
                 </div>
@@ -100,7 +180,7 @@
                             <h2 class="card-title mb-0"><span class="qatar"></span> Pakistani Rupees</h2>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 justify-content-center align-self-center">
-                            <img src="~/assets/img/stats.png" class="img-fluid float-right" alt="stats">
+                            <p class="text-right mb-0 symbol">ر.ق</p>
                         </div>
                     </div>
                 </div>
@@ -111,10 +191,10 @@
                     <div class="row">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
                             <img src="~/assets/img/flags/pakistan.png" alt="pakistan" class="img-fluid">
-                            <p>Pakistan<br><small>AST(GMT +3)</small></p>
+                            <p>Pakistan<br><small>AST(GMT +5)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right ">
-                            <p class="ml-auto"><b class="Time-3">fetching...</b></p>
+                            <p class="ml-auto"><b class="Time-5">fetching...</b></p>
                         </div>
                     </div>
                     <div class="row">
@@ -138,16 +218,34 @@
                     <div class="row">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
                             <img src="~/assets/img/flags/saudi.png" alt="KSA" class="img-fluid">
-                            <p>KSA<br><small>AST(GMT +4)</small></p>
+                            <p>KSA<br><small>AST(GMT +3)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right">
-                            <p class="ml-auto"><b class="Time-4">fetching...</b></p>
+                            <p class="ml-auto"><b class="Time-3">fetching...</b></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
                             <img src="~/assets/img/flags/kuwait.png" alt="Kuwait" class="img-fluid">
-                            <p>Kuwait<br><small>AST(GMT +4)</small></p>
+                            <p>Kuwait<br><small>AST(GMT +3)</small></p>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right ">
+                            <p class="ml-auto"><b class="Time-3">fetching...</b></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
+                            <img src="~/assets/img/flags/iraq.png" alt="iraq" class="img-fluid">
+                            <p>Iraq<br><small>AST(GMT +3)</small></p>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right">
+                            <p class="ml-auto"><b class="Time-3">fetching...</b></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
+                            <img src="~/assets/img/flags/oman.png" alt="Oman" class="img-fluid">
+                            <p>Oman<br><small>AST(GMT +4)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right ">
                             <p class="ml-auto"><b class="Time-4">fetching...</b></p>
@@ -155,59 +253,44 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
-                            <img src="~/assets/img/flags/iraq.png" alt="iraq" class="img-fluid">
-                            <p>Iraq<br><small>AST(GMT +5)</small></p>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right">
-                            <p class="ml-auto"><b class="Time-5">fetching...</b></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
-                            <img src="~/assets/img/flags/oman.png" alt="Oman" class="img-fluid">
-                            <p>Oman<br><small>AST(GMT +5)</small></p>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right ">
-                            <p class="ml-auto"><b class="Time-5">fetching...</b></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 ">
                             <img src="~/assets/img/flags/south-africa-flag.png" alt="South Africa<" class="img-fluid">
-                            <p>South Africa<br><small>AST(GMT +5)</small></p>
+                            <p>South Africa<br><small>AST(GMT +2)</small></p>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 float text-right ">
-                            <p class="ml-auto"><b class="Time-5">fetching...</b></p>
+                            <p class="ml-auto"><b class="Time-2">fetching...</b></p>
                         </div>
                     </div>
                 </div>
             </div>
-            @foreach (var item in Model.NewsLetter)
-            {
-                <div class="card border-0  shadow mb-3">
-                    <img src="~/assets/newsletter/@item.Image" class="card-img-top img-fluid" alt="newsletter">
-                    <div class="card-body">
-                        <h3 class="card-title mb-0">@item.Title</h3>
-                        <small class="d-block mb-3">@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Format)</small>
-                        <a href="~/assets/newsletter/@item.PDF" class="card-text download"><i class="fas fa-file-pdf"></i> Download Now</a>
-                    </div>
-                </div>
-            }
+         
 
 
         </div>
         <!--Left Column-->
         <!--Right Column-->
-        <div class="col-xl-8 col-lg-7 col-12 mb-3">
+        <div class="col-xl-8 col-lg-7 col-12 mb-3 right-panel">
             <div class="card mb-3 border-0  shadow annoucement">
                 <div class="card-body bg-lightblue">
-                    <h3 class="card-title"><i class="fas fa-bullhorn"></i> ORGANIZATIONAL ANNOUNCEMENTS</h3>
+                    <h3 class="card-title">
+                        <i class="fas fa-bullhorn"></i> ORGANIZATIONAL ANNOUNCEMENTS
+
+                        @{var board = Model.OrgAnoouncement.Where(c => c.isNoticeBoard == false)
+                                        .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
+                        @if (board != null)
+                        {
+                            if (board.CreatedDateTime.Date == DateTime.Now.Date)
+                            {
+                                <span><b class="text-danger">*</b></span>
+                            }
+                        }
+
+                    </h3>
                     <div id="accordion">
                         @{int i = 0;}
-                        @foreach (var item in Model.OrgAnoouncement.Where(x=>x.isNoticeBoard == false).ToList())
+                        @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == false).Take(5).ToList())
                         {
-                            
-                              <div class="card">
+
+                            <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
                                         <button class="btn btn-link" data-toggle="collapse" data-target="#abc_@i" aria-expanded="true"
@@ -220,21 +303,46 @@
                                 <div id="abc_@i" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="card-body">
                                         @Html.Raw(item.Announcement)
+                                        @if (item.OrgAnnouncementDetails.Count > 0)
+                                        {
+                                        <ul>
+                                            @foreach (var file in item.OrgAnnouncementDetails.ToList())
+                                            {
+                                                <li><a href="@Url.Action("downloadfile","download",new {filepath=file.Files })">View Attachment</a></li>
+                                            }
+                                        </ul>
+
+                                        }
                                     </div>
                                 </div>
+
                             </div>
                             i++;
                         }
+                        <a class="archived-a" href="@Url.Action("Archivedorg","Home")">View Archived</a>
+
                     </div>
 
                 </div>
             </div>
             <div class="card timeline mb-3 border-0  shadow">
                 <div class="card-body">
-                    <h3 class="card-title">LATEST NEWS</h3>
+                    <h3 class="card-title">
+                        LATEST NEWS
+
+                        @{var latestNews = Model.LatestNews.OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
+                        @if (latestNews != null)
+                        {
+                            if (latestNews.CreatedDateTime.Date == DateTime.Now.Date)
+                            {
+                                <span><b class="text-danger">*</b></span>
+                            }
+                        }
+
+                    </h3>
                     <div class="row">
                         <div class="col-12">
-                            @foreach (var item in Model.LatestNews)
+                            @foreach (var item in Model.LatestNews.Take(5))
                             {
                                 <!-- timeline item 1 -->
                                 <div class="row">
@@ -256,23 +364,34 @@
                                     <div class="col py-2">
                                         <div class="card border-0">
                                             <div class="card-body">
-                                                <div class="float-right"><small>@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Format)</small></div>
-                                                <h4 class="card-title ">@item.Title</h4>                                               
-                                                    @Html.Raw(item.ShortDescription)<a href="@Url.Action("","newsdetails",new {id = item.ID })">Read More</a>                                                
+                                                <div class="float-right"><small>@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Time_Format)</small></div>
+                                                <h4 class="card-title ">@item.Title</h4>
+                                                @Html.Raw(item.ShortDescription)<a href="@Url.Action("","newsdetails",new {id = item.ID })">Read More</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!--/row-->
                             }
-
+                            <a class="archived-a" href="@Url.Action("ArchivedNews","Home")">View Archived</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card timeline mb-3 border-0  shadow">
                 <div class="card-body">
-                    <h3 class="card-title">CURRENT OPENINGS</h3>
+                    <h3 class="card-title">
+                        CURRENT OPENINGS
+                        @{var jobs = Model.Jobs.OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
+                        @if (jobs != null)
+                        {
+                            if (jobs.CreatedDateTime.Date == DateTime.Now.Date)
+                            {
+                                <span><b class="text-danger">*</b></span>
+                            }
+                        }
+
+                    </h3>
                     <div class="table-responsive">
                         <table id="jobs" class="table table-striped">
                             <thead class="thead-dark">
@@ -292,49 +411,41 @@
                                         <td class="align-middle">
                                             <span class="cursor-pointer" data-toggle="modal"
                                                   data-target="#career1">@item.Title</span><br><small>
-                                                No. of Positions:
-                                                @item.Positions
-                                            </small>
-                                        </td>
-                                        <td class="align-middle">@item.Location</td>
-                                        <td class="align-middle">@item.BusinessSelector</td>
-                                        
-                                        <td class="align-middle"><button type="button" onclick="viewDetails('@Newtonsoft.Json.JsonConvert.SerializeObject(item)')" class="btn btn-xs btn-primary"><i class="fa fa-eye"></i></button></td>
-                                    </tr>
-                                }
+                                                    No. of Positions:
+                                                    @item.Positions
+                                                </small>
+                                            </td>
+                                            <td class="align-middle">@item.Location</td>
+                                            <td class="align-middle">@item.BusinessSelector</td>
+
+                                            <td class="align-middle"><button type="button" onclick="viewDetails('@item.ID')" class="btn btn-xs btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        </tr>
+                                    }
 
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            <div class="card mb-3 border-0  shadow policies">
-                <div class="card-body bg-blue">
+            <div class="card border-0 mb-3 bg-transparent">
+                <div class="">
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-12 text-center d-xl-block d-lg-block d-none">
-                            <img src="~/assets/img/policy.jpg" class="full-width" alt="policy">
-                        </div>
-                        <div class="col-xl-9 col-lg-9 col-12 my-auto">
-                            <div class="row ">
-                                <div class="col-xl-12">
-                                    <h3 class="mb-4">POLICIES</h3>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-12 text-center ">
-                                    <img src="~/assets/img/engineering.png" class="img-fluid full-width mb-3" alt="policy">
-                                    <h3><a data-toggle="modal" data-target="#Engpolicy" href="#">Engineering Policy</a></h3>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-12 text-center">
-                                    <img src="~/assets/img/power.png" class="img-fluid full-width mb-3" alt="policy">
-                                    <h3><a data-toggle="modal" data-target="#Powpolicy" href="">Power Policy</a></h3>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-12 text-center">
-                                    <img src="~/assets/img/chemical.png" class="img-fluid full-width mb-3" alt="policy">
-                                    <h3><a data-toggle="modal" data-target="#Chmpolicy" href="#">Chemical Policy</a></h3>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-12 text-center">
-                                    <img src="~/assets/img/inspect.jpeg" class="img-fluid full-width mb-3" alt="policy">
-                                    <h3><a data-toggle="modal" data-target="#Inspolicy" href="#">InspectTest Policy</a></h3>
-                                </div>
+                        <div class="col-12">
+                            <div id="newsletter" class="owl-carousel owl-theme owl-loaded owl-drag">
+
+                                @foreach (var item in Model.NewsLetter)
+                                {
+                                    <div class="items card border-0  shadow mb-3">
+                                        <img src="~/assets/newsletter/@item.Image" class="card-img-top img-fluid" alt="newsletter">
+                                        <div class="card-body">
+                                            <h3 class="card-title mb-0">@item.Title</h3>
+                                            <small class="d-block mb-3">@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Format)</small>
+                                            <a href="~/assets/newsletter/@item.PDF" class="card-text download"><i class="fas fa-file-pdf"></i> Download Now</a>
+                                        </div>
+                                    </div>
+
+                                    
+                                }
                             </div>
                         </div>
                     </div>
@@ -343,18 +454,48 @@
 
         </div>
         <!--Right Column-->
+        <!--DTI MANUAL Grid-->
+        
+        <!--DTI MANUAL Grid-->
         <!--Gallery Grid-->
+       
+        <!--Gallery Grid-->
+
+    </div>
+</div>
+<!-- Page Content -->
+@*<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12 text-center mb-4 p-0">
+            <a href="#" data-toggle="modal" data-target="#dtipolicy"> <img src="~/assets/img/dti-manual.jpg" class="img-fluid full-width" alt="DTI"></a>
+        </div>
+    </div>
+</div>*@
+
+<div class="container-fluid">
+    <div class="row">
         <div class="col-12 text-center mb-3">
             <div id="gallery-slider" class="owl-carousel owl-theme gallery-slider">
                 @foreach (var item in Model.Galleries)
                 {
+
                     <div class="item">
                         <div class="card border-0  no-bg mb-4">
                             <i class="fas fa-image"></i>
-                            <a href="@Url.Action("","GalleryDetails",new {id = item.ID })">
-                                <img src="~/assets/gallery/@item.Image" class="card-img-top img-fluid"
-                                     alt="newsletter" style=" width: 503px !important; height: 217px !important;">
-                            </a>
+                            @if (item.GalleryDetails.Count > 0)
+                            {
+                                <a href="@Url.Action("","GalleryDetails",new {id = item.ID })">
+                                    <img src="~/assets/gallery/@item.Image" class="card-img-top img-fluid"
+                                         alt="newsletter" style=" width: 503px !important; height: 217px !important;">
+                                </a>
+                            }
+                            else
+                            {
+                                <a>
+                                    <img src="~/assets/gallery/@item.Image" class="card-img-top img-fluid"
+                                         alt="newsletter" style=" width: 503px !important; height: 217px !important;">
+                                </a>
+                            }
                             <div class="card-body">
                                 <h3 class="card-title mb-0">@item.Title</h3>
                                 <small>@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Format)</small>
@@ -365,11 +506,8 @@
                 }
             </div>
         </div>
-        <!--Gallery Grid-->
-
     </div>
 </div>
-<!-- Page Content -->
 <!--Page Content-->
 @if (Model.Servey.ID > 0)
 {
@@ -377,7 +515,13 @@
     <div class="row">
         <!--Question Grid-->
         <div class="col-12 text-center bg-dark-grey question">
-            <h3>QUESTION</h3>
+            <h3>
+                QUESTION
+                @if (Model.Servey.CreatedDateTime.Date == DateTime.Now.Date)
+                {
+                    <span><b class="text-danger">*</b></span>
+                }
+            </h3>
             <p class="mb-0">@Model.Servey.Title</p>
         </div>
         <div class="container question-tabs">
@@ -432,12 +576,20 @@
                                 <div class="tab-pane fade" id="nav-responses" role="tabpanel" aria-labelledby="nav-responses-tab">
                                     <h3 class="text-center">@Model.Servey.Title</h3>
                                     <hr />
-                                    <div class="row">
-                                        <div class="col-md-3">@Model.Servey.option1 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option1).ToList().Count</b></div>
-                                        <div class="col-md-3">@Model.Servey.option2 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option2).ToList().Count</b></div>
-                                        <div class="col-md-3">@Model.Servey.option3 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option3).ToList().Count</b></div>
-                                        <div class="col-md-3">@Model.Servey.option4 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option4).ToList().Count</b></div>
-                                    </div>
+                                    
+                                    <table class="table table-striped mb-5">
+
+                                        <tbody>
+                                            <tr>
+                                                <td>@Model.Servey.option1 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option1).ToList().Count</b></td>
+                                                <td>@Model.Servey.option2 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option2).ToList().Count</b></td>
+                                                <td>@Model.Servey.option3 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option3).ToList().Count</b></td>
+                                                <td>@Model.Servey.option4 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option4).ToList().Count</b></td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
                                     <table class="table responses" style="width:100%">
                                         <thead>
                                             <tr>
@@ -486,12 +638,56 @@
     </div>
 </div>
 <!-- Page Content -->
+
+<div class="modal fade" id="eventmodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title">Event Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered career-table">
+                        <tbody>
+                            <tr>
+                                <td class="col-xs-3 table-col1-career">Title</td>
+                                <td class="col-xs-9 table-col2-career eventtitle"></td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3 table-col1-career">Location</td>
+                                <td class="col-xs-9 table-col2-career eventlocation"></td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3 table-col1-career">Organizer</td>
+                                <td class="col-xs-9 table-col2-career eventorganizer"></td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3 table-col1-career">Date Time</td>
+                                <td class="col-xs-9 table-col2-career eventdatetime"></td>
+                            </tr>                          
+                            <tr>
+                                <td colspan=2 class="eventremarks">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="pnlfile" colspan="2"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal jobs-->
 <div class="modal fade" id="career1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content ">
             <div class="modal-header">
-                <h5 class="modal-title">Application Support Services Executive</h5>
+                <h5 class="modal-title" id="jobTitle">Application Support Services Executive</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -711,6 +907,45 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="dtipolicy" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title">DTI Manuals</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table id="tblPow" class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Folder</th>
+                                <th scope="col">Policies</th>
+                                <th class="text-center" scope="col">Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var count4 = 1;}
+                            @foreach (var item in Model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.DTI).ToList())
+                            {
+                                <tr>
+                                    <th class="align-middle" scope="row">@count4</th>
+                                    <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
+                                    <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
+                                    <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
+                                </tr>
+                                count4++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @section InLineScriptSection{
 
     <script>
@@ -735,7 +970,7 @@
                     loop: false
                 }
             }
-        })
+        });
         $('#announcement').owlCarousel({
             loop: true,
             margin: 50,
@@ -758,13 +993,35 @@
                 }
             }
 
-        })</script>
-    <script>
-        $('#jobs,#tblEng,#tblPow,#tblIns,#tblChm,.responses').DataTable({
-            "pageLength": 10
-        });      
+        });
+
+        $('#newsletter').owlCarousel({
+            loop: true,
+            margin: 20,
+            dots: false,
+            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 3,
+                    nav: true,
+                    loop: false
+                }
+            }
+
+        })
+
 
     </script>
+   
     <script>
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -773,13 +1030,13 @@
                 url: '@ViewBag.WebsiteURL' + "/home/Events",
                 type: "Get",
                 success: function (response) {
+                    console.log(response);
                     $.each(response, function (index, value) {
+                        
                         events.push({
+                            id : value.ID,
                             title: value.Title,
                             start: value.EventDateTime,
-                            extendedProps: {
-                                department: 'BioChemistry'
-                            },
                         });
                     })
                     var calendarEl = document.getElementById('calendar');
@@ -793,8 +1050,26 @@
                         selectable: true,
                         selectMirror: true,
                         dayMaxEvents: true,
-                        events: events
-                        
+                        events: events,
+                        eventClick: function (info) {
+                            $.ajax({
+                                url: '@ViewBag.WebsiteURL' + "/home/Event?id=" + info.event.id,
+                                type: 'GET',
+                                success: function (data) {
+                                    $(".eventtitle").html(data[0].Title);
+                                    $(".eventlocation").html(data[0].EventLocation);
+                                    $(".eventorganizer").html(data[0].EventOrganizer);
+                                    $(".eventdatetime").html(data[0].EventDateTime);
+                                    $(".eventremarks").html(data[0].Description);
+                                    $("#pnlfile").html('');
+                                    $("#pnlfile").append("<a href='@ViewBag.WebsiteURL/download/downloadfile?filepath=" + data[0].Files + "' >View Attachment</a>");
+                                    $("#eventmodal").modal('show');
+                                },
+                                error: function (error, xhr, state) {
+                                    console.log(error, xhr, state);
+                                }
+                            })
+                        }
                     });
                     calendar.render();
                 },
@@ -802,7 +1077,7 @@
                     console.log(errors);
                 }
             });
-            
+
         });</script>
     <script>
         $(document).ready(function () {
@@ -819,22 +1094,29 @@
             });
         });</script>
     <script>
-        function viewDetails(data) {
-            debugger;
-            data = JSON.parse(data);
-            $(".code").html(data.JobCode);
-            $(".depart").html(data.Department);
-            $(".location").html(data.Location);
-            $(".selector").html(data.BusinessSelector);
-            $(".type").html(data.JobType);
-            $(".positions").html(data.Positions);
-            $(".career").html(data.CareerLevel);
-            $(".education").html(data.EducationLevel);
-            $(".experience").html(data.MinExp);
-            $(".date").html(new Date(data.SubmissionDate).toDateString());
-            $("#career1").modal('show');
-            $(".remarks").html(data.Description);
-
+        function viewDetails(id) {
+            $.ajax({
+                url: '@ViewBag.WebsiteURL' + "/home/Jobs?id=" + id,
+                type: "GET",
+                success: function (data) {
+                    $("#jobTitle").html(data[0].Title);
+                    $(".code").html(data[0].JobCode);
+                    $(".depart").html(data[0].Department);
+                    $(".location").html(data[0].Location);
+                    $(".selector").html(data[0].BusinessSelector);
+                    $(".type").html(data[0].JobType);
+                    $(".positions").html(data[0].Positions);
+                    $(".career").html(data[0].CareerLevel);
+                    $(".education").html(data[0].EducationLevel);
+                    $(".experience").html(data[0].MinExp);
+                    $(".date").html(data[0].SubmissionDate);
+                    $("#career1").modal('show');
+                    $(".remarks").html(data[0].Description);
+                },
+                error: function (error,xhr,state) {
+                    console.log(error, xhr, state);
+                }
+            })
         }
     </script>
  
