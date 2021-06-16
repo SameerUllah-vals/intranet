@@ -29,7 +29,7 @@ namespace LeadManagementSystemV2.Controllers
             if (!filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 string[] requestURL = filterContext.HttpContext.Request.Path.ToString().Split('/');
-                string controllerURL = requestURL[1].ToLower();
+                string controllerURL = requestURL[2].ToLower(); //
                 if (!IsUserLogin())
                 {                   
                     filterContext.Result = new RedirectResult("/");
@@ -40,9 +40,9 @@ namespace LeadManagementSystemV2.Controllers
                     ViewBag.ControllerURL = controllerURL;
                     string menuURL = controllerURL;
                     string actionURL = string.Empty;
-                    if (requestURL.Length > 2)
+                    if (requestURL.Length > 3) //
                     {
-                        actionURL = requestURL[2].ToLower();
+                        actionURL = requestURL[3].ToLower(); //
                         if (actionURL != "importexcel" && actionURL != "exportempty" && actionURL != "export" && actionURL != "add" && actionURL != "edit" && actionURL != "views" && actionURL != "sorting")
                         {
                             menuURL += "/" + actionURL;

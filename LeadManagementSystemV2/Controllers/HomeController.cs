@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -66,13 +67,13 @@ namespace LeadManagementSystemV2.Controllers
             if (model.Jobs == null)
                 model.Jobs = new List<Job>();
 
-            model.Policies = Database.Policies
-           .Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)
-           .OrderByDescending(x => x.CreatedDateTime).ToList();
-            if (model.Policies == null)
-                model.Policies = new List<Policy>();
-            else
-                ViewBag.Policies = model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.DTI).ToList();
+           // model.Policies = Database.Policies
+           //.Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)
+           //.OrderByDescending(x => x.CreatedDateTime).ToList();
+           // if (model.Policies == null)
+           //     model.Policies = new List<Policy>();
+           // else
+           //     ViewBag.Policies = model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.DTI).ToList();
 
 
             model.ServeyResponse = Database.QuestionDetails.Where(x=>x.QuestionsId == model.Servey.ID)
@@ -199,5 +200,11 @@ namespace LeadManagementSystemV2.Controllers
             return View(data);
         }
 
+        public ActionResult Explorer()
+        {
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            return View();
+        }
+       
     }
 }

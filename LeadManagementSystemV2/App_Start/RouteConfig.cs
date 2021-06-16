@@ -18,6 +18,15 @@ namespace LeadManagementSystemV2
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                    name: "Explorer",
+                    url: "Explorer/{*path}",
+                    defaults: new { controller = "Explorer",
+                    action = "Index",
+                    path = UrlParameter.Optional }
+
+                    );
         }
     }
 }

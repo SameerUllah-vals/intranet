@@ -16,7 +16,6 @@
                     <div class="carousel-caption d-none d-md-block">
                         <p>Welcome to</p>
                         <h1>Descon Online Portal</h1>
-
                     </div>
                 </div>
             </div>
@@ -101,38 +100,31 @@
                                 <div class="col-xl-12">
                                     <h3 class="mb-4">
                                         POLICIES
-                                        @{var polixies = Model.Policies.OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
-                                        @if (polixies != null)
-                                        {
-                                            if (polixies.CreatedDateTime.Date == DateTime.Now.Date)
-                                            {
-                                                <span><b class="text-danger">*</b></span>
-                                            }
-                                        }
+                                      
                                     </h3>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/engineering.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a data-toggle="modal" data-target="#Engpolicy" href="#">Engineering Policy</a></h3>
+                                        <h3><a @*data-toggle="modal" data-target="#Engpolicy"*@ href="@Url.Action("explorer")">Engineering Policy</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/power.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a data-toggle="modal" data-target="#Powpolicy" href="">Power Policy</a></h3>
+                                        <h3><a @*data-toggle="modal" data-target="#Powpolicy"*@ href="@Url.Action("explorer")">Power Policy</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/chemical.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a data-toggle="modal" data-target="#Chmpolicy" href="#">Chemical Policy</a></h3>
+                                        <h3><a @*data-toggle="modal" data-target="#Chmpolicy"*@ href="@Url.Action("explorer")">Chemical Policy</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/InspectTest.jpg" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a data-toggle="modal" data-target="#Inspolicy" href="#">InspectTest Policy</a></h3>
+                                        <h3><a data-toggle="modal" data-target="#Inspolicy" href="@Url.Action("explorer")">InspectTest Policy</a></h3>
                                     </div>
                                 </div>
 
@@ -750,202 +742,7 @@
         </div>
     </div>
 </div>
-<!-- Modal For Policy -->
-<div class="modal fade" id="Engpolicy" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title">Engineering Policies</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table id="tblEng" class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Folder</th>
-                                <th scope="col">Policies</th>
-                                <th class="text-center" scope="col">Download</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{var count = 1;}
-                            @foreach (var item in Model.Policies.Where(x=>x.Type == ApplicationHelper.EnumPolicyType.Engineering).ToList())
-                            {
-                                <tr>
-                                    <th class="align-middle" scope="row">@count</th>
-                                    <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
-                                    <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
-                                    <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                                </tr>
-                                count++;
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="Chmpolicy" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title">Chemical Policies</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table id="tblChm" class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Folder</th>
-                                <th scope="col">Policies</th>
-                                <th class="text-center" scope="col">Download</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{var count1 = 1;}
-                            @foreach (var item in Model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.Chemical).ToList())
-                            {
-                                <tr>
-                                    <th class="align-middle" scope="row">@count1</th>
-                                    <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
-                                    <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
-                                    <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                                </tr>
-                                count1++;
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="Inspolicy" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title">Inspect Policies</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table id="tblIns" class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Folder</th>
-                                <th scope="col">Policies</th>
-                                <th class="text-center" scope="col">Download</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{var count2 = 1;}
-                            @foreach (var item in Model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.Inspect).ToList())
-                            {
-                                <tr>
-                                    <th class="align-middle" scope="row">@count2</th>
-                                    <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
-                                    <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
-                                    <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                                </tr>
-                                count2++;
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="Powpolicy" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title">Power Policies</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table id="tblPow" class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Folder</th>
-                                <th scope="col">Policies</th>
-                                <th class="text-center" scope="col">Download</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{var count3 = 1;}
-                            @foreach (var item in Model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.Power).ToList())
-                            {
-                                <tr>
-                                    <th class="align-middle" scope="row">@count3</th>
-                                    <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
-                                    <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
-                                    <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                                </tr>
-                                count3++;
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="dtipolicy" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title">DTI Manuals</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table id="tblPow" class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Folder</th>
-                                <th scope="col">Policies</th>
-                                <th class="text-center" scope="col">Download</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{var count4 = 1;}
-                            @foreach (var item in Model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.DTI).ToList())
-                            {
-                                <tr>
-                                    <th class="align-middle" scope="row">@count4</th>
-                                    <th class="align-middle"><span><i class="fas fa-folder-open"></i>@item.Category</span></th>
-                                    <td class="align-middle"><span class="cursor-pointer">@item.Title</span></td>
-                                    <td class="align-middle text-center"><a href="~/assets/policies/@item.PDF"><i class="fas fa-file-pdf text-danger"></i></a></td>
-                                </tr>
-                                count4++;
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 @section InLineScriptSection{
 
     <script>

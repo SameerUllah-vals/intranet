@@ -69,7 +69,7 @@ namespace LeadManagementSystemV2.Controllers
         }
         public void RolesRecords()
         {
-            ViewBag.RolesRecords = Database.Roles.Where(x => x.ID != EnumRole.SuperAdministrator && x.Status == EnumStatus.Enable && x.IsDeleted==false).ToList().Select(x => new { Value = x.ID, Text = x.Name });
+            ViewBag.RolesRecords = Database.Roles.Where(x => x.Status == EnumStatus.Enable && x.IsDeleted==false).ToList().Select(x => new { Value = x.ID, Text = x.Name });
         }
       
         public UserModel GetRecord(int? id)

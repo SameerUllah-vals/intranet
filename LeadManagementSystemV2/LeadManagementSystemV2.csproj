@@ -262,6 +262,13 @@
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Explorer.aspx.cs">
+      <DependentUpon>Explorer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Explorer.aspx.designer.cs">
+      <DependentUpon>Explorer.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\banners\125570718_154694166375506_25584049230548429_n.jpg" />
@@ -400,6 +407,7 @@
       <DependentUpon>dbProject.edmx</DependentUpon>
       <LastGenOutput>dbProject.cs</LastGenOutput>
     </Content>
+    <Content Include="Explorer.aspx" />
     <Content Include="Views\Home\HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -469,6 +477,7 @@
     <Content Include="Views\Home\ArchivedNotice.cshtml" />
     <Content Include="Views\BusinessApp\Index.cshtml" />
     <Content Include="Views\BusinessApp\Form.cshtml" />
+    <Content Include="Views\Home\Explorer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -478,8 +487,6 @@
     <Folder Include="assets\newsletter\" />
     <Folder Include="assets\policies\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Views\Base\" />
-    <Folder Include="Views\Download\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
