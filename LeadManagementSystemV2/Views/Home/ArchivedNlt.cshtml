@@ -1,0 +1,65 @@
+﻿@model IEnumerable<LeadManagementSystemV2.Models.NewsLetter>
+
+@{
+    ViewBag.Title = "ArchivedNlt";
+    Layout = "~/Views/Shared/_FrontendLayout.cshtml";
+}
+
+<div class="container-fluid spacer-padding">
+    <div class="row" style="
+    padding-top: 6.25rem;
+">
+        <div class="col-xl-12 col-lg-12 col-12">
+
+            <div class="card timeline mb-3 border-0  shadow">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        Archived News Letter
+
+
+                    </h3>
+                    <div class="table-responsive">
+                        <table id="org" class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+
+                                    <th width="200">Image</th>
+                                    <th>Title</th>
+                                    <th>Download</th>
+                                    <th>Created Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="~/assets/newsletter/@item.Image" class="img-responsive" alt="newsletter">
+                                        </td>
+                                        <td>@item.Title</td>
+                                        <td><a href="~/assets/newsletter/@item.PDF" class="card-text download"><i class="fas fa-file-pdf"></i> Download Now</a></td>
+                                        <td>@item.CreatedDateTime.ToString(LeadManagementSystemV2.Helpers.ApplicationHelper.Website_Date_Format)</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section InLineScriptSection{
+
+    <script>
+
+        $('#org').DataTable({
+            "pageLength": 10
+        });
+    </script>
+
+}
+
+

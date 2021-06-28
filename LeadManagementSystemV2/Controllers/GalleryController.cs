@@ -234,12 +234,12 @@ namespace LeadManagementSystemV2.Controllers
                         for (int i = 0; i < Request.Files.Count; i++)
                         {
                             var _file = Request.Files[i];
-                            UploadFiles(_file, Server, Gallery_Image_Path);
+                            string formattedFileName = UploadFiles(_file, Server, Gallery_Image_Path);
                             GalleryDetail details = new GalleryDetail();
                             if (i == 0)
                             {
                                 
-                                Record.Image = Request.Files[i].FileName;
+                                Record.Image = formattedFileName;
                                 details.Title = Record.Title;
 
                             }
@@ -252,7 +252,7 @@ namespace LeadManagementSystemV2.Controllers
                             }
 
                             details.GalleryId = Record.ID;
-                            details.Image = _file.FileName;
+                            details.Image = formattedFileName;
                             details.CreatedDateTime = GetDateTime();
                             Database.GalleryDetails.Add(details);
 
@@ -310,10 +310,9 @@ namespace LeadManagementSystemV2.Controllers
                     foreach (string file in Request.Files)
                     {
                         var _file = Request.Files[file];
-                        UploadFiles(_file, Server, Gallery_Image_Path);
                         GalleryDetail details = new GalleryDetail();
+                        details.Image = UploadFiles(_file, Server, Gallery_Image_Path);                        
                         details.GalleryId = GalleryId;
-                        details.Image = _file.FileName;
                         details.Title = titles[count];
                         details.CreatedDateTime = GetDateTime();
                         Database.GalleryDetails.Add(details);

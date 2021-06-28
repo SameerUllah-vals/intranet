@@ -178,6 +178,34 @@
     <Compile Include="Controllers\PoliciesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
+    <Compile Include="exp2.aspx.cs">
+      <DependentUpon>exp2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="exp2.aspx.designer.cs">
+      <DependentUpon>exp2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="exp3.aspx.cs">
+      <DependentUpon>exp3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="exp3.aspx.designer.cs">
+      <DependentUpon>exp3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="exp4.aspx.cs">
+      <DependentUpon>exp4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="exp4.aspx.designer.cs">
+      <DependentUpon>exp4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="exp5.aspx.cs">
+      <DependentUpon>exp5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="exp5.aspx.designer.cs">
+      <DependentUpon>exp5.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -394,6 +422,10 @@
     <Content Include="assets\Voucher\theViewer.min.js" />
     <Content Include="assets\webfonts\fa-brands-400.svg" />
     <Content Include="assets\webfonts\fa-solid-900.svg" />
+    <Content Include="exp2.aspx" />
+    <Content Include="exp3.aspx" />
+    <Content Include="exp4.aspx" />
+    <Content Include="exp5.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -408,7 +440,6 @@
       <LastGenOutput>dbProject.cs</LastGenOutput>
     </Content>
     <Content Include="Explorer.aspx" />
-    <Content Include="Views\Home\HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -478,6 +509,11 @@
     <Content Include="Views\BusinessApp\Index.cshtml" />
     <Content Include="Views\BusinessApp\Form.cshtml" />
     <Content Include="Views\Home\Explorer.cshtml" />
+    <Content Include="Views\Home\ArchivedNlt.cshtml" />
+    <Content Include="Views\Home\Exp2.cshtml" />
+    <Content Include="Views\Home\Exp3.cshtml" />
+    <Content Include="Views\Home\Exp4.cshtml" />
+    <Content Include="Views\Home\Exp5.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

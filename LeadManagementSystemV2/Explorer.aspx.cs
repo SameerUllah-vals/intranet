@@ -14,7 +14,7 @@ namespace LeadManagementSystemV2.Views.Home
 			scriptManager.RegisterPostBackControl(this.TreeView1);
 			if (!IsPostBack)
 			{				
-				string path = ConfigurationManager.AppSettings["PoliciesPath"].ToString();
+				string path = ConfigurationManager.AppSettings["EngineeringPoliciesPath"].ToString();
 				System.IO.DirectoryInfo RootDir = new System.IO.DirectoryInfo(path);
 
 				// output the directory into a node
@@ -27,7 +27,7 @@ namespace LeadManagementSystemV2.Views.Home
 
 		protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
 		{
-			string filename = ConfigurationManager.AppSettings["PoliciesPath"].ToString() + TreeView1.SelectedNode.ValuePath.Substring(TreeView1.SelectedNode.ValuePath.IndexOf("/")+1);
+			string filename = ConfigurationManager.AppSettings["EngineeringPoliciesPath"].ToString() + TreeView1.SelectedNode.ValuePath.Substring(TreeView1.SelectedNode.ValuePath.IndexOf("/")+1);
 			//string filename = Path.GetFullPath(TreeView1.SelectedValue);
 
 			System.IO.FileInfo file = new System.IO.FileInfo(filename);

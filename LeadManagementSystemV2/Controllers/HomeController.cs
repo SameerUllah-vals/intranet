@@ -24,6 +24,7 @@ namespace LeadManagementSystemV2.Controllers
         }
         public ActionResult Index()
         {
+            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
             ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
             viewModel model = new viewModel();
             model.banner = Database.Banners.Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)
@@ -185,7 +186,12 @@ namespace LeadManagementSystemV2.Controllers
             var data = Database.OrgAnnouncements.Where(x => x.isNoticeBoard == false && x.IsDeleted == false &&x.Status==EnumStatus.Enable).ToList();
             return View(data);
         }
-
+        public ActionResult ArchivedNlt()
+        {
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            var data = Database.NewsLetters.Where(x => x.IsDeleted == false && x.Status == EnumStatus.Enable).ToList();
+            return View(data);
+        }
         public ActionResult ArchivedNews()
         {
             ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
@@ -202,9 +208,37 @@ namespace LeadManagementSystemV2.Controllers
 
         public ActionResult Explorer()
         {
+            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
             ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
             return View();
         }
-       
+
+        public ActionResult Exp2()
+        {
+            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            return View();
+        }
+
+        public ActionResult Exp3()
+        {
+            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            return View();
+        }
+
+        public ActionResult Exp4()
+        {
+            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            return View();
+        }
+
+        public ActionResult Exp5()
+        {
+            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            return View();
+        }
     }
 }

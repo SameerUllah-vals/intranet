@@ -76,7 +76,7 @@ namespace LeadManagementSystemV2.Controllers
             }
             else
             {
-                return Redirect(ViewBag.WebsiteURL + "BusinessApp");
+                return Redirect(ViewBag.WebsiteURL + "BusinessApp");            
             }
         }
         public ActionResult Views(int? id)

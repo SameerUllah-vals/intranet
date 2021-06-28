@@ -315,7 +315,7 @@ namespace LeadManagementSystemV2.Helpers
                     throw new FileFormatException("the file is not supported");
                 }
                  formattedFileName = string.Format("{0}-{1}{2}"
-            , Path.GetFileNameWithoutExtension(file.FileName)
+            , Path.GetFileNameWithoutExtension(file.FileName).Replace(" ","_")
             , Guid.NewGuid().ToString("N")
             , Path.GetExtension(file.FileName));              
                 var path = Path.Combine(Server.MapPath(ImageUploadPath), formattedFileName);

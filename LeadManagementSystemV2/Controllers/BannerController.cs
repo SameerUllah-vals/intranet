@@ -174,8 +174,7 @@ namespace LeadManagementSystemV2.Controllers
                         Record.IsDeleted = false;
                         if(modelRecord.ImageFile != null)
                         {
-                            UploadFiles(modelRecord.ImageFile, Server, Banner_Image_Path);
-                            Record.Image = modelRecord.ImageFile.FileName;
+                            Record.Image = UploadFiles(modelRecord.ImageFile, Server, Banner_Image_Path);                             
                         }
                         if (isRecordWillAdded)
                         {

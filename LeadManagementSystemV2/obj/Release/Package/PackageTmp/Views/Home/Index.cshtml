@@ -12,7 +12,7 @@
         <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <!-- Slide One - Set the background image for this slide in the line below -->
-                <div class="carousel-item active" style="background-image:url(../assets/banners/@Model.banner.Image)">
+                <div class="carousel-item active" style="background-image:url(@ViewBag.WebsiteURL/assets/banners/@Model.banner.Image)">
                     <div class="carousel-caption d-none d-md-block">
                         <p>Welcome to</p>
                         <h1>Descon Online Portal</h1>
@@ -112,19 +112,19 @@
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/power.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a @*data-toggle="modal" data-target="#Powpolicy"*@ href="@Url.Action("explorer")">Power Policy</a></h3>
+                                        <h3><a @*data-toggle="modal" data-target="#Powpolicy"*@ href="@Url.Action("exp2")">Power Policy</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/chemical.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a @*data-toggle="modal" data-target="#Chmpolicy"*@ href="@Url.Action("explorer")">Chemical Policy</a></h3>
+                                        <h3><a @*data-toggle="modal" data-target="#Chmpolicy"*@ href="@Url.Action("exp3")">Chemical Policy</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/InspectTest.jpg" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a data-toggle="modal" data-target="#Inspolicy" href="@Url.Action("explorer")">InspectTest Policy</a></h3>
+                                        <h3><a @*data-toggle="modal" data-target="#Inspolicy"*@ href="@Url.Action("exp4")">InspectTest Policy</a></h3>
                                     </div>
                                 </div>
 
@@ -410,7 +410,7 @@
                                             <td class="align-middle">@item.Location</td>
                                             <td class="align-middle">@item.BusinessSelector</td>
 
-                                            <td class="align-middle"><button type="button" onclick="viewDetails('@item.ID')" class="btn btn-xs btn-primary"><i class="fa fa-eye"></i></button></td>
+                                            <td class="align-middle"><button type="button" onclick="viewDetails('@item.ID')" class="btn btn-xs btn-primary">View</button></td>
                                         </tr>
                                     }
 
@@ -425,7 +425,7 @@
                         <div class="col-12">
                             <div id="newsletter" class="owl-carousel owl-theme owl-loaded owl-drag">
 
-                                @foreach (var item in Model.NewsLetter)
+                                @foreach (var item in Model.NewsLetter.OrderByDescending(x => x.CreatedDateTime).Take(3))
                                 {
                                     <div class="items card border-0  shadow mb-3">
                                         <img src="~/assets/newsletter/@item.Image" class="card-img-top img-fluid" alt="newsletter">
@@ -436,9 +436,11 @@
                                         </div>
                                     </div>
 
-                                    
+
                                 }
+                                <a class="archived-b" href="@Url.Action("ArchivedNlt","Home")">View Archived</a>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -478,14 +480,14 @@
                             {
                                 <a href="@Url.Action("","GalleryDetails",new {id = item.ID })">
                                     <img src="~/assets/gallery/@item.Image" class="card-img-top img-fluid"
-                                         alt="newsletter" style=" width: 503px !important; height: 217px !important;">
+                                         alt="gallery" style=" width: 503px !important; height: 217px !important;">
                                 </a>
                             }
                             else
                             {
                                 <a>
                                     <img src="~/assets/gallery/@item.Image" class="card-img-top img-fluid"
-                                         alt="newsletter" style=" width: 503px !important; height: 217px !important;">
+                                         alt="gallery" style=" width: 503px !important; height: 217px !important;">
                                 </a>
                             }
                             <div class="card-body">

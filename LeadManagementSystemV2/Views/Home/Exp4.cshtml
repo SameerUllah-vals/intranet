@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Inspect Policies";
+    Layout = "~/Views/Shared/_FrontendLayout.cshtml";
+}
+<div class="container-fluid spacer-padding mt-6">
+    <div class="row">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@ViewBag.WebsiteURL/home">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Inspect Policies</li>
+            </ol>
+        </nav>
+
+        <div class="col-xl-12  mb-3">
+            <div class="card border-0 mb-3">
+                <div class="card-body">
+                    <div class="row" style="height:600px">
+                        <div class="col-md-12">
+                            <embed src="@ViewBag.WebsiteURL/exp4.aspx" width="100%" height="100%" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
