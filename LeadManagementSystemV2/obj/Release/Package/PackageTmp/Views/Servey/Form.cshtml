@@ -1,0 +1,297 @@
+﻿@model LeadManagementSystemV2.Models.ServeyMasterModel
+@using LeadManagementSystemV2.Helpers;
+@section LinkStyleSection{
+    @Styles.Render("~/assets/cache/select2style")
+    @Styles.Render("~/assets/cache/datepickerstyle")
+    @Styles.Render("~/assets/cache/datatablestyle")
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" />
+}
+@section LinkScriptSection{
+    @Scripts.Render("~/assets/cache/select2script")
+    @Scripts.Render("~/assets/cache/datepickerscript")
+    @Scripts.Render("~/assets/cache/datatablescript")
+    <script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
+    
+   
+   
+   
+    
+}
+@section InLineScriptSection{
+    <script>
+    @if (ViewBag.PageType == "View")
+    {
+       @:DisableView();
+    }
+
+        function ValidateRequest() {
+
+            let rows = $("#tblQs tbody tr");
+            for (var i = 0; i < rows.length; i++) {
+                var $q = rows.eq(i).find("td:eq(0) input[type=text]");
+                var $o1 = rows.eq(i).find("td:eq(1) input[type=text]");
+                var $o2 = rows.eq(i).find("td:eq(2) input[type=text]");
+                var $o3 = rows.eq(i).find("td:eq(3) input[type=text]");
+                var $o4 = rows.eq(i).find("td:eq(4) input[type=text]");
+                if ($q.val() == "") {
+                    alert('this field is required');
+                    $q.focus();
+                    OnFormComplete();
+                    return false;
+                }
+                else if ($o1.val() == "") {
+                    alert('this field is required');
+                    $o1.focus();
+                    OnFormComplete();
+                    return false;
+                }
+                else if ($o2.val() == "") {
+                    alert('this field is required');
+                    $o2.focus();
+                    OnFormComplete();
+                    return false;
+                }
+                else if ($o3.val() == "") {
+                    alert('this field is required');
+                    $o3.focus();
+                    OnFormComplete();
+                    return false;
+                }
+                else if ($o4.val() == "") {
+                    alert('this field is required');
+                    $o4.focus();
+                    OnFormComplete();
+                    return false;
+                }
+
+            }
+
+        }
+
+        $("#SubDate").change(function () {
+            $("#LastDate").val($(this).val());
+        });
+
+        $(document).ready(function () {
+            $('#SubDate').val(new Date().toDateInputValue());
+            $(document).ready(function () {
+                var groupColumn = 0;
+                var table = $('#ans').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                    "columnDefs": [
+                        { "visible": false, "targets": groupColumn }
+                    ],
+                    "order": [[groupColumn, 'asc']],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({ page: 'current' }).nodes();
+                        var last = null;
+
+                        api.column(groupColumn, { page: 'current' }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before(
+                                    '<tr class="group" style="background-color:#c2f0a1"><td colspan="5">' + group + '</td></tr>'
+                                );
+
+                                last = group;
+                            }
+                        });
+                    }
+
+                });
+
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+                        table.order([groupColumn, 'desc']).draw();
+                    }
+                    else {
+                        table.order([groupColumn, 'asc']).draw();
+                    }
+                });
+            });
+        });
+
+        $("#addMoreQs").click(function () {
+            let Row = $("#tblQs tbody tr").eq($("#tblQs tbody tr").length - 1);
+            let dataId = parseInt(Row.attr("data-id"));
+            dataId++;
+            var newRow = `
+                        <tr data-id='${dataId}'>
+                        <td><input id="ServeyQuestion_${dataId}__ID" name="ServeyQuestion[${dataId}].ID" type="hidden" value="0"></td>
+                        <td><input class="form-control" name="ServeyQuestion[${dataId}].Question" type="text" value=""></td>
+                        <td><input class="form-control" name="ServeyQuestion[${dataId}].opt1" type="text" value=""></td>
+                        <td><input class="form-control" name="ServeyQuestion[${dataId}].opt2" type="text" value=""></td>
+                        <td><input class="form-control" name="ServeyQuestion[${dataId}].opt3" type="text" value=""></td>
+                        <td><input class="form-control" name="ServeyQuestion[${dataId}].opt4" type="text" value=""></td>
+                        <td><button type="button" class="btn btn-danger btn-sm removeQs"><i class="fa fa-trash"></i> Remove</button></td>
+                        </tr>
+            `;
+            Row.after(newRow);
+        })
+
+        $(document).on("click", "button.removeQs", function () {
+            $(this).parent().parent().closest("tr").remove();
+            let Rows = $("#tblQs tbody tr");
+            Rows.each(function (index) {
+                $(this).attr("data-id", index);
+                $(this).find("td:eq(0) input").attr("name", `ServeyQuestion[${index}].ID`); //hidden field
+                $(this).find("td:eq(1) input").attr("name", `ServeyQuestion[${index}].Question`);
+                $(this).find("td:eq(2) input").attr("name", `ServeyQuestion[${index}].opt1`);
+                $(this).find("td:eq(3) input").attr("name", `ServeyQuestion[${index}].opt2`);
+                $(this).find("td:eq(4) input").attr("name", `ServeyQuestion[${index}].opt3`);
+                $(this).find("td:eq(5) input").attr("name", `ServeyQuestion[${index}].opt4`);
+            })
+        });
+    </script>
+}
+@{Html.RenderPartial("BreadCrumb");}
+<!--Page content-->
+<!--===================================================-->
+<div id="page-content">
+    <div class="panel">
+        <!--Block Styled Form -->
+        <!--===================================================-->
+        @using (Ajax.BeginForm("Save", "servey", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Describe the title for this servey <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control", @placeholder = "Title *" })
+                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Last Submission Date<span class="text-danger">*</span></label>
+                            <input type="date" id="SubDate" class="form-control" />
+                            @Html.HiddenFor(x => x.LastDate)
+                            @Html.ValidationMessageFor(m => m.LastDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Status <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
+                              {
+                                new SelectListItem{ Text="Enable", Value = "Enable",Selected=true },
+                                new SelectListItem{ Text="Disable", Value = "Disable" }
+                             }, "Please-Select", new { @class = "form-control select-picker" })
+                            @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <table id="tblQs" class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Question</th>
+                            <th>option</th>
+                            <th>option</th>
+                            <th>option</th>
+                            <th>option</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 0;}
+                        @if (Model.ServeyQuestion.Count > 0)
+                        {
+                            foreach (var item in Model.ServeyQuestion)
+                            {
+                                <tr data-id="@i">
+                                    <td>@Html.Hidden("ServeyQuestion[" + i + "].ID", Model.ServeyQuestion[i].ID)</td>
+                                    <td>@Html.TextBox("ServeyQuestion[" + i + "].Question", Model.ServeyQuestion[i].Question, new { @class = "form-control" })</td>
+                                    <td>@Html.TextBox("ServeyQuestion[" + i + "].opt1", Model.ServeyQuestion[i].opt1, new { @class = "form-control" })</td>
+                                    <td>@Html.TextBox("ServeyQuestion[" + i + "].opt2", Model.ServeyQuestion[i].opt2, new { @class = "form-control" })</td>
+                                    <td>@Html.TextBox("ServeyQuestion[" + i + "].opt3", Model.ServeyQuestion[i].opt3, new { @class = "form-control" })</td>
+                                    <td>@Html.TextBox("ServeyQuestion[" + i + "].opt4", Model.ServeyQuestion[i].opt4, new { @class = "form-control" })</td>
+                                    @if (i == 0)
+                                    {
+                                        <td><button type="button" id="addMoreQs" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add More</button></td>
+                                    }
+                                    else
+                                    {
+                                        <td><button type="button" class="btn btn-danger btn-sm removeQs"><i class="fa fa-trash"></i> Remove</button></td>
+                                    }
+
+                                </tr>
+                                i++;
+                            }
+
+                        }
+                        else
+                        {
+                            <tr data-id="0">
+                                <td>@Html.Hidden("ServeyQuestion[0].ID", 0)</td>
+                                <td>@Html.TextBox("ServeyQuestion[0].Question", null, new { @class = "form-control" })</td>
+                                <td>@Html.TextBox("ServeyQuestion[0].opt1", null, new { @class = "form-control" })</td>
+                                <td>@Html.TextBox("ServeyQuestion[0].opt2", null, new { @class = "form-control" })</td>
+                                <td>@Html.TextBox("ServeyQuestion[0].opt3", null, new { @class = "form-control" })</td>
+                                <td>@Html.TextBox("ServeyQuestion[0].opt4", null, new { @class = "form-control" })</td>
+                                <td><button type="button" id="addMoreQs" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add More</button></td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+
+                <table class="table" id="ans">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Question</th>
+                            <th>Response</th>
+
+                            <th>Date Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var AnswerList in Model.serveyResponseAnswers)
+                        {
+                            @*<tr style="background-color: #c2f0a1 ">
+                                    <th>@AnswerList.Name</th>
+                                    <th>@AnswerList.Email</th>
+                                    <th>@AnswerList.CreatedDate</th>
+                                </tr>*@
+
+                            foreach (var AnwerRecord in AnswerList.serveyReponseAnswer)
+                            {
+                                <tr>
+                                    <td><h5>@AnswerList.Name  @AnswerList.Email - @AnswerList.CreatedDate</h5> </td>
+                                    <td>@AnwerRecord.ServeyQuestion.Question</td>
+                                    <td>@AnwerRecord.Response</td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer text-right">
+                <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
+                <button class="btn btn-success" onclick="return ValidateRequest()" type="submit" tabindex="9">Save</button>
+            </div>
+        }
+        <!--===================================================-->
+        <!--End Block Styled Form -->
+    </div>
+</div>
+<!--===================================================-->
+<!--End page content-->

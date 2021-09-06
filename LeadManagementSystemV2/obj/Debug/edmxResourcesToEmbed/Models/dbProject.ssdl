@@ -23,9 +23,11 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="100" />
-    <Property Name="Url" Type="nvarchar(max)" />
-    <Property Name="Status" Type="nvarchar" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsFooterLink" Type="nvarchar" MaxLength="50" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
     <Property Name="UpdatedDateTime" Type="datetime" />
@@ -277,6 +279,61 @@
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="DeletedBy" Type="int" />
   </EntityType>
+  <EntityType Name="ServeyMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDateTime" Type="datetime" />
+    <Property Name="DeletedDateTime" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="DeletedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="ServeyQuestions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServeyMasterId" Type="int" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="opt1" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="opt2" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="opt3" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="opt4" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDateTime" Type="datetime" />
+    <Property Name="DeletedDateTime" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="DeletedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="ServeyResponseAnswers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServeyResponseMasterId" Type="int" Nullable="false" />
+    <Property Name="QuestionId" Type="int" Nullable="false" />
+    <Property Name="Response" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServeyResponseMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServeyMasterId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="Settings">
     <Key>
       <PropertyRef Name="ID" />
@@ -424,6 +481,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ServeyQuestions_ServeyMaster">
+    <End Role="ServeyMaster" Type="Self.ServeyMaster" Multiplicity="1" />
+    <End Role="ServeyQuestions" Type="Self.ServeyQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServeyMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServeyQuestions">
+        <PropertyRef Name="ServeyMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServeyResponseAnswers_ServeyQuestions">
+    <End Role="ServeyQuestions" Type="Self.ServeyQuestions" Multiplicity="1" />
+    <End Role="ServeyResponseAnswers" Type="Self.ServeyResponseAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServeyQuestions">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServeyResponseAnswers">
+        <PropertyRef Name="QuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServeyResponseAnswers_ServeyResponseMaster">
+    <End Role="ServeyResponseMaster" Type="Self.ServeyResponseMaster" Multiplicity="1" />
+    <End Role="ServeyResponseAnswers" Type="Self.ServeyResponseAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServeyResponseMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServeyResponseAnswers">
+        <PropertyRef Name="ServeyResponseMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServeyResponseMaster_ServeyMaster">
+    <End Role="ServeyMaster" Type="Self.ServeyMaster" Multiplicity="1" />
+    <End Role="ServeyResponseMaster" Type="Self.ServeyResponseMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServeyMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServeyResponseMaster">
+        <PropertyRef Name="ServeyMasterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Users_Roles">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -455,6 +560,10 @@
     <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RolePermissions" EntityType="Self.RolePermissions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServeyMaster" EntityType="Self.ServeyMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServeyQuestions" EntityType="Self.ServeyQuestions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServeyResponseAnswers" EntityType="Self.ServeyResponseAnswers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServeyResponseMaster" EntityType="Self.ServeyResponseMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_GalleryDetails_GalleryDetails" Association="Self.FK_GalleryDetails_GalleryDetails">
@@ -496,6 +605,22 @@
     <AssociationSet Name="FK_RolePermissions_Roles" Association="Self.FK_RolePermissions_Roles">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="RolePermissions" EntitySet="RolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServeyQuestions_ServeyMaster" Association="Self.FK_ServeyQuestions_ServeyMaster">
+      <End Role="ServeyMaster" EntitySet="ServeyMaster" />
+      <End Role="ServeyQuestions" EntitySet="ServeyQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServeyResponseAnswers_ServeyQuestions" Association="Self.FK_ServeyResponseAnswers_ServeyQuestions">
+      <End Role="ServeyQuestions" EntitySet="ServeyQuestions" />
+      <End Role="ServeyResponseAnswers" EntitySet="ServeyResponseAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServeyResponseAnswers_ServeyResponseMaster" Association="Self.FK_ServeyResponseAnswers_ServeyResponseMaster">
+      <End Role="ServeyResponseMaster" EntitySet="ServeyResponseMaster" />
+      <End Role="ServeyResponseAnswers" EntitySet="ServeyResponseAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServeyResponseMaster_ServeyMaster" Association="Self.FK_ServeyResponseMaster_ServeyMaster">
+      <End Role="ServeyMaster" EntitySet="ServeyMaster" />
+      <End Role="ServeyResponseMaster" EntitySet="ServeyResponseMaster" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
       <End Role="Roles" EntitySet="Roles" />

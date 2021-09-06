@@ -168,6 +168,7 @@
     <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\FileManagerController.cs" />
+    <Compile Include="Controllers\FooterLinksController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\GalleryDetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -178,35 +179,9 @@
     <Compile Include="Controllers\NewsLetterController.cs" />
     <Compile Include="Controllers\PoliciesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\ServeyController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
-    <Compile Include="exp2.aspx.cs">
-      <DependentUpon>exp2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="exp2.aspx.designer.cs">
-      <DependentUpon>exp2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="exp3.aspx.cs">
-      <DependentUpon>exp3.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="exp3.aspx.designer.cs">
-      <DependentUpon>exp3.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="exp4.aspx.cs">
-      <DependentUpon>exp4.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="exp4.aspx.designer.cs">
-      <DependentUpon>exp4.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="exp5.aspx.cs">
-      <DependentUpon>exp5.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="exp5.aspx.designer.cs">
-      <DependentUpon>exp5.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,6 +259,18 @@
     <Compile Include="Models\RolePermission.cs">
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ServeyMaster.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServeyQuestion.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServeyResponseAnswer.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServeyResponseMaster.cs">
+      <DependentUpon>dbProject.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Setting.cs">
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
@@ -291,13 +278,6 @@
       <DependentUpon>dbProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Explorer.aspx.cs">
-      <DependentUpon>Explorer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Explorer.aspx.designer.cs">
-      <DependentUpon>Explorer.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\banners\125570718_154694166375506_25584049230548429_n.jpg" />
@@ -329,14 +309,18 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\fonts\nifty-demo-icons67e1.svg" />
     <Content Include="assets\images\loader.gif" />
+    <Content Include="assets\images\loader1.gif" />
     <Content Include="assets\images\loginbg.jpg" />
     <Content Include="assets\images\user-profile.png" />
     <Content Include="assets\img\anc.jpg" />
+    <Content Include="assets\img\asdsadasdasdas.jpg" />
     <Content Include="assets\img\b1.jpg" />
     <Content Include="assets\img\b2.png" />
     <Content Include="assets\img\b3.png" />
     <Content Include="assets\img\chemical-policy.png" />
     <Content Include="assets\img\chemical.png" />
+    <Content Include="assets\img\dti-manual.jpg" />
+    <Content Include="assets\img\dti.jpg" />
     <Content Include="assets\img\engineering.png" />
     <Content Include="assets\img\fav-icon.png" />
     <Content Include="assets\img\flags\iraq.png" />
@@ -347,6 +331,8 @@
     <Content Include="assets\img\flags\saudi.png" />
     <Content Include="assets\img\flags\south-africa-flag.png" />
     <Content Include="assets\img\flags\uae.png" />
+    <Content Include="assets\img\inspect.jpeg" />
+    <Content Include="assets\img\InspectTest.jpg" />
     <Content Include="assets\img\logo.png" />
     <Content Include="assets\img\newsletter-02.jpg" />
     <Content Include="assets\img\newsletter.jpg" />
@@ -382,6 +368,8 @@
     <Content Include="assets\js\nifty.js" />
     <Content Include="assets\js\notify.js" />
     <Content Include="assets\js\script.js" />
+    <Content Include="assets\js\Wizard.js" />
+    <Content Include="assets\js\WizardExtras.js" />
     <Content Include="assets\owl\ajax-loader.gif" />
     <Content Include="assets\owl\owl.carousel.min.css" />
     <Content Include="assets\owl\owl.carousel.min.js" />
@@ -423,10 +411,6 @@
     <Content Include="assets\Voucher\theViewer.min.js" />
     <Content Include="assets\webfonts\fa-brands-400.svg" />
     <Content Include="assets\webfonts\fa-solid-900.svg" />
-    <Content Include="exp2.aspx" />
-    <Content Include="exp3.aspx" />
-    <Content Include="exp4.aspx" />
-    <Content Include="exp5.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fileman\css\images\animated-overlay.gif" />
     <Content Include="fileman\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -716,7 +700,7 @@
       <DependentUpon>dbProject.edmx</DependentUpon>
       <LastGenOutput>dbProject.cs</LastGenOutput>
     </Content>
-    <Content Include="Explorer.aspx" />
+    <Content Include="Views\Home\Explorer.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -807,13 +791,11 @@
     <Content Include="Views\Home\ArchivedNotice.cshtml" />
     <Content Include="Views\BusinessApp\Index.cshtml" />
     <Content Include="Views\BusinessApp\Form.cshtml" />
-    <Content Include="Views\Home\Explorer.cshtml" />
     <Content Include="Views\Home\ArchivedNlt.cshtml" />
-    <Content Include="Views\Home\Exp2.cshtml" />
-    <Content Include="Views\Home\Exp3.cshtml" />
-    <Content Include="Views\Home\Exp4.cshtml" />
-    <Content Include="Views\Home\Exp5.cshtml" />
     <Content Include="Views\FileManager\Index.cshtml" />
+    <Content Include="Views\Settings\Form.cshtml" />
+    <Content Include="Views\Servey\Index.cshtml" />
+    <Content Include="Views\Servey\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -828,6 +810,7 @@
     <Folder Include="fileman\Uploads\Documents\" />
     <Folder Include="fileman\Uploads\FLV\FLV\" />
     <Folder Include="Scripts\" />
+    <Folder Include="Views\FooterLinks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -19,18 +19,37 @@ namespace LeadManagementSystemV2.Controllers
         public HomeController()
         {
             Database = new DbLeadManagementSystemV2Entities();
-            ViewBag.Policies = Database.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.DTI).ToList();
+            ViewBag.Policies = Database.Policies.Where(x => x.Type == EnumPolicyType.DTI).ToList();
+            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
 
         }
         public ActionResult Index()
         {
-            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
             viewModel model = new viewModel();
+            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
+            settings _setting = new settings();
+            _setting.announcementDisplay = string.IsNullOrEmpty(GetSettingContentByName(EnumDisplaySetting.Announce)) ? 1
+                : Convert.ToInt32(GetSettingContentByName(EnumDisplaySetting.Announce));
+            _setting.newsDisplay = string.IsNullOrEmpty(GetSettingContentByName(EnumDisplaySetting.News)) ? 1
+                : Convert.ToInt32(GetSettingContentByName(EnumDisplaySetting.News));
+            _setting.noticeDisplay = string.IsNullOrEmpty(GetSettingContentByName(EnumDisplaySetting.Notice)) ? 1
+                : Convert.ToInt32(GetSettingContentByName(EnumDisplaySetting.Notice));
+            model.setting = _setting;
+
+            model.LatestNews = Database.LatestNews
+             .Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)
+             .OrderByDescending(x => x.CreatedDateTime).ToList();
+            if (model.LatestNews == null)
+                model.LatestNews = new List<LatestNew>();
+
             model.banner = Database.Banners.Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)
-                .OrderByDescending(x=>x.CreatedDateTime).FirstOrDefault();
+                .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();
             if (model.banner == null)
                 model.banner = new Banner();
+            foreach (var item in model.LatestNews.Take(model.setting.newsDisplay))
+            {
+                model.banner.Ticker += item.Title + $". ({item.CreatedDateTime}) ";
+            }
 
             model.OrgAnoouncement = Database.OrgAnnouncements
                 .Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)
@@ -44,23 +63,24 @@ namespace LeadManagementSystemV2.Controllers
             if (model.Galleries == null)
                 model.Galleries = new List<Gallery>();
 
-            model.LatestNews = Database.LatestNews
-                .Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)
-                .OrderByDescending(x => x.CreatedDateTime).ToList();
-            if (model.LatestNews == null)
-                model.LatestNews = new List<LatestNew>();
+         
 
+           
             model.NewsLetter = Database.NewsLetters
                 .Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)
                 .OrderByDescending(x => x.CreatedDateTime).ToList();
             if (model.NewsLetter == null)
                 model.NewsLetter = new List<NewsLetter>();
 
-            model.Servey = Database.Questions
-            .Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false && x.isDefault == true &&  DbFunctions.TruncateTime(DateTime.Now) <= DbFunctions.TruncateTime(x.SubmissionDate))
-            .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();
-            if (model.Servey == null)
-                model.Servey = new Question();
+            //model.Servey = Database.Questions
+            //.Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false && x.isDefault == true &&  DbFunctions.TruncateTime(DateTime.Now) <= DbFunctions.TruncateTime(x.SubmissionDate))
+            //.OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();
+            //if (model.Servey == null)
+            //    model.Servey = new Question();
+
+            var serveyMasterRecord = Database.ServeyMasters.OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();
+            model.Servey.ID = serveyMasterRecord.ID;
+            model.Servey.Questions = Database.ServeyQuestions.Where(x => x.ServeyMasterId.Equals(serveyMasterRecord.ID) && x.IsDeleted.Equals(false)).ToList();
 
             model.Jobs = Database.Jobs
             .Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)
@@ -77,11 +97,12 @@ namespace LeadManagementSystemV2.Controllers
            //     ViewBag.Policies = model.Policies.Where(x => x.Type == ApplicationHelper.EnumPolicyType.DTI).ToList();
 
 
-            model.ServeyResponse = Database.QuestionDetails.Where(x=>x.QuestionsId == model.Servey.ID)
-         .OrderByDescending(x => x.CreatedDateTime).ToList();
-            if (model.ServeyResponse == null)
-                model.ServeyResponse = new List<QuestionDetail>();
+         //   model.ServeyResponse = Database.QuestionDetails.Where(x=>x.QuestionsId == model.Servey.ID)
+         //.OrderByDescending(x => x.CreatedDateTime).ToList();
+         //   if (model.ServeyResponse == null)
+         //       model.ServeyResponse = new List<QuestionDetail>();
 
+     
             return View(model);
         }
 
@@ -182,63 +203,105 @@ namespace LeadManagementSystemV2.Controllers
 
         public ActionResult ArchivedOrg()
         {
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
             var data = Database.OrgAnnouncements.Where(x => x.isNoticeBoard == false && x.IsDeleted == false &&x.Status==EnumStatus.Enable).ToList();
             return View(data);
         }
         public ActionResult ArchivedNlt()
         {
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
             var data = Database.NewsLetters.Where(x => x.IsDeleted == false && x.Status == EnumStatus.Enable).ToList();
             return View(data);
         }
         public ActionResult ArchivedNews()
         {
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
             var data = Database.LatestNews.Where(x => x.IsDeleted == false && x.Status == EnumStatus.Enable).ToList();
             return View(data);
         }
 
         public ActionResult ArchivedNotice()
         {
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
             var data = Database.OrgAnnouncements.Where(x => x.isNoticeBoard == true && x.IsDeleted == false && x.Status == EnumStatus.Enable).ToList();
             return View(data);
         }
 
-        public ActionResult Explorer()
+        public ActionResult Explorer(string type)
         {
+            AddCookie("policy", type);
             ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
             return View();
         }
 
-        public ActionResult Exp2()
+        public ActionResult ServeyResponse(FormCollection form)
         {
-            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
-            return View();
+            AjaxResponse ajaxResponse = new AjaxResponse();
+            ajaxResponse.Success = false;
+            ajaxResponse.Type = EnumJQueryResponseType.MessageOnly;
+            ajaxResponse.Message = "Response is not in authentic format";
+            TempData["error"] = ajaxResponse.Message;
+            TempData["success"] = null;
+
+            try
+            {
+                var QuestionIdsArray = string.IsNullOrEmpty(form.Get("ServeyQuestionId")) ? null : form.Get("ServeyQuestionId").Split(',');
+                if (QuestionIdsArray != null)
+                {
+                    ServeyResponseMaster serveyResponseMasterRecord = new ServeyResponseMaster();
+                    serveyResponseMasterRecord.ServeyMasterId = Convert.ToInt32(form.Get("ServeyMasterId"));
+                    serveyResponseMasterRecord.Name = string.IsNullOrEmpty(form.Get("Name")) ? "(Unknown)" : form.Get("Name");
+                    serveyResponseMasterRecord.EmailAddress = string.IsNullOrEmpty(form.Get("Email")) ? "(Unknown)" : form.Get("Email");
+                    serveyResponseMasterRecord.CreatedDateTime = GetDateTime();
+                    Database.ServeyResponseMasters.Add(serveyResponseMasterRecord);
+                    Database.SaveChanges();
+                    foreach (var QuestionId in QuestionIdsArray)
+                    {
+                        var Answer = form.Get("[" + QuestionId + "].Answer");
+                        ServeyResponseAnswer serveyResponseAnswerRecord = new ServeyResponseAnswer();
+                        serveyResponseAnswerRecord.ServeyResponseMasterId = serveyResponseMasterRecord.ID;
+                        serveyResponseAnswerRecord.QuestionId = Convert.ToInt32(QuestionId);
+                        serveyResponseAnswerRecord.Response = Answer;
+                        Database.ServeyResponseAnswers.Add(serveyResponseAnswerRecord);
+                        Database.SaveChanges();
+                    }
+                    ajaxResponse.Message = "Thanks! Your response is submitted";
+                    TempData["success"] = ajaxResponse.Message;
+                    TempData["error"] = null;
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+
+                ajaxResponse.Message = ex.Message;
+                TempData["error"] = ajaxResponse.Message;
+                TempData["success"] = null;
+            }
+
+
+            return RedirectToAction("index");
         }
 
-        public ActionResult Exp3()
-        {
-            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
-            return View();
-        }
+        //public ActionResult Exp2()
+        //{
+        //    ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
+        //    return View();
+        //}
 
-        public ActionResult Exp4()
-        {
-            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
-            return View();
-        }
+        //public ActionResult Exp3()
+        //{
+        //    ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
+        //    return View();
+        //}
 
-        public ActionResult Exp5()
-        {
-            ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
-            return View();
-        }
+        //public ActionResult Exp4()
+        //{
+        //    ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
+        //    return View();
+        //}
+
+        //public ActionResult Exp5()
+        //{
+        //    ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
+        //    return View();
+        //}
     }
 }

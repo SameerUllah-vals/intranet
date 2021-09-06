@@ -1,4 +1,5 @@
 ﻿using LeadManagementSystemV2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -22,14 +23,19 @@ namespace LeadManagementSystemV2.Controllers
             //    ViewBag.Notification = Database.Leads.Where(x => x.IsDeleted.Equals(false) && x.UserID.Equals(CurrentUserRecord.ID) && System.Data.Entity.DbFunctions.TruncateTime(x.ReminderDate) == System.Data.Entity.DbFunctions.TruncateTime(TodayDate)).ToList();
             //}
             ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
+            
             ViewBag.jQuery_Date_Time_Format = jQuery_Date_Time_Format;
             ViewBag.jQuery_Date_Format = jQuery_Date_Format;
             ViewBag.Website_Date_Time_Format = Website_Date_Time_Format;
             ViewBag.Website_Date_Format = Website_Date_Format;
+            int index = 2;
+            var domainType = GetSettingContentByName("DomainType");
+            if (domainType == EnumDomainType.SubDomain)
+                index = 3;
             if (!filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 string[] requestURL = filterContext.HttpContext.Request.Path.ToString().Split('/');
-                string controllerURL = requestURL[2].ToLower(); //
+                string controllerURL = requestURL[index - 1].ToLower(); //
                 if (!IsUserLogin())
                 {                   
                     filterContext.Result = new RedirectResult("/");
@@ -40,9 +46,10 @@ namespace LeadManagementSystemV2.Controllers
                     ViewBag.ControllerURL = controllerURL;
                     string menuURL = controllerURL;
                     string actionURL = string.Empty;
-                    if (requestURL.Length > 3) //
+                   
+                    if (requestURL.Length > index) //
                     {
-                        actionURL = requestURL[3].ToLower(); //
+                        actionURL = requestURL[index].ToLower(); //
                         if (actionURL != "importexcel" && actionURL != "exportempty" && actionURL != "export" && actionURL != "add" && actionURL != "edit" && actionURL != "views" && actionURL != "sorting")
                         {
                             menuURL += "/" + actionURL;

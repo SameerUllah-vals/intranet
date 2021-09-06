@@ -65,6 +65,18 @@ namespace LeadManagementSystemV2.Helpers
             public const string RedirectWithDelay = "TD";
             public const string MessageAndReloadWithDelay = "M-RLD";
         }
+
+        public static class EnumDisplaySetting
+        {
+            public const string Notice = "NoticeDisplay";
+            public const string News = "LatestNewsDisplay";
+            public const string Announce = "AnnouncementDisplay";
+        }
+        public static class EnumDomainType
+        {
+            public const string Domain = "domain";
+            public const string SubDomain = "subdomain";
+        }
         public static class EnumRole
         {
             public const int SuperAdministrator = 1;
@@ -104,6 +116,11 @@ namespace LeadManagementSystemV2.Helpers
             public const string VisitingOffice = "Visiting Office";
         }
 
+        public static class EnumLinkType
+        {
+            public const string BusinessApps = "BA";
+            public const string Footer = "Footer";
+        }
         public static class EnumPolicyType
         {
             public const string Engineering = "Engineering";

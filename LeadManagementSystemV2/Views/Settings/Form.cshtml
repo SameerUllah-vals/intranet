@@ -1,0 +1,47 @@
+﻿@model LeadManagementSystemV2.Models.settings
+@{Html.RenderPartial("BreadCrumb");}
+<div id="page-content">
+    <div class="panel">
+        <div class="panel-body">
+
+            @using (Ajax.BeginForm("Save", "settings", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure",UpdateTargetId="up"}))
+            {
+                @Html.AntiForgeryToken()
+                <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Panels</th>
+                            <th>Numers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <th>How many <span class="text-danger">Latest News</span> boxes you want to display?</th>
+                            <td>@Html.TextBoxFor(model => model.newsDisplay, new {@class="form-control",type="number" })</td>
+                        </tr>
+                        <tr>
+                            <th>How many <span class="text-danger">Anouncements</span> rows you want to display?</th>
+                            <td>@Html.TextBoxFor(model => model.announcementDisplay, new { @class = "form-control", type = "number" })</td>
+
+                        </tr>
+                        <tr>
+                            <th>How many <span class="text-danger">Notices</span> you want to display in board?</th>
+                            <td>@Html.TextBoxFor(model => model.noticeDisplay, new { @class = "form-control", type = "number" })</td>
+
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"><input type="submit" id="btnSave" value="Save Changes" class="btn btn-success pull-right" /></td>
+                        </tr>
+                     
+                    </tfoot>
+                </table>
+            }
+        </div>
+    </div>
+    <!--===================================================-->
+    <!-- End Striped Table -->
+</div>
+

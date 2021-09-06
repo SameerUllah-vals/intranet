@@ -15,6 +15,17 @@
        @:DisableView();
     }
 
+        $("#IsFooterLink").change(function () {
+            if ($(this).val() == "Footer") {
+                $("#Category").attr("disabled", true);
+                $("#Category").val("-");
+            }
+            else {
+                $("#Category").attr("disabled", false);
+
+            }
+        })
+
         
     </script>
 }
@@ -31,7 +42,33 @@
             @Html.HiddenFor(m => m.ID)
             <div class="panel-body">
                 <div class="row">
-
+                    
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Is Footer Link? <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.IsFooterLink, new List<SelectListItem>
+                                 {
+                                     new SelectListItem{ Text="Business Apps", Value = "BA" },
+                                     new SelectListItem{ Text="Footer", Value = "Footer" },
+                                  }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.IsFooterLink, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Category <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(m => m.Category, new List<SelectListItem>
+                                {
+                                    new SelectListItem{ Text="-Select-", Value = "-" },
+                                    new SelectListItem{ Text="Chemical", Value = "Chemical" },
+                                    new SelectListItem{ Text="Engineering", Value = "Engineering" },
+                                    new SelectListItem{ Text="Inspect", Value = "Inspect" },
+                                    new SelectListItem{ Text="Power", Value = "Power" },
+                                    new SelectListItem{ Text="SAP", Value = "SAP" },
+                                 }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label">Name <span class="text-danger">*</span></label>
@@ -40,13 +77,16 @@
                         </div>
                     </div>
 
+
+
+
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label">Url<span class="text-danger">*</span></label>
                             @Html.TextBoxFor(m => m.Url, null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Url, "", new { @class = "text-danger" })
                         </div>
-                    </div>                 
+                    </div>
 
                 </div>
                 <div class="panel-footer text-right">

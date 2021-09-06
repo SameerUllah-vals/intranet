@@ -37,7 +37,7 @@ namespace LeadManagementSystemV2.Controllers
             dataSource = dataSource.SortBy(param.SortOrder).Skip(param.Start).Take(param.Length);
             var resultList = dataSource.ToList();
             var resultData = from x in resultList
-                             select new { x.ID, x.Name, x.Url,x.Status , CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Name, x.Category , x.IsFooterLink , x.Url,x.Status , CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
             var result = new
             {
                 draw = param.Draw,
@@ -56,6 +56,8 @@ namespace LeadManagementSystemV2.Controllers
             {
                 Model.ID = Record.ID;
                 Model.Name = Record.Name;
+                Model.Category = Record.Category;
+                Model.IsFooterLink = Record.IsFooterLink;
                 Model.Url = Record.Url;
                 Model.Status = Record.Status;
             }
@@ -162,6 +164,8 @@ namespace LeadManagementSystemV2.Controllers
                             isRecordWillAdded = true;
                         }
                         Record.Name = modelRecord.Name;
+                        Record.Category = modelRecord.Category;
+                        Record.IsFooterLink = modelRecord.IsFooterLink;
                         Record.Url = modelRecord.Url;
                         Record.Status = EnumStatus.Enable;
                         Record.IsDeleted = false;

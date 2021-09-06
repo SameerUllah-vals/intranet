@@ -41,9 +41,13 @@ namespace LeadManagementSystemV2.Models
         public virtual DbSet<Policy> Policies { get; set; }
         public virtual DbSet<QuestionDetail> QuestionDetails { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
-        public virtual DbSet<BusinessApplication> BusinessApplications { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<OrgAnnouncement> OrgAnnouncements { get; set; }
         public virtual DbSet<OrgAnnouncementDetail> OrgAnnouncementDetails { get; set; }
+        public virtual DbSet<BusinessApplication> BusinessApplications { get; set; }
+        public virtual DbSet<ServeyMaster> ServeyMasters { get; set; }
+        public virtual DbSet<ServeyQuestion> ServeyQuestions { get; set; }
+        public virtual DbSet<ServeyResponseAnswer> ServeyResponseAnswers { get; set; }
+        public virtual DbSet<ServeyResponseMaster> ServeyResponseMasters { get; set; }
     }
 }

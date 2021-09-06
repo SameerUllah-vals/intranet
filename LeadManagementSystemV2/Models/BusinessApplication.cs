@@ -16,6 +16,8 @@ namespace LeadManagementSystemV2.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public string Category { get; set; }
+        public string IsFooterLink { get; set; }
         public string Url { get; set; }
         public string Status { get; set; }
         public bool IsDeleted { get; set; }

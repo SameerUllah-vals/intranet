@@ -179,6 +179,36 @@ namespace LeadManagementSystemV2.Models
     }
 
 
+    public class ServeyMasterModel 
+    {
+        public int Id { get; set; }
+        [Required (ErrorMessage = "this field is required")]
+        public string Title { get; set; }
+        public string Status { get; set; }
+
+        [Required(ErrorMessage = "this field is required")]
+
+        public string LastDate { get; set; }
+
+        public List<ServeyQuestion> ServeyQuestion { get; set; } = new List<ServeyQuestion>();
+        public List<ServeyResponseMaster> serveyResponseMasters { get; set; } = new List<ServeyResponseMaster>(); 
+        public List<ServeyResponseShowModel> serveyResponseAnswers { get; set; } = new List<ServeyResponseShowModel>();
+    }
+    public class ServeyResponseShowModel 
+    {
+        public List<ServeyResponseAnswer> serveyReponseAnswer { get; set; } = new List<ServeyResponseAnswer>();
+        public string Name{ get; set; }
+        public string Email{ get; set; }
+        public DateTime CreatedDate{ get; set; }
+    }
+
+    public class ResponseMasterModel
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public List<ServeyQuestion> Questions { get; set; } = new List<ServeyQuestion>();
+    }
     public class QuestionModel
     {
         public int ID { get; set; }
@@ -299,7 +329,14 @@ namespace LeadManagementSystemV2.Models
     public class BusinessAppModel
     {
         public int ID { get; set; }
+        [Required]
+
         public string Name { get; set; }
+        [Required]
+        public string Category { get; set; }
+        [Required]
+
+        public string IsFooterLink { get; set; }
         public string Url { get; set; }
         public string Status { get; set; }
     }
@@ -355,11 +392,10 @@ namespace LeadManagementSystemV2.Models
         public IEnumerable<Gallery> Galleries { get; set; }
         public IEnumerable<LatestNew> LatestNews { get; set; }
         public IEnumerable<NewsLetter> NewsLetter { get; set; }
-        public Question Servey { get; set; }
-        public IEnumerable<QuestionDetail> ServeyResponse { get; set; }
         public IEnumerable<Job> Jobs { get; set; }
         public IEnumerable<Policy> Policies { get; set; }
-
+        public settings setting { get; set; } = new settings();
+        public ResponseMasterModel Servey { get; set; } = new ResponseMasterModel();
     }
 
     public class DirModel
@@ -385,6 +421,13 @@ namespace LeadManagementSystemV2.Models
             dirModelList = _dirModelList;
             fileModelList = _fileModelList;
         }
+    }
+
+    public class settings
+    {
+        public int  noticeDisplay{ get; set; }
+        public int  newsDisplay{ get; set; }
+        public int  announcementDisplay{ get; set; }
     }
 
 }

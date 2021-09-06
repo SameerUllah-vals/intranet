@@ -28,9 +28,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="100" />
-          <Property Name="Url" Type="nvarchar(max)" />
-          <Property Name="Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsFooterLink" Type="nvarchar" MaxLength="50" />
+          <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
           <Property Name="UpdatedDateTime" Type="datetime" />
@@ -282,6 +284,61 @@
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="DeletedBy" Type="int" />
         </EntityType>
+        <EntityType Name="ServeyMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="DeletedDateTime" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="DeletedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="ServeyQuestions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServeyMasterId" Type="int" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="opt1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="opt2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="opt3" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="opt4" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="DeletedDateTime" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="DeletedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="ServeyResponseAnswers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServeyResponseMasterId" Type="int" Nullable="false" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="Response" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServeyResponseMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServeyMasterId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Settings">
           <Key>
             <PropertyRef Name="ID" />
@@ -429,6 +486,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ServeyQuestions_ServeyMaster">
+          <End Role="ServeyMaster" Type="Self.ServeyMaster" Multiplicity="1" />
+          <End Role="ServeyQuestions" Type="Self.ServeyQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServeyMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServeyQuestions">
+              <PropertyRef Name="ServeyMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServeyResponseAnswers_ServeyQuestions">
+          <End Role="ServeyQuestions" Type="Self.ServeyQuestions" Multiplicity="1" />
+          <End Role="ServeyResponseAnswers" Type="Self.ServeyResponseAnswers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServeyQuestions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServeyResponseAnswers">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServeyResponseAnswers_ServeyResponseMaster">
+          <End Role="ServeyResponseMaster" Type="Self.ServeyResponseMaster" Multiplicity="1" />
+          <End Role="ServeyResponseAnswers" Type="Self.ServeyResponseAnswers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServeyResponseMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServeyResponseAnswers">
+              <PropertyRef Name="ServeyResponseMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServeyResponseMaster_ServeyMaster">
+          <End Role="ServeyMaster" Type="Self.ServeyMaster" Multiplicity="1" />
+          <End Role="ServeyResponseMaster" Type="Self.ServeyResponseMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServeyMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServeyResponseMaster">
+              <PropertyRef Name="ServeyMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_Roles">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -460,6 +565,10 @@
           <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolePermissions" EntityType="Self.RolePermissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServeyMaster" EntityType="Self.ServeyMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServeyQuestions" EntityType="Self.ServeyQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServeyResponseAnswers" EntityType="Self.ServeyResponseAnswers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServeyResponseMaster" EntityType="Self.ServeyResponseMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_GalleryDetails_GalleryDetails" Association="Self.FK_GalleryDetails_GalleryDetails">
@@ -501,6 +610,22 @@
           <AssociationSet Name="FK_RolePermissions_Roles" Association="Self.FK_RolePermissions_Roles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="RolePermissions" EntitySet="RolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServeyQuestions_ServeyMaster" Association="Self.FK_ServeyQuestions_ServeyMaster">
+            <End Role="ServeyMaster" EntitySet="ServeyMaster" />
+            <End Role="ServeyQuestions" EntitySet="ServeyQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServeyResponseAnswers_ServeyQuestions" Association="Self.FK_ServeyResponseAnswers_ServeyQuestions">
+            <End Role="ServeyQuestions" EntitySet="ServeyQuestions" />
+            <End Role="ServeyResponseAnswers" EntitySet="ServeyResponseAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServeyResponseAnswers_ServeyResponseMaster" Association="Self.FK_ServeyResponseAnswers_ServeyResponseMaster">
+            <End Role="ServeyResponseMaster" EntitySet="ServeyResponseMaster" />
+            <End Role="ServeyResponseAnswers" EntitySet="ServeyResponseAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServeyResponseMaster_ServeyMaster" Association="Self.FK_ServeyResponseMaster_ServeyMaster">
+            <End Role="ServeyMaster" EntitySet="ServeyMaster" />
+            <End Role="ServeyResponseMaster" EntitySet="ServeyResponseMaster" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
             <End Role="Roles" EntitySet="Roles" />
@@ -730,13 +855,33 @@
             <End Role="Question" EntitySet="Questions" />
             <End Role="QuestionDetail" EntitySet="QuestionDetails" />
           </AssociationSet>
-          <EntitySet Name="BusinessApplications" EntityType="dbProjectModel.BusinessApplication" />
           <EntitySet Name="Events" EntityType="dbProjectModel.Event" />
           <EntitySet Name="OrgAnnouncements" EntityType="dbProjectModel.OrgAnnouncement" />
           <EntitySet Name="OrgAnnouncementDetails" EntityType="dbProjectModel.OrgAnnouncementDetail" />
           <AssociationSet Name="FK_OrgAnnouncementDetails_OrgAnnouncement" Association="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement">
             <End Role="OrgAnnouncement" EntitySet="OrgAnnouncements" />
             <End Role="OrgAnnouncementDetail" EntitySet="OrgAnnouncementDetails" />
+          </AssociationSet>
+          <EntitySet Name="BusinessApplications" EntityType="dbProjectModel.BusinessApplication" />
+          <EntitySet Name="ServeyMasters" EntityType="dbProjectModel.ServeyMaster" />
+          <EntitySet Name="ServeyQuestions" EntityType="dbProjectModel.ServeyQuestion" />
+          <AssociationSet Name="FK_ServeyQuestions_ServeyMaster" Association="dbProjectModel.FK_ServeyQuestions_ServeyMaster">
+            <End Role="ServeyMaster" EntitySet="ServeyMasters" />
+            <End Role="ServeyQuestion" EntitySet="ServeyQuestions" />
+          </AssociationSet>
+          <EntitySet Name="ServeyResponseAnswers" EntityType="dbProjectModel.ServeyResponseAnswer" />
+          <AssociationSet Name="FK_ServeyResponseAnswers_ServeyQuestions" Association="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions">
+            <End Role="ServeyQuestion" EntitySet="ServeyQuestions" />
+            <End Role="ServeyResponseAnswer" EntitySet="ServeyResponseAnswers" />
+          </AssociationSet>
+          <EntitySet Name="ServeyResponseMasters" EntityType="dbProjectModel.ServeyResponseMaster" />
+          <AssociationSet Name="FK_ServeyResponseMaster_ServeyMaster" Association="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster">
+            <End Role="ServeyMaster" EntitySet="ServeyMasters" />
+            <End Role="ServeyResponseMaster" EntitySet="ServeyResponseMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServeyResponseAnswers_ServeyResponseMaster" Association="dbProjectModel.FK_ServeyResponseAnswers_ServeyResponseMaster">
+            <End Role="ServeyResponseMaster" EntitySet="ServeyResponseMasters" />
+            <End Role="ServeyResponseAnswer" EntitySet="ServeyResponseAnswers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="LatestNewsGalleryLink">
@@ -958,22 +1103,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="BusinessApplication">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="UpdatedBy" Type="Int32" />
-          <Property Name="DeletedBy" Type="Int32" />
-        </EntityType>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="ID" />
@@ -1032,6 +1161,135 @@
             </Principal>
             <Dependent Role="OrgAnnouncementDetail">
               <PropertyRef Name="OrgAnnoucmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BusinessApplication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsFooterLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="DeletedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ServeyMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <NavigationProperty Name="ServeyQuestions" Relationship="dbProjectModel.FK_ServeyQuestions_ServeyMaster" FromRole="ServeyMaster" ToRole="ServeyQuestion" />
+          <NavigationProperty Name="ServeyResponseMasters" Relationship="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster" FromRole="ServeyMaster" ToRole="ServeyResponseMaster" />
+        </EntityType>
+        <EntityType Name="ServeyQuestion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServeyMasterId" Type="Int32" Nullable="false" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="opt1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="opt2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="opt3" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="opt4" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <NavigationProperty Name="ServeyMaster" Relationship="dbProjectModel.FK_ServeyQuestions_ServeyMaster" FromRole="ServeyQuestion" ToRole="ServeyMaster" />
+          <NavigationProperty Name="ServeyResponseAnswers" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions" FromRole="ServeyQuestion" ToRole="ServeyResponseAnswer" />
+        </EntityType>
+        <Association Name="FK_ServeyQuestions_ServeyMaster">
+          <End Type="dbProjectModel.ServeyMaster" Role="ServeyMaster" Multiplicity="1" />
+          <End Type="dbProjectModel.ServeyQuestion" Role="ServeyQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServeyMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServeyQuestion">
+              <PropertyRef Name="ServeyMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ServeyResponseAnswer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServeyResponseMasterId" Type="Int32" Nullable="false" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="Response" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ServeyQuestion" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions" FromRole="ServeyResponseAnswer" ToRole="ServeyQuestion" />
+          <NavigationProperty Name="ServeyResponseMaster" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyResponseMaster" FromRole="ServeyResponseAnswer" ToRole="ServeyResponseMaster" />
+        </EntityType>
+        <Association Name="FK_ServeyResponseAnswers_ServeyQuestions">
+          <End Type="dbProjectModel.ServeyQuestion" Role="ServeyQuestion" Multiplicity="1" />
+          <End Type="dbProjectModel.ServeyResponseAnswer" Role="ServeyResponseAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServeyQuestion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServeyResponseAnswer">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ServeyResponseMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServeyMasterId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ServeyMaster" Relationship="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster" FromRole="ServeyResponseMaster" ToRole="ServeyMaster" />
+          <NavigationProperty Name="ServeyResponseAnswers" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyResponseMaster" FromRole="ServeyResponseMaster" ToRole="ServeyResponseAnswer" />
+        </EntityType>
+        <Association Name="FK_ServeyResponseMaster_ServeyMaster">
+          <End Type="dbProjectModel.ServeyMaster" Role="ServeyMaster" Multiplicity="1" />
+          <End Type="dbProjectModel.ServeyResponseMaster" Role="ServeyResponseMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServeyMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServeyResponseMaster">
+              <PropertyRef Name="ServeyMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServeyResponseAnswers_ServeyResponseMaster">
+          <End Type="dbProjectModel.ServeyResponseMaster" Role="ServeyResponseMaster" Multiplicity="1" />
+          <End Type="dbProjectModel.ServeyResponseAnswer" Role="ServeyResponseAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServeyResponseMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServeyResponseAnswer">
+              <PropertyRef Name="ServeyResponseMasterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1298,23 +1556,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BusinessApplications">
-            <EntityTypeMapping TypeName="dbProjectModel.BusinessApplication">
-              <MappingFragment StoreEntitySet="BusinessApplications">
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
-                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
-                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="dbProjectModel.Event">
               <MappingFragment StoreEntitySet="Events">
@@ -1361,6 +1602,84 @@
               <MappingFragment StoreEntitySet="OrgAnnouncementDetails">
                 <ScalarProperty Name="Files" ColumnName="Files" />
                 <ScalarProperty Name="OrgAnnoucmentID" ColumnName="OrgAnnoucmentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessApplications">
+            <EntityTypeMapping TypeName="dbProjectModel.BusinessApplication">
+              <MappingFragment StoreEntitySet="BusinessApplications">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="IsFooterLink" ColumnName="IsFooterLink" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServeyMasters">
+            <EntityTypeMapping TypeName="dbProjectModel.ServeyMaster">
+              <MappingFragment StoreEntitySet="ServeyMaster">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LastDate" ColumnName="LastDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServeyQuestions">
+            <EntityTypeMapping TypeName="dbProjectModel.ServeyQuestion">
+              <MappingFragment StoreEntitySet="ServeyQuestions">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="opt4" ColumnName="opt4" />
+                <ScalarProperty Name="opt3" ColumnName="opt3" />
+                <ScalarProperty Name="opt2" ColumnName="opt2" />
+                <ScalarProperty Name="opt1" ColumnName="opt1" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="ServeyMasterId" ColumnName="ServeyMasterId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServeyResponseAnswers">
+            <EntityTypeMapping TypeName="dbProjectModel.ServeyResponseAnswer">
+              <MappingFragment StoreEntitySet="ServeyResponseAnswers">
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="ServeyResponseMasterId" ColumnName="ServeyResponseMasterId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServeyResponseMasters">
+            <EntityTypeMapping TypeName="dbProjectModel.ServeyResponseMaster">
+              <MappingFragment StoreEntitySet="ServeyResponseMaster">
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ServeyMasterId" ColumnName="ServeyMasterId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

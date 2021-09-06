@@ -58,7 +58,7 @@
                         <i class="fas fa-bullhorn"></i> NOTICE BOARD
 
                         @{var y = Model.OrgAnoouncement.Where(c => c.isNoticeBoard == true)
-                                                 .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
+                           .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
                         @if (y != null)
                         {
                             if (y.CreatedDateTime.Date == DateTime.Now.Date)
@@ -70,69 +70,69 @@
                     </h3>
                     <ul>
 
-                        @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == true).Take(5).ToList())
+                        @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == true).Take(Model.setting.noticeDisplay).ToList())
                         {
                             <li>
-                                @ApplicationHelper.StripHtmlTags(item.Announcement)
+                                @ApplicationHelper.StripHtmlTags(item.Announcement) <br />(@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Time_Format)
                                 @if (item.OrgAnnouncementDetails.Count > 0)
                                 {
-                                   
-                                        foreach (var file in item.OrgAnnouncementDetails.ToList())
-                                        {
-                                            <a href="@Url.Action("downloadfile","download",new {filepath=file.Files })">View Attachment</a>
-                                        }
 
-                                    
+                                    foreach (var file in item.OrgAnnouncementDetails.ToList())
+                                    {
+                                        <a href="@Url.Action("downloadfile", "download", new { filepath = file.Files })">View Attachment</a>
+                                    }
+
+
                                 }
                             </li>
                         }
 
                     </ul>
-                    <a class="archived-b" href="@Url.Action("ArchivedNotice","Home")">View Archived</a>
+                    <a class="archived-b" href="@Url.Action("ArchivedNotice", "Home")">View Archived</a>
                 </div>
             </div>
             <div class="card mb-3 border-0  shadow policies">
                 <div class="card-body bg-blue">
                     <div class="row">
-                        
+
                         <div class="col-xl-12 col-lg-12 col-12 my-auto">
                             <div class="row ">
                                 <div class="col-xl-12">
                                     <h3 class="mb-4">
                                         POLICIES
-                                      
+
                                     </h3>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/engineering.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a @*data-toggle="modal" data-target="#Engpolicy"*@ href="@Url.Action("explorer")">Engineering Policy</a></h3>
+                                        <h3><a @*data-toggle="modal" data-target="#Engpolicy"*@ href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("engineering") })">Engineering Policy</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/power.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a @*data-toggle="modal" data-target="#Powpolicy"*@ href="@Url.Action("exp2")">Power Policy</a></h3>
+                                        <h3><a @*data-toggle="modal" data-target="#Powpolicy"*@ href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("power") })">Power Policy</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/chemical.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a @*data-toggle="modal" data-target="#Chmpolicy"*@ href="@Url.Action("exp3")">Chemical Policy</a></h3>
+                                        <h3><a @*data-toggle="modal" data-target="#Chmpolicy"*@ href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("chemical") })">Chemical Policy</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/InspectTest.jpg" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a @*data-toggle="modal" data-target="#Inspolicy"*@ href="@Url.Action("exp4")">InspectTest Policy</a></h3>
+                                        <h3><a @*data-toggle="modal" data-target="#Inspolicy"*@ href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("inspect") })">InspectTest Policy</a></h3>
                                     </div>
                                 </div>
 
-                              
+
                                 @*<div class="col-xl-6 col-lg-6 col-12 text-center">
-            <img src="~/assets/img/inspect.jpeg" class="img-fluid full-width mb-3" alt="policy">
-            <h3><a data-toggle="modal" data-target="#dtipolicy" href="#">DTI Manuals</a></h3>
-        </div>*@
+                                        <img src="~/assets/img/inspect.jpeg" class="img-fluid full-width mb-3" alt="policy">
+                                        <h3><a data-toggle="modal" data-target="#dtipolicy" href="#">DTI Manuals</a></h3>
+                                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -254,7 +254,7 @@
                     </div>
                 </div>
             </div>
-         
+
 
 
         </div>
@@ -267,7 +267,7 @@
                         <i class="fas fa-bullhorn"></i> ORGANIZATIONAL ANNOUNCEMENTS
 
                         @{var board = Model.OrgAnoouncement.Where(c => c.isNoticeBoard == false)
-                                        .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
+                  .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
                         @if (board != null)
                         {
                             if (board.CreatedDateTime.Date == DateTime.Now.Date)
@@ -279,7 +279,7 @@
                     </h3>
                     <div id="accordion">
                         @{int i = 0;}
-                        @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == false).Take(5).ToList())
+                        @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == false).Take(Model.setting.announcementDisplay).ToList())
                         {
 
                             <div class="card">
@@ -287,7 +287,7 @@
                                     <h5 class="mb-0">
                                         <button class="btn btn-link" data-toggle="collapse" data-target="#abc_@i" aria-expanded="true"
                                                 aria-controls="@i">
-                                            <i class="fa fa-angle-right"></i> @item.Title
+                                            <i class="fa fa-angle-right"></i> @item.Title <span style="font-size:12px">(@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Time_Format)</span>
                                         </button>
                                     </h5>
                                 </div>
@@ -297,12 +297,12 @@
                                         @Html.Raw(item.Announcement)
                                         @if (item.OrgAnnouncementDetails.Count > 0)
                                         {
-                                        <ul>
-                                            @foreach (var file in item.OrgAnnouncementDetails.ToList())
-                                            {
-                                                <li><a href="@Url.Action("downloadfile","download",new {filepath=file.Files })">View Attachment</a></li>
-                                            }
-                                        </ul>
+                                            <ul>
+                                                @foreach (var file in item.OrgAnnouncementDetails.ToList())
+                                                {
+                                                    <li><a href="@Url.Action("downloadfile", "download", new { filepath = file.Files })">View Attachment</a></li>
+                                                }
+                                            </ul>
 
                                         }
                                     </div>
@@ -311,7 +311,7 @@
                             </div>
                             i++;
                         }
-                        <a class="archived-a" href="@Url.Action("Archivedorg","Home")">View Archived</a>
+                        <a class="archived-a" href="@Url.Action("Archivedorg", "Home")">View Archived</a>
 
                     </div>
 
@@ -334,7 +334,7 @@
                     </h3>
                     <div class="row">
                         <div class="col-12">
-                            @foreach (var item in Model.LatestNews.Take(5))
+                            @foreach (var item in Model.LatestNews.Take(Model.setting.newsDisplay))
                             {
                                 <!-- timeline item 1 -->
                                 <div class="row">
@@ -358,14 +358,14 @@
                                             <div class="card-body">
                                                 <div class="float-right"><small>@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Time_Format)</small></div>
                                                 <h4 class="card-title ">@item.Title</h4>
-                                                @Html.Raw(item.ShortDescription)<a href="@Url.Action("","newsdetails",new {id = item.ID })">Read More</a>
+                                                @Html.Raw(item.ShortDescription)<a href="@Url.Action("", "newsdetails", new { id = item.ID })">Read More</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!--/row-->
                             }
-                            <a class="archived-a" href="@Url.Action("ArchivedNews","Home")">View Archived</a>
+                            <a class="archived-a" href="@Url.Action("ArchivedNews", "Home")">View Archived</a>
                         </div>
                     </div>
                 </div>
@@ -438,9 +438,9 @@
 
 
                                 }
-                                <a class="archived-b" href="@Url.Action("ArchivedNlt","Home")">View Archived</a>
+                                <a class="archived-b" href="@Url.Action("ArchivedNlt", "Home")">View Archived</a>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -449,22 +449,20 @@
         </div>
         <!--Right Column-->
         <!--DTI MANUAL Grid-->
-        
         <!--DTI MANUAL Grid-->
         <!--Gallery Grid-->
-       
         <!--Gallery Grid-->
 
     </div>
 </div>
 <!-- Page Content -->
 @*<div class="container-fluid">
-    <div class="row">
-        <div class="col-xl-12 text-center mb-4 p-0">
-            <a href="#" data-toggle="modal" data-target="#dtipolicy"> <img src="~/assets/img/dti-manual.jpg" class="img-fluid full-width" alt="DTI"></a>
+        <div class="row">
+            <div class="col-xl-12 text-center mb-4 p-0">
+                <a href="#" data-toggle="modal" data-target="#dtipolicy"> <img src="~/assets/img/dti-manual.jpg" class="img-fluid full-width" alt="DTI"></a>
+            </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 <div class="container-fluid">
     <div class="row">
@@ -478,7 +476,7 @@
                             <i class="fas fa-image"></i>
                             @if (item.GalleryDetails.Count > 0)
                             {
-                                <a href="@Url.Action("","GalleryDetails",new {id = item.ID })">
+                                <a href="@Url.Action("", "GalleryDetails", new { id = item.ID })">
                                     <img src="~/assets/gallery/@item.Image" class="card-img-top img-fluid"
                                          alt="gallery" style=" width: 503px !important; height: 217px !important;">
                                 </a>
@@ -505,120 +503,78 @@
 <!--Page Content-->
 @if (Model.Servey.ID > 0)
 {
-<div class="container-fluid">
-    <div class="row">
-        <!--Question Grid-->
-        <div class="col-12 text-center bg-dark-grey question">
-            <h3>
-                QUESTION
-                @if (Model.Servey.CreatedDateTime.Date == DateTime.Now.Date)
-                {
-                    <span><b class="text-danger">*</b></span>
-                }
-            </h3>
-            <p class="mb-0">@Model.Servey.Title</p>
-        </div>
-        <div class="container question-tabs">
+    <div class="container-fluid">
+
+        @using (Ajax.BeginForm("serveyResponse", "home", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "regForm", @autocomplete = "off" }))
+        {
+            @Html.Hidden("ServeyMasterId", Model.Servey.ID)
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="card border-0  shadow mb-3">
-                        <div class="card-body">
-                            <nav>
-                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                    <a class="nav-item nav-link active" id="nav-answer-tab" data-toggle="tab" href="#nav-answer"
-                                       role="tab" aria-controls="nav-home" aria-selected="true">ANSWER</a>
-                                    <a class="nav-item nav-link" id="nav-responses-tab" data-toggle="tab" href="#nav-responses" role="tab"
-                                       aria-controls="nav-responses" aria-selected="false">RESPONSES</a>
-                                </div>
-                            </nav>
-                            <div class="tab-content p-4" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-answer" role="tabpanel" aria-labelledby="nav-answer-tab">
-                                    @using (Ajax.BeginForm("vote", "home", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { enctype = "multipart/form-data" }))
-                                    {
-                                        <input type="hidden" name="QuestionsId" value="@Model.Servey.ID" />
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="opt" id="opt1" value="@Model.Servey.option1" checked>
-                                            <label class="form-check-label" for="opt1">
-                                                @Model.Servey.option1
-                                            </label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="opt" id="opt2" value="@Model.Servey.option2">
-                                            <label class="form-check-label" for="opt2">
-                                                @Model.Servey.option2
-
-                                            </label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="opt" id="opt3" value="@Model.Servey.option3">
-                                            <label class="form-check-label" for="opt3">
-                                                @Model.Servey.option3
-
-                                            </label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="radio" name="opt" id="opt4" value="@Model.Servey.option4">
-                                            <label class="form-check-label" for="opt4">
-                                                @Model.Servey.option4
-
-                                            </label>
-                                        </div>
-                                        <button type="submit" class="btn btn-descon2 mb-2 mt-3">Submit Your Answer</button>
-
-                                    }
-                                </div>
-                                <div class="tab-pane fade" id="nav-responses" role="tabpanel" aria-labelledby="nav-responses-tab">
-                                    <h3 class="text-center">@Model.Servey.Title</h3>
-                                    <hr />
-                                    
-                                    <table class="table table-striped mb-5">
-
-                                        <tbody>
-                                            <tr>
-                                                <td>@Model.Servey.option1 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option1).ToList().Count</b></td>
-                                                <td>@Model.Servey.option2 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option2).ToList().Count</b></td>
-                                                <td>@Model.Servey.option3 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option3).ToList().Count</b></td>
-                                                <td>@Model.Servey.option4 : <b>@Model.ServeyResponse.Where(x => x.Answer == Model.Servey.option4).ToList().Count</b></td>
-                                            </tr>
-
-
-                                        </tbody>
-                                    </table>
-                                    <table class="table responses" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Answers</th>
-                                                <th>Ip Address</th>
-                                                <th>Created Date</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in Model.ServeyResponse)
-                                            {
-                                                <tr>
-                                                    <td>@item.Answer</td>
-                                                    <td>@item.IpAddress</td>
-                                                    <td>@Convert.ToDateTime(item.CreatedDateTime).ToString(ApplicationHelper.Website_Date_Time_Format)</td>
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <small class="float-right mt-5">Last date of submission @Model.Servey.SubmissionDate.ToString(ApplicationHelper.Website_Date_Format)</small>
-                            </div>
-
-                        </div>
+                <div class="col-md-6">
+                    <h1>Your feedback is value able for us:</h1>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Name (optional)</label>
+                        <input placeholder="Name..." class="form-control" name="Name">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Email (optional)</label>
+                        <input placeholder="E-mail..." class="form-control" name="Email">
                     </div>
                 </div>
             </div>
-        </div>
-        <!--Question Grid-->
+
+            foreach (var record in Model.Servey.Questions)
+            {
+                <div class="tab">
+                    <h5>@record.Question @Html.Hidden("ServeyQuestionId", record.ID)</h5>
+                    <hr />
+                    <div class="row justify-content-center">
+                        <div class="col-md-3">
+                            <p><input class="w-input" type="radio" name="[@record.ID].Answer" value="@record.opt1">@record.opt1</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><input class="w-input" type="radio" name="[@record.ID].Answer" value="@record.opt2">@record.opt2</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><input class="w-input" type="radio" name="[@record.ID].Answer" value="@record.opt3">@record.opt3</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><input class="w-input" type="radio" name="[@record.ID].Answer" value="@record.opt4">@record.opt4</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div style="overflow:auto;">
+                <div style="float:right;">
+                    <button class="w-button" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                    <button class="w-button" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                </div>
+            </div>
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+
+                @for (int index = 0; index < Model.Servey.Questions.Count; index++)
+                {
+                    <span class="step"></span>
+                }
+
+            </div>
+
+
+
+        }
+
+
+
     </div>
-</div>
 }
+
 <!--Page Content-->
 <!-- Page Content -->
-<div class="container-fluid spacer-padding">
+<div class="container-fluid spacer-padding" id="pnlCalender">
     <div class="row">
         <!--Calender Grid-->
         <div class="col-12">
@@ -661,7 +617,7 @@
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Date Time</td>
                                 <td class="col-xs-9 table-col2-career eventdatetime"></td>
-                            </tr>                          
+                            </tr>
                             <tr>
                                 <td colspan=2 class="eventremarks">
                                 </td>
@@ -721,7 +677,6 @@
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Education Level</td>
                                 <td class="col-xs-9 table-col2-career education">
-                                  
                                 </td>
                             </tr>
                             <tr>
@@ -734,7 +689,6 @@
                             </tr>
                             <tr>
                                 <td colspan=2 class="remarks">
-                                   
                                 </td>
                             </tr>
                         </tbody>
@@ -748,6 +702,8 @@
 @section InLineScriptSection{
 
     <script>
+       
+
         $('#gallery-slider').owlCarousel({
             loop: true,
             margin: 50,
@@ -820,7 +776,7 @@
 
 
     </script>
-   
+
     <script>
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -831,7 +787,7 @@
                 success: function (response) {
                     console.log(response);
                     $.each(response, function (index, value) {
-                        
+
                         events.push({
                             id : value.ID,
                             title: value.Title,
@@ -871,6 +827,16 @@
                         }
                     });
                     calendar.render();
+
+                    let ishide = true;
+                    events.forEach(function (value, index) {
+                        if (new Date(value.start).getMonth() == new Date().getMonth()) {
+                            ishide = false;
+                        }
+                    })
+                    if (ishide) {
+                        $("#pnlCalender").hide();
+                    }
                 },
                 error: function (errors) {
                     console.log(errors);
@@ -917,8 +883,26 @@
                 }
             })
         }
+
+
+
     </script>
- 
-   
+    @if (TempData["success"] != null)
+    {
+    <script>
+        alertify.set('notifier', 'position', 'top-right');
+        alertify.success('@TempData["success"]');
+    </script>
+    }
+    else if(TempData["error"] != null)
+    {
+    <script>
+        alertify.set('notifier', 'position', 'top-right');
+        alertify.error(@TempData["error"]);
+    </script>
+
+    }
+
+
 }
 

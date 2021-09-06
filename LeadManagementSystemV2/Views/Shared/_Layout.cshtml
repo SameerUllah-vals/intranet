@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <script src="https://cdn.tiny.cloud/1/yb0gz3g478jtg7d59r6dromu375lbz0w7ob9pqpn87teu21m/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
     <script>
         tinymce.init({
             selector: '#editor',
@@ -128,9 +129,9 @@
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                                 <i class="demo-pli-bell"></i>
                                 @*@if (ViewBag.Notification.Count > 0)
-                        {
-                            <span class="badge badge-header badge-danger">@ViewBag.Notification.Count</span>
-                        }*@
+                                    {
+                                        <span class="badge badge-header badge-danger">@ViewBag.Notification.Count</span>
+                                    }*@
                             </a>
 
                             <!--Notification dropdown menu-->
@@ -306,6 +307,7 @@
     <!-- END OF CONTAINER -->
     @Scripts.Render("~/assets/cache/jquery")
     @Scripts.Render("~/assets/cache/core")
+
     @if (IsSectionDefined("LinkScriptSection"))
     {
         @RenderSection("LinkScriptSection");
@@ -323,9 +325,14 @@
         @RenderSection("InLineScriptSection");
     }
     <script>
+      
+
         $(document).ready(function () {
-            $("select").removeClass("select2-hidden-accessible");
-        })
+            $(document).on('contextmenu', 'img', function () {
+                return false;
+            });
+             $("select").removeClass("select2-hidden-accessible");
+          })
 
     </script>
 </body>

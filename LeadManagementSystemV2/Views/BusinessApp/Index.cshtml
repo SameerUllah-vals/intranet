@@ -6,11 +6,11 @@
     {
         //ViewBag.AllowDeleting = true;
     }
-    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Name\"},{\"data\": \"Url\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Name\"},{ \"data\": \"Category\"},{ \"data\": \"IsFooterLink\"},{\"data\": \"Url\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
 
     if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
     {
-        ViewBag.DataTableActionColumn = "5";
+        ViewBag.DataTableActionColumn = "7";
         DataTableColumns += ",{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": false}";
     }
 
@@ -43,6 +43,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Category</th>
+                        <th>Is Footer?</th>
                         <th>Url</th>
                         <th>Status</th>
                         <th class="min-desktop">Created DateTime</th>
