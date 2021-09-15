@@ -64,7 +64,7 @@ namespace LeadManagementSystemV2.Controllers
                     ServeyResponseShowModel serveyReponseShowModel = new ServeyResponseShowModel();
                     serveyReponseShowModel.serveyReponseAnswer = Database.ServeyResponseAnswers.Where(x => x.ServeyResponseMasterId.Equals(record.ID)).ToList();
                     serveyReponseShowModel.Name = record.Name;
-                    serveyReponseShowModel.Name = record.EmailAddress;
+                    serveyReponseShowModel.Email = record.EmailAddress;
                     serveyReponseShowModel.CreatedDate = record.CreatedDateTime;
                     Model.serveyResponseAnswers.Add(serveyReponseShowModel);
                 }
@@ -155,109 +155,115 @@ namespace LeadManagementSystemV2.Controllers
             AjaxResponse.Success = false;
             AjaxResponse.Type = EnumJQueryResponseType.MessageOnly;
             AjaxResponse.Message = "Post Data Not Found";
-            try
+            using (var transaction = Database.Database.BeginTransaction())
             {
-                if (IsUserLogin())
+                try
                 {
-
-                    User CurrentUserRecord = GetUserData();
-                    bool isAbleToUpdate = true;
-                    if (isAbleToUpdate)
+                    if (IsUserLogin())
                     {
-                        bool isRecordWillAdded = false;
-                        ServeyMaster Record = Database.ServeyMasters.FirstOrDefault(x => x.ID == modelRecord.Id && x.IsDeleted == false);
-                        if (Record == null)
+
+                        User CurrentUserRecord = GetUserData();
+                        bool isAbleToUpdate = true;
+                        if (isAbleToUpdate)
                         {
-                            Record = Database.ServeyMasters.Create();
-                            isRecordWillAdded = true;
-                        }
-                        Record.Title = modelRecord.Title;
-                        if (string.IsNullOrEmpty(modelRecord.LastDate))
-                            Record.LastDate = DateTime.Now;
-                        else
-                            Record.LastDate = DateTime.Parse(modelRecord.LastDate);
-                        //if (modelRecord.isDefault)
-                        //{
-                        //    var defaultrecord = Database.Questions.Where(x => x.isDefault == true).FirstOrDefault();
-                        //    if (defaultrecord != null)
-                        //    {
-                        //        defaultrecord.isDefault = false;
-                        //    }
-                        //}
-                        //Record.isDefault = modelRecord.isDefault;
-                        Record.Status = modelRecord.Status;
-                        Record.IsDeleted = false;
-                        if (isRecordWillAdded)
-                        {
-                            Record.CreatedDateTime = GetDateTime();
-                            Record.CreatedBy = CurrentUserRecord.ID;
-                            Database.ServeyMasters.Add(Record);
-                        }
-                        else
-                        {
-                            Record.UpdatedDateTime = GetDateTime();
-                            Record.UpdatedBy = CurrentUserRecord.ID;
-                        }
-                        Database.SaveChanges();
-                        if (modelRecord.ServeyQuestion.Count > 0)
-                        {
-                            var AllQuestionRecords = Database.ServeyQuestions.Where(x => x.ServeyMasterId.Equals(Record.ID) && x.IsDeleted.Equals(false)).ToList();                            
-                            var recordToDelete = AllQuestionRecords.Where(x => !modelRecord.ServeyQuestion.Any(s => s.ID == x.ID)).ToList();
-                            recordToDelete.ForEach(x => x.IsDeleted = true);
-                            Database.SaveChanges();
-                            foreach (var serveyQuestion in modelRecord.ServeyQuestion)
+                            bool isRecordWillAdded = false;
+                            ServeyMaster Record = Database.ServeyMasters.FirstOrDefault(x => x.ID == modelRecord.Id && x.IsDeleted == false);
+                            if (Record == null)
                             {
-                                
-                                if(serveyQuestion.ID > 0)
-                                {
-                                    var serveryQuestionRecord =  AllQuestionRecords.FirstOrDefault(x=>x.ID.Equals(serveyQuestion.ID));
-                                    serveryQuestionRecord.Question = serveyQuestion.Question;
-                                    serveryQuestionRecord.opt1 = serveyQuestion.opt1;
-                                    serveryQuestionRecord.opt2 = serveyQuestion.opt2;
-                                    serveryQuestionRecord.opt3 = serveyQuestion.opt3;
-                                    serveryQuestionRecord.opt4 = serveyQuestion.opt4;
-                                    serveryQuestionRecord.ServeyMasterId = Record.ID;
-                                    serveryQuestionRecord.UpdatedBy = CurrentUserRecord.ID;
-                                    serveryQuestionRecord.UpdatedDateTime = GetDateTime();
-                                    Database.SaveChanges();
-                                }
-                                else
-                                {
-                                    serveyQuestion.ServeyMasterId = Record.ID;
-                                    serveyQuestion.CreatedBy = CurrentUserRecord.ID;
-                                    serveyQuestion.CreatedDateTime = GetDateTime();
-                                    serveyQuestion.IsDeleted = false;
-                                    serveyQuestion.Status = EnumStatus.Enable;
-                                    Database.ServeyQuestions.Add(serveyQuestion);
-                                }
-                               
+                                Record = Database.ServeyMasters.Create();
+                                isRecordWillAdded = true;
+                            }
+                            Record.Title = modelRecord.Title;
+                            if (string.IsNullOrEmpty(modelRecord.LastDate))
+                                Record.LastDate = DateTime.Now;
+                            else
+                                Record.LastDate = DateTime.Parse(modelRecord.LastDate);
+                            //if (modelRecord.isDefault)
+                            //{
+                            //    var defaultrecord = Database.Questions.Where(x => x.isDefault == true).FirstOrDefault();
+                            //    if (defaultrecord != null)
+                            //    {
+                            //        defaultrecord.isDefault = false;
+                            //    }
+                            //}
+                            //Record.isDefault = modelRecord.isDefault;
+                            Record.Status = modelRecord.Status;
+                            Record.IsDeleted = false;
+                            if (isRecordWillAdded)
+                            {
+                                Record.CreatedDateTime = GetDateTime();
+                                Record.CreatedBy = CurrentUserRecord.ID;
+                                Database.ServeyMasters.Add(Record);
+                            }
+                            else
+                            {
+                                Record.UpdatedDateTime = GetDateTime();
+                                Record.UpdatedBy = CurrentUserRecord.ID;
                             }
                             Database.SaveChanges();
+                            if (modelRecord.ServeyQuestion.Count > 0)
+                            {
+                                var AllQuestionRecords = Database.ServeyQuestions.Where(x => x.ServeyMasterId.Equals(Record.ID) && x.IsDeleted.Equals(false)).ToList();
+                                var recordToDelete = AllQuestionRecords.Where(x => !modelRecord.ServeyQuestion.Any(s => s.ID == x.ID)).ToList();
+                                recordToDelete.ForEach(x => x.IsDeleted = true);
+                                Database.SaveChanges();
+                                foreach (var serveyQuestion in modelRecord.ServeyQuestion)
+                                {
+
+                                    if (serveyQuestion.ID > 0)
+                                    {
+                                        var serveryQuestionRecord = AllQuestionRecords.FirstOrDefault(x => x.ID.Equals(serveyQuestion.ID));
+                                        serveryQuestionRecord.Question = serveyQuestion.Question;
+                                        serveryQuestionRecord.opt1 = serveyQuestion.opt1;
+                                        serveryQuestionRecord.opt2 = serveyQuestion.opt2;
+                                        serveryQuestionRecord.opt3 = serveyQuestion.opt3;
+                                        serveryQuestionRecord.opt4 = serveyQuestion.opt4;
+                                        serveryQuestionRecord.ServeyMasterId = Record.ID;
+                                        serveryQuestionRecord.UpdatedBy = CurrentUserRecord.ID;
+                                        serveryQuestionRecord.UpdatedDateTime = GetDateTime();
+                                        Database.SaveChanges();
+                                    }
+                                    else
+                                    {
+                                        serveyQuestion.ServeyMasterId = Record.ID;
+                                        serveyQuestion.CreatedBy = CurrentUserRecord.ID;
+                                        serveyQuestion.CreatedDateTime = GetDateTime();
+                                        serveyQuestion.IsDeleted = false;
+                                        serveyQuestion.Status = EnumStatus.Enable;
+                                        Database.ServeyQuestions.Add(serveyQuestion);
+                                    }
+
+                                }
+                                Database.SaveChanges();
+                            }
+                            AjaxResponse.Type = EnumJQueryResponseType.MessageAndRedirectWithDelay;
+                            AjaxResponse.Message = "Successfully Added.";
+                            AjaxResponse.TargetURL = ViewBag.WebsiteURL + "servey";
+                            AjaxResponse.Success = true;
+                            transaction.Commit();
                         }
+
+
+                    }
+                    else
+                    {
                         AjaxResponse.Type = EnumJQueryResponseType.MessageAndRedirectWithDelay;
-                        AjaxResponse.Message = "Successfully Added.";
-                        AjaxResponse.TargetURL = ViewBag.WebsiteURL + "servey";
-                        AjaxResponse.Success = true;
+                        AjaxResponse.Message = "Session Expired";
+                        AjaxResponse.TargetURL = ViewBag.WebsiteURL;
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    AjaxResponse.Type = EnumJQueryResponseType.MessageAndRedirectWithDelay;
-                    AjaxResponse.Message = "Session Expired";
-                    AjaxResponse.TargetURL = ViewBag.WebsiteURL;
+                    string _catchMessage = ex.Message;
+                    if (ex.InnerException != null)
+                    {
+                        _catchMessage += "<br/>" + ex.InnerException.Message;
+                    }
+                    AjaxResponse.Message = _catchMessage;
+                    transaction.Rollback();
+
                 }
             }
-            catch (Exception ex)
-            {
-                string _catchMessage = ex.Message;
-                if (ex.InnerException != null)
-                {
-                    _catchMessage += "<br/>" + ex.InnerException.Message;
-                }
-                AjaxResponse.Message = _catchMessage;
-
-            }
-
             return Json(AjaxResponse);
         }
 

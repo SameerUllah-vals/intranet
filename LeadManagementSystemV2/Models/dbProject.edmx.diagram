@@ -26,11 +26,9 @@
         <EntityTypeShape EntityType="dbProjectModel.NewsLetter" Width="1.5" PointX="10.375" PointY="5.75" />
         <EntityTypeShape EntityType="dbProjectModel.Policy" Width="1.5" PointX="13.375" PointY="10.75" />
         <EntityTypeShape EntityType="dbProjectModel.QuestionDetail" Width="1.5" PointX="10.625" PointY="2.125" />
-        <EntityTypeShape EntityType="dbProjectModel.Question" Width="1.5" PointX="8.375" PointY="1" />
         <AssociationConnector Association="dbProjectModel.FK_GalleryDetails_GalleryDetails" />
         <AssociationConnector Association="dbProjectModel.FK_LatestNewsGalleryLinks_GalleryDetails" />
         <AssociationConnector Association="dbProjectModel.FK_LatestNewsGalleryLinks_LatestNews" />
-        <AssociationConnector Association="dbProjectModel.FK_QuestionDetail_Question" />
         <EntityTypeShape EntityType="dbProjectModel.Event" Width="1.5" PointX="13.375" PointY="0.75" />
         <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncement" Width="1.5" PointX="12.375" PointY="5.75" />
         <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncementDetail" Width="1.5" PointX="14.625" PointY="6.75" />
@@ -39,10 +37,12 @@
         <EntityTypeShape EntityType="dbProjectModel.ServeyMaster" Width="1.5" PointX="15.375" PointY="12.75" />
         <EntityTypeShape EntityType="dbProjectModel.ServeyQuestion" Width="1.5" PointX="17.625" PointY="14.5" />
         <AssociationConnector Association="dbProjectModel.FK_ServeyQuestions_ServeyMaster" />
-        <EntityTypeShape EntityType="dbProjectModel.ServeyResponseAnswer" Width="1.5" PointX="19.875" PointY="13.125" />
-        <AssociationConnector Association="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions" />
         <EntityTypeShape EntityType="dbProjectModel.ServeyResponseMaster" Width="1.5" PointX="17.625" PointY="11.375" />
         <AssociationConnector Association="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster" />
+        <EntityTypeShape EntityType="dbProjectModel.Question" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="dbProjectModel.ServeyResponseAnswer" Width="1.5" PointX="19.875" PointY="14.625" />
+        <AssociationConnector Association="dbProjectModel.FK_QuestionDetail_Question" />
+        <AssociationConnector Association="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions" />
         <AssociationConnector Association="dbProjectModel.FK_ServeyResponseAnswers_ServeyResponseMaster" />
       </Diagram>
     </edmx:Diagrams>

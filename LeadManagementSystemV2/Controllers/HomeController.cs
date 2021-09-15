@@ -78,9 +78,13 @@ namespace LeadManagementSystemV2.Controllers
             //if (model.Servey == null)
             //    model.Servey = new Question();
 
-            var serveyMasterRecord = Database.ServeyMasters.OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();
-            model.Servey.ID = serveyMasterRecord.ID;
-            model.Servey.Questions = Database.ServeyQuestions.Where(x => x.ServeyMasterId.Equals(serveyMasterRecord.ID) && x.IsDeleted.Equals(false)).ToList();
+            var serveyMasterRecord = Database.ServeyMasters.Where(x=> x.IsDeleted.Equals(false) && x.Status.Equals(EnumStatus.Enable))
+                .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();
+            if(serveyMasterRecord != null)
+            {
+                model.Servey.ID = serveyMasterRecord.ID;
+                model.Servey.Questions = Database.ServeyQuestions.Where(x => x.ServeyMasterId.Equals(serveyMasterRecord.ID) && x.IsDeleted.Equals(false)).ToList();
+            }
 
             model.Jobs = Database.Jobs
             .Where(x => x.Status == EnumStatus.Enable && x.IsDeleted == false)

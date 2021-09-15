@@ -9,7 +9,7 @@ $screen-1400: 1400px;
 $screen-1300: 1300px;
 $screen-1500: 1500px;
 $screen-1850: 1850px;
-$base-font:16px;
+$base-font:14px;
 
 @font-face {
     font-family: 'Font Awesome 5 Free';
@@ -40,7 +40,7 @@ $base-font:16px;
 body {
     background-color: #eeeeee !important;
     font-size: $base-font; 
-    color: #464646;  
+    color: #000000;  
 }
 .no-bg{
     background-color: transparent !important;
@@ -75,12 +75,12 @@ body {
 }
 
 .spacer-padding {
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 6rem;
+    padding-right: 6rem;    
     @media only screen and (max-width:$screen-xl) {
-        padding-left: 2rem;
-    padding-right: 2rem;
-      }
+        padding-left: 3rem;
+        padding-right: 3rem;   
+    }
       @media only screen and (max-width:$screen-lg) {
         padding-right: 15px;
       padding-left: 15px;
@@ -124,27 +124,36 @@ body {
 }
 
 .bg-currency1 {
-    background-color: #f7cf5f;
+    background-color: #8adec7;
     p{
         color: #444444;
+    }
+    .symbol{
+        font-size: 20px;
     }
     h2{
         color: #444444;
     }
 }
 .bg-currency2 {
-    background-color: #8adec7;
+    background-color: #a9b1ec;
     p{
         color: #444444;
+    }
+    .symbol{
+        font-size: 20px;
     }
     h2{
         color: #444444;
     }
 }
 .bg-currency3 {
-    background-color: #71e2e9;
+    background-color: #e9c071;
     p{
         color: #444444;
+    }
+    .symbol{
+        font-size: 20px;
     }
     h2{
         color: #444444;
@@ -176,6 +185,10 @@ nav {
     input{
         box-shadow: none !important;
     }
+    button{
+        box-shadow: none  !important;
+        outline: none !important;
+    }
 }
 #mainNav {
     padding-top: 0.5rem;
@@ -193,7 +206,7 @@ nav {
 }
 header{margin-top: 4.8rem;
 h1{
-    font-size: $base-font + 28px;
+    font-size: $base-font + 22px;
 }
 }
 #mainNav.navbar-shrink {
@@ -247,13 +260,29 @@ h1 {
 }
 h2 {
     font-size: $base-font + 8;
+    @media only screen and (max-width:$screen-xxl) {
+        font-size: $base-font + 2;
+    }
 }
 h3 {
     font-size: $base-font + 6;
+    @media only screen and (max-width:$screen-xxl) {
+        font-size: $base-font + 2;
+    }
 }
 
 h4 {
     font-size: $base-font + 2;
+    @media only screen and (max-width:$screen-xxl) {
+        font-size: $base-font + 1;
+    }
+}
+
+p{
+    margin-bottom: 10px;
+    &:last-child{
+        margin-bottom: 10px;
+    }
 }
 
 .timeline {
@@ -262,13 +291,17 @@ h4 {
     }
 
     p {
-        padding-right: 15rem;
+        padding-right: 15rem;margin-bottom: 10px !important;
         @media only screen and (max-width:$screen-xll) {
-            padding-right: 5rem;
+            padding-right: 0rem;
           }
           @media only screen and (max-width:$screen-lg) {
             padding-right: 0rem;
           }
+    }
+    small{padding-left: 20px;}
+    h4{
+        padding-right: 20px;
     }
 }
 
@@ -283,8 +316,8 @@ h4 {
 }
 
 .download {
-    text-decoration: none !important;
-    color: #464646;
+    text-decoration: none  !important;
+    color: #000000  !important;
 
     i {
         color: #e90303;
@@ -307,7 +340,8 @@ h4 {
 
         a {
             text-decoration: none !important;
-            color: #ffffff;    font-weight: 400;
+            font-weight: 400;
+            color: #ffffff !important;
 
             &:hover {
                 color: #005aff;
@@ -337,17 +371,17 @@ h4 {
     button{       
         &:hover{
             background-color: transparent !important;
-            color: red !important;
+            color: #ffffff !important;
         }
         &:focus{
             background-color: transparent !important;
-            color: red !important;
+            color: #ffffff !important;
             outline: none !important;
         }
     }
     h3{
         @media only screen and (max-width:$screen-1400) {
-           font-size: $base-font + 2;
+           font-size: $base-font + 1;
           } 
     }
 }
@@ -356,6 +390,7 @@ h4 {
 }
 
 table{
+    color: #000000  !important;
     .thead-dark{
         th {
             color: #fff;
@@ -371,19 +406,24 @@ table.dataTable thead th, table.dataTable thead td {
 
 footer{
     a{
-        text-decoration: none !important;
-        display: flex;
-        float: left;
-        margin-right: 18px;
+        
+       
         @media only screen and (max-width:$screen-lg) {
-            text-align: center;
-            display: block !important;
-            float: none !important;
+            // text-align: center;
+            // display: block !important;
+            // float: none !important;
             margin-right: 0px;
           }
         i{
             margin-right: 5px;
         }
+    }
+    img{
+        max-width: 127px !important;
+    }
+    ul{
+        list-style: none;
+        padding-left: 0px;
     }
 }
 
@@ -499,7 +539,7 @@ $duration: 20s;
         border: 0px !important;
         border-radius: 0px !important;
         p{
-            color: #464646;
+            color: #000000;
         }
     }
     button{
@@ -507,6 +547,9 @@ $duration: 20s;
         font-size: 20px;
         color: #464646;
         box-shadow: none !important;font-weight: 500;
+        @media only screen and (max-width:$screen-xxl) {
+            font-size: $base-font + 2;
+        }
         
     }
 }
@@ -519,15 +562,15 @@ $duration: 20s;
     .card{
         background-color:transparent !important;
         .card-header{
-            padding-left: 0 !important;padding-right: 0 !important;    background-color: #dedede;
+            padding-left: 0 !important;padding-right: 0 !important;    background-color: #dedede;           
         }
         .card-body{
             padding-left: 0 !important;padding-right: 0 !important;
             p{
-                margin-bottom: 0;
+                margin-bottom: 10px;
             }
         }
-    }
+    }    
 
 }
 
@@ -540,12 +583,13 @@ $duration: 20s;
 }
 .notice-board{
     background-color: #676363;
-    color: #fff;
+    color: #ffffff;
 
     ul{
         padding-left: 21px; margin-bottom: 0px;
         li{
             margin-bottom: 10px;
+            color: #ffffff;
             &:last-child{
                 margin-bottom: 0px;
             }
@@ -557,4 +601,86 @@ $duration: 20s;
     ul{
         padding-left: 21px;
     }
+}
+#newsletter .owl-prev , #newsletter .owl-next {
+    color: #ed1d24  !important;
+}
+
+#gallery-slider .owl-prev , #gallery-slider .owl-next {
+    color: #ed1d24  !important;
+}
+#policies .owl-prev , #policies .owl-next {
+    color: #ffffff !important;
+}
+.owl-carousel .owl-dots.disabled, .owl-carousel .owl-nav.disabled {
+    display: block  !important;
+}
+
+.left-panel{
+    ul{
+        margin-bottom: 1rem;
+        li{            
+            a{
+                color: #ffffff !important;    text-decoration: underline;
+                &:hover{            
+                    color: #d7dde2 !important;text-decoration: none;
+                }
+            }
+        }
+        &:last-child{
+            margin-bottom: 0px;
+        }
+    }
+    a{
+        color: #ffffff  ;text-decoration: underline;display: block;
+        &:hover{            
+            color: #d7e0dd  ;
+        }
+    }
+}
+
+.right-panel{
+    ul{
+        margin-bottom: 1rem;
+        padding-left: 0px;
+        list-style: none;
+        li{            
+            a{
+                color: #007bff  !important;
+                &:hover{            
+                    color: #007bffd4   !important;
+                }
+            }
+        }
+        &:last-child{
+            margin-bottom: 0px;
+        }
+    }
+    a{
+        color: #007bff !important ;text-decoration:none !important;
+        &:hover{            
+            color: #007bffd4  !important;
+        }
+    }
+}
+.card-body {    
+    padding: 1rem !important;
+}
+.archived-a{    
+        margin-top: 1rem !important;display: inline-block  !important;color: #ffffff !important;font-weight: 600;   font-size: 15px;text-decoration: underline;
+}
+.archived-b{    
+    margin-top: 1rem !important;display: inline-block  !important;color: #ffffff !important;font-weight: 600; font-size: 15px;text-decoration:underline;
+    &:hover{
+     color: #ffffff  !important;
+    } 
+}
+.fc-h-event {  
+    cursor: pointer  !important;
+}
+
+.fa-facebook-square{color: #3b5998;}
+.fa-linkedin{color: #0e76a8 ;}
+.h-50{    
+        height: 30%!important;   
 }

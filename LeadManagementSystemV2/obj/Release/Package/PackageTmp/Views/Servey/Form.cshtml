@@ -166,92 +166,93 @@
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.Id)
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">Describe the title for this servey <span class="text-danger">*</span></label>
-                            @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control", @placeholder = "Title *" })
-                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">Last Submission Date<span class="text-danger">*</span></label>
-                            <input type="date" id="SubDate" class="form-control" />
-                            @Html.HiddenFor(x => x.LastDate)
-                            @Html.ValidationMessageFor(m => m.LastDate, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">Status <span class="text-danger">*</span></label>
-                            @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
-                              {
-                                new SelectListItem{ Text="Enable", Value = "Enable",Selected=true },
-                                new SelectListItem{ Text="Disable", Value = "Disable" }
-                             }, "Please-Select", new { @class = "form-control select-picker" })
-                            @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
-                        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Describe the title for this servey <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control", @placeholder = "Title *" })
+                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Last Submission Date<span class="text-danger">*</span></label>
+                        <input type="date" id="SubDate" class="form-control" />
+                        @Html.HiddenFor(x => x.LastDate)
+                        @Html.ValidationMessageFor(m => m.LastDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Status <span class="text-danger">*</span></label>
+                        @Html.DropDownListFor(m => m.Status, new List<SelectListItem>
+                          {
+                            new SelectListItem{ Text="Enable", Value = "Enable",Selected=true },
+                            new SelectListItem{ Text="Disable", Value = "Disable" }
+                         }, "Please-Select", new { @class = "form-control select-picker" })
+                        @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
 
-                <table id="tblQs" class="table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Question</th>
-                            <th>option</th>
-                            <th>option</th>
-                            <th>option</th>
-                            <th>option</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{int i = 0;}
-                        @if (Model.ServeyQuestion.Count > 0)
+            <table id="tblQs" class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Question</th>
+                        <th>option</th>
+                        <th>option</th>
+                        <th>option</th>
+                        <th>option</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{int i = 0;}
+                    @if (Model.ServeyQuestion.Count > 0)
+                    {
+                        foreach (var item in Model.ServeyQuestion)
                         {
-                            foreach (var item in Model.ServeyQuestion)
-                            {
-                                <tr data-id="@i">
-                                    <td>@Html.Hidden("ServeyQuestion[" + i + "].ID", Model.ServeyQuestion[i].ID)</td>
-                                    <td>@Html.TextBox("ServeyQuestion[" + i + "].Question", Model.ServeyQuestion[i].Question, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBox("ServeyQuestion[" + i + "].opt1", Model.ServeyQuestion[i].opt1, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBox("ServeyQuestion[" + i + "].opt2", Model.ServeyQuestion[i].opt2, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBox("ServeyQuestion[" + i + "].opt3", Model.ServeyQuestion[i].opt3, new { @class = "form-control" })</td>
-                                    <td>@Html.TextBox("ServeyQuestion[" + i + "].opt4", Model.ServeyQuestion[i].opt4, new { @class = "form-control" })</td>
-                                    @if (i == 0)
-                                    {
-                                        <td><button type="button" id="addMoreQs" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add More</button></td>
-                                    }
-                                    else
-                                    {
-                                        <td><button type="button" class="btn btn-danger btn-sm removeQs"><i class="fa fa-trash"></i> Remove</button></td>
-                                    }
+                            <tr data-id="@i">
+                                <td>@Html.Hidden("ServeyQuestion[" + i + "].ID", Model.ServeyQuestion[i].ID)</td>
+                                <td>@Html.TextBox("ServeyQuestion[" + i + "].Question", Model.ServeyQuestion[i].Question, new { @class = "form-control" })</td>
+                                <td>@Html.TextBox("ServeyQuestion[" + i + "].opt1", Model.ServeyQuestion[i].opt1, new { @class = "form-control" })</td>
+                                <td>@Html.TextBox("ServeyQuestion[" + i + "].opt2", Model.ServeyQuestion[i].opt2, new { @class = "form-control" })</td>
+                                <td>@Html.TextBox("ServeyQuestion[" + i + "].opt3", Model.ServeyQuestion[i].opt3, new { @class = "form-control" })</td>
+                                <td>@Html.TextBox("ServeyQuestion[" + i + "].opt4", Model.ServeyQuestion[i].opt4, new { @class = "form-control" })</td>
+                                @if (i == 0)
+                                {
+                                    <td><button type="button" id="addMoreQs" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add More</button></td>
+                                }
+                                else
+                                {
+                                    <td><button type="button" class="btn btn-danger btn-sm removeQs"><i class="fa fa-trash"></i> Remove</button></td>
+                                }
 
-                                </tr>
-                                i++;
-                            }
-
-                        }
-                        else
-                        {
-                            <tr data-id="0">
-                                <td>@Html.Hidden("ServeyQuestion[0].ID", 0)</td>
-                                <td>@Html.TextBox("ServeyQuestion[0].Question", null, new { @class = "form-control" })</td>
-                                <td>@Html.TextBox("ServeyQuestion[0].opt1", null, new { @class = "form-control" })</td>
-                                <td>@Html.TextBox("ServeyQuestion[0].opt2", null, new { @class = "form-control" })</td>
-                                <td>@Html.TextBox("ServeyQuestion[0].opt3", null, new { @class = "form-control" })</td>
-                                <td>@Html.TextBox("ServeyQuestion[0].opt4", null, new { @class = "form-control" })</td>
-                                <td><button type="button" id="addMoreQs" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add More</button></td>
                             </tr>
+                            i++;
                         }
 
+                    }
+                    else
+                    {
+                        <tr data-id="0">
+                            <td>@Html.Hidden("ServeyQuestion[0].ID", 0)</td>
+                            <td>@Html.TextBox("ServeyQuestion[0].Question", null, new { @class = "form-control" })</td>
+                            <td>@Html.TextBox("ServeyQuestion[0].opt1", null, new { @class = "form-control" })</td>
+                            <td>@Html.TextBox("ServeyQuestion[0].opt2", null, new { @class = "form-control" })</td>
+                            <td>@Html.TextBox("ServeyQuestion[0].opt3", null, new { @class = "form-control" })</td>
+                            <td>@Html.TextBox("ServeyQuestion[0].opt4", null, new { @class = "form-control" })</td>
+                            <td><button type="button" id="addMoreQs" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add More</button></td>
+                        </tr>
+                    }
 
-                    </tbody>
-                </table>
 
+                </tbody>
+            </table>
+            @if (ViewBag.PageType == "View")
+            {
                 <table class="table" id="ans">
                     <thead>
                         <tr>
@@ -266,10 +267,10 @@
                         @foreach (var AnswerList in Model.serveyResponseAnswers)
                         {
                             @*<tr style="background-color: #c2f0a1 ">
-                                    <th>@AnswerList.Name</th>
-                                    <th>@AnswerList.Email</th>
-                                    <th>@AnswerList.CreatedDate</th>
-                                </tr>*@
+                            <th>@AnswerList.Name</th>
+                            <th>@AnswerList.Email</th>
+                            <th>@AnswerList.CreatedDate</th>
+                        </tr>*@
 
                             foreach (var AnwerRecord in AnswerList.serveyReponseAnswer)
                             {
@@ -283,7 +284,8 @@
                         }
                     </tbody>
                 </table>
-            </div>
+            }
+        </div>
             <div class="panel-footer text-right">
                 <a class="btn btn-info" href="@ViewBag.PageURL" tabindex="8">Back</a>
                 <button class="btn btn-success" onclick="return ValidateRequest()" type="submit" tabindex="9">Save</button>

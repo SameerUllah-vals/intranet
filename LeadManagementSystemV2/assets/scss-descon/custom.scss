@@ -111,7 +111,7 @@ body {
 }
 
 .bg-blue {
-    background-color: #68c1d0;
+    background-color: #ffffff;
 }
 
 .bg-dark-grey {
@@ -120,43 +120,44 @@ body {
 }
 .bg-lightblue {
     background-color: #ffffff;
-    color: #464646;
+    color: #000000;
 }
 
 .bg-currency1 {
-    background-color: #8adec7;
+    background-color: #004992;padding-top: 0.5rem !important;padding-bottom: 0.5rem !important;
     p{
-        color: #444444;
+        color: #fff;font-size: 13px;
     }
     .symbol{
-        font-size: 20px;
+        font-size: 15px;
     }
     h2{
-        color: #444444;
+        color: #fff;font-size: 17px;
     }
 }
 .bg-currency2 {
-    background-color: #a9b1ec;
+    background-color: #eb8e24;padding-top: 0.5rem !important;padding-bottom: 0.5rem !important;
     p{
-        color: #444444;
+        color: #fff;font-size: 13px;
     }
     .symbol{
-        font-size: 20px;
+        font-size: 15px;
     }
     h2{
-        color: #444444;
+        color: #fff;font-size: 17px;
     }
 }
 .bg-currency3 {
-    background-color: #e9c071;
+    background-color: rgb(162, 162, 162);padding-top: 0.5rem !important;padding-bottom: 0.5rem !important;
     p{
-        color: #444444;
+        color: #fff;font-size: 13px;
     }
     .symbol{
-        font-size: 20px;
+        font-size: 15px;
     }
     h2{
-        color: #444444;
+        color: #fff;
+        font-size: 17px;
     }
 }
 
@@ -301,7 +302,7 @@ p{
     }
     small{padding-left: 20px;}
     h4{
-        padding-right: 20px;
+        padding-right: 20px;color: #000000;margin-bottom: 5px;
     }
 }
 
@@ -330,9 +331,9 @@ p{
 
 .policies {
     h3 {
-        color: #ffffff;
-        margin-bottom: 2rem;
-        font-size: $base-font + 2;
+        color: #000000;
+        font-size: $base-font + 6;
+        margin-bottom: 1.5rem;
         @media only screen and (max-width:$screen-1400) {
             font-size: $base-font + 2;
            } 
@@ -341,7 +342,7 @@ p{
         a {
             text-decoration: none !important;
             font-weight: 400;
-            color: #ffffff !important;
+            color: #007bff  !important; font-size: $base-font + 2;
 
             &:hover {
                 color: #005aff;
@@ -360,7 +361,7 @@ p{
 }
 
 .question {
-    padding-top: 2rem;
+    /*padding-top: 2rem;*/
     padding-bottom: 5rem;
 }
 
@@ -544,7 +545,7 @@ $duration: 20s;
     }
     button{
         text-decoration: none;
-        font-size: 20px;
+        font-size: 16px !important;
         color: #464646;
         box-shadow: none !important;font-weight: 500;
         @media only screen and (max-width:$screen-xxl) {
@@ -664,10 +665,10 @@ $duration: 20s;
     }
 }
 .card-body {    
-    padding: 1rem !important;
+    padding: 1rem ;
 }
 .archived-a{    
-        margin-top: 1rem !important;display: inline-block  !important;color: #ffffff !important;font-weight: 600;   font-size: 15px;text-decoration: underline;
+        margin-top: 1rem !important;display: inline-block  !important;color: #ffffff !important; font-size: 15px;text-decoration: underline;
 }
 .archived-b{    
     margin-top: 1rem !important;display: inline-block  !important;color: #ffffff !important;font-weight: 600; font-size: 15px;text-decoration:underline;
@@ -683,4 +684,17 @@ $duration: 20s;
 .fa-linkedin{color: #0e76a8 ;}
 .h-50{    
         height: 30%!important;   
+}
+.card-header {  
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+td {
+    span {
+        color:#007bff;
+    }
+}
+.halfpad{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }

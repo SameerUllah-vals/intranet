@@ -236,28 +236,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Questions">
-      <EntityTypeMapping TypeName="dbProjectModel.Question">
-        <MappingFragment StoreEntitySet="Questions">
-          <ScalarProperty Name="isDefault" ColumnName="isDefault" />
-          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
-          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
-          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-          <ScalarProperty Name="SubmissionDate" ColumnName="SubmissionDate" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="option4" ColumnName="option4" />
-          <ScalarProperty Name="option3" ColumnName="option3" />
-          <ScalarProperty Name="option2" ColumnName="option2" />
-          <ScalarProperty Name="option1" ColumnName="option1" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Events">
       <EntityTypeMapping TypeName="dbProjectModel.Event">
         <MappingFragment StoreEntitySet="Events">
@@ -365,16 +343,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ServeyResponseAnswers">
-      <EntityTypeMapping TypeName="dbProjectModel.ServeyResponseAnswer">
-        <MappingFragment StoreEntitySet="ServeyResponseAnswers">
-          <ScalarProperty Name="Response" ColumnName="Response" />
-          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
-          <ScalarProperty Name="ServeyResponseMasterId" ColumnName="ServeyResponseMasterId" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ServeyResponseMasters">
       <EntityTypeMapping TypeName="dbProjectModel.ServeyResponseMaster">
         <MappingFragment StoreEntitySet="ServeyResponseMaster">
@@ -382,6 +350,38 @@
           <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ServeyMasterId" ColumnName="ServeyMasterId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="dbProjectModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DeletedDateTime" ColumnName="DeletedDateTime" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="SubmissionDate" ColumnName="SubmissionDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="option4" ColumnName="option4" />
+          <ScalarProperty Name="option3" ColumnName="option3" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServeyResponseAnswers">
+      <EntityTypeMapping TypeName="dbProjectModel.ServeyResponseAnswer">
+        <MappingFragment StoreEntitySet="ServeyResponseAnswers">
+          <ScalarProperty Name="Response" ColumnName="Response" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="ServeyResponseMasterId" ColumnName="ServeyResponseMasterId" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -58,7 +58,7 @@
                         <i class="fas fa-bullhorn"></i> NOTICE BOARD
 
                         @{var y = Model.OrgAnoouncement.Where(c => c.isNoticeBoard == true)
-                           .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
+                             .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
                         @if (y != null)
                         {
                             if (y.CreatedDateTime.Date == DateTime.Now.Date)
@@ -98,33 +98,33 @@
                         <div class="col-xl-12 col-lg-12 col-12 my-auto">
                             <div class="row ">
                                 <div class="col-xl-12">
-                                    <h3 class="mb-4">
-                                        POLICIES
+                                    @*<h3 class="mb-4">
+                                            POLICIES
 
-                                    </h3>
+                                        </h3>*@
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/engineering.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a @*data-toggle="modal" data-target="#Engpolicy"*@ href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("engineering") })">Engineering Policy</a></h3>
+                                        <h3><a href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("engineering") })">Engineering</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/power.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a @*data-toggle="modal" data-target="#Powpolicy"*@ href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("power") })">Power Policy</a></h3>
+                                        <h3><a href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("power") })">Power</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/chemical.png" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a @*data-toggle="modal" data-target="#Chmpolicy"*@ href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("chemical") })">Chemical Policy</a></h3>
+                                        <h3><a href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("chemical") })">Chemical</a></h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
                                         <img src="~/assets/img/InspectTest.jpg" class="img-fluid full-width mb-3" alt="policy">
-                                        <h3><a @*data-toggle="modal" data-target="#Inspolicy"*@ href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("inspect") })">InspectTest Policy</a></h3>
+                                        <h3><a href="@Url.Action("explorer", new { type = HttpUtility.UrlEncode("inspect") })">InspectTest</a></h3>
                                     </div>
                                 </div>
 
@@ -267,7 +267,7 @@
                         <i class="fas fa-bullhorn"></i> ORGANIZATIONAL ANNOUNCEMENTS
 
                         @{var board = Model.OrgAnoouncement.Where(c => c.isNoticeBoard == false)
-                  .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
+                    .OrderByDescending(x => x.CreatedDateTime).FirstOrDefault();}
                         @if (board != null)
                         {
                             if (board.CreatedDateTime.Date == DateTime.Now.Date)
@@ -503,7 +503,7 @@
 <!--Page Content-->
 @if (Model.Servey.ID > 0)
 {
-    <div class="container-fluid">
+    @*<div class="container-fluid">
 
         @using (Ajax.BeginForm("serveyResponse", "home", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "regForm", @autocomplete = "off" }))
         {
@@ -553,7 +553,6 @@
                     <button class="w-button" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
                 </div>
             </div>
-            <!-- Circles which indicates the steps of the form: -->
             <div style="text-align:center;margin-top:40px;">
 
                 @for (int index = 0; index < Model.Servey.Questions.Count; index++)
@@ -569,9 +568,92 @@
 
 
 
-    </div>
+    </div>*@
 }
 
+@if (Model.Servey.ID > 0)
+{
+<div class="container-fluid">
+    @using (Ajax.BeginForm("serveyResponse", "home", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new {@id ="regForm", @autocomplete = "off" }))
+    {
+        <div class="row">
+            <!--Question Grid-->
+            <div class="col-12 text-center bg-dark-grey" style="padding-top:2rem">
+                <h3>
+                    Servey form
+                </h3>
+                <p> Your value able feedback will definitely important for us</p>
+            </div>
+            <div class="col-6 bg-dark-grey" style="padding-bottom:5rem">
+                <div class="form-group">
+                    <label>Name (optional)</label>
+                    <input placeholder="Name..." class="form-control" name="Name">
+                </div>
+            </div>
+            <div class="col-6 bg-dark-grey" style="padding-bottom:5rem">
+
+                <div class="form-group">
+                    <label>Email (optional)</label>
+                    <input placeholder="E-mail..." class="form-control" name="Email">
+                </div>
+
+            </div>
+
+
+            <div class="container question-tabs">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card border-0  shadow mb-3">
+
+                            @Html.Hidden("ServeyMasterId", Model.Servey.ID)
+                            <div class="card-body">
+                                @foreach (var record in Model.Servey.Questions)
+                                {
+                                    <div class="tab">
+                                        <h5>@record.Question @Html.Hidden("ServeyQuestionId", record.ID)</h5>
+                                        <hr />
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-12">
+                                                <input class="w-input" type="radio" style="display:inline-block;width:5%" name="[@record.ID].Answer" value="@record.opt1"><p style="display:inline-block">@record.opt1</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input class="w-input" type="radio" style="display:inline-block;width:5%" name="[@record.ID].Answer" value="@record.opt2"><p style="display:inline-block">@record.opt2</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                               <input class="w-input" type="radio" style="display:inline-block;width:5%" name="[@record.ID].Answer" value="@record.opt3"><p style="display:inline-block">@record.opt3</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input class="w-input" type="radio" style="display:inline-block;width:5%" name="[@record.ID].Answer" value="@record.opt4"><p style="display:inline-block">@record.opt4</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div style="overflow:auto;">
+                                    <div style="float:right;">
+                                        <button class="w-button" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                        <button class="w-button" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                                    </div>
+                                </div>
+                                <!-- Circles which indicates the steps of the form: -->
+                                <div style="text-align:center;margin-top:40px;">
+
+                                    @for (int index = 0; index < Model.Servey.Questions.Count; index++)
+                                    {
+                                        <span class="step"></span>
+                                    }
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Question Grid-->
+        </div>
+    }
+</div>
+}
 <!--Page Content-->
 <!-- Page Content -->
 <div class="container-fluid spacer-padding" id="pnlCalender">
@@ -702,7 +784,7 @@
 @section InLineScriptSection{
 
     <script>
-       
+
 
         $('#gallery-slider').owlCarousel({
             loop: true,
@@ -805,6 +887,7 @@
                         selectable: true,
                         selectMirror: true,
                         dayMaxEvents: true,
+                        height: 550,
                         events: events,
                         eventClick: function (info) {
                             $.ajax({
@@ -889,17 +972,17 @@
     </script>
     @if (TempData["success"] != null)
     {
-    <script>
+        <script>
         alertify.set('notifier', 'position', 'top-right');
         alertify.success('@TempData["success"]');
-    </script>
+        </script>
     }
-    else if(TempData["error"] != null)
+    else if (TempData["error"] != null)
     {
-    <script>
+        <script>
         alertify.set('notifier', 'position', 'top-right');
         alertify.error(@TempData["error"]);
-    </script>
+        </script>
 
     }
 

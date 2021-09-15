@@ -301,11 +301,11 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ServeyMasterId" Type="int" Nullable="false" />
-    <Property Name="Question" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="opt1" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="opt2" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="opt3" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="opt4" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="opt1" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="opt2" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="opt3" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="opt4" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
@@ -322,7 +322,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ServeyResponseMasterId" Type="int" Nullable="false" />
     <Property Name="QuestionId" Type="int" Nullable="false" />
-    <Property Name="Response" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Response" Type="nvarchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="ServeyResponseMaster">
     <Key>
