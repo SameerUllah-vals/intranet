@@ -5,43 +5,65 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9ad95383013444fe9c1551aed3f62c8c" Name="Diagram1">
-        <EntityTypeShape EntityType="dbProjectModel.MenuPermission" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbProjectModel.Menu" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbProjectModel.RolePermission" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbProjectModel.Role" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbProjectModel.Setting" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbProjectModel.User" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <AssociationConnector Association="dbProjectModel.FK_MenuPermissions_Menus" ManuallyRouted="false" />
-        <AssociationConnector Association="dbProjectModel.FK_MenuPermissions_Roles" ManuallyRouted="false" />
-        <AssociationConnector Association="dbProjectModel.FK_Menus_Menus" ManuallyRouted="false" />
-        <AssociationConnector Association="dbProjectModel.FK_RolePermissions_Menus" ManuallyRouted="false" />
-        <AssociationConnector Association="dbProjectModel.FK_RolePermissions_Roles" ManuallyRouted="false" />
-        <AssociationConnector Association="dbProjectModel.FK_Users_Roles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="dbProjectModel.LatestNewsGalleryLink" Width="1.5" PointX="10.625" PointY="10.25" />
-        <EntityTypeShape EntityType="dbProjectModel.Job" Width="1.5" PointX="0.75" PointY="13.75" />
-        <EntityTypeShape EntityType="dbProjectModel.Banner" Width="1.5" PointX="5.375" PointY="9.75" />
-        <EntityTypeShape EntityType="dbProjectModel.Gallery" Width="1.5" PointX="8.375" PointY="9.375" />
-        <EntityTypeShape EntityType="dbProjectModel.GalleryDetail" Width="1.5" PointX="10.625" PointY="13.125" />
-        <EntityTypeShape EntityType="dbProjectModel.LatestNew" Width="1.5" PointX="8.375" PointY="14" />
-        <EntityTypeShape EntityType="dbProjectModel.NewsLetter" Width="1.5" PointX="10.375" PointY="5.75" />
-        <EntityTypeShape EntityType="dbProjectModel.Policy" Width="1.5" PointX="13.375" PointY="10.75" />
-        <EntityTypeShape EntityType="dbProjectModel.QuestionDetail" Width="1.5" PointX="10.625" PointY="2.125" />
+        <EntityTypeShape EntityType="dbProjectModel.Banner" Width="1.5" PointX="3" PointY="24.375" />
+        <EntityTypeShape EntityType="dbProjectModel.BusinessApplication" Width="1.5" PointX="3" PointY="19.75" />
+        <EntityTypeShape EntityType="dbProjectModel.Event" Width="1.5" PointX="3" PointY="29" />
+        <EntityTypeShape EntityType="dbProjectModel.Gallery" Width="1.5" PointX="3" PointY="34.25" />
+        <EntityTypeShape EntityType="dbProjectModel.GalleryDetail" Width="1.5" PointX="5.25" PointY="35.25" />
+        <EntityTypeShape EntityType="dbProjectModel.Job" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="dbProjectModel.LatestNew" Width="1.5" PointX="3" PointY="48.375" />
+        <EntityTypeShape EntityType="dbProjectModel.LatestNewsGalleryLink" Width="1.5" PointX="5.25" PointY="42.25" />
+        <EntityTypeShape EntityType="dbProjectModel.MenuPermission" Width="1.5" PointX="5.25" PointY="38.875" />
+        <EntityTypeShape EntityType="dbProjectModel.Menu" Width="1.5" PointX="3" PointY="63.5" />
+        <EntityTypeShape EntityType="dbProjectModel.NewsLetter" Width="1.5" PointX="3" PointY="43.75" />
+        <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncement" Width="1.5" PointX="3" PointY="57.75" />
+        <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncementDetail" Width="1.5" PointX="5.25" PointY="58.875" />
+        <EntityTypeShape EntityType="dbProjectModel.Policy" Width="1.5" PointX="3" PointY="53.125" />
+        <EntityTypeShape EntityType="dbProjectModel.QuestionDetail" Width="1.5" PointX="8" PointY="2.125" />
+        <EntityTypeShape EntityType="dbProjectModel.Question" Width="1.5" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="dbProjectModel.RolePermission" Width="1.5" PointX="8.25" PointY="39.5" />
+        <EntityTypeShape EntityType="dbProjectModel.Role" Width="1.5" PointX="3" PointY="39.125" />
+        <EntityTypeShape EntityType="dbProjectModel.ServeyMaster" Width="1.5" PointX="3" PointY="13.375" />
+        <EntityTypeShape EntityType="dbProjectModel.ServeyQuestion" Width="1.5" PointX="5.25" PointY="14.75" />
+        <EntityTypeShape EntityType="dbProjectModel.ServeyResponseAnswer" Width="1.5" PointX="7.5" PointY="14.25" />
+        <EntityTypeShape EntityType="dbProjectModel.ServeyResponseMaster" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="dbProjectModel.Setting" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbProjectModel.User" Width="1.5" PointX="0.75" PointY="29.5" />
+        <AssociationConnector Association="dbProjectModel.FK_Banners_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_Banners_Users_updatedby" />
+        <AssociationConnector Association="dbProjectModel.FK_BusinessApplications_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_BusinessApplications_Users_updatedby" />
+        <AssociationConnector Association="dbProjectModel.FK_Events_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_Events_Users_updatedby" />
+        <AssociationConnector Association="dbProjectModel.FK_Gallery_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_Gallery_Users_updatedby" />
         <AssociationConnector Association="dbProjectModel.FK_GalleryDetails_GalleryDetails" />
         <AssociationConnector Association="dbProjectModel.FK_LatestNewsGalleryLinks_GalleryDetails" />
+        <AssociationConnector Association="dbProjectModel.FK_Jobs_Jobs_updatedby" />
+        <AssociationConnector Association="dbProjectModel.FK_Jobs_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_LatestNews_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_LatestNews_Users_updatedby" />
         <AssociationConnector Association="dbProjectModel.FK_LatestNewsGalleryLinks_LatestNews" />
-        <EntityTypeShape EntityType="dbProjectModel.Event" Width="1.5" PointX="13.375" PointY="0.75" />
-        <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncement" Width="1.5" PointX="12.375" PointY="5.75" />
-        <EntityTypeShape EntityType="dbProjectModel.OrgAnnouncementDetail" Width="1.5" PointX="14.625" PointY="6.75" />
+        <AssociationConnector Association="dbProjectModel.FK_MenuPermissions_Menus" />
+        <AssociationConnector Association="dbProjectModel.FK_MenuPermissions_Roles" />
+        <AssociationConnector Association="dbProjectModel.FK_Menus_Menus" />
+        <AssociationConnector Association="dbProjectModel.FK_RolePermissions_Menus" />
+        <AssociationConnector Association="dbProjectModel.FK_NewsLetters_NewsLetters_updatedby" />
+        <AssociationConnector Association="dbProjectModel.FK_NewsLetters_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_OrgAnnouncement_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_OrgAnnouncement_Users_updatedby" />
         <AssociationConnector Association="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement" />
-        <EntityTypeShape EntityType="dbProjectModel.BusinessApplication" Width="1.5" PointX="15.375" PointY="0.75" />
-        <EntityTypeShape EntityType="dbProjectModel.ServeyMaster" Width="1.5" PointX="15.375" PointY="12.75" />
-        <EntityTypeShape EntityType="dbProjectModel.ServeyQuestion" Width="1.5" PointX="17.625" PointY="14.5" />
-        <AssociationConnector Association="dbProjectModel.FK_ServeyQuestions_ServeyMaster" />
-        <EntityTypeShape EntityType="dbProjectModel.ServeyResponseMaster" Width="1.5" PointX="17.625" PointY="11.375" />
-        <AssociationConnector Association="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster" />
-        <EntityTypeShape EntityType="dbProjectModel.Question" Width="1.5" PointX="8.375" PointY="0.75" />
-        <EntityTypeShape EntityType="dbProjectModel.ServeyResponseAnswer" Width="1.5" PointX="19.875" PointY="14.625" />
+        <AssociationConnector Association="dbProjectModel.FK_Policies_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_Policies_Users_updatedby" />
         <AssociationConnector Association="dbProjectModel.FK_QuestionDetail_Question" />
+        <AssociationConnector Association="dbProjectModel.FK_RolePermissions_Roles" />
+        <AssociationConnector Association="dbProjectModel.FK_Roles_Roles_updatedby" />
+        <AssociationConnector Association="dbProjectModel.FK_Roles_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_Users_Roles" />
+        <AssociationConnector Association="dbProjectModel.FK_ServeyMaster_Users_createdby" />
+        <AssociationConnector Association="dbProjectModel.FK_ServeyMaster_Users_updatedby" />
+        <AssociationConnector Association="dbProjectModel.FK_ServeyQuestions_ServeyMaster" />
+        <AssociationConnector Association="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster" />
         <AssociationConnector Association="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions" />
         <AssociationConnector Association="dbProjectModel.FK_ServeyResponseAnswers_ServeyResponseMaster" />
       </Diagram>

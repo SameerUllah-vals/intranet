@@ -213,7 +213,9 @@ function Directory(fullPath, numDirs, numFiles){
           alert(t('E_LoadingAjax')+' '+RoxyFilemanConf.DIRLIST);
         }
     });
-  };
+    };
+
+
   this.Expand = function(show){
     var li = this.GetElement();
     var el = li.children('ul');
@@ -454,7 +456,6 @@ function Directory(fullPath, numDirs, numFiles){
 
     return ret;
   };
-
   this.SortByName = function(files, order){
      files.sort(function(a, b){
        var x = (order == 'desc'?0:2)
@@ -526,7 +527,10 @@ function Directory(fullPath, numDirs, numFiles){
     }
 
     return files;
-  };
+    };
+
+ 
+    
 }
 Directory.Parse = function(path){
   var ret = false;

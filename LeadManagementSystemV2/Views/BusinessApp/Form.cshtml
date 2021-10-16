@@ -17,15 +17,32 @@
 
         $("#IsFooterLink").change(function () {
             if ($(this).val() == "Footer") {
-                $("#Category").attr("disabled", true);
-                $("#Category").val("-");
+                
+                $("#pnlCategory").val("-");
+                $("#pnlCategory").hide();
+                $("#footerValue").show();
             }
             else {
-                $("#Category").attr("disabled", false);
+                $("#pnlCategory").show();
+                $("#footerValue").hide();
+                $("#pnlURL").hide();
+                $("#pnlFILE").hide();
 
             }
         })
 
+        $(document).on("change","#FooterValueType",function () {
+            var value = $(this).val();
+          
+            if (value === "URL") {
+                $("#pnlURL").show();
+                $("#pnlFILE").hide();
+            }
+            else if(value === "FILE") {
+                $("#pnlURL").hide();
+                $("#pnlFILE").show();
+            }
+        })
         
     </script>
 }
@@ -36,13 +53,13 @@
     <div class="panel">
         <!--Block Styled Form -->
         <!--===================================================-->
-        @using (Ajax.BeginForm("Save", "BusinessApp", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off" }))
+        @using (Ajax.BeginForm("Save", "BusinessApp", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "FormMember", @autocomplete = "off", enctype ="multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.ID)
             <div class="panel-body">
                 <div class="row">
-                    
+
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label">Is Footer Link? <span class="text-danger">*</span></label>
@@ -54,7 +71,7 @@
                             @Html.ValidationMessageFor(m => m.IsFooterLink, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" id="pnlCategory">
                         <div class="form-group">
                             <label class="control-label">Category <span class="text-danger">*</span></label>
                             @Html.DropDownListFor(m => m.Category, new List<SelectListItem>
@@ -78,13 +95,29 @@
                     </div>
 
 
-
-
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" id="footerValue" style="display:none">
+                        <div class="form-group">
+                            <label class="control-label">Footer value type <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(x => x.FooterValueType, new List<SelectListItem>
+                                {
+                                    new SelectListItem{ Text="URL", Value = "URL" },
+                                    new SelectListItem{ Text="FILE", Value = "FILE" },
+                                 }, new { @class = "form-control" })
+                           
+                        </div>
+                    </div>
+                    <div class="col-sm-6" id="pnlURL">
                         <div class="form-group">
                             <label class="control-label">Url<span class="text-danger">*</span></label>
                             @Html.TextBoxFor(m => m.Url, null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Url, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6" id="pnlFILE" style="display:none">
+                        <div class="form-group">
+                            <label class="control-label">File<span class="text-danger">*</span></label>
+                            <input type="file" id="File" name="File" />
+                            @Html.ValidationMessageFor(m => m.File, "", new { @class = "text-danger" })
                         </div>
                     </div>
 

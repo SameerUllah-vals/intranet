@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>D:\Descon updated\published</_PublishTargetUrl>
-    <History>True|2021-09-14T07:01:11.3353818Z;True|2021-09-13T11:00:37.5396196+05:00;True|2021-09-03T17:01:58.6059322+05:00;</History>
+    <History>True|2021-10-13T08:04:13.6562028Z;True|2021-10-08T15:41:54.8446086+05:00;True|2021-10-05T10:43:39.4569969+05:00;True|2021-09-14T12:01:11.3353818+05:00;True|2021-09-13T11:00:37.5396196+05:00;True|2021-09-03T17:01:58.6059322+05:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="assets/banners/125570718_154694166375506_25584049230548429_n.jpg">
@@ -75,7 +75,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="assets/css/Site.css">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/08/2021 11:35:31</publishTime>
     </File>
     <File Include="assets/css/summernote.min.css">
       <publishTime>08/30/2021 14:39:40</publishTime>
@@ -519,10 +519,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:42</publishTime>
     </File>
     <File Include="bin/LeadManagementSystemV2.dll">
-      <publishTime>09/14/2021 12:01:03</publishTime>
+      <publishTime>10/13/2021 13:04:05</publishTime>
     </File>
     <File Include="bin/LeadManagementSystemV2.pdb">
-      <publishTime>09/14/2021 12:01:03</publishTime>
+      <publishTime>10/13/2021 13:04:05</publishTime>
     </File>
     <File Include="bin/LinqToExcel.dll">
       <publishTime>08/30/2021 14:39:42</publishTime>
@@ -1620,7 +1620,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Models/dbProject.edmx.diagram">
-      <publishTime>09/13/2021 11:16:42</publishTime>
+      <publishTime>10/13/2021 12:09:58</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
       <publishTime>08/30/2021 14:39:40</publishTime>
@@ -1629,19 +1629,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/Announcement/Index.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/13/2021 12:18:53</publishTime>
     </File>
     <File Include="Views/Banner/Form.cshtml">
-      <publishTime>08/30/2021 17:41:16</publishTime>
+      <publishTime>10/05/2021 10:36:56</publishTime>
     </File>
     <File Include="Views/Banner/Index.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/13/2021 12:26:45</publishTime>
     </File>
     <File Include="Views/BusinessApp/Form.cshtml">
       <publishTime>08/31/2021 16:28:22</publishTime>
     </File>
     <File Include="Views/BusinessApp/Index.cshtml">
-      <publishTime>08/31/2021 15:26:44</publishTime>
+      <publishTime>10/13/2021 12:28:07</publishTime>
     </File>
     <File Include="Views/Dashboard/Index.cshtml">
       <publishTime>08/30/2021 14:39:40</publishTime>
@@ -1656,7 +1656,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/Events/Index.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/13/2021 12:39:28</publishTime>
     </File>
     <File Include="Views/FileManager/Index.cshtml">
       <publishTime>08/30/2021 16:12:14</publishTime>
@@ -1665,7 +1665,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/Gallery/Index.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/13/2021 12:40:52</publishTime>
     </File>
     <File Include="Views/GalleryDetails/Index.cshtml">
       <publishTime>08/30/2021 14:39:40</publishTime>
@@ -1683,22 +1683,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/Home/Explorer.cshtml">
-      <publishTime>08/31/2021 18:43:26</publishTime>
+      <publishTime>10/08/2021 12:27:56</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/13/2021 11:55:55</publishTime>
+      <publishTime>10/08/2021 15:56:27</publishTime>
     </File>
     <File Include="Views/Jobs/Form.cshtml">
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/Jobs/Index.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/13/2021 12:42:27</publishTime>
     </File>
     <File Include="Views/LatestNews/Form.cshtml">
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/LatestNews/Index.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/13/2021 12:43:14</publishTime>
     </File>
     <File Include="Views/Managements/Form.cshtml">
       <publishTime>08/30/2021 14:39:40</publishTime>
@@ -1707,31 +1707,31 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/NewsDetails/Index.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>09/17/2021 10:28:29</publishTime>
     </File>
     <File Include="Views/NewsLetter/Form.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/08/2021 15:40:55</publishTime>
     </File>
     <File Include="Views/NewsLetter/Index.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/13/2021 12:45:33</publishTime>
     </File>
     <File Include="Views/Policies/Form.cshtml">
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/Policies/Index.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/13/2021 12:46:25</publishTime>
     </File>
     <File Include="Views/Roles/Form.cshtml">
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/Roles/Index.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>10/13/2021 12:54:21</publishTime>
     </File>
     <File Include="Views/Servey/Form.cshtml">
       <publishTime>09/13/2021 10:46:28</publishTime>
     </File>
     <File Include="Views/Servey/Index.cshtml">
-      <publishTime>09/01/2021 17:27:26</publishTime>
+      <publishTime>10/13/2021 12:52:51</publishTime>
     </File>
     <File Include="Views/Settings/Form.cshtml">
       <publishTime>08/31/2021 11:37:42</publishTime>
@@ -1749,10 +1749,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/Shared/_FrontendLayout.cshtml">
-      <publishTime>09/13/2021 12:19:58</publishTime>
+      <publishTime>10/08/2021 11:45:15</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/02/2021 19:08:22</publishTime>
+      <publishTime>10/13/2021 13:02:26</publishTime>
     </File>
     <File Include="Views/Shared/_RequestForm.cshtml">
       <publishTime>08/30/2021 14:39:40</publishTime>

@@ -100,7 +100,7 @@
                 <!--Brand logo & name-->
                 <!--================================-->
                 <div class="navbar-header">
-                    <a href="/dashboard" class="navbar-brand">
+                    <a href="@Url.Action("","dashboard")" class="navbar-brand">
                         @*<img src="~/assets/images/logo.png" alt="Nifty Logo" class="brand-icon">*@
                         <div class="brand-title">
                             <span class="brand-text">Descon Intranet</span>
@@ -222,10 +222,10 @@
                                         </a>
                                     </div>
                                     <div id="profile-nav" class="collapse list-group bg-trans">
-                                        <a href="/dashboard/profiles" class="list-group-item">
+                                        <a href="@Url.Action("profiles","dashboard")" class="list-group-item">
                                             <i class="demo-pli-male icon-lg icon-fw"></i> View Profile
                                         </a>
-                                        <a href="/dashboard/logout" class="list-group-item">
+                                        <a href="@Url.Action("logout","dashboard")" class="list-group-item">
                                             <i class="demo-pli-unlock icon-lg icon-fw"></i> Logout
                                         </a>
                                     </div>
@@ -235,7 +235,7 @@
                                     <li class="list-header">Navigation</li>
                                     <!--Menu list item-->
                                     <li>
-                                        <a href="/dashboard">
+                                        <a href="@Url.Action("","dashboard")">
                                             <i class="fa fa-home"></i>
                                             <span class="menu-title">Dashboard</span>
                                         </a>
@@ -278,7 +278,7 @@
                                         }
                                     }
                                     <li>
-                                        <a href="/dashboard/logout">
+                                        <a href="@Url.Action("logout","dashboard")">
                                             <i class="fa fa-sign-out"></i>
                                             <span class="menu-title">
                                                 Logout

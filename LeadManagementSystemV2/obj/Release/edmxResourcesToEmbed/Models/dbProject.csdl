@@ -1,207 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="dbProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="MenuPermission">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="MenuID" Type="Int32" Nullable="false" />
-    <Property Name="RoleID" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Type" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Menu" Relationship="Self.FK_MenuPermissions_Menus" FromRole="MenuPermissions" ToRole="Menus" />
-    <NavigationProperty Name="Role" Relationship="Self.FK_MenuPermissions_Roles" FromRole="MenuPermissions" ToRole="Roles" />
-  </EntityType>
-  <EntityType Name="Menu">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Type" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ParentID" Type="Int32" />
-    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Icon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="AccessURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="MenuPermissions" Relationship="Self.FK_MenuPermissions_Menus" FromRole="Menus" ToRole="MenuPermissions" />
-    <NavigationProperty Name="Menus1" Relationship="Self.FK_Menus_Menus" FromRole="Menus" ToRole="Menus1" />
-    <NavigationProperty Name="Menu1" Relationship="Self.FK_Menus_Menus" FromRole="Menus1" ToRole="Menus" />
-    <NavigationProperty Name="RolePermissions" Relationship="Self.FK_RolePermissions_Menus" FromRole="Menus" ToRole="RolePermissions" />
-  </EntityType>
-  <EntityType Name="RolePermission">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RoleID" Type="Int32" Nullable="false" />
-    <Property Name="MenuID" Type="Int32" Nullable="false" />
-    <Property Name="Permissions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="SequenceOrder" Type="Int32" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <NavigationProperty Name="Menu" Relationship="Self.FK_RolePermissions_Menus" FromRole="RolePermissions" ToRole="Menus" />
-    <NavigationProperty Name="Role" Relationship="Self.FK_RolePermissions_Roles" FromRole="RolePermissions" ToRole="Roles" />
-  </EntityType>
-  <EntityType Name="Role">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-    <NavigationProperty Name="MenuPermissions" Relationship="Self.FK_MenuPermissions_Roles" FromRole="Roles" ToRole="MenuPermissions" />
-    <NavigationProperty Name="RolePermissions" Relationship="Self.FK_RolePermissions_Roles" FromRole="Roles" ToRole="RolePermissions" />
-    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
-  </EntityType>
-  <EntityType Name="Setting">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RoleID" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="EmailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ProfileImage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-    <NavigationProperty Name="Role" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
-  </EntityType>
-  <Association Name="FK_MenuPermissions_Menus">
-    <End Role="Menus" Type="Self.Menu" Multiplicity="1" />
-    <End Role="MenuPermissions" Type="Self.MenuPermission" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Menus">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="MenuPermissions">
-        <PropertyRef Name="MenuID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_MenuPermissions_Roles">
-    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
-    <End Role="MenuPermissions" Type="Self.MenuPermission" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="MenuPermissions">
-        <PropertyRef Name="RoleID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Menus_Menus">
-    <End Role="Menus" Type="Self.Menu" Multiplicity="0..1" />
-    <End Role="Menus1" Type="Self.Menu" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Menus">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Menus1">
-        <PropertyRef Name="ParentID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RolePermissions_Menus">
-    <End Role="Menus" Type="Self.Menu" Multiplicity="1" />
-    <End Role="RolePermissions" Type="Self.RolePermission" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Menus">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="RolePermissions">
-        <PropertyRef Name="MenuID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RolePermissions_Roles">
-    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
-    <End Role="RolePermissions" Type="Self.RolePermission" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="RolePermissions">
-        <PropertyRef Name="RoleID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Users_Roles">
-    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
-    <End Role="Users" Type="Self.User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="RoleID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="DbLeadManagementSystemV2Entities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="MenuPermissions" EntityType="Self.MenuPermission" />
-    <EntitySet Name="Menus" EntityType="Self.Menu" />
-    <EntitySet Name="RolePermissions" EntityType="Self.RolePermission" />
-    <EntitySet Name="Roles" EntityType="Self.Role" />
-    <EntitySet Name="Settings" EntityType="Self.Setting" />
-    <EntitySet Name="Users" EntityType="Self.User" />
-    <AssociationSet Name="FK_MenuPermissions_Menus" Association="Self.FK_MenuPermissions_Menus">
-      <End Role="Menus" EntitySet="Menus" />
-      <End Role="MenuPermissions" EntitySet="MenuPermissions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MenuPermissions_Roles" Association="Self.FK_MenuPermissions_Roles">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="MenuPermissions" EntitySet="MenuPermissions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Menus_Menus" Association="Self.FK_Menus_Menus">
-      <End Role="Menus" EntitySet="Menus" />
-      <End Role="Menus1" EntitySet="Menus" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RolePermissions_Menus" Association="Self.FK_RolePermissions_Menus">
-      <End Role="Menus" EntitySet="Menus" />
-      <End Role="RolePermissions" EntitySet="RolePermissions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RolePermissions_Roles" Association="Self.FK_RolePermissions_Roles">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="RolePermissions" EntitySet="RolePermissions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <EntitySet Name="LatestNewsGalleryLinks" EntityType="dbProjectModel.LatestNewsGalleryLink" />
-    <EntitySet Name="Jobs" EntityType="dbProjectModel.Job" />
     <EntitySet Name="Banners" EntityType="dbProjectModel.Banner" />
+    <EntitySet Name="BusinessApplications" EntityType="dbProjectModel.BusinessApplication" />
+    <EntitySet Name="Events" EntityType="dbProjectModel.Event" />
     <EntitySet Name="Galleries" EntityType="dbProjectModel.Gallery" />
     <EntitySet Name="GalleryDetails" EntityType="dbProjectModel.GalleryDetail" />
+    <EntitySet Name="Jobs" EntityType="dbProjectModel.Job" />
     <EntitySet Name="LatestNews" EntityType="dbProjectModel.LatestNew" />
+    <EntitySet Name="LatestNewsGalleryLinks" EntityType="dbProjectModel.LatestNewsGalleryLink" />
+    <EntitySet Name="MenuPermissions" EntityType="dbProjectModel.MenuPermission" />
+    <EntitySet Name="Menus" EntityType="dbProjectModel.Menu" />
     <EntitySet Name="NewsLetters" EntityType="dbProjectModel.NewsLetter" />
+    <EntitySet Name="OrgAnnouncements" EntityType="dbProjectModel.OrgAnnouncement" />
+    <EntitySet Name="OrgAnnouncementDetails" EntityType="dbProjectModel.OrgAnnouncementDetail" />
     <EntitySet Name="Policies" EntityType="dbProjectModel.Policy" />
     <EntitySet Name="QuestionDetails" EntityType="dbProjectModel.QuestionDetail" />
+    <EntitySet Name="Questions" EntityType="dbProjectModel.Question" />
+    <EntitySet Name="RolePermissions" EntityType="dbProjectModel.RolePermission" />
+    <EntitySet Name="Roles" EntityType="dbProjectModel.Role" />
+    <EntitySet Name="ServeyMasters" EntityType="dbProjectModel.ServeyMaster" />
+    <EntitySet Name="ServeyQuestions" EntityType="dbProjectModel.ServeyQuestion" />
+    <EntitySet Name="ServeyResponseAnswers" EntityType="dbProjectModel.ServeyResponseAnswer" />
+    <EntitySet Name="ServeyResponseMasters" EntityType="dbProjectModel.ServeyResponseMaster" />
+    <EntitySet Name="Settings" EntityType="dbProjectModel.Setting" />
+    <EntitySet Name="Users" EntityType="dbProjectModel.User" />
+    <AssociationSet Name="FK_Banners_Users_createdby" Association="dbProjectModel.FK_Banners_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Banner" EntitySet="Banners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Banners_Users_updatedby" Association="dbProjectModel.FK_Banners_Users_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Banner" EntitySet="Banners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessApplications_Users_createdby" Association="dbProjectModel.FK_BusinessApplications_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="BusinessApplication" EntitySet="BusinessApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessApplications_Users_updatedby" Association="dbProjectModel.FK_BusinessApplications_Users_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="BusinessApplication" EntitySet="BusinessApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Users_createdby" Association="dbProjectModel.FK_Events_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Users_updatedby" Association="dbProjectModel.FK_Events_Users_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gallery_Users_createdby" Association="dbProjectModel.FK_Gallery_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Gallery" EntitySet="Galleries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gallery_Users_updatedby" Association="dbProjectModel.FK_Gallery_Users_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Gallery" EntitySet="Galleries" />
+    </AssociationSet>
     <AssociationSet Name="FK_GalleryDetails_GalleryDetails" Association="dbProjectModel.FK_GalleryDetails_GalleryDetails">
       <End Role="Gallery" EntitySet="Galleries" />
       <End Role="GalleryDetail" EntitySet="GalleryDetails" />
@@ -210,34 +65,105 @@
       <End Role="Gallery" EntitySet="Galleries" />
       <End Role="LatestNewsGalleryLink" EntitySet="LatestNewsGalleryLinks" />
     </AssociationSet>
+    <AssociationSet Name="FK_Jobs_Jobs_updatedby" Association="dbProjectModel.FK_Jobs_Jobs_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Job" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobs_Users_createdby" Association="dbProjectModel.FK_Jobs_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Job" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LatestNews_Users_createdby" Association="dbProjectModel.FK_LatestNews_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="LatestNew" EntitySet="LatestNews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LatestNews_Users_updatedby" Association="dbProjectModel.FK_LatestNews_Users_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="LatestNew" EntitySet="LatestNews" />
+    </AssociationSet>
     <AssociationSet Name="FK_LatestNewsGalleryLinks_LatestNews" Association="dbProjectModel.FK_LatestNewsGalleryLinks_LatestNews">
       <End Role="LatestNew" EntitySet="LatestNews" />
       <End Role="LatestNewsGalleryLink" EntitySet="LatestNewsGalleryLinks" />
     </AssociationSet>
-    <EntitySet Name="Events" EntityType="dbProjectModel.Event" />
-    <EntitySet Name="OrgAnnouncements" EntityType="dbProjectModel.OrgAnnouncement" />
-    <EntitySet Name="OrgAnnouncementDetails" EntityType="dbProjectModel.OrgAnnouncementDetail" />
+    <AssociationSet Name="FK_MenuPermissions_Menus" Association="dbProjectModel.FK_MenuPermissions_Menus">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="MenuPermission" EntitySet="MenuPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuPermissions_Roles" Association="dbProjectModel.FK_MenuPermissions_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="MenuPermission" EntitySet="MenuPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menus_Menus" Association="dbProjectModel.FK_Menus_Menus">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="Menu1" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermissions_Menus" Association="dbProjectModel.FK_RolePermissions_Menus">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="RolePermission" EntitySet="RolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsLetters_NewsLetters_updatedby" Association="dbProjectModel.FK_NewsLetters_NewsLetters_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="NewsLetter" EntitySet="NewsLetters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsLetters_Users_createdby" Association="dbProjectModel.FK_NewsLetters_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="NewsLetter" EntitySet="NewsLetters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrgAnnouncement_Users_createdby" Association="dbProjectModel.FK_OrgAnnouncement_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="OrgAnnouncement" EntitySet="OrgAnnouncements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrgAnnouncement_Users_updatedby" Association="dbProjectModel.FK_OrgAnnouncement_Users_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="OrgAnnouncement" EntitySet="OrgAnnouncements" />
+    </AssociationSet>
     <AssociationSet Name="FK_OrgAnnouncementDetails_OrgAnnouncement" Association="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement">
       <End Role="OrgAnnouncement" EntitySet="OrgAnnouncements" />
       <End Role="OrgAnnouncementDetail" EntitySet="OrgAnnouncementDetails" />
     </AssociationSet>
-    <EntitySet Name="BusinessApplications" EntityType="dbProjectModel.BusinessApplication" />
-    <EntitySet Name="ServeyMasters" EntityType="dbProjectModel.ServeyMaster" />
-    <EntitySet Name="ServeyQuestions" EntityType="dbProjectModel.ServeyQuestion" />
+    <AssociationSet Name="FK_Policies_Users_createdby" Association="dbProjectModel.FK_Policies_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Policy" EntitySet="Policies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Policies_Users_updatedby" Association="dbProjectModel.FK_Policies_Users_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Policy" EntitySet="Policies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionDetail_Question" Association="dbProjectModel.FK_QuestionDetail_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="QuestionDetail" EntitySet="QuestionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermissions_Roles" Association="dbProjectModel.FK_RolePermissions_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="RolePermission" EntitySet="RolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Roles_updatedby" Association="dbProjectModel.FK_Roles_Roles_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Users_createdby" Association="dbProjectModel.FK_Roles_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="dbProjectModel.FK_Users_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServeyMaster_Users_createdby" Association="dbProjectModel.FK_ServeyMaster_Users_createdby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ServeyMaster" EntitySet="ServeyMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServeyMaster_Users_updatedby" Association="dbProjectModel.FK_ServeyMaster_Users_updatedby">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ServeyMaster" EntitySet="ServeyMasters" />
+    </AssociationSet>
     <AssociationSet Name="FK_ServeyQuestions_ServeyMaster" Association="dbProjectModel.FK_ServeyQuestions_ServeyMaster">
       <End Role="ServeyMaster" EntitySet="ServeyMasters" />
       <End Role="ServeyQuestion" EntitySet="ServeyQuestions" />
     </AssociationSet>
-    <EntitySet Name="ServeyResponseMasters" EntityType="dbProjectModel.ServeyResponseMaster" />
     <AssociationSet Name="FK_ServeyResponseMaster_ServeyMaster" Association="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster">
       <End Role="ServeyMaster" EntitySet="ServeyMasters" />
       <End Role="ServeyResponseMaster" EntitySet="ServeyResponseMasters" />
-    </AssociationSet>
-    <EntitySet Name="Questions" EntityType="dbProjectModel.Question" />
-    <EntitySet Name="ServeyResponseAnswers" EntityType="dbProjectModel.ServeyResponseAnswer" />
-    <AssociationSet Name="FK_QuestionDetail_Question" Association="dbProjectModel.FK_QuestionDetail_Question">
-      <End Role="Question" EntitySet="Questions" />
-      <End Role="QuestionDetail" EntitySet="QuestionDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_ServeyResponseAnswers_ServeyQuestions" Association="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions">
       <End Role="ServeyQuestion" EntitySet="ServeyQuestions" />
@@ -248,15 +174,100 @@
       <End Role="ServeyResponseAnswer" EntitySet="ServeyResponseAnswers" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="LatestNewsGalleryLink">
+  <EntityType Name="Banner">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="LatestNewsId" Type="Int32" Nullable="false" />
-    <Property Name="GalleryId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Gallery" Relationship="dbProjectModel.FK_LatestNewsGalleryLinks_GalleryDetails" FromRole="LatestNewsGalleryLink" ToRole="Gallery" />
-    <NavigationProperty Name="LatestNew" Relationship="dbProjectModel.FK_LatestNewsGalleryLinks_LatestNews" FromRole="LatestNewsGalleryLink" ToRole="LatestNew" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Ticker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <Property Name="isDefault" Type="Boolean" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_Banners_Users_createdby" FromRole="Banner" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_Banners_Users_updatedby" FromRole="Banner" ToRole="User" />
+  </EntityType>
+  <EntityType Name="BusinessApplication">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsFooterLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Url" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_BusinessApplications_Users_createdby" FromRole="BusinessApplication" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_BusinessApplications_Users_updatedby" FromRole="BusinessApplication" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EventOrganizer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EventLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Files" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <Property Name="isDefault" Type="Boolean" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_Events_Users_createdby" FromRole="Event" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_Events_Users_updatedby" FromRole="Event" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Gallery">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <Property Name="isDefault" Type="Boolean" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_Gallery_Users_createdby" FromRole="Gallery" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_Gallery_Users_updatedby" FromRole="Gallery" ToRole="User" />
+    <NavigationProperty Name="GalleryDetails" Relationship="dbProjectModel.FK_GalleryDetails_GalleryDetails" FromRole="Gallery" ToRole="GalleryDetail" />
+    <NavigationProperty Name="LatestNewsGalleryLinks" Relationship="dbProjectModel.FK_LatestNewsGalleryLinks_GalleryDetails" FromRole="Gallery" ToRole="LatestNewsGalleryLink" />
+  </EntityType>
+  <EntityType Name="GalleryDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GalleryId" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Gallery" Relationship="dbProjectModel.FK_GalleryDetails_GalleryDetails" FromRole="GalleryDetail" ToRole="Gallery" />
   </EntityType>
   <EntityType Name="Job">
     <Key>
@@ -283,54 +294,8 @@
     <Property Name="CreatedBy" Type="Int32" Nullable="false" />
     <Property Name="UpdatedBy" Type="Int32" />
     <Property Name="DeletedBy" Type="Int32" />
-  </EntityType>
-  <EntityType Name="Banner">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Ticker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-    <Property Name="isDefault" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="Gallery">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-    <Property Name="isDefault" Type="Boolean" />
-    <NavigationProperty Name="GalleryDetails" Relationship="dbProjectModel.FK_GalleryDetails_GalleryDetails" FromRole="Gallery" ToRole="GalleryDetail" />
-    <NavigationProperty Name="LatestNewsGalleryLinks" Relationship="dbProjectModel.FK_LatestNewsGalleryLinks_GalleryDetails" FromRole="Gallery" ToRole="LatestNewsGalleryLink" />
-  </EntityType>
-  <EntityType Name="GalleryDetail">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="GalleryId" Type="Int32" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Gallery" Relationship="dbProjectModel.FK_GalleryDetails_GalleryDetails" FromRole="GalleryDetail" ToRole="Gallery" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_Jobs_Jobs_updatedby" FromRole="Job" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_Jobs_Users_createdby" FromRole="Job" ToRole="User" />
   </EntityType>
   <EntityType Name="LatestNew">
     <Key>
@@ -348,7 +313,47 @@
     <Property Name="CreatedBy" Type="Int32" Nullable="false" />
     <Property Name="UpdatedBy" Type="Int32" />
     <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_LatestNews_Users_createdby" FromRole="LatestNew" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_LatestNews_Users_updatedby" FromRole="LatestNew" ToRole="User" />
     <NavigationProperty Name="LatestNewsGalleryLinks" Relationship="dbProjectModel.FK_LatestNewsGalleryLinks_LatestNews" FromRole="LatestNew" ToRole="LatestNewsGalleryLink" />
+  </EntityType>
+  <EntityType Name="LatestNewsGalleryLink">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LatestNewsId" Type="Int32" Nullable="false" />
+    <Property Name="GalleryId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Gallery" Relationship="dbProjectModel.FK_LatestNewsGalleryLinks_GalleryDetails" FromRole="LatestNewsGalleryLink" ToRole="Gallery" />
+    <NavigationProperty Name="LatestNew" Relationship="dbProjectModel.FK_LatestNewsGalleryLinks_LatestNews" FromRole="LatestNewsGalleryLink" ToRole="LatestNew" />
+  </EntityType>
+  <EntityType Name="MenuPermission">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Menu" Relationship="dbProjectModel.FK_MenuPermissions_Menus" FromRole="MenuPermission" ToRole="Menu" />
+    <NavigationProperty Name="Role" Relationship="dbProjectModel.FK_MenuPermissions_Roles" FromRole="MenuPermission" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Icon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="AccessURL" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MenuPermissions" Relationship="dbProjectModel.FK_MenuPermissions_Menus" FromRole="Menu" ToRole="MenuPermission" />
+    <NavigationProperty Name="Menus1" Relationship="dbProjectModel.FK_Menus_Menus" FromRole="Menu" ToRole="Menu1" />
+    <NavigationProperty Name="Menu1" Relationship="dbProjectModel.FK_Menus_Menus" FromRole="Menu1" ToRole="Menu" />
+    <NavigationProperty Name="RolePermissions" Relationship="dbProjectModel.FK_RolePermissions_Menus" FromRole="Menu" ToRole="RolePermission" />
   </EntityType>
   <EntityType Name="NewsLetter">
     <Key>
@@ -367,6 +372,38 @@
     <Property Name="UpdatedBy" Type="Int32" />
     <Property Name="DeletedBy" Type="Int32" />
     <Property Name="isDefault" Type="Boolean" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_NewsLetters_NewsLetters_updatedby" FromRole="NewsLetter" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_NewsLetters_Users_createdby" FromRole="NewsLetter" ToRole="User" />
+  </EntityType>
+  <EntityType Name="OrgAnnouncement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Announcement" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="isNoticeBoard" Type="Boolean" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Files" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_OrgAnnouncement_Users_createdby" FromRole="OrgAnnouncement" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_OrgAnnouncement_Users_updatedby" FromRole="OrgAnnouncement" ToRole="User" />
+    <NavigationProperty Name="OrgAnnouncementDetails" Relationship="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement" FromRole="OrgAnnouncement" ToRole="OrgAnnouncementDetail" />
+  </EntityType>
+  <EntityType Name="OrgAnnouncementDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrgAnnoucmentID" Type="Int32" Nullable="false" />
+    <Property Name="Files" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrgAnnouncement" Relationship="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement" FromRole="OrgAnnouncementDetail" ToRole="OrgAnnouncement" />
   </EntityType>
   <EntityType Name="Policy">
     <Key>
@@ -385,6 +422,8 @@
     <Property Name="CreatedBy" Type="Int32" Nullable="false" />
     <Property Name="UpdatedBy" Type="Int32" />
     <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_Policies_Users_createdby" FromRole="Policy" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_Policies_Users_updatedby" FromRole="Policy" ToRole="User" />
   </EntityType>
   <EntityType Name="QuestionDetail">
     <Key>
@@ -397,6 +436,275 @@
     <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Question" Relationship="dbProjectModel.FK_QuestionDetail_Question" FromRole="QuestionDetail" ToRole="Question" />
   </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SubmissionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <Property Name="isDefault" Type="Boolean" />
+    <NavigationProperty Name="QuestionDetails" Relationship="dbProjectModel.FK_QuestionDetail_Question" FromRole="Question" ToRole="QuestionDetail" />
+  </EntityType>
+  <EntityType Name="RolePermission">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="Permissions" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SequenceOrder" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <NavigationProperty Name="Menu" Relationship="dbProjectModel.FK_RolePermissions_Menus" FromRole="RolePermission" ToRole="Menu" />
+    <NavigationProperty Name="Role" Relationship="dbProjectModel.FK_RolePermissions_Roles" FromRole="RolePermission" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="MenuPermissions" Relationship="dbProjectModel.FK_MenuPermissions_Roles" FromRole="Role" ToRole="MenuPermission" />
+    <NavigationProperty Name="RolePermissions" Relationship="dbProjectModel.FK_RolePermissions_Roles" FromRole="Role" ToRole="RolePermission" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_Roles_Roles_updatedby" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_Roles_Users_createdby" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="Users" Relationship="dbProjectModel.FK_Users_Roles" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ServeyMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="dbProjectModel.FK_ServeyMaster_Users_createdby" FromRole="ServeyMaster" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="dbProjectModel.FK_ServeyMaster_Users_updatedby" FromRole="ServeyMaster" ToRole="User" />
+    <NavigationProperty Name="ServeyQuestions" Relationship="dbProjectModel.FK_ServeyQuestions_ServeyMaster" FromRole="ServeyMaster" ToRole="ServeyQuestion" />
+    <NavigationProperty Name="ServeyResponseMasters" Relationship="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster" FromRole="ServeyMaster" ToRole="ServeyResponseMaster" />
+  </EntityType>
+  <EntityType Name="ServeyQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServeyMasterId" Type="Int32" Nullable="false" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="opt1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="opt2" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="opt3" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="opt4" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="ServeyMaster" Relationship="dbProjectModel.FK_ServeyQuestions_ServeyMaster" FromRole="ServeyQuestion" ToRole="ServeyMaster" />
+    <NavigationProperty Name="ServeyResponseAnswers" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions" FromRole="ServeyQuestion" ToRole="ServeyResponseAnswer" />
+  </EntityType>
+  <EntityType Name="ServeyResponseAnswer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServeyResponseMasterId" Type="Int32" Nullable="false" />
+    <Property Name="QuestionId" Type="Int32" Nullable="false" />
+    <Property Name="Response" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ServeyQuestion" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions" FromRole="ServeyResponseAnswer" ToRole="ServeyQuestion" />
+    <NavigationProperty Name="ServeyResponseMaster" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyResponseMaster" FromRole="ServeyResponseAnswer" ToRole="ServeyResponseMaster" />
+  </EntityType>
+  <EntityType Name="ServeyResponseMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServeyMasterId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ServeyMaster" Relationship="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster" FromRole="ServeyResponseMaster" ToRole="ServeyMaster" />
+    <NavigationProperty Name="ServeyResponseAnswers" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyResponseMaster" FromRole="ServeyResponseMaster" ToRole="ServeyResponseAnswer" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ProfileImage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="Banners" Relationship="dbProjectModel.FK_Banners_Users_createdby" FromRole="User" ToRole="Banner" />
+    <NavigationProperty Name="Banners1" Relationship="dbProjectModel.FK_Banners_Users_updatedby" FromRole="User" ToRole="Banner" />
+    <NavigationProperty Name="BusinessApplications" Relationship="dbProjectModel.FK_BusinessApplications_Users_createdby" FromRole="User" ToRole="BusinessApplication" />
+    <NavigationProperty Name="BusinessApplications1" Relationship="dbProjectModel.FK_BusinessApplications_Users_updatedby" FromRole="User" ToRole="BusinessApplication" />
+    <NavigationProperty Name="Events" Relationship="dbProjectModel.FK_Events_Users_createdby" FromRole="User" ToRole="Event" />
+    <NavigationProperty Name="Events1" Relationship="dbProjectModel.FK_Events_Users_updatedby" FromRole="User" ToRole="Event" />
+    <NavigationProperty Name="Galleries" Relationship="dbProjectModel.FK_Gallery_Users_createdby" FromRole="User" ToRole="Gallery" />
+    <NavigationProperty Name="Galleries1" Relationship="dbProjectModel.FK_Gallery_Users_updatedby" FromRole="User" ToRole="Gallery" />
+    <NavigationProperty Name="Jobs" Relationship="dbProjectModel.FK_Jobs_Jobs_updatedby" FromRole="User" ToRole="Job" />
+    <NavigationProperty Name="Jobs1" Relationship="dbProjectModel.FK_Jobs_Users_createdby" FromRole="User" ToRole="Job" />
+    <NavigationProperty Name="LatestNews" Relationship="dbProjectModel.FK_LatestNews_Users_createdby" FromRole="User" ToRole="LatestNew" />
+    <NavigationProperty Name="LatestNews1" Relationship="dbProjectModel.FK_LatestNews_Users_updatedby" FromRole="User" ToRole="LatestNew" />
+    <NavigationProperty Name="NewsLetters" Relationship="dbProjectModel.FK_NewsLetters_NewsLetters_updatedby" FromRole="User" ToRole="NewsLetter" />
+    <NavigationProperty Name="NewsLetters1" Relationship="dbProjectModel.FK_NewsLetters_Users_createdby" FromRole="User" ToRole="NewsLetter" />
+    <NavigationProperty Name="OrgAnnouncements" Relationship="dbProjectModel.FK_OrgAnnouncement_Users_createdby" FromRole="User" ToRole="OrgAnnouncement" />
+    <NavigationProperty Name="OrgAnnouncements1" Relationship="dbProjectModel.FK_OrgAnnouncement_Users_updatedby" FromRole="User" ToRole="OrgAnnouncement" />
+    <NavigationProperty Name="Policies" Relationship="dbProjectModel.FK_Policies_Users_createdby" FromRole="User" ToRole="Policy" />
+    <NavigationProperty Name="Policies1" Relationship="dbProjectModel.FK_Policies_Users_updatedby" FromRole="User" ToRole="Policy" />
+    <NavigationProperty Name="Roles" Relationship="dbProjectModel.FK_Roles_Roles_updatedby" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Roles1" Relationship="dbProjectModel.FK_Roles_Users_createdby" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Role" Relationship="dbProjectModel.FK_Users_Roles" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="ServeyMasters" Relationship="dbProjectModel.FK_ServeyMaster_Users_createdby" FromRole="User" ToRole="ServeyMaster" />
+    <NavigationProperty Name="ServeyMasters1" Relationship="dbProjectModel.FK_ServeyMaster_Users_updatedby" FromRole="User" ToRole="ServeyMaster" />
+  </EntityType>
+  <Association Name="FK_Banners_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.Banner" Role="Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Banner">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Banners_Users_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.Banner" Role="Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Banner">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessApplications_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.BusinessApplication" Role="BusinessApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BusinessApplication">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessApplications_Users_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.BusinessApplication" Role="BusinessApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BusinessApplication">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.Event" Role="Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Users_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.Event" Role="Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gallery_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.Gallery" Role="Gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Gallery">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gallery_Users_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.Gallery" Role="Gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Gallery">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_GalleryDetails_GalleryDetails">
     <End Type="dbProjectModel.Gallery" Role="Gallery" Multiplicity="0..1" />
     <End Type="dbProjectModel.GalleryDetail" Role="GalleryDetail" Multiplicity="*" />
@@ -421,6 +729,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Jobs_Jobs_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.Job" Role="Job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobs_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.Job" Role="Job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LatestNews_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.LatestNew" Role="LatestNew" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LatestNew">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LatestNews_Users_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.LatestNew" Role="LatestNew" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LatestNew">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_LatestNewsGalleryLinks_LatestNews">
     <End Type="dbProjectModel.LatestNew" Role="LatestNew" Multiplicity="1" />
     <End Type="dbProjectModel.LatestNewsGalleryLink" Role="LatestNewsGalleryLink" Multiplicity="*" />
@@ -433,55 +789,102 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Event">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="EventOrganizer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="EventLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Files" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-    <Property Name="isDefault" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="OrgAnnouncement">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Announcement" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="isNoticeBoard" Type="Boolean" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="Files" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="IsDeleted" Type="Boolean" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-    <NavigationProperty Name="OrgAnnouncementDetails" Relationship="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement" FromRole="OrgAnnouncement" ToRole="OrgAnnouncementDetail" />
-  </EntityType>
-  <EntityType Name="OrgAnnouncementDetail">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="OrgAnnoucmentID" Type="Int32" Nullable="false" />
-    <Property Name="Files" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="OrgAnnouncement" Relationship="dbProjectModel.FK_OrgAnnouncementDetails_OrgAnnouncement" FromRole="OrgAnnouncementDetail" ToRole="OrgAnnouncement" />
-  </EntityType>
+  <Association Name="FK_MenuPermissions_Menus">
+    <End Type="dbProjectModel.Menu" Role="Menu" Multiplicity="1" />
+    <End Type="dbProjectModel.MenuPermission" Role="MenuPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MenuPermission">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuPermissions_Roles">
+    <End Type="dbProjectModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="dbProjectModel.MenuPermission" Role="MenuPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MenuPermission">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menus_Menus">
+    <End Type="dbProjectModel.Menu" Role="Menu" Multiplicity="0..1" />
+    <End Type="dbProjectModel.Menu" Role="Menu1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermissions_Menus">
+    <End Type="dbProjectModel.Menu" Role="Menu" Multiplicity="1" />
+    <End Type="dbProjectModel.RolePermission" Role="RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsLetters_NewsLetters_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.NewsLetter" Role="NewsLetter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NewsLetter">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsLetters_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.NewsLetter" Role="NewsLetter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NewsLetter">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrgAnnouncement_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.OrgAnnouncement" Role="OrgAnnouncement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrgAnnouncement">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrgAnnouncement_Users_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.OrgAnnouncement" Role="OrgAnnouncement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrgAnnouncement">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_OrgAnnouncementDetails_OrgAnnouncement">
     <End Type="dbProjectModel.OrgAnnouncement" Role="OrgAnnouncement" Multiplicity="1" />
     <End Type="dbProjectModel.OrgAnnouncementDetail" Role="OrgAnnouncementDetail" Multiplicity="*" />
@@ -494,64 +897,114 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="BusinessApplication">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IsFooterLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Url" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-  </EntityType>
-  <EntityType Name="ServeyMaster">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="LastDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-    <NavigationProperty Name="ServeyQuestions" Relationship="dbProjectModel.FK_ServeyQuestions_ServeyMaster" FromRole="ServeyMaster" ToRole="ServeyQuestion" />
-    <NavigationProperty Name="ServeyResponseMasters" Relationship="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster" FromRole="ServeyMaster" ToRole="ServeyResponseMaster" />
-  </EntityType>
-  <EntityType Name="ServeyQuestion">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ServeyMasterId" Type="Int32" Nullable="false" />
-    <Property Name="Question" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="opt1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="opt2" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="opt3" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="opt4" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-    <NavigationProperty Name="ServeyMaster" Relationship="dbProjectModel.FK_ServeyQuestions_ServeyMaster" FromRole="ServeyQuestion" ToRole="ServeyMaster" />
-    <NavigationProperty Name="ServeyResponseAnswers" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions" FromRole="ServeyQuestion" ToRole="ServeyResponseAnswer" />
-  </EntityType>
+  <Association Name="FK_Policies_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.Policy" Role="Policy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Policy">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Policies_Users_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.Policy" Role="Policy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Policy">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionDetail_Question">
+    <End Type="dbProjectModel.Question" Role="Question" Multiplicity="0..1" />
+    <End Type="dbProjectModel.QuestionDetail" Role="QuestionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="QuestionDetail">
+        <PropertyRef Name="QuestionsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermissions_Roles">
+    <End Type="dbProjectModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="dbProjectModel.RolePermission" Role="RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Roles_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Type="dbProjectModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServeyMaster_Users_createdby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="dbProjectModel.ServeyMaster" Role="ServeyMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServeyMaster">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServeyMaster_Users_updatedby">
+    <End Type="dbProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbProjectModel.ServeyMaster" Role="ServeyMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServeyMaster">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ServeyQuestions_ServeyMaster">
     <End Type="dbProjectModel.ServeyMaster" Role="ServeyMaster" Multiplicity="1" />
     <End Type="dbProjectModel.ServeyQuestion" Role="ServeyQuestion" Multiplicity="*" />
@@ -564,18 +1017,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="ServeyResponseMaster">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ServeyMasterId" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="ServeyMaster" Relationship="dbProjectModel.FK_ServeyResponseMaster_ServeyMaster" FromRole="ServeyResponseMaster" ToRole="ServeyMaster" />
-    <NavigationProperty Name="ServeyResponseAnswers" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyResponseMaster" FromRole="ServeyResponseMaster" ToRole="ServeyResponseAnswer" />
-  </EntityType>
   <Association Name="FK_ServeyResponseMaster_ServeyMaster">
     <End Type="dbProjectModel.ServeyMaster" Role="ServeyMaster" Multiplicity="1" />
     <End Type="dbProjectModel.ServeyResponseMaster" Role="ServeyResponseMaster" Multiplicity="*" />
@@ -585,51 +1026,6 @@
       </Principal>
       <Dependent Role="ServeyResponseMaster">
         <PropertyRef Name="ServeyMasterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="Question">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="option1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="option2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="option3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="option4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="SubmissionDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="DeletedDateTime" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-    <Property Name="UpdatedBy" Type="Int32" />
-    <Property Name="DeletedBy" Type="Int32" />
-    <Property Name="isDefault" Type="Boolean" />
-    <NavigationProperty Name="QuestionDetails" Relationship="dbProjectModel.FK_QuestionDetail_Question" FromRole="Question" ToRole="QuestionDetail" />
-  </EntityType>
-  <EntityType Name="ServeyResponseAnswer">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ServeyResponseMasterId" Type="Int32" Nullable="false" />
-    <Property Name="QuestionId" Type="Int32" Nullable="false" />
-    <Property Name="Response" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="ServeyQuestion" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyQuestions" FromRole="ServeyResponseAnswer" ToRole="ServeyQuestion" />
-    <NavigationProperty Name="ServeyResponseMaster" Relationship="dbProjectModel.FK_ServeyResponseAnswers_ServeyResponseMaster" FromRole="ServeyResponseAnswer" ToRole="ServeyResponseMaster" />
-  </EntityType>
-  <Association Name="FK_QuestionDetail_Question">
-    <End Type="dbProjectModel.Question" Role="Question" Multiplicity="0..1" />
-    <End Type="dbProjectModel.QuestionDetail" Role="QuestionDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Question">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="QuestionDetail">
-        <PropertyRef Name="QuestionsId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

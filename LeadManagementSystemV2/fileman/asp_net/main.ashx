@@ -27,6 +27,7 @@ using System.Drawing;
 using System.Collections;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Text.RegularExpressions;
 using System.Drawing.Imaging;
@@ -475,14 +476,34 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
         return timeSpan.TotalSeconds;
 
     }
-    protected void ListFiles(string path, string type)
+    protected void ListFiles(string path, string type, string keyword = "")
     {
         CheckPath(path);
         string fullPath = rootDirectoryPath + FixPath(path);
         List<string> files = GetFiles(fullPath, type);
+        var PDF_AND_DOCX_FILES = new List<string>();
+        for (int i = 0; i < files.Count; i++)
+        {
+            FileInfo FILE = new FileInfo(files[i]);
+            if(FILE.Extension.Contains("pdf") || FILE.Extension.Contains("doc"))
+            {
+                PDF_AND_DOCX_FILES.Add(files[i]);
+            }
+        }
+        if (!string.IsNullOrEmpty(keyword))
+        {
+            for (int i = 0; i < files.Count; i++)
+            {
+                FileInfo FILE = new FileInfo(files[i]);
+                if(!FILE.Name.ToLower().Contains(keyword.ToLower()))
+                {
+                    PDF_AND_DOCX_FILES.Remove(files[i]);
+                }
+            }            
+        }
         _r.Write("[");
-        for(int i = 0; i < files.Count; i++){
-            FileInfo f = new FileInfo(files[i]);
+        for(int i = 0; i < PDF_AND_DOCX_FILES.Count; i++){
+            FileInfo f = new FileInfo(PDF_AND_DOCX_FILES[i]);
             int w = 0, h = 0;
             if (GetFileType(f.Extension) == "image"){
                 try{
@@ -503,7 +524,7 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
             _r.Write(",\"w\":\""+w.ToString()+"\"");
             _r.Write(",\"h\":\""+h.ToString()+"\"");
             _r.Write("}");
-            if (i < files.Count - 1)
+            if (i < PDF_AND_DOCX_FILES.Count - 1)
                 _r.Write(",");
         }
         _r.Write("]");

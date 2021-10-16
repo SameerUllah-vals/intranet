@@ -34,6 +34,8 @@ namespace LeadManagementSystemV2.Models
         public Nullable<int> DeletedBy { get; set; }
         public Nullable<bool> isDefault { get; set; }
     
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GalleryDetail> GalleryDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

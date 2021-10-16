@@ -71,21 +71,29 @@
                     <ul>
 
                         @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == true).Take(Model.setting.noticeDisplay).ToList())
-                        {
-                            <li>
-                                @ApplicationHelper.StripHtmlTags(item.Announcement) <br />(@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Time_Format)
-                                @if (item.OrgAnnouncementDetails.Count > 0)
-                                {
+                            {
+                                <li>(@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Time_Format))</li>
+                                <li>
+                                                @ApplicationHelper.StripHtmlTags(item.Announcement) 
+                
+                                  </li>
+                                <li>
+                                    <a href="javascript:void(0)" style=" width: 20%; display: inline-block;" class="readmore" data-value="@ApplicationHelper.StripHtmlTags(item.Announcement)">Read more</a>
 
-                                    foreach (var file in item.OrgAnnouncementDetails.ToList())
+                                    @if (item.OrgAnnouncementDetails.Count > 0)
                                     {
-                                        <a href="@Url.Action("downloadfile", "download", new { filepath = file.Files })">View Attachment</a>
+
+                                        foreach (var file in item.OrgAnnouncementDetails.ToList())
+                                        {
+                                            <a target="_blank" href="@Url.Action("downloadfile", "download", new { filepath = file.Files })" style=" width: 30%; display: inline-block;">View Attachment</a>
+                                        }
+
+
                                     }
+                                </li>
+                               
 
-
-                                }
-                            </li>
-                        }
+                            }
 
                     </ul>
                     <a class="archived-b" href="@Url.Action("ArchivedNotice", "Home")">View Archived</a>
@@ -98,10 +106,10 @@
                         <div class="col-xl-12 col-lg-12 col-12 my-auto">
                             <div class="row ">
                                 <div class="col-xl-12">
-                                    @*<h3 class="mb-4">
+                                    <h3 class="mb-4">
                                             POLICIES
 
-                                        </h3>*@
+                                        </h3>
                                 </div>
                                 <div class="col-xl-6 col-12">
                                     <div class="text-center">
@@ -300,7 +308,7 @@
                                             <ul>
                                                 @foreach (var file in item.OrgAnnouncementDetails.ToList())
                                                 {
-                                                    <li><a href="@Url.Action("downloadfile", "download", new { filepath = file.Files })">View Attachment</a></li>
+                                                    <li><a target="_blank" href="@Url.Action("downloadfile", "download", new { filepath = file.Files })">View Attachment</a></li>
                                                 }
                                             </ul>
 
@@ -432,7 +440,7 @@
                                         <div class="card-body">
                                             <h3 class="card-title mb-0">@item.Title</h3>
                                             <small class="d-block mb-3">@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Format)</small>
-                                            <a href="~/assets/newsletter/@item.PDF" class="card-text download"><i class="fas fa-file-pdf"></i> Download Now</a>
+                                            <a target="_blank" href="~/assets/newsletter/@item.PDF" class="card-text download"><i class="fas fa-file-pdf"></i> Download Now</a>
                                         </div>
                                     </div>
 
@@ -464,7 +472,7 @@
         </div>
     </div>*@
 
-<div class="container-fluid">
+<div class="container-fluid" style="display:none">
     <div class="row">
         <div class="col-12 text-center mb-3">
             <div id="gallery-slider" class="owl-carousel owl-theme gallery-slider">
@@ -501,75 +509,6 @@
     </div>
 </div>
 <!--Page Content-->
-@if (Model.Servey.ID > 0)
-{
-    @*<div class="container-fluid">
-
-        @using (Ajax.BeginForm("serveyResponse", "home", null, new AjaxOptions { HttpMethod = "POST", OnBegin = "OnFormBegin", OnComplete = "OnFormComplete", OnSuccess = "OnFormSuccess", OnFailure = "OnFormFailure" }, new { @id = "regForm", @autocomplete = "off" }))
-        {
-            @Html.Hidden("ServeyMasterId", Model.Servey.ID)
-            <div class="row">
-                <div class="col-md-6">
-                    <h1>Your feedback is value able for us:</h1>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Name (optional)</label>
-                        <input placeholder="Name..." class="form-control" name="Name">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Email (optional)</label>
-                        <input placeholder="E-mail..." class="form-control" name="Email">
-                    </div>
-                </div>
-            </div>
-
-            foreach (var record in Model.Servey.Questions)
-            {
-                <div class="tab">
-                    <h5>@record.Question @Html.Hidden("ServeyQuestionId", record.ID)</h5>
-                    <hr />
-                    <div class="row justify-content-center">
-                        <div class="col-md-3">
-                            <p><input class="w-input" type="radio" name="[@record.ID].Answer" value="@record.opt1">@record.opt1</p>
-                        </div>
-                        <div class="col-md-3">
-                            <p><input class="w-input" type="radio" name="[@record.ID].Answer" value="@record.opt2">@record.opt2</p>
-                        </div>
-                        <div class="col-md-3">
-                            <p><input class="w-input" type="radio" name="[@record.ID].Answer" value="@record.opt3">@record.opt3</p>
-                        </div>
-                        <div class="col-md-3">
-                            <p><input class="w-input" type="radio" name="[@record.ID].Answer" value="@record.opt4">@record.opt4</p>
-                        </div>
-                    </div>
-                </div>
-            }
-            <div style="overflow:auto;">
-                <div style="float:right;">
-                    <button class="w-button" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                    <button class="w-button" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                </div>
-            </div>
-            <div style="text-align:center;margin-top:40px;">
-
-                @for (int index = 0; index < Model.Servey.Questions.Count; index++)
-                {
-                    <span class="step"></span>
-                }
-
-            </div>
-
-
-
-        }
-
-
-
-    </div>*@
-}
 
 @if (Model.Servey.ID > 0)
 {
@@ -656,6 +595,7 @@
 }
 <!--Page Content-->
 <!-- Page Content -->
+
 <div class="container-fluid spacer-padding" id="pnlCalender">
     <div class="row">
         <!--Calender Grid-->
@@ -784,8 +724,6 @@
 @section InLineScriptSection{
 
     <script>
-
-
         $('#gallery-slider').owlCarousel({
             loop: true,
             margin: 50,
@@ -858,7 +796,6 @@
 
 
     </script>
-
     <script>
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -900,7 +837,7 @@
                                     $(".eventdatetime").html(data[0].EventDateTime);
                                     $(".eventremarks").html(data[0].Description);
                                     $("#pnlfile").html('');
-                                    $("#pnlfile").append("<a href='@ViewBag.WebsiteURL/download/downloadfile?filepath=" + data[0].Files + "' >View Attachment</a>");
+                                    $("#pnlfile").append("<a target='_blank' href='@ViewBag.WebsiteURL/download/downloadfile?filepath=" + data[0].Files + "' >View Attachment</a>");
                                     $("#eventmodal").modal('show');
                                 },
                                 error: function (error, xhr, state) {
@@ -913,7 +850,7 @@
 
                     let ishide = true;
                     events.forEach(function (value, index) {
-                        if (new Date(value.start).getMonth() == new Date().getMonth()) {
+                        if (new Date(value.start).getMonth() == new Date().getMonth() || new Date(value.start).getMonth() == new Date().getMonth() + 1 || new Date(value.start).getMonth() == new Date().getMonth() + 2) {
                             ishide = false;
                         }
                     })
@@ -966,9 +903,9 @@
                 }
             })
         }
-
-
-
+        $(document).on("click", "a.readmore", function () {
+            alertify.alert().set({ transition: 'zoom', message: $(this).attr("data-value"), title: "Notice" }).show();
+        })
     </script>
     @if (TempData["success"] != null)
     {

@@ -1,9 +1,9 @@
 ﻿@using LeadManagementSystemV2.Helpers;
 @{
-    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Name\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Name\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedBy\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedBy\"},{ \"data\": \"UpdatedDateTime\"}";
     if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
     {
-        ViewBag.DataTableActionColumn = "4";
+        ViewBag.DataTableActionColumn = "6";
         DataTableColumns += ",{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": false}";
     }
     ViewBag.DataTableColumns = DataTableColumns;
@@ -36,8 +36,11 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th class="min-desktop">Status</th>
-                        <th class="min-desktop">Created</th>
-                        <th class="min-desktop">Updated</th>
+                        <th class="min-desktop">Created by</th>
+                        <th class="min-desktop">Created Date</th>
+                       
+                        <th class="min-desktop">Updated By</th>
+                        <th class="min-desktop">Updated Date</th>
                         @if (ViewBag.DataTableActionColumn != null)
                         {
                             <th data-priority="2">Actions</th>

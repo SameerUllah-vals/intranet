@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="control-label"> <span class="text-danger">*</span></label>
+                            <label class="control-label"> <span class="text-danger">(1269x436 ) *</span></label>
                             <input type="file" name="ImageFile" id="ImageFile" />
                             @Html.ValidationMessageFor(m => m.ImageFile, "", new { @class = "text-danger" })
                         </div>
@@ -51,13 +51,13 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-sm-6">
+                    @*<div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label">Ticker text <span class="text-danger">*</span></label>
                             @Html.TextBoxFor(m => m.Ticker, null, new { @class = "form-control", @placeholder = "Ticker text *" })
                             @Html.ValidationMessageFor(m => m.Ticker, "", new { @class = "text-danger" })
                         </div>
-                    </div>
+                    </div>*@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label">Status <span class="text-danger">*</span></label>

@@ -41,7 +41,7 @@ namespace LeadManagementSystemV2.Controllers
             dataSource = dataSource.SortBy(param.SortOrder).Skip(param.Start).Take(param.Length);
             var resultList = dataSource.ToList();
             var resultData = from x in resultList
-                             select new { x.ID, x.Title, Files = x.OrgAnnouncementDetails.Select(m => new {m.Files }).ToList(), x.Announcement, Status = x.Status , CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Title, Files = x.OrgAnnouncementDetails.Select(m => new {m.Files }).ToList(), x.Announcement, Status = x.Status , CreatedBy = x.User.Name, UpdatedBy = (x.User1 != null ? x.User1.Name : "") ,CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
             var result = new
             {
                 draw = param.Draw,

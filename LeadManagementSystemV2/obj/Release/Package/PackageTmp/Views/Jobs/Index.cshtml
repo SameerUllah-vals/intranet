@@ -6,11 +6,11 @@
     {
         //ViewBag.AllowDeleting = true;
     }
-    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"JobCode\"},{\"data\": \"Title\"},{\"data\": \"Positions\"},{\"data\": \"BusinessSelector\"},{\"data\": \"SubmissionDate\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"JobCode\"},{\"data\": \"Title\"},{\"data\": \"Positions\"},{\"data\": \"BusinessSelector\"},{\"data\": \"SubmissionDate\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedBy\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedBy\"},{ \"data\": \"UpdatedDateTime\"}";
 
     if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
     {
-        ViewBag.DataTableActionColumn = "8";
+        ViewBag.DataTableActionColumn = "10";
         DataTableColumns += ",{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": false}";
     }
 
@@ -48,7 +48,9 @@
                         <th>Business Unit</th>
                         <th>Submission Date</th>
                         <th>Last date to apply</th>
+                        <th>Created By</th>
                         <th class="min-desktop">Created DateTime</th>
+                        <th class="min-desktop">Updated By</th>
                         <th class="min-desktop">Updated DateTime</th>
                         @if (ViewBag.DataTableActionColumn != null)
                         {

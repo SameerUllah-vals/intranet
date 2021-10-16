@@ -27,5 +27,8 @@ namespace LeadManagementSystemV2.Models
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<int> DeletedBy { get; set; }
         public Nullable<bool> isDefault { get; set; }
+    
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

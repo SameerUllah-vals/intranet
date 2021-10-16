@@ -7,11 +7,11 @@
     {
         //ViewBag.AllowDeleting = true;
     }
-    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Title\"},{ \"data\": \"SubmissionDate\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Title\"},{ \"data\": \"SubmissionDate\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedBy\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedBy\"},{ \"data\": \"UpdatedDateTime\"}";
 
     if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
     {
-        ViewBag.DataTableActionColumn = "5";
+        ViewBag.DataTableActionColumn = "7";
         DataTableColumns += ",{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": false}";
     }
 
@@ -46,7 +46,9 @@
                         <th>Title</th>
                         <th>Last Submission Date</th>
                         <th>Status</th>
+                        <th>Created By</th>
                         <th class="min-desktop">Created DateTime</th>
+                        <th class="min-desktop">Updated By</th>
                         <th class="min-desktop">Updated DateTime</th>
                         @if (ViewBag.DataTableActionColumn != null)
                         {

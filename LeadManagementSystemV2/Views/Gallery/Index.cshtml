@@ -10,11 +10,11 @@
     {
         //ViewBag.AllowDeleting = true;
     }
-    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Title\"},{\"data\": \"Image\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Title\"},{\"data\": \"Image\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedBy\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedBy\"},{ \"data\": \"UpdatedDateTime\"}";
 
     if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
     {
-        ViewBag.DataTableActionColumn = "5";
+        ViewBag.DataTableActionColumn = "7";
         DataTableColumns += ",{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": false}";
     }
 
@@ -59,10 +59,11 @@
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
-                        <th>Image</th>
-                      
+                        <th>Image</th>                      
                         <th>Status</th>
+                        <th>Created By</th>
                         <th class="min-desktop">Created DateTime</th>
+                        <th class="min-desktop">Updated By</th>
                         <th class="min-desktop">Updated DateTime</th>
                         @if (ViewBag.DataTableActionColumn != null)
                         {

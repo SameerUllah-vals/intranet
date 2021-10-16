@@ -7,11 +7,11 @@
     {
         //ViewBag.AllowDeleting = true;
     }
-    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Title\"},{\"data\": \"Category\"},{\"data\": \"Type\"},{\"data\": \"PDF\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Title\"},{\"data\": \"Category\"},{\"data\": \"Type\"},{\"data\": \"PDF\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedBy\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedBy\"},{ \"data\": \"UpdatedDateTime\"}";
 
     if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
     {
-        ViewBag.DataTableActionColumn = "7";
+        ViewBag.DataTableActionColumn = "9";
         DataTableColumns += ",{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": false}";
     }
 
@@ -48,7 +48,9 @@
                         <th>Type</th>
                         <th>PDF Name</th>
                         <th>Status</th>
+                        <th>Created By</th>
                         <th class="min-desktop">Created DateTime</th>
+                        <th class="min-desktop">Updated By</th>
                         <th class="min-desktop">Updated DateTime</th>
                         @if (ViewBag.DataTableActionColumn != null)
                         {

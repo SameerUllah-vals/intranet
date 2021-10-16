@@ -47,7 +47,7 @@ namespace LeadManagementSystemV2.Controllers
             var resultList = dataSource.ToList();
 
             var resultData = from x in resultList
-                             select new { x.ID, x.Name, x.Status, CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Name, x.Status, CreatedBy = (x.User != null ? x.User.Name : ""), UpdatedBy = (x.User1 != null ? x.User1.Name : ""), CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
 
             var result = new
             {

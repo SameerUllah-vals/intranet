@@ -337,7 +337,9 @@ namespace LeadManagementSystemV2.Models
         [Required]
 
         public string IsFooterLink { get; set; }
+        public string FooterValueType { get; set; }
         public string Url { get; set; }
+        public HttpPostedFileBase File { get; set; }
         public string Status { get; set; }
     }
 

@@ -301,7 +301,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ServeyMasterId" Type="int" Nullable="false" />
-    <Property Name="Question" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="400" Nullable="false" />
     <Property Name="opt1" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="opt2" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="opt3" Type="nvarchar" MaxLength="200" Nullable="false" />
@@ -361,6 +361,102 @@
     <Property Name="UpdatedBy" Type="int" />
     <Property Name="DeletedBy" Type="int" />
   </EntityType>
+  <Association Name="FK_Banners_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Banners" Type="Self.Banners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Banners">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Banners_Users_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Banners" Type="Self.Banners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Banners">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessApplications_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="BusinessApplications" Type="Self.BusinessApplications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BusinessApplications">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessApplications_Users_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="BusinessApplications" Type="Self.BusinessApplications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BusinessApplications">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Events" Type="Self.Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Users_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Events" Type="Self.Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gallery_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Gallery" Type="Self.Gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Gallery">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gallery_Users_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Gallery" Type="Self.Gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Gallery">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_GalleryDetails_GalleryDetails">
     <End Role="Gallery" Type="Self.Gallery" Multiplicity="0..1" />
     <End Role="GalleryDetails" Type="Self.GalleryDetails" Multiplicity="*" />
@@ -370,6 +466,54 @@
       </Principal>
       <Dependent Role="GalleryDetails">
         <PropertyRef Name="GalleryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobs_Jobs_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobs">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobs_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobs">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LatestNews_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LatestNews" Type="Self.LatestNews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LatestNews">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LatestNews_Users_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="LatestNews" Type="Self.LatestNews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LatestNews">
+        <PropertyRef Name="UpdatedBy" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -433,6 +577,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_NewsLetters_NewsLetters_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="NewsLetters" Type="Self.NewsLetters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NewsLetters">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsLetters_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="NewsLetters" Type="Self.NewsLetters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NewsLetters">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrgAnnouncement_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="OrgAnnouncement" Type="Self.OrgAnnouncement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrgAnnouncement">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrgAnnouncement_Users_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="OrgAnnouncement" Type="Self.OrgAnnouncement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrgAnnouncement">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_OrgAnnouncementDetails_OrgAnnouncement">
     <End Role="OrgAnnouncement" Type="Self.OrgAnnouncement" Multiplicity="1" />
     <End Role="OrgAnnouncementDetails" Type="Self.OrgAnnouncementDetails" Multiplicity="*" />
@@ -442,6 +634,30 @@
       </Principal>
       <Dependent Role="OrgAnnouncementDetails">
         <PropertyRef Name="OrgAnnoucmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Policies_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Policies" Type="Self.Policies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Policies">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Policies_Users_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Policies" Type="Self.Policies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Policies">
+        <PropertyRef Name="UpdatedBy" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -478,6 +694,54 @@
       </Principal>
       <Dependent Role="RolePermissions">
         <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Roles_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServeyMaster_Users_createdby">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ServeyMaster" Type="Self.ServeyMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServeyMaster">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServeyMaster_Users_updatedby">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ServeyMaster" Type="Self.ServeyMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServeyMaster">
+        <PropertyRef Name="UpdatedBy" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -566,9 +830,57 @@
     <EntitySet Name="ServeyResponseMaster" EntityType="Self.ServeyResponseMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Banners_Users_createdby" Association="Self.FK_Banners_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Banners" EntitySet="Banners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Banners_Users_updatedby" Association="Self.FK_Banners_Users_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Banners" EntitySet="Banners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessApplications_Users_createdby" Association="Self.FK_BusinessApplications_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BusinessApplications" EntitySet="BusinessApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessApplications_Users_updatedby" Association="Self.FK_BusinessApplications_Users_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BusinessApplications" EntitySet="BusinessApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Users_createdby" Association="Self.FK_Events_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Users_updatedby" Association="Self.FK_Events_Users_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gallery_Users_createdby" Association="Self.FK_Gallery_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Gallery" EntitySet="Gallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gallery_Users_updatedby" Association="Self.FK_Gallery_Users_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Gallery" EntitySet="Gallery" />
+    </AssociationSet>
     <AssociationSet Name="FK_GalleryDetails_GalleryDetails" Association="Self.FK_GalleryDetails_GalleryDetails">
       <End Role="Gallery" EntitySet="Gallery" />
       <End Role="GalleryDetails" EntitySet="GalleryDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobs_Jobs_updatedby" Association="Self.FK_Jobs_Jobs_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Jobs" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobs_Users_createdby" Association="Self.FK_Jobs_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Jobs" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LatestNews_Users_createdby" Association="Self.FK_LatestNews_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LatestNews" EntitySet="LatestNews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LatestNews_Users_updatedby" Association="Self.FK_LatestNews_Users_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LatestNews" EntitySet="LatestNews" />
     </AssociationSet>
     <AssociationSet Name="FK_LatestNewsGalleryLinks_GalleryDetails" Association="Self.FK_LatestNewsGalleryLinks_GalleryDetails">
       <End Role="Gallery" EntitySet="Gallery" />
@@ -590,9 +902,33 @@
       <End Role="Menus" EntitySet="Menus" />
       <End Role="Menus1" EntitySet="Menus" />
     </AssociationSet>
+    <AssociationSet Name="FK_NewsLetters_NewsLetters_updatedby" Association="Self.FK_NewsLetters_NewsLetters_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NewsLetters" EntitySet="NewsLetters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsLetters_Users_createdby" Association="Self.FK_NewsLetters_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NewsLetters" EntitySet="NewsLetters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrgAnnouncement_Users_createdby" Association="Self.FK_OrgAnnouncement_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="OrgAnnouncement" EntitySet="OrgAnnouncement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrgAnnouncement_Users_updatedby" Association="Self.FK_OrgAnnouncement_Users_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="OrgAnnouncement" EntitySet="OrgAnnouncement" />
+    </AssociationSet>
     <AssociationSet Name="FK_OrgAnnouncementDetails_OrgAnnouncement" Association="Self.FK_OrgAnnouncementDetails_OrgAnnouncement">
       <End Role="OrgAnnouncement" EntitySet="OrgAnnouncement" />
       <End Role="OrgAnnouncementDetails" EntitySet="OrgAnnouncementDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Policies_Users_createdby" Association="Self.FK_Policies_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Policies" EntitySet="Policies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Policies_Users_updatedby" Association="Self.FK_Policies_Users_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Policies" EntitySet="Policies" />
     </AssociationSet>
     <AssociationSet Name="FK_QuestionDetail_Question" Association="Self.FK_QuestionDetail_Question">
       <End Role="Questions" EntitySet="Questions" />
@@ -605,6 +941,22 @@
     <AssociationSet Name="FK_RolePermissions_Roles" Association="Self.FK_RolePermissions_Roles">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="RolePermissions" EntitySet="RolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Roles_updatedby" Association="Self.FK_Roles_Roles_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Users_createdby" Association="Self.FK_Roles_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServeyMaster_Users_createdby" Association="Self.FK_ServeyMaster_Users_createdby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ServeyMaster" EntitySet="ServeyMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServeyMaster_Users_updatedby" Association="Self.FK_ServeyMaster_Users_updatedby">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ServeyMaster" EntitySet="ServeyMaster" />
     </AssociationSet>
     <AssociationSet Name="FK_ServeyQuestions_ServeyMaster" Association="Self.FK_ServeyQuestions_ServeyMaster">
       <End Role="ServeyMaster" EntitySet="ServeyMaster" />

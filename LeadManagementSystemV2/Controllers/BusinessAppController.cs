@@ -37,7 +37,7 @@ namespace LeadManagementSystemV2.Controllers
             dataSource = dataSource.SortBy(param.SortOrder).Skip(param.Start).Take(param.Length);
             var resultList = dataSource.ToList();
             var resultData = from x in resultList
-                             select new { x.ID, x.Name, x.Category , x.IsFooterLink , x.Url,x.Status , CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Name, x.Category , x.IsFooterLink , x.Url,x.Status , CreatedBy = x.User.Name, UpdatedBy = (x.User1 != null ? x.User1.Name : ""), CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
             var result = new
             {
                 draw = param.Draw,
@@ -163,9 +163,14 @@ namespace LeadManagementSystemV2.Controllers
                             Record = Database.BusinessApplications.Create();
                             isRecordWillAdded = true;
                         }
+                        if(modelRecord.File != null)
+                        {
+                            Record.FILES = UploadFiles(modelRecord.File, Server, Gallery_Image_Path, "any");
+                        }
                         Record.Name = modelRecord.Name;
                         Record.Category = modelRecord.Category;
                         Record.IsFooterLink = modelRecord.IsFooterLink;
+                        Record.FooterValueType = modelRecord.IsFooterLink;
                         Record.Url = modelRecord.Url;
                         Record.Status = EnumStatus.Enable;
                         Record.IsDeleted = false;
@@ -180,6 +185,7 @@ namespace LeadManagementSystemV2.Controllers
                             Record.UpdatedDateTime = GetDateTime();
                             Record.UpdatedBy = CurrentUserRecord.ID;
                         }
+                       
                         Database.SaveChanges();
                         AjaxResponse.Type = EnumJQueryResponseType.MessageAndRedirectWithDelay;
                         AjaxResponse.Message = "Successfully Added.";

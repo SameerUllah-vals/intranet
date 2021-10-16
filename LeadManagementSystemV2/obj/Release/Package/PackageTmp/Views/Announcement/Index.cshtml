@@ -9,11 +9,11 @@
     {
         //ViewBag.AllowDeleting = true;
     }
-    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Title\"},{\"data\": \"Announcement\"},{\"data\": \"Files\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedDateTime\"}";
+    string DataTableColumns = "{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": true,\"bVisible\": false},{ \"data\": \"Title\"},{\"data\": \"Announcement\"},{\"data\": \"Files\"},{ \"data\": \"Status\"},{ \"data\": \"CreatedBy\"},{ \"data\": \"CreatedDateTime\"},{ \"data\": \"UpdatedBy\"},{ \"data\": \"UpdatedDateTime\"}";
 
     if (ViewBag.AllowAdding != null || ViewBag.AllowEditing != null || ViewBag.AllowDeleting != null)
     {
-        ViewBag.DataTableActionColumn = "6";
+        ViewBag.DataTableActionColumn = "8";
         DataTableColumns += ",{ \"data\": \"ID\",\"searchable\": false,\"bSortable\": false}";
     }
 
@@ -49,7 +49,9 @@
                         <th>Message</th>
                         <th>file</th>
                         <th>Status</th>
+                        <th>Created By</th>
                         <th class="min-desktop">Created DateTime</th>
+                        <th>Updated By</th>
                         <th class="min-desktop">Updated DateTime</th>
                         @if (ViewBag.DataTableActionColumn != null)
                         {
