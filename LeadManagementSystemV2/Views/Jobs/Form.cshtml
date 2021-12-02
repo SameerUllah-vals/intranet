@@ -35,72 +35,85 @@
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.ID)
          <div class="panel-body">
-            <div class="row">
+             <div class="row">
 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">Job Code <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.JobCode, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.JobCode, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                 <div class="col-sm-4">
+                     <div class="form-group">
+                         <label class="control-label">Company Name <span class="text-danger">*</span></label>
+                         @Html.TextBoxFor(m => m.JobCode, null, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(m => m.JobCode, "", new { @class = "text-danger" })
+                     </div>
+                 </div>
 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">Job Title <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">Job Type <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.JobType, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.JobType, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
+                 <div class="col-sm-4">
+                     <div class="form-group">
+                         <label class="control-label">Job Title <span class="text-danger">*</span></label>
+                         @Html.TextBoxFor(m => m.Title, null, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                     </div>
+                 </div>
+                 <div class="col-sm-4">
+                     <div class="form-group">
+                         <label class="control-label">Education<span class="text-danger">*</span></label>
+                         @Html.TextBoxFor(m => m.EducationLevel, null, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(m => m.EducationLevel, "", new { @class = "text-danger" })
+                     </div>
+                 </div>
+                 @*<div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Job Type <span class="text-danger">*</span></label>
+                @Html.TextBoxFor(m => m.JobType, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.JobType, "", new { @class = "text-danger" })
             </div>
-            <div class="row">
+        </div>*@
 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">Department <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.Department, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">Min Experience <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.MinExp, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.MinExp, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">Total Positions <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.Positions, null, new { @class = "form-control", @type = "number" })
-                        @Html.ValidationMessageFor(m => m.Positions, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
+                 @*<div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Department <span class="text-danger">*</span></label>
+                @Html.TextBoxFor(m => m.Department, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
             </div>
+        </div>*@
 
-            <div class="row">
+             </div>
+             <div class="row">
 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">Location <span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.Location, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+
+                 <div class="col-sm-4">
+                     <div class="form-group">
+                         <label class="control-label">Min Experience <span class="text-danger">*</span></label>
+                         @Html.TextBoxFor(m => m.MinExp, null, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(m => m.MinExp, "", new { @class = "text-danger" })
+                     </div>
+                 </div>
+
+                 @*<div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label">Total Positions <span class="text-danger">*</span></label>
+                @Html.TextBoxFor(m => m.Positions, null, new { @class = "form-control", @type = "number" })
+                @Html.ValidationMessageFor(m => m.Positions, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+                 <div class="col-sm-4">
+                     <div class="form-group">
+                         <label class="control-label">Location <span class="text-danger">*</span></label>
+                         @Html.TextBoxFor(m => m.Location, null, new { @class = "form-control" })
+                         @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
+                     </div>
+                 </div>
+                 <div class="col-sm-4">
+                     <div class="form-group">
+                         <label class="control-label">Last Submission Date <span class="text-danger">*</span></label>
+                         <input type="date" id="SubDate" class="form-control" />
+                         @Html.HiddenFor(m => m.SubmissionDate)
+                         @Html.ValidationMessageFor(m => m.SubmissionDate, "", new { @class = "text-danger" })
+                     </div>
+                 </div>
+             </div>
+
+            @*<div class="row">
+
+              
 
                 <div class="col-sm-4">
                     <div class="form-group">
@@ -110,18 +123,11 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">Last Submission Date <span class="text-danger">*</span></label>
-                        <input type="date" id="SubDate" class="form-control" />
-                        @Html.HiddenFor(m => m.SubmissionDate)
-                        @Html.ValidationMessageFor(m => m.SubmissionDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+               
 
 
-            </div>
-            <div class="row">
+            </div>*@
+            @*<div class="row">
 
                 <div class="col-sm-4">
                     <div class="form-group">
@@ -131,13 +137,12 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">Education<span class="text-danger">*</span></label>
-                        @Html.TextBoxFor(m => m.EducationLevel, null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.EducationLevel, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+              
+              
+             
+
+            </div>*@
+            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label class="control-label">Status <span class="text-danger">*</span></label>
@@ -149,11 +154,6 @@
                         @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
                     </div>
                 </div>
-             
-
-            </div>
-            <div class="row">
-
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="control-label">Description <span class="text-danger">*</span></label>

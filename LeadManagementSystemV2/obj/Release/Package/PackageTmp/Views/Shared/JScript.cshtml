@@ -35,6 +35,7 @@
                     "targets": @ViewBag.targetCol,
                     "data": 'Image',
                     "render": function (data, type, row, meta) {
+
                         return ' <a href="@ViewBag.ImagePath' + data + '" target="_blank"><img src="@ViewBag.ImagePath' + data + '" alt="' + data + '"height="80" width="150"/></a>';
                     }
                 }],
@@ -52,7 +53,7 @@
                     "render": function (data, type, row, meta) {
                         console.log(row);
                         if (row.Files != null)
-                            return '<a style="color:blue" href="@ViewBag.WebsiteURL/download/downloadfile?filepath=' + row.Files + '" target="_blank">View Attachment</a>';
+                            return '<a style="color:blue" href="@ViewBag.WebsiteURL/download/downloadfile?filepath=~/assets/documents/' + row.Files + '" target="_blank">View Attachment</a>';
                         else
                             return "";
                     }
@@ -71,7 +72,7 @@
                             let _file = "";
                             for (let i = 0; i < row.Files.length; i++) {
 
-                                _file += '<ul><li><a style="color:blue" href="@ViewBag.WebsiteURL/download/downloadfile?filepath=' + row.Files[i].Files + '" target="_blank">View Attachment</a><br></li></ul>';
+                                _file += '<ul><li><a style="color:blue" href="@ViewBag.WebsiteURL/download/downloadfile?filepath=~/assets/documents/' + row.Files[i].Files + '" target="_blank">View Attachment</a><br></li></ul>';
                             }
                             return _file;
                         }
@@ -97,7 +98,10 @@
                         }
                         @:ActionHTML += "</div>";
                         @:$('td:eq(@ViewBag.DataTableActionColumn)', nRow).html(ActionHTML);
+
+                             
                     }
+                     
                 }
             }).fnSetFilteringDelay(1000);
             @if(ViewBag.AllowAdding != null)

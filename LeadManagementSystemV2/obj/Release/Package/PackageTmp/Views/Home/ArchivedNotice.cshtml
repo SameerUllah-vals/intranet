@@ -23,16 +23,17 @@
 
                                     <th width="200">Title</th>
                                     <th>Announcement</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>@item.Title</td>
-                                        <td>@Html.Raw(item.Announcement)</td>
-
-                                    </tr>
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@Html.Raw(item.Announcement)</td>
+                                    <td><a href="@Url.Action("", "orgdetails", new { id = item.ID })">View Details</a></td>
+                                </tr>
                                 }
 
                             </tbody>

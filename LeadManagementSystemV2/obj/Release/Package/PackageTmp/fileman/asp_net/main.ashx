@@ -27,6 +27,7 @@ using System.Drawing;
 using System.Collections;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Text.RegularExpressions;
 using System.Drawing.Imaging;
@@ -433,18 +434,63 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
         if(type == "#")
             type = "";
         string[] files = Directory.GetFiles(path);
-        foreach(string f in files){
-            if ((GetFileType(new FileInfo(f).Extension) == type) || (type == ""))
-                ret.Add(f);
+        string keyword = GetCookie("keyword");
+        foreach(string f in files)
+        {
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                if (f.ToLower().Contains(keyword.ToLower()))
+                {
+                    if ((GetFileType(new FileInfo(f).Extension) == type) || (type == ""))
+                    {
+                        ret.Add(f);
+                    }
+                }
+            }
+            else
+            {
+                if ((GetFileType(new FileInfo(f).Extension) == type) || (type == ""))
+                {
+                    ret.Add(f);
+                }
+            }
+
+
         }
+
         return ret;
     }
     private ArrayList ListDirs(string path){
         string[] dirs = Directory.GetDirectories(path);
         ArrayList ret = new ArrayList();
+        string keyword = GetCookie("keyword");
         foreach(string dir in dirs){
+            //if (!string.IsNullOrEmpty(keyword))
+            //{
+            //    var files = Directory.GetFiles(dir);
+            //    bool isDirForAdd = false;
+            //    for (int i = 0; i < files.Length; i++)
+            //    {
+            //        FileInfo FILE = new FileInfo(files[i]);
+            //        if (files[i].ToLower().Contains(keyword.ToLower()) && (FILE.Extension.Contains(".pdf") || FILE.Extension.Contains(".doc")) )
+            //        {
+            //            isDirForAdd = true;
+            //        }
+            //    }
+            //    if (isDirForAdd)
+            //    {
+            //        ret.Add(dir);
+            //        ret.AddRange(ListDirs(dir));
+            //    }
+            //}
+            //else
+            //{
             ret.Add(dir);
             ret.AddRange(ListDirs(dir));
+            //}
+
+
         }
         return ret;
     }
@@ -456,6 +502,32 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
 
         ArrayList dirs = ListDirs(d.FullName);
         dirs.Insert(0, d.FullName);
+        string keyword = GetCookie("keyword");
+        if (!string.IsNullOrEmpty(keyword))
+        {
+            ArrayList removeDirList = new ArrayList();
+            foreach (string dir in dirs)
+            {
+                var files = Directory.GetFiles(dir);
+                bool isDirForRemove = true;
+                for (int i = 0; i < files.Length; i++)
+                {
+                    FileInfo FILE = new FileInfo(files[i]);
+                    if (files[i].ToLower().Contains(keyword.ToLower()) && (FILE.Extension.Contains(".pdf") || FILE.Extension.Contains(".doc")))
+                    {
+                        isDirForRemove = false;
+                    }
+                }
+                if (isDirForRemove)
+                {
+                    removeDirList.Add(dir);
+                }
+            }
+            foreach (var dir in removeDirList)
+            {
+                dirs.Remove(dir);
+            }
+        }
 
         //string localPath = _context.Server.MapPath("~/");
         string writeData = "[";
@@ -475,14 +547,34 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
         return timeSpan.TotalSeconds;
 
     }
-    protected void ListFiles(string path, string type)
+    protected void ListFiles(string path, string type, string keyword = "")
     {
         CheckPath(path);
         string fullPath = rootDirectoryPath + FixPath(path);
         List<string> files = GetFiles(fullPath, type);
+        var PDF_AND_DOCX_FILES = new List<string>();
+        for (int i = 0; i < files.Count; i++)
+        {
+            FileInfo FILE = new FileInfo(files[i]);
+            if(FILE.Extension.Contains("pdf") || FILE.Extension.Contains("doc"))
+            {
+                PDF_AND_DOCX_FILES.Add(files[i]);
+            }
+        }
+        //if (!string.IsNullOrEmpty(keyword))
+        //{
+        //    for (int i = 0; i < files.Count; i++)
+        //    {
+        //        FileInfo FILE = new FileInfo(files[i]);
+        //        if(!FILE.Name.ToLower().Contains(keyword.ToLower()))
+        //        {
+        //            PDF_AND_DOCX_FILES.Remove(files[i]);
+        //        }
+        //    }            
+        //}
         _r.Write("[");
-        for(int i = 0; i < files.Count; i++){
-            FileInfo f = new FileInfo(files[i]);
+        for(int i = 0; i < PDF_AND_DOCX_FILES.Count; i++){
+            FileInfo f = new FileInfo(PDF_AND_DOCX_FILES[i]);
             int w = 0, h = 0;
             if (GetFileType(f.Extension) == "image"){
                 try{
@@ -503,10 +595,11 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
             _r.Write(",\"w\":\""+w.ToString()+"\"");
             _r.Write(",\"h\":\""+h.ToString()+"\"");
             _r.Write("}");
-            if (i < files.Count - 1)
+            if (i < PDF_AND_DOCX_FILES.Count - 1)
                 _r.Write(",");
         }
         _r.Write("]");
+
     }
     public void DownloadDir(string path)
     {

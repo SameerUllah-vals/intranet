@@ -214,7 +214,7 @@ namespace LeadManagementSystemV2.Controllers
                                 for (int i = 0; i < modelRecord.File.Length; i++)
                                 {
                                     OrgAnnouncementDetail orgDetails = new OrgAnnouncementDetail();
-                                    orgDetails.Files = UploadFiles(modelRecord.File[i], Server, Policies_document_Path, "any");                                    
+                                    orgDetails.Files = UploadFiles(modelRecord.File[i], Server, Document_Path, "any");                                    
                                     orgDetails.OrgAnnoucmentID = modelRecord.ID;
                                     Database.OrgAnnouncementDetails.Add(orgDetails);
                                 }

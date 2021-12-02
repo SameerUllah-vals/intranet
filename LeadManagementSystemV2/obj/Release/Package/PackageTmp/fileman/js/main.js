@@ -441,7 +441,8 @@ function tooltipContent(){
     html = f.fullPath+' <span class="filesize">'+t('Size')+': '+RoxyUtils.FormatFileSize(f.size) + '</span>';
   return html;
 }
-function filterFiles(){
+function filterFiles() {
+    debugger;
   var str = $('#txtSearch').val();
   $('#pnlSearchNoFiles').hide();
   if($('#pnlFileList li').length == 0)

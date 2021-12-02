@@ -14,8 +14,7 @@
                 <!-- Slide One - Set the background image for this slide in the line below -->
                 <div class="carousel-item active" style="background-image:url(@ViewBag.WebsiteURL/assets/banners/@Model.banner.Image)">
                     <div class="carousel-caption d-none d-md-block">
-                        <p>Welcome to</p>
-                        <h1>Descon Online Portal</h1>
+                      
                     </div>
                 </div>
             </div>
@@ -72,7 +71,7 @@
 
                         @foreach (var item in Model.OrgAnoouncement.Where(x => x.isNoticeBoard == true).Take(Model.setting.noticeDisplay).ToList())
                             {
-                                <li>(@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Time_Format))</li>
+                                <li><b>@item.Title </b> (@item.CreatedDateTime.ToString(ApplicationHelper.Website_Date_Time_Format))</li>
                                 <li>
                                                 @ApplicationHelper.StripHtmlTags(item.Announcement) 
                 
@@ -85,7 +84,8 @@
 
                                         foreach (var file in item.OrgAnnouncementDetails.ToList())
                                         {
-                                            <a target="_blank" href="@Url.Action("downloadfile", "download", new { filepath = file.Files })" style=" width: 30%; display: inline-block;">View Attachment</a>
+                                            string path = ApplicationHelper.Document_Path + "\\" + file.Files;
+                                            <a target="_blank" href="@Url.Action("downloadfile", "download", new { filepath =path })" style=" width: 30%; display: inline-block;">View Attachment</a>
                                         }
 
 
@@ -308,7 +308,8 @@
                                             <ul>
                                                 @foreach (var file in item.OrgAnnouncementDetails.ToList())
                                                 {
-                                                    <li><a target="_blank" href="@Url.Action("downloadfile", "download", new { filepath = file.Files })">View Attachment</a></li>
+                                                    string path = ApplicationHelper.Document_Path + "\\" + file.Files;
+                                                    <li><a target="_blank" href="@Url.Action("downloadfile", "download", new { filepath =path })">View Attachment</a></li>
                                                 }
                                             </ul>
 
@@ -396,10 +397,10 @@
                         <table id="jobs" class="table table-striped">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">Job Code</th>
+                                    <th scope="col">Company Name</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Location</th>
-                                    <th scope="col">Business Unit</th>
+                                    <th scope="col">Last Date </th>
                                     <th scope="col">Details</th>
                                 </tr>
                             </thead>
@@ -410,13 +411,10 @@
                                         <th class="align-middle" scope="row">@item.JobCode</th>
                                         <td class="align-middle">
                                             <span class="cursor-pointer" data-toggle="modal"
-                                                  data-target="#career1">@item.Title</span><br><small>
-                                                    No. of Positions:
-                                                    @item.Positions
-                                                </small>
+                                                  data-target="#career1" onclick="viewDetails('@item.ID')">@item.Title</span>
                                             </td>
                                             <td class="align-middle">@item.Location</td>
-                                            <td class="align-middle">@item.BusinessSelector</td>
+                                            <td class="align-middle">@item.SubmissionDate.ToString(ApplicationHelper.Website_Date_Format)</td>
 
                                             <td class="align-middle"><button type="button" onclick="viewDetails('@item.ID')" class="btn btn-xs btn-primary">View</button></td>
                                         </tr>
@@ -446,9 +444,9 @@
 
 
                                 }
-                                <a class="archived-b" href="@Url.Action("ArchivedNlt", "Home")">View Archived</a>
-                            </div>
 
+                            </div>
+                            <a class="archived-b" style="float:right" href="@Url.Action("ArchivedNlt", "Home")">View Archived</a>
                         </div>
                     </div>
                 </div>
@@ -669,22 +667,22 @@
                     <table class="table table-bordered career-table">
                         <tbody>
                             <tr>
-                                <td class="col-xs-3 table-col1-career">Job Id</td>
+                                <td class="col-xs-3 table-col1-career">Company name</td>
                                 <td class="col-xs-9 table-col2-career code"></td>
                             </tr>
-                            <tr>
+                            @*<tr>
                                 <td class="col-xs-3 table-col1-career">Department</td>
                                 <td class="col-xs-9 table-col2-career depart"></td>
-                            </tr>
+                            </tr>*@
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Location</td>
                                 <td class="col-xs-9 table-col2-career location"></td>
                             </tr>
-                            <tr>
+                            @*<tr>
                                 <td class="col-xs-3 table-col1-career">Business Sector</td>
                                 <td class="col-xs-9 table-col2-career selector"></td>
-                            </tr>
-                            <tr>
+                            </tr>*@
+                            @*<tr>
                                 <td class="col-xs-3 table-col1-career">Job Type</td>
                                 <td class="col-xs-9 table-col2-career type"></td>
                             </tr>
@@ -695,7 +693,7 @@
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Career Level</td>
                                 <td class="col-xs-9 table-col2-career career"></td>
-                            </tr>
+                            </tr>*@
                             <tr>
                                 <td class="col-xs-3 table-col1-career">Education Level</td>
                                 <td class="col-xs-9 table-col2-career education">
@@ -819,13 +817,21 @@
                             left: 'prev,next today',
                             center: 'title',
                             right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                            
                         },
                         navLinks: false,
                         selectable: true,
                         selectMirror: true,
                         dayMaxEvents: true,
                         height: 550,
-                        events: events,
+                        events: events,                        
+                        displayEventEnd: true,
+                        eventTimeFormat: {
+                            hour: "numeric",
+                            minute: "2-digit",
+                           // second: "2-digit",
+                            meridiem: "short",
+                        },
                         eventClick: function (info) {
                             $.ajax({
                                 url: '@ViewBag.WebsiteURL' + "/home/Event?id=" + info.event.id,
@@ -837,7 +843,7 @@
                                     $(".eventdatetime").html(data[0].EventDateTime);
                                     $(".eventremarks").html(data[0].Description);
                                     $("#pnlfile").html('');
-                                    $("#pnlfile").append("<a target='_blank' href='@ViewBag.WebsiteURL/download/downloadfile?filepath=" + data[0].Files + "' >View Attachment</a>");
+                                    $("#pnlfile").append("<a target='_blank' href='@ViewBag.WebsiteURL/download/downloadfile?filepath=~/assets/documents/" + data[0].Files + "' >View Attachment</a>");
                                     $("#eventmodal").modal('show');
                                 },
                                 error: function (error, xhr, state) {
@@ -886,12 +892,12 @@
                 success: function (data) {
                     $("#jobTitle").html(data[0].Title);
                     $(".code").html(data[0].JobCode);
-                    $(".depart").html(data[0].Department);
+                    //$(".depart").html(data[0].Department);
                     $(".location").html(data[0].Location);
-                    $(".selector").html(data[0].BusinessSelector);
-                    $(".type").html(data[0].JobType);
-                    $(".positions").html(data[0].Positions);
-                    $(".career").html(data[0].CareerLevel);
+                 //   $(".selector").html(data[0].BusinessSelector);
+                  //  $(".type").html(data[0].JobType);
+                   // $(".positions").html(data[0].Positions);
+                  //  $(".career").html(data[0].CareerLevel);
                     $(".education").html(data[0].EducationLevel);
                     $(".experience").html(data[0].MinExp);
                     $(".date").html(data[0].SubmissionDate);

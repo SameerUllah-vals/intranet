@@ -79,7 +79,7 @@
             display: none;
         }
 
-           
+
 
         .w-button {
             background-color: #2C3E50;
@@ -129,10 +129,8 @@
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
-            
             max-height: 57px;
         }
-
     </style>
 
 </head>
@@ -144,71 +142,269 @@
 
 
     <!-- Sidebar  -->
-    <nav id="sidebar">
-        <div id="dismiss">
-            <i class="fas fa-arrow-right"></i>
-        </div>
+    @*<nav id="sidebar">
+            <div id="dismiss">
+                <i class="fas fa-arrow-right"></i>
+            </div>
 
-        <div class="sidebar-header">
-            <h5 class="mb-0">Business Applications</h5>
-        </div>
+            <div class="sidebar-header">
+                <h5 class="mb-0">Business Applications</h5>
+            </div>
 
-        <ul class="list-unstyled components">
+            <ul class="list-unstyled components">
 
 
-            @if (ViewBag.BApp != null)
-            {
-                var businessApps = (List<BusinessApplication>)ViewBag.BApp;
-                foreach (var item in businessApps.Where(x => x.IsFooterLink.Equals("BA")))
+                @if (ViewBag.BApp != null)
                 {
-                    <li> <a href="@item.Url" target="_blank">@item.Name</a></li>
+                    var businessApps = (List<BusinessApplication>)ViewBag.BApp;
+                    foreach (var item in businessApps.Where(x => x.IsFooterLink.Equals("BA")))
+                    {
+                        <li> <a href="@item.Url" target="_blank">@item.Name</a></li>
+                    }
                 }
-            }
-        </ul>
+            </ul>
 
 
+        </nav>*@
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class=" container-fluid spacer-padding">
+            <a class="navbar-brand" href="@Url.Action("","home")"><img src="~/assets/img/logo.png" alt="logo" class="img-fluid logo"></a>
+            <h1>Descon Online</h1>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"> Business Application </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            @if (ViewBag.BApp != null)
+                            {
+                                var businessApps = (List<BusinessApplication>)ViewBag.BApp;
+
+                                foreach (var parent in businessApps.Where(x => x.IsFooterLink.Equals("BA") && x.ParentId == null).ToList())
+                                {
+
+                                    <li>
+                                        @{ bool ischild = businessApps.Where(x => x.IsFooterLink.Equals("BA") && x.ParentId.Equals(parent.ID)).Count() > 0;
+                                            string toggle = ischild ? "dropdown-toggle" : "";
+                                        }
+                                        <a class="dropdown-item @toggle" target="_blank" href="#"> @parent.Name </a>
+                                        @if (ischild)
+                                        {
+                                            <ul class="submenu submenu-left dropdown-menu">
+                                                @foreach (var child in businessApps.Where(x => x.IsFooterLink.Equals("BA") && x.ParentId.Equals(parent.ID)))
+                                                {
+
+                                                    <li>
+                                                        @{
+                                                            int subChildCount = businessApps.Where(x => x.IsFooterLink.Equals("BA") && x.ParentId.Equals(child.ID)).Count();
+                                                            var cssClass = subChildCount > 0 ? "dropdown-toggle" : string.Empty;
+                                                        }
+                                                        <a class="dropdown-item @cssClass" target="_blank" href="@child.Url">@child.Name</a>
+                                                        @if (subChildCount > 0)
+                                                        {
+                                                            <ul class="submenu submenu-left dropdown-menu">
+                                                                @foreach (var subchild in businessApps.Where(x => x.IsFooterLink.Equals("BA") && x.ParentId.Equals(child.ID)))
+                                                                {
+
+                                                                    <li><a class="dropdown-item" href="@subchild.Url" target="_blank">@subchild.Name</a></li>
+
+
+
+                                                                }
+                                                            </ul>
+                                                        }
+
+                                                    </li>
+                                                }
+
+
+                                            </ul>
+                                        }
+
+                                    </li>
+
+
+                                }
+                            }
+
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
+    @*<nav id="sidebar">
+            <div id="dismiss">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+
+            <div class="sidebar-header">
+                <h5 class="mb-0">MENU</h5>
+            </div>
+
+
+
+            <ul class="list-unstyled components" id="myCollapsible">
+                @if (ViewBag.BApp != null)
+                {
+                    var businessApps = (List<BusinessApplication>)ViewBag.BApp;
+                    var businessAppsChild = (List<BusinessApplication>)ViewBag.BAppChild;
+                    foreach (var parent in businessApps.Where(x => x.IsFooterLink.Equals("BA")).ToList())
+                    {
+                        <li>
+                            <a data-toggle="collapse" href="#@parent.Category" role="button" aria-expanded="true" target="_blank" targe>@parent.Category <i class="fas fa-chevron-down"></i></a>
+                            <div class="collapse" id="@parent.Category">
+                                <div>
+                                    <ul class="customli">
+                                        @foreach (var child in businessAppsChild.Where(x => x.IsFooterLink.Equals("BA") && x.Category.Equals(parent.Category)))
+                                        {
+                                            <li>
+                                                <a target="_blank" href="@child.Url">@child.Name</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+
+
+
+            </ul>
+        </nav>*@
     <!-- Navigation -->
 
 
     <div class="overlay"></div>
     <!-- Navigation -->
-    <nav class="navbar  navbar-expand-md navbar-light fixed-top" id="mainNav">
-        <div class="container-fluid spacer-padding">
-            <a class="navbar-brand" href="@Url.Action("","home")"><img src="~/assets/img/logo.png" alt="logo" class="img-fluid logo"></a>
-            <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-              data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-              aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button> -->
-            <div>
-                <ul class="navbar-nav ml-auto">
-                    <li>
-                        <button type="button" id="sidebarCollapse" class="btn float-right">
-                            <span>Business Applications</span>
-                            <i class="fas fa-align-left"></i>
-                        </button>
-                    </li>
+    @*<nav class="navbar  navbar-expand-md navbar-light fixed-top" id="mainNav">
+            <div class="container-fluid spacer-padding">
+                <a class="navbar-brand" href="@Url.Action("","home")"><img src="~/assets/img/logo.png" alt="logo" class="img-fluid logo"></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div>
+                    <ul class="navbar-nav ml-auto">
+                        <li>
+                            <button type="button" id="sidebarCollapse" class="btn float-right">
+                                <span>Business Applications</span>
+                                <i class="fas fa-align-left"></i>
+                            </button>
+                        </li>
 
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>*@
+
+
+
     <!-- Navigation -->
     <!--Body-->
     @RenderBody()
     <!--Body-->
     <!-- Footer -->
     <!-- Footer -->
+    @*<footer class="py-3 bg-dark mt-5">
+            <div class="container-fluid spacer-padding">
+                <div class="row mb-3">
+
+
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-sm-left text-center mb-md-1 mb-4">
+
+
+                        <img src="~/assets/img/logo.png" alt="logo" class="img-fluid logo mb-3">
+
+                    </div>
+
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-sm-left text-center  mb-md-1 mb-4">
+
+
+                        <h3>Social</h3>
+
+                        <p class="m-0">
+                            <a class="align-items-center d-block mb-1" href="#"><i class="fab fa-facebook-square fa-2x"></i>Facebook</a>
+                            <a class="align-items-center d-block" href="#"><i class="fab fa-linkedin  fa-2x"></i>linkedin&nbsp;&nbsp;</a>
+                        </p>
+
+                    </div>
+
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-sm-left text-center  mb-md-1 mb-0">
+
+
+                        <h3>Links</h3>
+
+                        <ul class="">
+                            @if (ViewBag.BApp != null)
+                            {
+                                var footerLinks = (List<BusinessApplication>)ViewBag.BApp;
+                                foreach (var item in footerLinks.Where(x => x.IsFooterLink.Equals("Footer")))
+                                {
+
+
+
+                                    if (!string.IsNullOrEmpty(item.FooterValueType))
+                                    {
+                                        <li>
+                                            @if (item.FooterValueType.Equals("URL"))
+                                            {
+                                                <a target="_blank" href="@item.Url">@item.Name</a>
+                                            }
+                                            else if (item.FooterValueType.Equals("FILE"))
+                                            {
+                                                <a href="@ViewBag.WebsiteURL/download/downloadfile?filepath=~/assets/documents/@item.FILES">@item.Name</a>
+                                            }
+                                        </li>
+
+                                    }
+
+                                }
+                            }
+
+
+                            <li>
+                                <a href="@Url.Action("explorer",new {type = HttpUtility.UrlEncode("SAP") })">SAP Training Manuals</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-12 my-auto">
+                        <small class="m-0  text-center d-block">Descon © 2020 All Rights Reserved</small>
+                    </div>
+                </div>
+            </div>
+
+        </footer>*@
+
+    <!-- Footer -->
     <footer class="py-3 bg-dark mt-5">
         <div class="container-fluid spacer-padding">
             <div class="row mb-3">
 
                 <!-- Grid column -->
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-sm-left text-center mb-md-1 mb-4">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-sm-left text-center  mb-md-1 mb-4">
 
-                    <!-- Content -->
-                    <img src="~/assets/img/logo.png" alt="logo" class="img-fluid logo mb-3">
+                    <!-- Links -->
+                    <h3>Essential Links</h3>
+
+                    <p class="m-0">
+
+                        <a class="align-items-center d-block mb-1" href="#">Descon Website</a>
+                        <a class="align-items-center d-block mb-1" href="#">Descon Corporate Presentation</a><a class="align-items-center d-block mb-1" href="#">Descon Brand Book</a>
+
+                    </p>
 
                 </div>
                 <!-- Grid column -->
@@ -216,11 +412,39 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-sm-left text-center  mb-md-1 mb-4">
 
                     <!-- Links -->
-                    <h3>Social</h3>
+                    <h3>Other Links</h3>
 
                     <p class="m-0">
-                        <a class="align-items-center d-block mb-1" href="#"><i class="fab fa-facebook-square fa-2x"></i>Facebook</a>
-                        <a class="align-items-center d-block" href="#"><i class="fab fa-linkedin  fa-2x"></i>linkedin&nbsp;&nbsp;</a>
+                        @if (ViewBag.BApp != null)
+                        {
+                            var footerLinks = (List<BusinessApplication>)ViewBag.BApp;
+                            foreach (var item in footerLinks.Where(x => x.IsFooterLink.Equals("Footer")))
+                            {
+
+
+
+                                if (!string.IsNullOrEmpty(item.FooterValueType))
+                                {
+                     
+                                    if (item.FooterValueType.Equals("URL"))
+                                    {
+                                
+                                        <a class="align-items-center d-block mb-1" target="_blank" href="@item.Url">@item.Name</a>
+                                    }
+                                    else if (item.FooterValueType.Equals("FILE"))
+                                    {
+                                
+                                        <a class="align-items-center d-block mb-1" target="_blank" href="@ViewBag.WebsiteURL/download/downloadfile?filepath=~/assets/documents/@item.FILES">@item.Name</a>
+                                    }
+                  
+
+                                }
+
+                            }
+                        }
+                      
+
+
                     </p>
 
                 </div>
@@ -229,24 +453,16 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-sm-left text-center  mb-md-1 mb-0">
 
                     <!-- Links -->
-                    <h3>Links</h3>
+                    <h3>DTI &amp; BARD Foundation</h3>
 
                     <ul class="">
-                        @if (ViewBag.BApp != null)
-                        {
-                            var footerLinks = (List<BusinessApplication>)ViewBag.BApp;
-                            foreach (var item in footerLinks.Where(x => x.IsFooterLink.Equals("Footer")))
-                            {
-                                <li>
-                                    <a href="@item.Url">@item.Name</a>
-                                </li>
-                            }
-                        }
-
-
                         <li>
-                            <a href="@Url.Action("explorer",new {type = HttpUtility.UrlEncode("SAP") })">SAP Training Manuals</a>
+                            <a target="_blank" href="www.google.com">BARD</a>
                         </li>
+
+
+
+
 
                     </ul>
 
@@ -262,8 +478,6 @@
         </div>
         <!-- /.container -->
     </footer>
-
-
 
     <!-- JavaScript -->
     @*<script src="~/assets/vendor/jquery/jquery.min.js"></script>*@

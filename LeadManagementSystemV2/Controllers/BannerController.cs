@@ -60,6 +60,7 @@ namespace LeadManagementSystemV2.Controllers
                 Model.Base64 = Record.Image;
             }
             return Model;
+            
         }
         public ActionResult Add()
         {

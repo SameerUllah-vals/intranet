@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="dbProjectModel.Event" Width="1.5" PointX="3" PointY="29" />
         <EntityTypeShape EntityType="dbProjectModel.Gallery" Width="1.5" PointX="3" PointY="34.25" />
         <EntityTypeShape EntityType="dbProjectModel.GalleryDetail" Width="1.5" PointX="5.25" PointY="35.25" />
-        <EntityTypeShape EntityType="dbProjectModel.Job" Width="1.5" PointX="3" PointY="5.375" />
         <EntityTypeShape EntityType="dbProjectModel.LatestNew" Width="1.5" PointX="3" PointY="48.375" />
         <EntityTypeShape EntityType="dbProjectModel.LatestNewsGalleryLink" Width="1.5" PointX="5.25" PointY="42.25" />
         <EntityTypeShape EntityType="dbProjectModel.MenuPermission" Width="1.5" PointX="5.25" PointY="38.875" />
@@ -36,8 +35,6 @@
         <AssociationConnector Association="dbProjectModel.FK_Gallery_Users_updatedby" />
         <AssociationConnector Association="dbProjectModel.FK_GalleryDetails_GalleryDetails" />
         <AssociationConnector Association="dbProjectModel.FK_LatestNewsGalleryLinks_GalleryDetails" />
-        <AssociationConnector Association="dbProjectModel.FK_Jobs_Jobs_updatedby" />
-        <AssociationConnector Association="dbProjectModel.FK_Jobs_Users_createdby" />
         <AssociationConnector Association="dbProjectModel.FK_LatestNews_Users_createdby" />
         <AssociationConnector Association="dbProjectModel.FK_LatestNews_Users_updatedby" />
         <AssociationConnector Association="dbProjectModel.FK_LatestNewsGalleryLinks_LatestNews" />
@@ -66,6 +63,9 @@
         <EntityTypeShape EntityType="dbProjectModel.BusinessApplication" Width="1.5" PointX="3" PointY="18.375" />
         <AssociationConnector Association="dbProjectModel.FK_BusinessApplications_Users_createdby" />
         <AssociationConnector Association="dbProjectModel.FK_BusinessApplications_Users_updatedby" />
+        <EntityTypeShape EntityType="dbProjectModel.Job" Width="1.5" PointX="3" PointY="6.875" />
+        <AssociationConnector Association="dbProjectModel.FK_Jobs_Jobs_updatedby" />
+        <AssociationConnector Association="dbProjectModel.FK_Jobs_Users_createdby" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,76 @@
+﻿@model LeadManagementSystemV2.Models.OrgAnnouncement
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_FrontendLayout.cshtml";
+}
+
+<div class="container-fluid spacer-padding">
+    <div class="row" style="
+    padding-top: 6.25rem;
+">
+        <div class="col-xl-12 col-lg-12 col-12">
+
+            <div class="card timeline mb-3 border-0  shadow">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        Archived Anouncement
+
+
+                    </h3>
+                    <div class="table-responsive">
+                        <table id="org" class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th width="200">Title</th>
+                                    <th>Announcement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@Model.Title</td>
+                                    <td>@Html.Raw(Model.Announcement)</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center"><b>All Attachments</b></td>
+                                </tr>
+                                @if (Model.OrgAnnouncementDetails.Count > 0)
+                                {
+                                    foreach (var item in Model.OrgAnnouncementDetails)
+                                    {
+                                        <tr>
+
+                                            <td colspan="2" align="center">
+                                                @if (!string.IsNullOrEmpty(item.Files))
+                                                {
+                                                    <a href="@Url.Action("downloadfile", "download", new { filepath = item.Files })">View Attachment</a>
+                                                }
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        foreach (var item in Model.OrgAnnouncementDetails)
+                                        {
+                                    <tr>
+
+                                        <td colspan="2" align="center">
+                                            No Attachment found
+                                        </td>
+
+                                    </tr>
+                                    }
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

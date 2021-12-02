@@ -37,7 +37,7 @@ namespace LeadManagementSystemV2.Controllers
             dataSource = dataSource.SortBy(param.SortOrder).Skip(param.Start).Take(param.Length);
             var resultList = dataSource.ToList();
             var resultData = from x in resultList
-                             select new { x.ID, x.Name, x.Category , x.IsFooterLink , x.Url,x.Status , CreatedBy = x.User.Name, UpdatedBy = (x.User1 != null ? x.User1.Name : ""), CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
+                             select new { x.ID, x.Name, x.ParentId ,x.FooterValueType,Files = x.FILES , x.IsFooterLink , x.Url,x.Status , CreatedBy = x.User.Name, UpdatedBy = (x.User1 != null ? x.User1.Name : ""), CreatedDateTime = x.CreatedDateTime.ToString(Website_Date_Time_Format), UpdatedDateTime = (x.UpdatedDateTime.HasValue ? x.UpdatedDateTime.Value.ToString(Website_Date_Time_Format) : "") };
             var result = new
             {
                 draw = param.Draw,
@@ -49,6 +49,9 @@ namespace LeadManagementSystemV2.Controllers
         }
         public BusinessAppModel GetRecord(int? id)
         {
+            var ParentRecord = Database.BusinessApplications.Where(x => x.IsFooterLink.Equals("BA") && x.IsDeleted.Equals(false)).ToList();
+            ParentRecord.Insert(0, new BusinessApplication { ID = 0, Name = "-Parent-" });
+            ViewBag.Parents = ParentRecord;
             User CurrentUserRecord = GetUserData();
             BusinessAppModel Model = new BusinessAppModel();
             var Record = Database.BusinessApplications.FirstOrDefault(o => o.ID == id && o.IsDeleted == false);
@@ -56,8 +59,10 @@ namespace LeadManagementSystemV2.Controllers
             {
                 Model.ID = Record.ID;
                 Model.Name = Record.Name;
-                Model.Category = Record.Category;
+                Model.Category = Record.ParentId == null ? 0 : (int)Record.ParentId;
                 Model.IsFooterLink = Record.IsFooterLink;
+                Model.FooterValueType = Record.FooterValueType;
+              
                 Model.Url = Record.Url;
                 Model.Status = Record.Status;
             }
@@ -165,12 +170,15 @@ namespace LeadManagementSystemV2.Controllers
                         }
                         if(modelRecord.File != null)
                         {
-                            Record.FILES = UploadFiles(modelRecord.File, Server, Gallery_Image_Path, "any");
+                            Record.FILES = UploadFiles(modelRecord.File, Server, Document_Path, "any");
                         }
                         Record.Name = modelRecord.Name;
-                        Record.Category = modelRecord.Category;
+                        if (modelRecord.Category > 0)
+                            Record.ParentId = modelRecord.Category;
+                        else
+                            Record.ParentId = null;
                         Record.IsFooterLink = modelRecord.IsFooterLink;
-                        Record.FooterValueType = modelRecord.IsFooterLink;
+                        Record.FooterValueType = modelRecord.FooterValueType;
                         Record.Url = modelRecord.Url;
                         Record.Status = EnumStatus.Enable;
                         Record.IsDeleted = false;

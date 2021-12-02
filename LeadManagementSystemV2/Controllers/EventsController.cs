@@ -185,7 +185,7 @@ namespace LeadManagementSystemV2.Controllers
                         {
                             try
                             {
-                                Record.Files = UploadFiles(modelRecord.File, Server, Policies_document_Path, "any");                                
+                                Record.Files = UploadFiles(modelRecord.File, Server, Document_Path, "any");                                
                             }
                             catch (FileFormatException ex)
                             {

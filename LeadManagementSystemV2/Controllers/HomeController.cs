@@ -16,13 +16,19 @@ namespace LeadManagementSystemV2.Controllers
     public class HomeController : Controller
     {
         private readonly DbLeadManagementSystemV2Entities Database;
+        private readonly List<BusinessApplication> businessAppRecords;
         public HomeController()
         {
             Database = new DbLeadManagementSystemV2Entities();
             ViewBag.Policies = Database.Policies.Where(x => x.Type == EnumPolicyType.DTI).ToList();
-            ViewBag.BApp = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            businessAppRecords = Database.BusinessApplications.Where(x => x.IsDeleted == false).ToList();
+            
+            ViewBag.BApp = businessAppRecords;
+           
 
         }
+
+        
         public ActionResult Index()
         {
             viewModel model = new viewModel();
@@ -227,9 +233,10 @@ namespace LeadManagementSystemV2.Controllers
             return View(data);
         }
 
-        public ActionResult Explorer(string type)
+        public ActionResult Explorer(string type,string keyword)
         {
             AddCookie("policy", type);
+            //AddCookie("keyword", keyword);
             ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
             return View();
         }

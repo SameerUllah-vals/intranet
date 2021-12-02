@@ -174,7 +174,7 @@ namespace LeadManagementSystemV2.Controllers
                         {
                             try
                             {
-                                Record.PDF = UploadFiles(modelRecord.file, Server, Policies_document_Path, "pdf");                              
+                                Record.PDF = UploadFiles(modelRecord.file, Server, Document_Path, "pdf");                              
                             }
                             catch (FileFormatException ex)
                             {

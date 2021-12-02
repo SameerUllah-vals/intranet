@@ -15,33 +15,43 @@
        @:DisableView();
     }
 
-        $("#IsFooterLink").change(function () {
-            if ($(this).val() == "Footer") {
-                
-                $("#pnlCategory").val("-");
+        function IsFooterLink(value) {
+            if (value == "Footer") {
+
+                $("#Category").val("-");
                 $("#pnlCategory").hide();
                 $("#footerValue").show();
             }
             else {
                 $("#pnlCategory").show();
                 $("#footerValue").hide();
-                $("#pnlURL").hide();
+                $("#pnlURL").show();
                 $("#pnlFILE").hide();
 
             }
-        })
-
-        $(document).on("change","#FooterValueType",function () {
-            var value = $(this).val();
-          
+        }
+        function ChangeFooterType(value) {
             if (value === "URL") {
                 $("#pnlURL").show();
                 $("#pnlFILE").hide();
             }
-            else if(value === "FILE") {
+            else if (value === "FILE") {
                 $("#pnlURL").hide();
                 $("#pnlFILE").show();
             }
+        }
+
+        $(document).ready(function () {
+            IsFooterLink($("#IsFooterLink").val());
+            ChangeFooterType($("#FooterValueType").val());
+        })
+        $("#IsFooterLink").change(function () {
+            IsFooterLink($(this).val());
+        })
+        $(document).on("change","#FooterValueType",function () {
+            var value = $(this).val();
+            ChangeFooterType(value);
+            
         })
         
     </script>
@@ -74,16 +84,8 @@
                     <div class="col-sm-6" id="pnlCategory">
                         <div class="form-group">
                             <label class="control-label">Category <span class="text-danger">*</span></label>
-                            @Html.DropDownListFor(m => m.Category, new List<SelectListItem>
-                                {
-                                    new SelectListItem{ Text="-Select-", Value = "-" },
-                                    new SelectListItem{ Text="Chemical", Value = "Chemical" },
-                                    new SelectListItem{ Text="Engineering", Value = "Engineering" },
-                                    new SelectListItem{ Text="Inspect", Value = "Inspect" },
-                                    new SelectListItem{ Text="Power", Value = "Power" },
-                                    new SelectListItem{ Text="SAP", Value = "SAP" },
-                                 }, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+                            @Html.DropDownListFor(m => m.Category,new SelectList(ViewBag.Parents,"ID","Name"), new { @class = "form-control" })
+                            @*@Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })*@
                         </div>
                     </div>
                     <div class="col-sm-6">

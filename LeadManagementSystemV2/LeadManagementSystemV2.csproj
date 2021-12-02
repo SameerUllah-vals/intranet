@@ -177,6 +177,7 @@
     <Compile Include="Controllers\ManagementsController.cs" />
     <Compile Include="Controllers\NewsDetailsController.cs" />
     <Compile Include="Controllers\NewsLetterController.cs" />
+    <Compile Include="Controllers\OrgDetailsController.cs" />
     <Compile Include="Controllers\PoliciesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ServeyController.cs" />
@@ -306,6 +307,12 @@
     <Content Include="assets\datatable\DataTables-1.10.22\images\sort_desc_disabled.png" />
     <Content Include="assets\datatable\datatables.min.css" />
     <Content Include="assets\datatable\datatables.min.js" />
+    <Content Include="assets\documents\11-5ef591b75d9d464f87050d9c7b9e23b6.PNG" />
+    <Content Include="assets\documents\11-f5a86029033c44b4a9717e185de93b4b.PNG" />
+    <Content Include="assets\documents\11.PNG" />
+    <Content Include="assets\documents\138399759_3869953689693329_6352005583243281815_o.jpg" />
+    <Content Include="assets\documents\2.PNG" />
+    <Content Include="assets\documents\abc.PNG" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\fonts\nifty-demo-icons67e1.svg" />
     <Content Include="assets\images\loader.gif" />
@@ -349,6 +356,10 @@
     <Content Include="assets\js\functions.js" />
     <Content Include="assets\bootstrap-multi-select\dist\less\bootstrap-multiselect.less" />
     <Content Include="assets\css\custom.css.map" />
+    <Content Include="assets\documents\Ethical Hacking course_syllabus %2812%29.pdf" />
+    <Content Include="assets\documents\LMS.pdf" />
+    <Content Include="assets\documents\payment_3308165672628429.pdf" />
+    <Content Include="assets\documents\Receipt %2811%29.pdf" />
     <None Include="assets\js\jquery-3.3.1.intellisense.js" />
     <Content Include="assets\js\jquery-3.3.1.js" />
     <Content Include="assets\js\jquery-3.3.1.min.js" />
@@ -796,6 +807,7 @@
     <Content Include="Views\Settings\Form.cshtml" />
     <Content Include="Views\Servey\Index.cshtml" />
     <Content Include="Views\Servey\Form.cshtml" />
+    <Content Include="Views\OrgDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

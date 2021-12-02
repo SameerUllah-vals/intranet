@@ -1,0 +1,839 @@
+%PDF-1.3
+%∫ﬂ¨‡
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 612.00 792.00]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 5100
+>>
+stream
+0.20 w
+0 G
+q
+185.00 0 0 40.00 200.00 737.00 cm
+/I0 Do
+Q
+q
+q BT 0 g 40.00 704.50 Td
+0 -22.50 Td
+0.137 0.537 0.949 rg
+/F9 13.50 Tf (Syllabus of Ethical Hacking Course in Chennai) Tj
+ET Q
+q BT 0 g 40.00 659.50 Td
+0 -18.75 Td
+0.400 0.380 0.380 rg
+0.54 Tw
+/F9 11.25 Tf (Our Ethical hacking Course Syllabus is designed by most experienced Ethical Hackers. This Syllabus Covers Step) Tj
+0 Tw
+0 -18.75 Td
+0.37 Tw
+/F9 11.25 Tf (by Step Hacking Techniques with Materials. Join us for Ethical Hacking Course in Chennai at Besant technologies) Tj
+0 Tw
+0 -18.75 Td
+/F9 11.25 Tf (and become a master in Ethical Hacker Techniques.) Tj
+0 Tw
+ET Q
+q BT 0 g 40.00 595.75 Td
+0 -18.75 Td
+0.235 0.227 0.227 rg
+/F9 11.25 Tf (Introduction to ethical hacking) Tj
+0 Tw
+ET Q
+q BT 0 g 60.00 566.50 Td
+0 -18.75 Td
+0.400 0.380 0.380 rg
+/F9 11.25 Tf (Information security,) Tj
+54.93 550.33 m 54.93 551.23 54.20 551.96 53.30 551.96 c
+52.40 551.96 51.67 551.23 51.67 550.33 c
+51.67 549.43 52.40 548.70 53.30 548.70 c
+54.20 548.70 54.93 549.43 54.93 550.33 c
+B
+ET Q
+q BT 0 g 60.00 537.25 Td
+0 -18.75 Td
+/F9 11.25 Tf (Hack value,) Tj
+54.93 521.08 m 54.93 521.98 54.20 522.71 53.30 522.71 c
+52.40 522.71 51.67 521.98 51.67 521.08 c
+51.67 520.18 52.40 519.45 53.30 519.45 c
+54.20 519.45 54.93 520.18 54.93 521.08 c
+B
+ET Q
+q BT 0 g 60.00 508.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (Vulnerability,) Tj
+54.93 491.83 m 54.93 492.73 54.20 493.46 53.30 493.46 c
+52.40 493.46 51.67 492.73 51.67 491.83 c
+51.67 490.93 52.40 490.20 53.30 490.20 c
+54.20 490.20 54.93 490.93 54.93 491.83 c
+B
+ET Q
+q BT 0 g 60.00 478.75 Td
+0 -18.75 Td
+/F9 11.25 Tf (Exploit,) Tj
+54.93 462.58 m 54.93 463.48 54.20 464.21 53.30 464.21 c
+52.40 464.21 51.67 463.48 51.67 462.58 c
+51.67 461.68 52.40 460.95 53.30 460.95 c
+54.20 460.95 54.93 461.68 54.93 462.58 c
+B
+ET Q
+q BT 0 g 60.00 449.50 Td
+0 -18.75 Td
+/F9 11.25 Tf (Payload,) Tj
+54.93 433.33 m 54.93 434.23 54.20 434.96 53.30 434.96 c
+52.40 434.96 51.67 434.23 51.67 433.33 c
+51.67 432.43 52.40 431.70 53.30 431.70 c
+54.20 431.70 54.93 432.43 54.93 433.33 c
+B
+ET Q
+q BT 0 g 60.00 420.25 Td
+0 -18.75 Td
+/F9 11.25 Tf (Zero-day attack,) Tj
+54.93 404.08 m 54.93 404.98 54.20 405.71 53.30 405.71 c
+52.40 405.71 51.67 404.98 51.67 404.08 c
+51.67 403.18 52.40 402.45 53.30 402.45 c
+54.20 402.45 54.93 403.18 54.93 404.08 c
+B
+ET Q
+q BT 0 g 60.00 391.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (Daisy-chaining,) Tj
+54.93 374.83 m 54.93 375.73 54.20 376.46 53.30 376.46 c
+52.40 376.46 51.67 375.73 51.67 374.83 c
+51.67 373.93 52.40 373.20 53.30 373.20 c
+54.20 373.20 54.93 373.93 54.93 374.83 c
+B
+ET Q
+q BT 0 g 60.00 361.75 Td
+0 -18.75 Td
+/F9 11.25 Tf (Doxing,) Tj
+54.93 345.58 m 54.93 346.48 54.20 347.21 53.30 347.21 c
+52.40 347.21 51.67 346.48 51.67 345.58 c
+51.67 344.68 52.40 343.95 53.30 343.95 c
+54.20 343.95 54.93 344.68 54.93 345.58 c
+B
+ET Q
+q BT 0 g 60.00 332.50 Td
+0 -18.75 Td
+/F9 11.25 Tf (Bot,) Tj
+54.93 316.33 m 54.93 317.23 54.20 317.96 53.30 317.96 c
+52.40 317.96 51.67 317.23 51.67 316.33 c
+51.67 315.43 52.40 314.70 53.30 314.70 c
+54.20 314.70 54.93 315.43 54.93 316.33 c
+B
+ET Q
+q BT 0 g 60.00 303.25 Td
+0 -18.75 Td
+/F9 11.25 Tf (Hacking) Tj
+54.93 287.08 m 54.93 287.98 54.20 288.71 53.30 288.71 c
+52.40 288.71 51.67 287.98 51.67 287.08 c
+51.67 286.18 52.40 285.45 53.30 285.45 c
+54.20 285.45 54.93 286.18 54.93 287.08 c
+B
+ET Q
+q BT 0 g 60.00 274.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (concept Types and Phases,) Tj
+54.93 257.83 m 54.93 258.73 54.20 259.46 53.30 259.46 c
+52.40 259.46 51.67 258.73 51.67 257.83 c
+51.67 256.93 52.40 256.20 53.30 256.20 c
+54.20 256.20 54.93 256.93 54.93 257.83 c
+B
+ET Q
+q BT 0 g 60.00 244.75 Td
+0 -18.75 Td
+/F9 11.25 Tf (Ethical Hacking concepts, and scope,) Tj
+54.93 228.58 m 54.93 229.48 54.20 230.21 53.30 230.21 c
+52.40 230.21 51.67 229.48 51.67 228.58 c
+51.67 227.68 52.40 226.95 53.30 226.95 c
+54.20 226.95 54.93 227.68 54.93 228.58 c
+B
+ET Q
+q BT 0 g 60.00 215.50 Td
+0 -18.75 Td
+/F9 11.25 Tf (Information security controls.) Tj
+54.93 199.33 m 54.93 200.23 54.20 200.96 53.30 200.96 c
+52.40 200.96 51.67 200.23 51.67 199.33 c
+51.67 198.43 52.40 197.70 53.30 197.70 c
+54.20 197.70 54.93 198.43 54.93 199.33 c
+B
+ET Q
+q BT 0 g 40.00 179.25 Td
+0 -18.75 Td
+0.235 0.227 0.227 rg
+/F9 11.25 Tf (Footprinting concepts) Tj
+0 Tw
+ET Q
+q BT 0 g 60.00 150.00 Td
+0 -18.75 Td
+0.400 0.380 0.380 rg
+/F9 11.25 Tf (Footprinting through search engines,) Tj
+54.93 133.83 m 54.93 134.73 54.20 135.46 53.30 135.46 c
+52.40 135.46 51.67 134.73 51.67 133.83 c
+51.67 132.93 52.40 132.20 53.30 132.20 c
+54.20 132.20 54.93 132.93 54.93 133.83 c
+B
+ET Q
+q BT 0 g 60.00 120.75 Td
+0 -18.75 Td
+/F9 11.25 Tf (Footprinting through social networking sites,) Tj
+54.93 104.58 m 54.93 105.48 54.20 106.21 53.30 106.21 c
+52.40 106.21 51.67 105.48 51.67 104.58 c
+51.67 103.68 52.40 102.95 53.30 102.95 c
+54.20 102.95 54.93 103.68 54.93 104.58 c
+B
+ET Q
+q BT 0 g 60.00 91.50 Td
+0 -18.75 Td
+/F9 11.25 Tf (Website footprinting,) Tj
+54.93 75.33 m 54.93 76.23 54.20 76.96 53.30 76.96 c
+52.40 76.96 51.67 76.23 51.67 75.33 c
+51.67 74.43 52.40 73.70 53.30 73.70 c
+54.20 73.70 54.93 74.43 54.93 75.33 c
+B
+ET Q
+q BT 0 g 60.00 62.25 Td
+0 -18.75 Td
+ET Q
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 612.00 792.00]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 4927
+>>
+stream
+0.20 w
+0 G
+q BT 0.400 0.380 0.380 rg 60.00 712.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (Email footprinting,) Tj
+54.93 695.83 m 54.93 696.73 54.20 697.46 53.30 697.46 c
+52.40 697.46 51.67 696.73 51.67 695.83 c
+51.67 694.93 52.40 694.20 53.30 694.20 c
+54.20 694.20 54.93 694.93 54.93 695.83 c
+B
+ET Q
+q BT 0 g 60.00 682.75 Td
+0 -18.75 Td
+/F9 11.25 Tf (Whois footprinting,) Tj
+54.93 666.58 m 54.93 667.48 54.20 668.21 53.30 668.21 c
+52.40 668.21 51.67 667.48 51.67 666.58 c
+51.67 665.68 52.40 664.95 53.30 664.95 c
+54.20 664.95 54.93 665.68 54.93 666.58 c
+B
+ET Q
+q BT 0 g 60.00 653.50 Td
+0 -18.75 Td
+/F9 11.25 Tf (Network footprinting,) Tj
+54.93 637.33 m 54.93 638.23 54.20 638.96 53.30 638.96 c
+52.40 638.96 51.67 638.23 51.67 637.33 c
+51.67 636.43 52.40 635.70 53.30 635.70 c
+54.20 635.70 54.93 636.43 54.93 637.33 c
+B
+ET Q
+q BT 0 g 60.00 624.25 Td
+0 -18.75 Td
+/F9 11.25 Tf (Footprinting Pen Testing.) Tj
+54.93 608.08 m 54.93 608.98 54.20 609.71 53.30 609.71 c
+52.40 609.71 51.67 608.98 51.67 608.08 c
+51.67 607.18 52.40 606.45 53.30 606.45 c
+54.20 606.45 54.93 607.18 54.93 608.08 c
+B
+ET Q
+q BT 0 g 40.00 588.00 Td
+0 -18.75 Td
+0.235 0.227 0.227 rg
+/F9 11.25 Tf (Overview of network scanning) Tj
+0 Tw
+ET Q
+q BT 0 g 60.00 558.75 Td
+0 -18.75 Td
+0.400 0.380 0.380 rg
+/F9 11.25 Tf (Scanning Methodology,) Tj
+54.93 542.58 m 54.93 543.48 54.20 544.21 53.30 544.21 c
+52.40 544.21 51.67 543.48 51.67 542.58 c
+51.67 541.68 52.40 540.95 53.30 540.95 c
+54.20 540.95 54.93 541.68 54.93 542.58 c
+B
+ET Q
+q BT 0 g 60.00 529.50 Td
+0 -18.75 Td
+/F9 11.25 Tf (check for the live system,) Tj
+54.93 513.33 m 54.93 514.23 54.20 514.96 53.30 514.96 c
+52.40 514.96 51.67 514.23 51.67 513.33 c
+51.67 512.43 52.40 511.70 53.30 511.70 c
+54.20 511.70 54.93 512.43 54.93 513.33 c
+B
+ET Q
+q BT 0 g 60.00 500.25 Td
+0 -18.75 Td
+/F9 11.25 Tf (check for open ports,) Tj
+54.93 484.08 m 54.93 484.98 54.20 485.71 53.30 485.71 c
+52.40 485.71 51.67 484.98 51.67 484.08 c
+51.67 483.18 52.40 482.45 53.30 482.45 c
+54.20 482.45 54.93 483.18 54.93 484.08 c
+B
+ET Q
+q BT 0 g 60.00 471.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (scanning beyond IDS,) Tj
+54.93 454.83 m 54.93 455.73 54.20 456.46 53.30 456.46 c
+52.40 456.46 51.67 455.73 51.67 454.83 c
+51.67 453.93 52.40 453.20 53.30 453.20 c
+54.20 453.20 54.93 453.93 54.93 454.83 c
+B
+ET Q
+q BT 0 g 60.00 441.75 Td
+0 -18.75 Td
+/F9 11.25 Tf (Scan for vulnerability,) Tj
+54.93 425.58 m 54.93 426.48 54.20 427.21 53.30 427.21 c
+52.40 427.21 51.67 426.48 51.67 425.58 c
+51.67 424.68 52.40 423.95 53.30 423.95 c
+54.20 423.95 54.93 424.68 54.93 425.58 c
+B
+ET Q
+q BT 0 g 60.00 412.50 Td
+0 -18.75 Td
+/F9 11.25 Tf (Banner Grabbing,) Tj
+54.93 396.33 m 54.93 397.23 54.20 397.96 53.30 397.96 c
+52.40 397.96 51.67 397.23 51.67 396.33 c
+51.67 395.43 52.40 394.70 53.30 394.70 c
+54.20 394.70 54.93 395.43 54.93 396.33 c
+B
+ET Q
+q BT 0 g 60.00 383.25 Td
+0 -18.75 Td
+/F9 11.25 Tf (draw network diagrams,) Tj
+54.93 367.08 m 54.93 367.98 54.20 368.71 53.30 368.71 c
+52.40 368.71 51.67 367.98 51.67 367.08 c
+51.67 366.18 52.40 365.45 53.30 365.45 c
+54.20 365.45 54.93 366.18 54.93 367.08 c
+B
+ET Q
+q BT 0 g 60.00 354.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (Scanning pen-testing.) Tj
+54.93 337.83 m 54.93 338.73 54.20 339.46 53.30 339.46 c
+52.40 339.46 51.67 338.73 51.67 337.83 c
+51.67 336.93 52.40 336.20 53.30 336.20 c
+54.20 336.20 54.93 336.93 54.93 337.83 c
+B
+ET Q
+q BT 0 g 40.00 317.75 Td
+0 -18.75 Td
+0.235 0.227 0.227 rg
+/F9 11.25 Tf (Enumeration concepts) Tj
+0 Tw
+ET Q
+q BT 0 g 60.00 288.50 Td
+0 -18.75 Td
+0.400 0.380 0.380 rg
+/F9 11.25 Tf (NetBIOS Enumeration, SNMP Enumeration, LDAP Enumeration, NTP Enumeration, SMTP and DNS) Tj
+0 -18.75 Td
+/F9 11.25 Tf (Enumeration, Enumeration pentesting.) Tj
+54.93 253.58 m 54.93 254.48 54.20 255.21 53.30 255.21 c
+52.40 255.21 51.67 254.48 51.67 253.58 c
+51.67 252.68 52.40 251.95 53.30 251.95 c
+54.20 251.95 54.93 252.68 54.93 253.58 c
+B
+ET Q
+q BT 0 g 40.00 233.50 Td
+0 -18.75 Td
+0.235 0.227 0.227 rg
+/F9 11.25 Tf (System Hacking) Tj
+0 Tw
+ET Q
+q BT 0 g 60.00 204.25 Td
+0 -18.75 Td
+0.400 0.380 0.380 rg
+/F9 11.25 Tf (Cracking Passwords, Escalating Privileges, Executing Applications, hiding files, Covering Tracks.) Tj
+54.93 188.08 m 54.93 188.98 54.20 189.71 53.30 189.71 c
+52.40 189.71 51.67 188.98 51.67 188.08 c
+51.67 187.18 52.40 186.45 53.30 186.45 c
+54.20 186.45 54.93 187.18 54.93 188.08 c
+B
+ET Q
+q BT 0 g 40.00 168.00 Td
+0 -18.75 Td
+0.235 0.227 0.227 rg
+/F9 11.25 Tf (Introduction to Malware) Tj
+0 Tw
+ET Q
+q BT 0 g 60.00 138.75 Td
+0 -18.75 Td
+0.400 0.380 0.380 rg
+/F9 11.25 Tf (Trojan Concepts, Virus and Worm, Malware Reverse Engineering, Malware Detection, Malware countermeasures) Tj
+54.93 122.58 m 54.93 123.48 54.20 124.21 53.30 124.21 c
+52.40 124.21 51.67 123.48 51.67 122.58 c
+51.67 121.68 52.40 120.95 53.30 120.95 c
+54.20 120.95 54.93 121.68 54.93 122.58 c
+B
+ET Q
+q BT 0 g 40.00 102.50 Td
+0 -18.75 Td
+0.235 0.227 0.227 rg
+/F9 11.25 Tf (Sniffing Concepts) Tj
+0 Tw
+ET Q
+q BT 0 g 60.00 73.25 Td
+0 -18.75 Td
+ET Q
+endstream
+endobj
+7 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 612.00 792.00]
+/Contents 8 0 R
+>>
+endobj
+8 0 obj
+<<
+/Length 5588
+>>
+stream
+0.20 w
+0 G
+q BT 0.400 0.380 0.380 rg 60.00 712.00 Td
+0 -18.75 Td
+0.400 0.380 0.380 rg
+/F9 11.25 Tf (MAC Attacks, DHCP Attacks, Spoofing Attack, ARP poisoning, DNS Poisoning, Countermeasures.) Tj
+54.93 695.83 m 54.93 696.73 54.20 697.46 53.30 697.46 c
+52.40 697.46 51.67 696.73 51.67 695.83 c
+51.67 694.93 52.40 694.20 53.30 694.20 c
+54.20 694.20 54.93 694.93 54.93 695.83 c
+B
+ET Q
+q BT 0 g 60.00 682.75 Td
+0 -18.75 Td
+/F9 11.25 Tf (Social Engineering Concepts, Social Engineering Techniques, Impersonation on Social Networking Sites, Identify) Tj
+0 -18.75 Td
+/F9 11.25 Tf (Threat, Social engineering Countermeasures.) Tj
+54.93 647.83 m 54.93 648.73 54.20 649.46 53.30 649.46 c
+52.40 649.46 51.67 648.73 51.67 647.83 c
+51.67 646.93 52.40 646.20 53.30 646.20 c
+54.20 646.20 54.93 646.93 54.93 647.83 c
+B
+ET Q
+q BT 0 g 60.00 634.75 Td
+0 -18.75 Td
+/F9 11.25 Tf (DoS/DDoS Concepts, Dos/DDOs Attack Techniques, Botnets, Dos/DDoS Attack Tools, Countermeasures, DDoS) Tj
+0 -18.75 Td
+/F9 11.25 Tf (case study.) Tj
+54.93 599.83 m 54.93 600.73 54.20 601.46 53.30 601.46 c
+52.40 601.46 51.67 600.73 51.67 599.83 c
+51.67 598.93 52.40 598.20 53.30 598.20 c
+54.20 598.20 54.93 598.93 54.93 599.83 c
+B
+ET Q
+q BT 0 g 40.00 579.75 Td
+0 -18.75 Td
+0.235 0.227 0.227 rg
+/F9 11.25 Tf (Session hijacking Concepts) Tj
+0 Tw
+ET Q
+q BT 0 g 60.00 550.50 Td
+0 -18.75 Td
+0.400 0.380 0.380 rg
+/F9 11.25 Tf (Network Level Session Hijacking, Application Level Session Hijacking, Countermeasures, Penetration Testing.) Tj
+54.93 534.33 m 54.93 535.23 54.20 535.96 53.30 535.96 c
+52.40 535.96 51.67 535.23 51.67 534.33 c
+51.67 533.43 52.40 532.70 53.30 532.70 c
+54.20 532.70 54.93 533.43 54.93 534.33 c
+B
+ET Q
+q BT 0 g 60.00 521.25 Td
+0 -18.75 Td
+/F9 11.25 Tf (Hacking Web servers, Compromise of user accounts, Website defacement, Secondary attacks from the website,) Tj
+0 -18.75 Td
+/F9 11.25 Tf (Root access to other applications or servers, Data tampering and data theft.) Tj
+54.93 486.33 m 54.93 487.23 54.20 487.96 53.30 487.96 c
+52.40 487.96 51.67 487.23 51.67 486.33 c
+51.67 485.43 52.40 484.70 53.30 484.70 c
+54.20 484.70 54.93 485.43 54.93 486.33 c
+B
+ET Q
+q BT 0 g 40.00 466.25 Td
+0 -18.75 Td
+0.235 0.227 0.227 rg
+/F9 11.25 Tf (Hacking Web Applications:-) Tj
+0 Tw
+ET Q
+q BT 0 g 60.00 437.00 Td
+0 -18.75 Td
+0.400 0.380 0.380 rg
+/F9 11.25 Tf (Web App concepts, Web App Threats, Hacking Methodology, Web Application Hacking Tools, Security Tools,) Tj
+0 -18.75 Td
+/F9 11.25 Tf (Web App Pen Testing.) Tj
+54.93 402.08 m 54.93 402.98 54.20 403.71 53.30 403.71 c
+52.40 403.71 51.67 402.98 51.67 402.08 c
+51.67 401.18 52.40 400.45 53.30 400.45 c
+54.20 400.45 54.93 401.18 54.93 402.08 c
+B
+ET Q
+q BT 0 g 60.00 389.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (SQL Injection, SQL Injection concepts, SQL Injection Methodology, Types of SQL Injection, Evasion Techniques,) Tj
+0 -18.75 Td
+/F9 11.25 Tf (Countermeasures.) Tj
+54.93 354.08 m 54.93 354.98 54.20 355.71 53.30 355.71 c
+52.40 355.71 51.67 354.98 51.67 354.08 c
+51.67 353.18 52.40 352.45 53.30 352.45 c
+54.20 352.45 54.93 353.18 54.93 354.08 c
+B
+ET Q
+q BT 0 g 60.00 341.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (Hacking Wireless Networks, Wireless Concepts, Wireless Hacking Methodology Wireless Encryption, Wireless) Tj
+0 -18.75 Td
+/F9 11.25 Tf (Hacking Tools, Wireless Threats, Bluetooth Hacking, Wi-Fi Pen Testing.) Tj
+54.93 306.08 m 54.93 306.98 54.20 307.71 53.30 307.71 c
+52.40 307.71 51.67 306.98 51.67 306.08 c
+51.67 305.18 52.40 304.45 53.30 304.45 c
+54.20 304.45 54.93 305.18 54.93 306.08 c
+B
+ET Q
+q BT 0 g 60.00 293.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (Hacking Mobile Platforms, Mobile Platform Attack Vendors, Hacking Android IOS Hacking IOS, Hacking) Tj
+0 -18.75 Td
+/F9 11.25 Tf (windows phone OS, Mobile device Management, Mobile pen-testing.) Tj
+54.93 258.08 m 54.93 258.98 54.20 259.71 53.30 259.71 c
+52.40 259.71 51.67 258.98 51.67 258.08 c
+51.67 257.18 52.40 256.45 53.30 256.45 c
+54.20 256.45 54.93 257.18 54.93 258.08 c
+B
+ET Q
+q BT 0 g 60.00 245.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (Evading IDS, Firewalls, and Honeypots, IDS, Firewall and Honeypot concepts, IDS, Firewall and Honeypot) Tj
+0 -18.75 Td
+/F9 11.25 Tf (solutions, Evading IDS, Evading Firewalls.) Tj
+54.93 210.08 m 54.93 210.98 54.20 211.71 53.30 211.71 c
+52.40 211.71 51.67 210.98 51.67 210.08 c
+51.67 209.18 52.40 208.45 53.30 208.45 c
+54.20 208.45 54.93 209.18 54.93 210.08 c
+B
+ET Q
+q BT 0 g 60.00 197.00 Td
+0 -18.75 Td
+/F9 11.25 Tf (IDS/Firewall Evading Tools, Detecting Honeypots, IDS/Firewall Evasion countermeasures, Penetration testing.) Tj
+54.93 180.83 m 54.93 181.73 54.20 182.46 53.30 182.46 c
+52.40 182.46 51.67 181.73 51.67 180.83 c
+51.67 179.93 52.40 179.20 53.30 179.20 c
+54.20 179.20 54.93 179.93 54.93 180.83 c
+B
+ET Q
+q BT 0 g 60.00 167.75 Td
+0 -18.75 Td
+/F9 11.25 Tf (Cloud Computing, Introduction to Cloud Computing, Cloud computing Threats Cloud Computing Attacks, Cloud) Tj
+0 -18.75 Td
+/F9 11.25 Tf (Security, Cloud Security Tools, Cloud Penetration Testing.) Tj
+54.93 132.83 m 54.93 133.73 54.20 134.46 53.30 134.46 c
+52.40 134.46 51.67 133.73 51.67 132.83 c
+51.67 131.93 52.40 131.20 53.30 131.20 c
+54.20 131.20 54.93 131.93 54.93 132.83 c
+B
+ET Q
+q BT 0 g 60.00 119.75 Td
+0 -18.75 Td
+/F9 11.25 Tf (Cryptography, Cryptography concepts, Encryption Algorithms, Cryptography Tools, Public Key Infrastructure) Tj
+0 -18.75 Td
+/F9 11.25 Tf (\(PKI\), Email Encryption, Disk Encryption, Cryptography Attacks, Cryptanalysis Tools) Tj
+54.93 84.83 m 54.93 85.73 54.20 86.46 53.30 86.46 c
+52.40 86.46 51.67 85.73 51.67 84.83 c
+51.67 83.93 52.40 83.20 53.30 83.20 c
+54.20 83.20 54.93 83.93 54.93 84.83 c
+B
+ET Q
+Q
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R 7 0 R ]
+/Count 3
+>>
+endobj
+9 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+10 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+19 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+20 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+21 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+22 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+23 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 280
+/Height 50
+/ColorSpace [/Indexed /DeviceRGB 94 25 0 R]
+/BitsPerComponent 8
+/DecodeParms <</Predictor 12 /Colors 1 /BitsPerComponent 8 /Columns 280>>
+/SMask 24 0 R
+/Length 1299
+/Filter /FlateDecode
+>>
+stream
+hﬁÌög÷6¿Ω%ÀíÈﬁ≠yÄÑ@õBŸ-›ÖÓΩæˇ«®Ó¥m˘Y@˙—ΩHlYwí˛ñÓNÚìeIí$Ií‰Â%-/+y˝d\é3ÚÖíS	Lì¿$0	Lì¿$0	Ã≥îúÌZÀvé2¨	Ü+¡¥ÎŸ⁄åÏ"JMËvc¨äÅ„‰P¿4√–<0çFµòz¯ü¡0BÿÛ”BêO˛‘`J¬aÇ
+òm}ÃΩ?æ˝√˝€?ﬁy4gJ.{–?5ªÍ…·˘òÌ¿¸uzaÂ”üvÊ¡dΩÓ+EØ”ÂÓz •JWÎÌò†¿å¢¶ÇÁ1™Pz“ ^’bbOä®ÌùSWﬂ‚§rê˝ñ⁄÷éÅ	Â‘«Û`j5cÚ¬îökÈóÕ%‘±>§°´¿t˙)áQ2c§$÷€s:EÓ¿ÿnu¡›P[0~KΩæn◊≥X|8&ØïèAﬂ≈∂Z˘:YÅDΩXäÈ	©UÀµv(,¶«x◊©öhÏqåÖ}‹Í4§2‘Ä—™çz3∆PÌÅÒ[bhA>&ÎÉ1dbQâ®1ÚíCÍq§¢™ñˆ•\Íc®ûI÷î≈|åplèj>0ΩZ∆®∂X’‹UL–R‡´¿,.ÕÇÈJ\18ù¥©ﬁà/ù?êR˛gK¡XÀa:é≥y–„⁄Ï3*9∆¬Ä±™ò6wò†•<a'`Œ>~(o?yr÷‹◊∏xxêá4*˘”kD¥n^ÈÅ@Û•`Zœ\EqBÑ`-∞◊öËú®„T!Dÿ;L–RY‡∫ZÊÍÅ.8∏™Kæà;_† B0⁄âÒ‹%»òfS0Õ8\WcØ≤]”`‹⁄ê
+mÓÕ©(òå56PÃÅπpÀFË[T—˘{Q00		:#.^6(Ÿl¶6÷–ãØ”Y{Ö√¨*Q`ä◊íç◊|ÃG◊Ω§Ó∫ŒiÓƒ¡@è‘2s±Úf»3ôÇÈuxµKÉ≠cu‡eî
+åSï≠ı‘‘˜¿-)uàPbÃÕ`pS”äÇa∏L¯§√—n8¶ùjX0"‡ÏŸ^∆Ít∆ÈïNï·`ã@mâÈ•jÃÈ—IMôÛ;S0LÁÓ:kH¬ßîlÑãÊc0C %y,èit.ZAklÁò˘ŒÅAù*£ù
+¿ U†*Öù<∏h≤-3¡Ω<∆oIÓÿds¢òsfÊåö2ø«√5é∆$≤∞>ππnÀb÷˘R?%É…≠öm≥e`òÀ‘kù-îdK◊i∆oIÿk:Ê⁄Ã5Ê◊(.l≤™Éí◊A÷ÃÅ¡∑9)ï∑%»πøc0∂´e`2∆›{¬swnƒqΩ–z∫%Z"ﬁû"ÊÚÃeÊ7ˇOªÚjTÇ6^™"∑°*3eÚ?5g~ÑÀÇmP˙a5±ß€r*¬™Z≥©πb*∏ñ‘Èáòœc.ç¿|£¿Ïø á·ı&'%k¯ò_é˙WÇgm7:[¿|9sKu0"pœ[T}pŸSÖüu0v“f€Ç9˜Ω«Â;5aæz>∏ëÂG kmﬁ›∑\ˆÔ™Ùn7}â˘vWÏÍù“È≠ñã{WvÆÏ]4€ÌÙÌ:*ˇÏ$0πˇw˙µÉFq„Ü√ÚÔÉÉc¸3êZ^QÚ⁄Ôºı*Py˜Ω˜?8·$KÚÊ€âAí$IûÖ¸‚<}¡
+endstream
+endobj
+24 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 280
+/Height 50
+/ColorSpace /DeviceGray
+/BitsPerComponent 8
+/DecodeParms <</Predictor 12 /Colors 1 /BitsPerComponent 8 /Columns 280>>
+/Length 1434
+/Filter /FlateDecode
+>>
+stream
+xÌX1í´FE †¿Œ†#Hâ#;Är˘ (ƒ	\C‰ƒ…Pı/ π∏ÄÀêÿëqë8≥´˛$ŒÂÓû#!ikµ[À´≠”Øá¶˚M√“ô1äÂ≥V1∆Ç90ÃÅ±`ôˆÒÎiœ^Á´cπÔ„«g/Ë≠`.%Ê¿X0∆Ç90ÃÅ±`ås`,x'ÅÒßt“D7}°fÙùf≥ô8—›_ù°õ‰õ√‘;B…º[M%ˆüO¨xOxÒÈÔnå~">?^8c›ªÃ^ª8ﬁ]üuO)q7õN¸àQ;NEÛMAù$ııY˜¶Jíd8ì2Ú
+DÇ®%gí<Ã˜r∏[|+∏*
+èT'˜ª„ÉÏ3®‹ò&¶™à„¿Rà˚Æ}V*‰J≤IŸ¬1æ∞4G⁄¥õﬂÿûT2z¢„vˆCÅq`ün§\Æ\zÚÿ·ZÊ&≈3ú´ÄÆ
+vNıÈÚöoéúX»úé¸úùÛÂÚ©£ë¡˛ëÀ˘π…ÂÓ÷MO\™Ço‹øí
+bëoCàRèíÅRP†FHÕPõW«8[>üJ	À9p·U\‡-¿ÏRÒ’BQ‡å3>¥i‚n2o„NÀ P	Cﬁé–b‘”Ü!\nLäYqAGêı
+$ß∆˝
+‹GQí,V0iªB%Ç˘å≤$	†¯ˆÙ‡*%,g¿çÇd—L‡[‰€C|‚úm≤umå&R¶Îåûå&*,û`QÕÜ»=“‡m\ZÊN†àRmÈek4Ö9B∑ók	¨3∏'´ëFÉºj2Â∆‡√|Å€sÍÿÆM#Ãô¢Å'‡n$˜n◊X<aÈxõ#â/Æ2»?1πÚÛÍ‘ãìJ)¨Ä∞ÌIVÅ√CÓb0°« ˘<=˛ª*Óùia!Íy¬R-K÷õpÔvù¨‡m˙˘·–~Àà>ÀGvq´ßfh!ŒGpãRDß^k⁄ÙFà†¡éıƒçs˜óä=†X23^£>n µ≤πÃ1ÇJ”aÓOiíª$rÌÁ∆àOı:BafáÓÍ”»®ﬁL∂gM≤¿"cê3bjYùõ]zvB∑|(Œxwﬁ-;(y¢=ßL72ì‹°∂ı<¡8∂EØËcêD iø6ù$í®∂dã0ıs `€ã#‹m`Æ‹◊›ŒYcâzû‰ô]mf÷ΩÅŸP⁄‘Oò£Ä1XBàˇ\÷¨Â¶püa˛ÿ˚DI˜ÿjnü]*)≤ŸCØÇ•1S¶4¥¥3‚æû∫N∏XiO.Ca/´ÓÌc®«	…†X¬√Èt‰‡ÖÒölÏú*!ˇ∆˝°Ñ˘£ØòmhóràõÊ.˘≈M~Güßé‡∂»(ÿ—…¿Kx<A4r÷–◊é‹L”ìœ9º1`ÿï˛SÔPU›π]âÈ¸8®Èp,ıT∫ﬂpMÓãRSoï}M@ı¯m¡∏(Çs≠3=È∏õ´æ90k%Â—b+{ÉxA„ ∫‹≈éW∞¿z»yÿM ∂á∫rú≠Ù¸vë›Bµ›J≥Ã‡^eµÍÁ·∑Ú¡Õ⁄Ä	$d»†5¡Z}÷hà£Í{JhEÒneƒÔˆåQRûŒgAárk®⁄≠ —Á‡ó∂≤væBaÎﬁEX©~æ&«>Â´3)Z”ñ∂¡ëO…§πOrÉÍ5ÅÔ‰õÔc qÖjÒRﬂë+¯ÅqÖ˜¸[ÃÅ1—njŸÑèΩ
+"0RàAg£È6"0z«∏≈‚ÉÊvÃÅ±`ås`,òc¡r€«7ﬂ˝Ù€ﬂx·ü?˘ﬁ8ˇÏuæ:ñu˝ÒÈáØ_|π¯Í€ü7Œ?{ùØéÒR˙ÔﬂW^∆€√¨1ÃÅ±‡È”5í
+endstream
+endobj
+25 0 obj
+<<
+/Length 285
+>>
+stream
+Liq                                          #âÚ#âÚˇˇˇˇˇˇ¯˚ˇËÛ˛◊Í˝X•ıˇˇˇÈÛ˛ˇˇˇΩ€˚˚˝ˇÌı˛ „¸n±ˆ   #âÚˇˇˇÂÒ˝ÿÍ˝ó«˘(åÚLüÙı˘˛k∞ˆ„˝¸˛ˇ-èÛ±’˙8îÛπ⁄˚q≥˜d¨ˆO°ı¡ﬁ˚vµ˜+çÚÚ¯˛ã¡¯\®ı&äÚ÷È˝”Á¸ï∆˘…‚¸EõÙ˜˚ˇ§Œ˙Y¶ıa™ˆW•ıT£ıËÛ˛iÆˆR¢ı¨”˙€Ï˝æ‹˚:ïÛn±ˆù ˘ö…˘–Ê¸3ëÛ0êÛÌı˛ŒÂ¸~∫˜∆‡¸‡Ó˝JûÙBöÙ?òÙê√¯ç¬¯Óˆ˛{∏˜™—˙˙¸ˇ
+endstream
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 9 0 R
+/F2 10 0 R
+/F3 11 0 R
+/F4 12 0 R
+/F5 13 0 R
+/F6 14 0 R
+/F7 15 0 R
+/F8 16 0 R
+/F9 17 0 R
+/F10 18 0 R
+/F11 19 0 R
+/F12 20 0 R
+/F13 21 0 R
+/F14 22 0 R
+>>
+/XObject <<
+/I0 23 0 R
+>>
+>>
+endobj
+26 0 obj
+<<
+/Producer (jsPDF 1.5.3)
+/CreationDate (D:20201014084244+05'30')
+>>
+endobj
+27 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 28
+0000000000 65535 f 
+0000016113 00000 n 
+0000021540 00000 n 
+0000000015 00000 n 
+0000000124 00000 n 
+0000005276 00000 n 
+0000005385 00000 n 
+0000010364 00000 n 
+0000010473 00000 n 
+0000016182 00000 n 
+0000016307 00000 n 
+0000016438 00000 n 
+0000016572 00000 n 
+0000016710 00000 n 
+0000016834 00000 n 
+0000016963 00000 n 
+0000017095 00000 n 
+0000017231 00000 n 
+0000017359 00000 n 
+0000017486 00000 n 
+0000017615 00000 n 
+0000017748 00000 n 
+0000017850 00000 n 
+0000017946 00000 n 
+0000019524 00000 n 
+0000021203 00000 n 
+0000021803 00000 n 
+0000021889 00000 n 
+trailer
+<<
+/Size 28
+/Root 27 0 R
+/Info 26 0 R
+/ID [ <9B12AFE02C6FCD5728EC9E290EF4C43E> <9B12AFE02C6FCD5728EC9E290EF4C43E> ]
+>>
+startxref
+21993
+%%EOF

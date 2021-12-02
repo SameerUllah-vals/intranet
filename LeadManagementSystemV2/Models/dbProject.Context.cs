@@ -29,7 +29,6 @@ namespace LeadManagementSystemV2.Models
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Gallery> Galleries { get; set; }
         public virtual DbSet<GalleryDetail> GalleryDetails { get; set; }
-        public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<LatestNew> LatestNews { get; set; }
         public virtual DbSet<LatestNewsGalleryLink> LatestNewsGalleryLinks { get; set; }
         public virtual DbSet<MenuPermission> MenuPermissions { get; set; }
@@ -49,5 +48,6 @@ namespace LeadManagementSystemV2.Models
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<BusinessApplication> BusinessApplications { get; set; }
+        public virtual DbSet<Job> Jobs { get; set; }
     }
 }

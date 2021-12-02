@@ -24,6 +24,7 @@
 
                                     <th width="200">Title</th>                                  
                                     <th>Description</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,7 +33,7 @@
                                     <tr>
                                         <td>@item.Title</td>
                                         <td>@Html.Raw(item.Description)</td>
-
+                                        <td><a href="@Url.Action("", "newsdetails", new { id = item.ID })">View Details</a></td>
                                     </tr>
                                 }
 

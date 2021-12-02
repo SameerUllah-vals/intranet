@@ -24,7 +24,7 @@ namespace LeadManagementSystemV2.Helpers
         public const string Banner_Image_Path = "~/assets/banners";
         public const string Gallery_Image_Path = "~/assets/gallery";
         public const string NewsLetter_Image_Path = "~/assets/newsletter";
-        public const string Policies_document_Path = "~/assets/policies";
+        public const string Document_Path = "~/assets/documents";
 
 
         public const string Cookie_User_Email_Address = "Cookie_CRM_Email_Address";
@@ -708,6 +708,16 @@ namespace LeadManagementSystemV2.Helpers
                 return data;
 
             }
+        }
+
+       
+    }
+
+    public static class Extensions
+    {
+        public static IEnumerable<T> DistinctBy<T, TKey>(this IEnumerable<T> items, Func<T, TKey> property)
+        {
+            return items.GroupBy(property).Select(x => x.First());
         }
     }
 }

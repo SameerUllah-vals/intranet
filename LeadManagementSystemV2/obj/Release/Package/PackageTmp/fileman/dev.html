@@ -30,7 +30,7 @@
 <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
 <script type="text/javascript" src="js/filetypes.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
 <script type="text/javascript" src="js/utils.js"></script>
 <script type="text/javascript" src="js/file.js"></script>
 <script type="text/javascript" src="js/directory.js"></script>
@@ -58,27 +58,29 @@
    <td valign="top" id="fileActions">
    <input type="hidden" id="hdViewType" value="list">
    <input type="hidden" id="hdOrder" value="asc">
-    <div class="actions">
-      <input type="button" id="btnAddFile" value="Add file" title="Upload files" onclick="addFileClick()" data-lang-v="AddFile" data-lang-t="T_AddFile" />
-      <input type="button" style="display:none;" id="btnPreviewFile" value="Preview" title="Preview selected file" onclick="previewFile()" data-lang-v="Preview" data-lang-t="T_Preview" />
-      <input type="button" id="btnRenameFile" value="Rename" title="Rename selected file" onclick="renameFile()" data-lang-v="RenameFile" data-lang-t="T_RenameFile" />
-      <input type="button" id="btnDownloadFile" value="Download" title="Download selected file" onclick="downloadFile()" data-lang-v="DownloadFile" data-lang-t="T_DownloadFile" />
-      <input type="button" id="btnDeleteFile" value="Delete" title="Delete selected file" onclick="deleteFile()" data-lang-v="DeleteFile" data-lang-t="T_DeleteFile" />
-      <input type="button" style="display:none;" id="btnSelectFile" value="Select" title="Select highlighted file" onclick="setFile()" data-lang-v="SelectFile" data-lang-t="T_SelectFile" />
-      <br>
-      <span data-lang="OrderBy">Order by</span>:
-      <select id="ddlOrder" onchange="sortFiles()">
-        <option value="name" data-lang="Name_asc">&uarr;&nbsp;&nbsp;Name</option>
-        <option value="size" data-lang="Size_asc">&uarr;&nbsp;&nbsp;Size</option>
-        <option value="time" data-lang="Date_asc">&uarr;&nbsp;&nbsp;Date</option>
-        <option value="name_desc" data-lang="Name_desc">&darr;&nbsp;&nbsp;Name</option>
-        <option value="size_desc" data-lang="Size_desc">&darr;&nbsp;&nbsp;Size</option>
-        <option value="time_desc" data-lang="Date_desc">&darr;&nbsp;&nbsp;Date</option>
-      </select>&nbsp;&nbsp;
-      <input type="button" id="btnListView" class="btnView" value=" " title="List view" onclick="switchView('list')" data-lang-t="T_ListView" />
-      <input type="button" id="btnThumbView" class="btnView" value=" " title="Thumbnails view" onclick="switchView('thumb')" data-lang-t="T_ThumbsView" />&nbsp;&nbsp;
-      <input type="text" id="txtSearch" onkeyup="filterFiles()" onchange="filterFiles()" />
-    </div>
+   <div class="actions">
+       <input type="button" id="btnAddFile" value="Add file" title="Upload files" onclick="addFileClick()" data-lang-v="AddFile" data-lang-t="T_AddFile" />
+       <input type="button" style="display:none;" id="btnPreviewFile" value="Preview" title="Preview selected file" onclick="previewFile()" data-lang-v="Preview" data-lang-t="T_Preview" />
+       <input type="button" id="btnRenameFile" value="Rename" title="Rename selected file" onclick="renameFile()" data-lang-v="RenameFile" data-lang-t="T_RenameFile" />
+       <input type="button" id="btnDownloadFile" value="Download" title="Download selected file" onclick="downloadFile()" data-lang-v="DownloadFile" data-lang-t="T_DownloadFile" />
+       <input type="button" id="btnDeleteFile" value="Delete" title="Delete selected file" onclick="deleteFile()" data-lang-v="DeleteFile" data-lang-t="T_DeleteFile" />
+       <input type="button" style="display:none;" id="btnSelectFile" value="Select" title="Select highlighted file" onclick="setFile()" data-lang-v="SelectFile" data-lang-t="T_SelectFile" />
+       <br>
+       <span data-lang="OrderBy">Order by</span>:
+       <select id="ddlOrder" onchange="sortFiles()">
+           <option value="name" data-lang="Name_asc">&uarr;&nbsp;&nbsp;Name</option>
+           <option value="size" data-lang="Size_asc">&uarr;&nbsp;&nbsp;Size</option>
+           <option value="time" data-lang="Date_asc">&uarr;&nbsp;&nbsp;Date</option>
+           <option value="name_desc" data-lang="Name_desc">&darr;&nbsp;&nbsp;Name</option>
+           <option value="size_desc" data-lang="Size_desc">&darr;&nbsp;&nbsp;Size</option>
+           <option value="time_desc" data-lang="Date_desc">&darr;&nbsp;&nbsp;Date</option>
+       </select>&nbsp;&nbsp;
+       <input type="button" id="btnListView" class="btnView" value=" " title="List view" onclick="switchView('list')" data-lang-t="T_ListView" />
+       <input type="button" id="btnThumbView" class="btnView" value=" " title="Thumbnails view" onclick="switchView('thumb')" data-lang-t="T_ThumbsView" />&nbsp;&nbsp;
+       <input type="text" id="txtSearch" />
+  
+      
+   </div>
     <div class="pnlFiles">
        <div class="scrollPane">
          <div id="pnlLoading">

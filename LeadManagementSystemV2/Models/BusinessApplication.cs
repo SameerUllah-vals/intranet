@@ -16,7 +16,7 @@ namespace LeadManagementSystemV2.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Category { get; set; }
+        public Nullable<int> ParentId { get; set; }
         public string IsFooterLink { get; set; }
         public string FooterValueType { get; set; }
         public string Url { get; set; }

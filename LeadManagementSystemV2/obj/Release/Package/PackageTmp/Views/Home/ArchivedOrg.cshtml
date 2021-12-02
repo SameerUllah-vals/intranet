@@ -22,23 +22,19 @@
                                 <tr>
                                     <th width="200">Title</th>
                                     <th>Announcement</th>
-                                    <th>File</th>
+                                   
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>@item.Title</td>
-                                        <td>@Html.Raw(item.Announcement)</td>
-                                        <td>
-                                            @if (!string.IsNullOrEmpty(item.Files))
-                                            {
-                                                <a href="@Url.Action("downloadfile", "download", new { filepath = item.Files })">View Attachment</a>
-                                            }
-                                        </td>
-
-                                    </tr>
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@Html.Raw(item.Announcement)</td>
+                                    
+                                    <td><a href="@Url.Action("", "orgdetails", new { id = item.ID })">View Details</a></td>
+                                </tr>
                                 }
 
                             </tbody>

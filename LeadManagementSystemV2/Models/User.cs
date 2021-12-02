@@ -23,8 +23,6 @@ namespace LeadManagementSystemV2.Models
             this.Events1 = new HashSet<Event>();
             this.Galleries = new HashSet<Gallery>();
             this.Galleries1 = new HashSet<Gallery>();
-            this.Jobs = new HashSet<Job>();
-            this.Jobs1 = new HashSet<Job>();
             this.LatestNews = new HashSet<LatestNew>();
             this.LatestNews1 = new HashSet<LatestNew>();
             this.NewsLetters = new HashSet<NewsLetter>();
@@ -39,6 +37,8 @@ namespace LeadManagementSystemV2.Models
             this.ServeyMasters1 = new HashSet<ServeyMaster>();
             this.BusinessApplications = new HashSet<BusinessApplication>();
             this.BusinessApplications1 = new HashSet<BusinessApplication>();
+            this.Jobs = new HashSet<Job>();
+            this.Jobs1 = new HashSet<Job>();
         }
     
         public int ID { get; set; }
@@ -69,10 +69,6 @@ namespace LeadManagementSystemV2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Gallery> Galleries1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job> Jobs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job> Jobs1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LatestNew> LatestNews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LatestNew> LatestNews1 { get; set; }
@@ -101,5 +97,9 @@ namespace LeadManagementSystemV2.Models
         public virtual ICollection<BusinessApplication> BusinessApplications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BusinessApplication> BusinessApplications1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Job> Jobs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Job> Jobs1 { get; set; }
     }
 }

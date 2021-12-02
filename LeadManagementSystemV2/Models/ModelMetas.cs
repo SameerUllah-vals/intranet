@@ -332,8 +332,9 @@ namespace LeadManagementSystemV2.Models
         [Required]
 
         public string Name { get; set; }
-        [Required]
-        public string Category { get; set; }
+       
+        
+        public int Category { get; set; }
         [Required]
 
         public string IsFooterLink { get; set; }

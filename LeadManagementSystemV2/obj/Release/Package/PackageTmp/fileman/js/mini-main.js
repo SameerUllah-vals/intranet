@@ -745,7 +745,8 @@ function Directory(fullPath, numDirs, numFiles){
       d.Expand();
     });
   };
-  this.GetHtml = function(){
+    this.GetHtml = function () {
+        
      var html = '<li data-path="'+this.fullPath+'" data-dirs="'+this.dirs+'" data-files="'+this.files+'" class="directory">';
      html += '<div><img src="images/'+(this.dirs > 0?'dir-plus.png':'blank.gif')+'" class="dirPlus" width="9" height="9">';
      html += '<img src="images/folder.png" class="dir"><span class="name">'+this.name+' ('+this.files+')</span></div>';
@@ -1075,7 +1076,7 @@ function Directory(fullPath, numDirs, numFiles){
     this.files = $('#pnlFileList').children('li').length;
     this.Update();
     this.SetStatusBar();
-    filterFiles();
+    filterFiles("loaded");
     switchView();
     $('#pnlFileList').show();
     this.SetSelectedFile(selectedFile);
@@ -1646,8 +1647,18 @@ function tooltipContent(){
     html = f.fullPath+' <span class="filesize">'+t('Size')+': '+RoxyUtils.FormatFileSize(f.size) + '</span>';
   return html;
 }
-function filterFiles(){
-  var str = $('#txtSearch').val();
+function clearSearch() {
+    eraseCookie("keyword");
+    window.location.reload();
+}
+function filterFiles(e) {
+    if (!e) {
+
+        var str = $('#txtSearch').val();
+        createCookie("keyword", str, 1);
+        window.location.reload();
+    }
+   
   $('#pnlSearchNoFiles').hide();
   if($('#pnlFileList li').length == 0)
     return;
@@ -1656,7 +1667,7 @@ function filterFiles(){
     return;
   }
   var i = 0;
-  $('#pnlFileList li').each(function(){
+    $('#pnlFileList li').each(function () {
       var name = $(this).children('.name').text();
       if(name.toLowerCase().indexOf(str.toLowerCase()) > -1){
         i++;
@@ -1670,12 +1681,27 @@ function filterFiles(){
   if(i == 0)
     $('#pnlSearchNoFiles').show();
 }
+function createCookie(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+function eraseCookie(name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
 function sortFiles(){
   var d = getSelectedDir();
   if(!d)
     return;
   d.ListFiles();
-  filterFiles();
+  filterFiles("loaded");
   switchView($('#hdViewType').val());
 }
 function switchView(t){
@@ -1944,10 +1970,13 @@ function initSelection(filePath){
   if(!hasSelection)
     selectFirst();
 }
-$(function(){
+$(function () {
+   
+  
   RoxyUtils.LoadConfig();
   var d = new Directory();
-  d.LoadAll();
+    d.LoadAll();
+    
   $('#wraper').show();
   
   window.setTimeout('initSelection()', 100);
@@ -1995,7 +2024,14 @@ $(function(){
       $('body').append('<script src="js/tiny_mce_popup.js"><\/script>');
     }
     catch(ex){}
-  }
+    }
+    debugger;
+    d.GetExpanded();
+    d.SetOpened();
+    $(".directory").each(function () {
+        $(this).children("ul").show();
+    })
+    eraseCookie("keyword");
 });
 function getFilemanIntegration(){
   var integration = RoxyUtils.GetUrlParam('integration');
@@ -2050,3 +2086,6 @@ function setFile(){
     break;
   }
 }
+$(document).on("click", "#pnlFileList li", function () {
+    downloadFile();
+});

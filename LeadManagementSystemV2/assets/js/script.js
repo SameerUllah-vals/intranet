@@ -3,15 +3,8 @@ $('body').scrollspy({
   target: '#mainNav',
   offset: 80
 });
-var navbarCollapse = function () {
-  if ($("#mainNav").offset().top > 100) {
-    $("#mainNav").addClass("navbar-shrink");
-  } else {
-    $("#mainNav").removeClass("navbar-shrink");
-  }
-};
-navbarCollapse();
-$(window).scroll(navbarCollapse);
+
+
 
 
 //SCROLL TOP
@@ -32,7 +25,7 @@ $('#scrollTop').click(function () {
 
 //Sidebar
 
-
+/*
 $("#sidebar").mCustomScrollbar({
   scrollInertia: 100,
   theme: "minimal"
@@ -49,3 +42,30 @@ $('#sidebarCollapse').on('click', function () {
   $('.collapse.in').toggleClass('in');
   $('a[aria-expanded=true]').attr('aria-expanded', 'false');
 });
+ */
+
+
+
+// jquery ready start
+$(document).ready(function() {
+	// jQuery code
+
+	//////////////////////// Prevent closing from click inside dropdown
+    $(document).on('click', '.dropdown-menu', function (e) {
+      e.stopPropagation();
+    });
+
+    // make it as accordion for smaller screens
+    if ($(window).width() < 992) {
+	  	$('.dropdown-menu a').click(function(e){
+	  		e.preventDefault();
+	        if($(this).next('.submenu').length){
+	        	$(this).next('.submenu').toggle();
+	        }
+	        $('.dropdown').on('hide.bs.dropdown', function () {
+			   $(this).find('.submenu').hide();
+			})
+	  	});
+	}
+	
+}); // jquery end

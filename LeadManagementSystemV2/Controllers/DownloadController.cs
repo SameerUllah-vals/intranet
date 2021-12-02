@@ -11,7 +11,7 @@ namespace LeadManagementSystemV2.Controllers
         [AllowAnonymous]
         public ActionResult DownloadFile(string filePath)
         {
-            string fullName = Server.MapPath("~/assets/policies/" + filePath);
+            string fullName = Server.MapPath(filePath);
 
             byte[] fileBytes = GetFile(fullName);
             return File(

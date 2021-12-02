@@ -22,7 +22,8 @@
         tinymce.init({
             selector: '#editor',
             encoding: 'xml',
-            plugins: 'image,paste',
+            plugins: 'image,paste,link',
+            toolbar: 'link',
             paste_as_text: true,
             setup: function (ed) {
                 ed.on('keyup', function (e) {
