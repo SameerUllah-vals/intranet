@@ -35,7 +35,7 @@
                                 </tr>
                                 @if (Model.OrgAnnouncementDetails.Count > 0)
                                 {
-                                    foreach (var item in Model.OrgAnnouncementDetails)
+                                    foreach (var item in Model.OrgAnnouncementDetails.OrderByDescending(x => x.ID))
                                     {
                                         <tr>
 
@@ -51,9 +51,8 @@
                                 }
                                 else
                                 {
-                                    <tr>
-                                        foreach (var item in Model.OrgAnnouncementDetails)
-                                        {
+                                   
+                                        
                                     <tr>
 
                                         <td colspan="2" align="center">
@@ -61,8 +60,7 @@
                                         </td>
 
                                     </tr>
-                                    }
-                                    </tr>
+                                    
                                 }
 
 

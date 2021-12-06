@@ -24,15 +24,17 @@
 
                                     <th width="200">Title</th>                                  
                                     <th>Description</th>
+                                    <th>Created DateTime</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @foreach (var item in Model.OrderByDescending(x => x.CreatedDateTime))
                                 {
                                     <tr>
                                         <td>@item.Title</td>
                                         <td>@Html.Raw(item.Description)</td>
+                                        <td>@item.CreatedDateTime</td>
                                         <td><a href="@Url.Action("", "newsdetails", new { id = item.ID })">View Details</a></td>
                                     </tr>
                                 }
@@ -51,7 +53,8 @@
     <script>
 
         $('#org').DataTable({
-            "pageLength": 10
+            "pageLength": 10,
+            "order": [[2, "desc"]]
         });
     </script>
 

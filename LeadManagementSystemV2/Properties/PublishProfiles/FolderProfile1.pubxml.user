@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>D:\Descon updated\published</_PublishTargetUrl>
-    <History>True|2021-12-02T07:38:46.8783330Z;False|2021-11-30T15:20:22.1749163+05:00;True|2021-11-25T16:16:03.6933838+05:00;True|2021-11-12T11:36:58.1885532+05:00;True|2021-11-11T17:44:31.0615316+05:00;True|2021-11-05T19:20:08.9888888+05:00;True|2021-10-21T12:34:52.9203911+05:00;False|2021-10-21T12:33:18.5206189+05:00;False|2021-10-21T12:32:34.6925907+05:00;False|2021-10-21T12:30:33.5140176+05:00;False|2021-10-21T12:30:03.2857357+05:00;True|2021-10-13T13:04:13.6562028+05:00;True|2021-10-08T15:41:54.8446086+05:00;True|2021-10-05T10:43:39.4569969+05:00;True|2021-09-14T12:01:11.3353818+05:00;True|2021-09-13T11:00:37.5396196+05:00;True|2021-09-03T17:01:58.6059322+05:00;</History>
+    <History>True|2021-12-02T08:02:02.3513677Z;True|2021-12-02T12:38:46.8783330+05:00;False|2021-11-30T15:20:22.1749163+05:00;True|2021-11-25T16:16:03.6933838+05:00;True|2021-11-12T11:36:58.1885532+05:00;True|2021-11-11T17:44:31.0615316+05:00;True|2021-11-05T19:20:08.9888888+05:00;True|2021-10-21T12:34:52.9203911+05:00;False|2021-10-21T12:33:18.5206189+05:00;False|2021-10-21T12:32:34.6925907+05:00;False|2021-10-21T12:30:33.5140176+05:00;False|2021-10-21T12:30:03.2857357+05:00;True|2021-10-13T13:04:13.6562028+05:00;True|2021-10-08T15:41:54.8446086+05:00;True|2021-10-05T10:43:39.4569969+05:00;True|2021-09-14T12:01:11.3353818+05:00;True|2021-09-13T11:00:37.5396196+05:00;True|2021-09-03T17:01:58.6059322+05:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="assets/banners/125570718_154694166375506_25584049230548429_n.jpg">
@@ -549,10 +549,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:42</publishTime>
     </File>
     <File Include="bin/LeadManagementSystemV2.dll">
-      <publishTime>12/02/2021 12:38:39</publishTime>
+      <publishTime>12/02/2021 13:01:59</publishTime>
     </File>
     <File Include="bin/LeadManagementSystemV2.pdb">
-      <publishTime>12/02/2021 12:38:39</publishTime>
+      <publishTime>12/02/2021 13:01:59</publishTime>
     </File>
     <File Include="bin/LinqToExcel.dll">
       <publishTime>08/30/2021 14:39:42</publishTime>
@@ -1701,16 +1701,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/30/2021 14:39:40</publishTime>
     </File>
     <File Include="Views/Home/ArchivedNews.cshtml">
-      <publishTime>11/11/2021 15:55:52</publishTime>
+      <publishTime>12/02/2021 13:01:19</publishTime>
     </File>
     <File Include="Views/Home/ArchivedNlt.cshtml">
-      <publishTime>08/30/2021 14:39:40</publishTime>
+      <publishTime>12/02/2021 13:01:07</publishTime>
     </File>
     <File Include="Views/Home/ArchivedNotice.cshtml">
-      <publishTime>12/02/2021 12:37:11</publishTime>
+      <publishTime>12/02/2021 13:00:54</publishTime>
     </File>
     <File Include="Views/Home/ArchivedOrg.cshtml">
-      <publishTime>12/02/2021 12:34:33</publishTime>
+      <publishTime>12/02/2021 13:00:43</publishTime>
     </File>
     <File Include="Views/Home/Explorer.cshtml">
       <publishTime>10/18/2021 10:56:42</publishTime>
@@ -1746,7 +1746,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/04/2021 15:40:08</publishTime>
     </File>
     <File Include="Views/OrgDetails/Index.cshtml">
-      <publishTime>12/02/2021 12:27:56</publishTime>
+      <publishTime>12/02/2021 12:59:57</publishTime>
     </File>
     <File Include="Views/Policies/Form.cshtml">
       <publishTime>08/30/2021 14:39:40</publishTime>
