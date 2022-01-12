@@ -236,7 +236,7 @@ namespace LeadManagementSystemV2.Controllers
         public ActionResult Explorer(string type,string keyword)
         {
             AddCookie("policy", type);
-            //AddCookie("keyword", keyword);
+            AddCookie("keyword", keyword);
             ViewBag.WebsiteURL = GetSettingContentByName("Website URL");
             return View();
         }

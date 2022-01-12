@@ -85,7 +85,8 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
         try{
             if (_context.Request["a"] != null)
                 action = (string)_context.Request["a"];
-
+            string keyword = GetCookie("Keyword");
+                 var data =context.Request["searchString"];
             VerifyAction(action);
             switch (action.ToUpper())
             {
@@ -93,7 +94,7 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
                     ListDirTree(_context.Request["type"]);
                     break;
                 case "FILESLIST":
-                    ListFiles(_context.Request["d"], _context.Request["type"]);
+                    ListFiles(_context.Request["d"], _context.Request["type"],keyword);
                     break;
                 case "COPYDIR":
                     CopyDir(_context.Request["d"], _context.Request["n"]);
@@ -556,7 +557,7 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
         for (int i = 0; i < files.Count; i++)
         {
             FileInfo FILE = new FileInfo(files[i]);
-            if(FILE.Extension.Contains("pdf") || FILE.Extension.Contains("doc"))
+            if( FILE.Name.ToLower().Contains(keyword.ToLower()) && (FILE.Extension.Contains("pdf") || FILE.Extension.Contains("doc")))
             {
                 PDF_AND_DOCX_FILES.Add(files[i]);
             }

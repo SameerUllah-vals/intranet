@@ -3,7 +3,7 @@
     ViewBag.Title = "Engineering Policies";
     Layout = "~/Views/Shared/_FrontendLayout.cshtml";
 }
-
+<script src="~/fileman/js/jquery-2.1.1.min.js"></script>
 
 <div class="container-fluid spacer-padding mt-6">
     <div class="row">
@@ -29,4 +29,11 @@
             </div>
         </div>
     </div>
- </div>
+</div>
+@section InLineScriptSection{
+    <script>
+        $.when($.ready).done(function () {
+            eraseCookie("keyword");
+        });
+    </script>
+}

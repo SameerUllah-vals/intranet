@@ -1087,9 +1087,11 @@ function Directory(fullPath, numDirs, numFiles){
       return;
     }
     var ret = new Array();
-    var fileURL = RoxyFilemanConf.FILESLIST;
+      var fileURL = RoxyFilemanConf.FILESLIST;
+      console.log(RoxyUtils.GetCookie('keyword'));
     fileURL = RoxyUtils.AddParam(fileURL, 'd', this.fullPath);
-    fileURL = RoxyUtils.AddParam(fileURL, 'type', RoxyUtils.GetUrlParam('type'));
+      fileURL = RoxyUtils.AddParam(fileURL, 'type', RoxyUtils.GetUrlParam('type'));
+      fileURL = RoxyUtils.AddParam(fileURL, 'searchString', RoxyUtils.GetCookie('keyword'))
     var item = this;
     if(!this.IsListed() || refresh){
 
@@ -1691,6 +1693,7 @@ function createCookie(name, value, days) {
     else {
         expires = "";
     }
+    console.log(name + "=" + value + expires + "; path=/");
     document.cookie = name + "=" + value + expires + "; path=/";
 }
 function eraseCookie(name) {
@@ -2031,7 +2034,8 @@ $(function () {
     $(".directory").each(function () {
         $(this).children("ul").show();
     })
-    eraseCookie("keyword");
+    //  eraseCookie("keyword");
+    $('#txtSearch').val(RoxyUtils.GetCookie('keyword'));
 });
 function getFilemanIntegration(){
   var integration = RoxyUtils.GetUrlParam('integration');

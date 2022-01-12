@@ -144,6 +144,15 @@
   <span class="name"></span><br>
   <input type="text" id="txtDirName">
 </div>
+    <script>
+        
 
+        $(document).on("keyup", "#txtSearch", function (e) {
+           
+            if (e.which === 13) {
+                filterFiles();
+            }
+        });
+    </script>
 </body>
 </html>

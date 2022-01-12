@@ -1,4 +1,5 @@
 ﻿@model LeadManagementSystemV2.Models.OrgAnnouncement
+@using LeadManagementSystemV2.Helpers;
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_FrontendLayout.cshtml";
@@ -42,7 +43,8 @@
                                             <td colspan="2" align="center">
                                                 @if (!string.IsNullOrEmpty(item.Files))
                                                 {
-                                                    <a href="@Url.Action("downloadfile", "download", new { filepath = item.Files })">View Attachment</a>
+                                                    string path = ApplicationHelper.Document_Path + "\\" + item.Files;
+                                                    <a href="@Url.Action("downloadfile", "download", new { filepath = path})">View Attachment</a>
                                                 }
                                             </td>
 

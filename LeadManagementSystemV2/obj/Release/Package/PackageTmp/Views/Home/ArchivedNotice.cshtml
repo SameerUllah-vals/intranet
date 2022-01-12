@@ -23,6 +23,7 @@
 
                                     <th width="200">Title</th>
                                     <th>Announcement</th>
+                                    <th>Created DateTime</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -32,6 +33,7 @@
                                 <tr>
                                     <td>@item.Title</td>
                                     <td>@Html.Raw(item.Announcement)</td>
+                                    <td>@item.CreatedDateTime</td>
                                     <td><a href="@Url.Action("", "orgdetails", new { id = item.ID })">View Details</a></td>
                                 </tr>
                                 }
@@ -50,7 +52,8 @@
     <script>
 
                 $('#org').DataTable({
-                    "pageLength": 10
+                    "pageLength": 10,
+                    "order": [[2, "desc"]]
                 });
     </script>
 

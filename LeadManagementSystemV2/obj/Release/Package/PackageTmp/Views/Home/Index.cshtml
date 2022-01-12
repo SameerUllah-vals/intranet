@@ -817,14 +817,14 @@
                             left: 'prev,next today',
                             center: 'title',
                             right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                            
+
                         },
                         navLinks: false,
                         selectable: true,
                         selectMirror: true,
                         dayMaxEvents: true,
                         height: 550,
-                        events: events,                        
+                        events: events,
                         displayEventEnd: true,
                         eventTimeFormat: {
                             hour: "numeric",
@@ -843,7 +843,9 @@
                                     $(".eventdatetime").html(data[0].EventDateTime);
                                     $(".eventremarks").html(data[0].Description);
                                     $("#pnlfile").html('');
-                                    $("#pnlfile").append("<a target='_blank' href='@ViewBag.WebsiteURL/download/downloadfile?filepath=~/assets/documents/" + data[0].Files + "' >View Attachment</a>");
+                                    if (data[0].Files) {
+                                         $("#pnlfile").append("<a target='_blank' href='@ViewBag.WebsiteURL/download/downloadfile?filepath=~/assets/documents/" + data[0].Files + "' >View Attachment</a>");
+                                    }
                                     $("#eventmodal").modal('show');
                                 },
                                 error: function (error, xhr, state) {
