@@ -86,7 +86,7 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
             if (_context.Request["a"] != null)
                 action = (string)_context.Request["a"];
             string keyword = GetCookie("Keyword");
-                 var data =context.Request["searchString"];
+            // var data =context.Request["searchString"];
             VerifyAction(action);
             switch (action.ToUpper())
             {
@@ -438,12 +438,18 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
         string keyword = GetCookie("keyword");
         foreach(string f in files)
         {
+            string extension = new FileInfo(f).Extension.ToLower();
 
             if (!string.IsNullOrEmpty(keyword))
             {
                 if (f.ToLower().Contains(keyword.ToLower()))
                 {
-                    if ((GetFileType(new FileInfo(f).Extension) == type) || (type == ""))
+                    // && (FILE.Extension.Contains(".pdf") || FILE.Extension.Contains(".doc")
+                    //if ((GetFileType(new FileInfo(f).Extension) == type) || (type == ""))
+                    //{
+                    //        ret.Add(f);
+                    //}
+                    if (extension.Contains(".pdf") || extension.Contains(".doc") )
                     {
                         ret.Add(f);
                     }
@@ -451,10 +457,14 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
             }
             else
             {
-                if ((GetFileType(new FileInfo(f).Extension) == type) || (type == ""))
+                if (extension.Contains(".pdf") || extension.Contains(".doc") )
                 {
                     ret.Add(f);
                 }
+                //if ((GetFileType(new FileInfo(f).Extension) == type) || (type == ""))
+                //{
+                //    ret.Add(f);
+                //}
             }
 
 
@@ -501,8 +511,8 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
         if(!d.Exists)
             throw new Exception("Invalid files root directory. Check your configuration.");
 
-        ArrayList dirs = ListDirs(d.FullName);
-        dirs.Insert(0, d.FullName);
+        ArrayList dirs = new ArrayList();
+
         string keyword = GetCookie("keyword");
         if (!string.IsNullOrEmpty(keyword))
         {
@@ -528,18 +538,34 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
             {
                 dirs.Remove(dir);
             }
+            dirs.Insert(0, d.FullName);
+            string writeData = "[";
+            for (int i = 0; i < dirs.Count; i++)
+            {
+                string dir = (string)dirs[i];
+                writeData += "{\"p\":\"" + dir.Replace(rootDirectoryPath, "").Replace("\\", "/") + "\",\"f\":\"" + GetFiles(dir, type).Count.ToString() + "\",\"d\":\"" + Directory.GetDirectories(dir).Length.ToString() + "\"}";
+                if (i < dirs.Count - 1)
+                    writeData += ",";
+            }
+            writeData += "]";
+            _r.Write(writeData);
         }
-
-        //string localPath = _context.Server.MapPath("~/");
-        string writeData = "[";
-        for(int i = 0; i <dirs.Count; i++){
-            string dir = (string) dirs[i];
-            writeData += "{\"p\":\"" + dir.Replace(rootDirectoryPath, "").Replace("\\", "/") + "\",\"f\":\"" + GetFiles(dir, type).Count.ToString() + "\",\"d\":\"" + Directory.GetDirectories(dir).Length.ToString() + "\"}";
-            if(i < dirs.Count -1)
-                writeData += ",";
+        else
+        {
+            dirs = ListDirs(d.FullName);
+            dirs.Insert(0, d.FullName);
+            //string localPath = _context.Server.MapPath("~/");
+            string writeData = "[";
+            for (int i = 0; i < dirs.Count; i++)
+            {
+                string dir = (string)dirs[i];
+                writeData += "{\"p\":\"" + dir.Replace(rootDirectoryPath, "").Replace("\\", "/") + "\",\"f\":\"" + GetFiles(dir, type).Count.ToString() + "\",\"d\":\"" + Directory.GetDirectories(dir).Length.ToString() + "\"}";
+                if (i < dirs.Count - 1)
+                    writeData += ",";
+            }
+            writeData += "]";
+            _r.Write(writeData);
         }
-        writeData += "]";
-        _r.Write(writeData);
     }
     protected double LinuxTimestamp(DateTime d){
         DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0).ToLocalTime();
@@ -550,14 +576,32 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
     }
     protected void ListFiles(string path, string type, string keyword = "")
     {
-        CheckPath(path);
-        string fullPath = rootDirectoryPath + FixPath(path);
-        List<string> files = GetFiles(fullPath, type);
+        List<string> files = new List<string>();
+        if (String.IsNullOrEmpty(keyword))
+        {
+            CheckPath(path);
+            string fullPath = rootDirectoryPath + FixPath(path);
+            files = GetFiles(fullPath, type);
+        }
+        else
+        {
+            DirectoryInfo d = new DirectoryInfo(GetFilesRoot());
+            if (!d.Exists)
+                throw new Exception("Invalid files root directory. Check your configuration.");
+
+            ArrayList dirs = ListDirs(d.FullName);
+            dirs.Add(d.FullName);
+            foreach (string dr in dirs)
+            {
+                var filesCurrent = Directory.GetFiles(dr);
+                files.AddRange(filesCurrent);
+            }
+        }
         var PDF_AND_DOCX_FILES = new List<string>();
         for (int i = 0; i < files.Count; i++)
         {
             FileInfo FILE = new FileInfo(files[i]);
-            if( FILE.Name.ToLower().Contains(keyword.ToLower()) && (FILE.Extension.Contains("pdf") || FILE.Extension.Contains("doc")))
+            if( FILE.Name.Split('.').FirstOrDefault().ToLower().Contains(keyword.ToLower()) && (FILE.Extension.ToLower().Contains("pdf") || FILE.Extension.ToLower().Contains("doc")))
             {
                 PDF_AND_DOCX_FILES.Add(files[i]);
             }
@@ -589,8 +633,9 @@ public class RoxyFilemanHandler : IHttpHandler, System.Web.SessionState.IRequire
                 }
                 catch(Exception ex){throw ex;}
             }
+            string newPath = f.DirectoryName.Replace(rootDirectoryPath,"").Replace("\\", "/");
             _r.Write("{");
-            _r.Write("\"p\":\""+path + "/" + f.Name+"\"");
+            _r.Write("\"p\":\""+ newPath + "/" + f.Name+"\"");
             _r.Write(",\"t\":\"" + Math.Ceiling(LinuxTimestamp(f.LastWriteTime)).ToString() + "\"");
             _r.Write(",\"s\":\""+f.Length.ToString()+"\"");
             _r.Write(",\"w\":\""+w.ToString()+"\"");

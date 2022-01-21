@@ -1596,7 +1596,8 @@ function previewFile(){
     window.open(f.fullPath);
   }
 }
-function downloadFile(){
+function downloadFile() {
+    debugger;
   var f = getSelectedFile();
   if(f && RoxyFilemanConf.DOWNLOAD){
     var url = RoxyUtils.AddParam(RoxyFilemanConf.DOWNLOAD, 'f', f.fullPath);
