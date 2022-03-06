@@ -153,6 +153,27 @@
                 filterFiles();
             }
         });
+
+        $(document).ready(function () {
+            var dir = new Directory();
+            setTimeout(function () {
+                $(document).find('li').each(function () {
+                    var current_context = $(this);
+                    var d = Directory.Parse(current_context.attr('data-path'));
+                    console.log(d);
+                    if (d) {
+                        if (d.name != "main") {
+                            d.Expand(false);
+                            current_context.find("ul").hide();
+                        }
+                          
+
+                    }                                                        
+                })
+            }, 200)
+            
+        });
+        
     </script>
 </body>
 </html>

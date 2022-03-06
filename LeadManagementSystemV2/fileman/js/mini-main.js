@@ -772,11 +772,11 @@ function Directory(fullPath, numDirs, numFiles){
     el.children('img.dir').prop('src', 'images/folder.png');
     this.SetStatusBar();
     var p = this.GetParent();
-    while(p){
-      p.Expand(true);
+      while (p) {
+          p.Expand(true);
       p = p.GetParent();
-    }
-    this.Expand(true);
+      }
+      this.Expand(true);
     this.ListFiles(true, selectedFile);
     setLastDir(this.fullPath);
   };
@@ -842,7 +842,8 @@ function Directory(fullPath, numDirs, numFiles){
     el.children('div').children('.name').html(this.name+' ('+this.files+')');
     this.SetOpened();
   };
-  this.LoadAll = function(selectedDir){
+    this.LoadAll = function (selectedDir) {
+        debugger;
     var expanded = this.GetExpanded();
     var dirListURL = RoxyFilemanConf.DIRLIST;
     if(!dirListURL){
@@ -1959,8 +1960,9 @@ function initSelection(filePath){
     var p = (fileSelected? RoxyUtils.GetPath(filePath): filePath);
     var d = tmp = Directory.Parse(p);
     do{
-      if(tmp){
-        tmp.Expand(true);
+        if (tmp) {
+            debugger;
+            tmp.Expand(true);
         hasSelection = true; 
       }
       tmp = Directory.Parse(tmp.path);
@@ -1980,6 +1982,7 @@ $(function () {
   RoxyUtils.LoadConfig();
   var d = new Directory();
     d.LoadAll();
+
     
   $('#wraper').show();
   
@@ -2030,8 +2033,8 @@ $(function () {
     catch(ex){}
     }
     debugger;
-    d.GetExpanded();
-    d.SetOpened();
+   // d.GetExpanded();
+   // d.SetOpened();
     $(".directory").each(function () {
         $(this).children("ul").show();
     })
